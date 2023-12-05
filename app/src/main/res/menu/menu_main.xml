@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/openSwitchgear"
+        android:title="@string/open_switchgear"
+        android:enabled="true"
+        android:icon="@drawable/klipartz_com3"/>
+
+    <item
+        android:id="@+id/transformerOfOwnNeeds"
+        android:title="@string/transformer_of_own_needs"
+        android:enabled="true"
+        android:icon="@drawable/transformer_1"/>
+
+    <item
+        android:id="@+id/blockGeneratorTransformer"
+        android:title="@string/blockGenerator_transformer"
+        android:enabled="true"
+        android:icon="@drawable/generator_1"/>
+
+    <item
+        android:id="@+id/electricMotorFragment"
+        android:title="@string/electric_motors"
+        android:enabled="true"
+        android:icon="@drawable/motor_5686786"/>
+
+    <item
+        android:id="@+id/blankFragment"
+        android:title="@string/test"
+        android:enabled="true"
+        android:icon="@drawable/baseline_bolt_24"/>
+
+</menu>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/openSwitchgear">
+
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.svetlogorskchpp.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/openSwitchgear"
+        android:name="com.example.svetlogorskchpp.openSwitchgear.OpenSwitchgear"
+        android:label="fragment_open_switchgear"
+        tools:layout="@layout/fragment_open_switchgear" />
+    <fragment
+        android:id="@+id/transformerOfOwnNeeds"
+        android:name="com.example.svetlogorskchpp.transformerOfOwnNeeds.TransformerOfOwnNeeds"
+        android:label="fragment_transformer_of_own_needs"
+        tools:layout="@layout/fragment_transformer_of_own_needs" />
+    <fragment
+        android:id="@+id/blockGeneratorTransformer"
+        android:name="com.example.svetlogorskchpp.blockGeneratorTransformer.BlockGeneratorTransformer"
+        android:label="fragment_block_generator_transformer"
+        tools:layout="@layout/fragment_block_generator_transformer" />
+    <fragment
+        android:id="@+id/electricMotorFragment"
+        android:name="com.example.svetlogorskchpp.electricMotor.ElectricMotorFragment"
+        android:label="fragment_electric_motor"
+        tools:layout="@layout/fragment_electric_motor" />
+</navigation>

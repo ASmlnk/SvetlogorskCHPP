@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="backgroundRecycle">#FFFFFF</color>
+    <color name="backgroundItem">#F3F3F3</color>
+    <color name="text_recycle">#214763</color>
+    <color name="text_recycle_smile">#567993</color>
+    <color name="chip_appbar">#D6E7F3</color>
+    <color name="name_devices_appbar">#A7D0EF</color>
+    <color name="red_schema">#C9322F</color>
+</resources>

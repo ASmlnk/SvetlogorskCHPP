@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Svetlogorsk CHPP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_switchgear">ЛЭП</string>
+    <string name="transformer_of_own_needs">ТСН</string>
+    <string name="blockGenerator_transformer">Блок ГТ</string>
+    <string name="test">Test</string>
+    <string name="svetlogorsk_chpp">Светлогорская ТЭЦ</string>
+    <string name="ory">ОРУ</string>
+    <string name="ory_110">ОРУ-110</string>
+    <string name="ory_220">ОРУ-220</string>
+    <string name="kv_3_15">3,15 кВ</string>
+    <string name="kv_0_4">0,4 кВ</string>
+    <string name="kv_6_3">6,3 кВ</string>
+    <string name="name_ory">Открытое распределительное устройство</string>
+    <string name="name_tsn">Трансформаторы собственных нужд</string>
+    <string name="shr_1">1ШР</string>
+    <string name="shr_2">2ШР</string>
+    <string name="lr">ЛР</string>
+    <string name="or">ОР</string>
+    <string name="zemlia">Земляная</string>
+    <string name="faznai">Фазная</string>
+    <string name="apv">АПВ</string>
+    <string name="text_gsy_apv">
+        АПВ - %2$s
+       \nГЩУ - %1$s
+    </string>
+    <string name="tex_volt_tsn">%1$s: %2$s</string>
+    <string name="transformator">Трасформатор</string>
+    <string name="generator">Генератор</string>
+    <string name="turbin">Турбина</string>
+    <string name="name_block">Блоки Генератор-Трансформатор</string>
+    <string name="power">Установленая P = 155 МВт \nУстановленая Q = 541,5 ГКал</string>
+    <string name="electric_motors">Эл.двигатели</string>
+    <string name="electric_motor">Эл.двигатель</string>
+    <string name="title_electric_motor">Электродвигатели</string>
+    <string name="v">U</string>
+    <string name="tg">ТГ</string>
+    <string name="tg1">ТГ 1</string>
+    <string name="tg3">ТГ 3</string>
+    <string name="tg4">ТГ 4</string>
+    <string name="tg5">ТГ 5</string>
+    <string name="tg6">ТГ 6</string>
+    <string name="ka1">К/А 1</string>
+    <string name="ka6">К/А 6</string>
+    <string name="ka7">К/А 7</string>
+    <string name="ka8">К/А 8</string>
+    <string name="ka9">К/А 9</string>
+    <string name="ka">К/А</string>
+    <string name="ktc_to">КТЦ т/о</string>
+    <string name="pen">ПЭН</string>
+    <string name="pn">ПН</string>
+    <string name="sn">СН</string>
+    <string name="bnt">БНТ</string>
+    <string name="coastal">Береговая</string>
+    <string name="cooling_tower">Градирня</string>
+    <string name="ktc_ko">КТЦ к/о</string>
+    <string name="bug">Багерная</string>
+    <string name="ktc_ty">КТЦ ТУ</string>
+    <string name="hvo">ХВО</string>
+    <string name="kry_3_15">КРУ-3,15</string>
+    <string name="kry_6_3">КРУ-6,3</string>
+    <string name="rusn">РУСН</string>
+    <string name="v_04">0.4 кВ</string>
+    <string name="v_all">Все</string>
+    <string name="v_315">3.15 кВ</string>
+    <string name="v_63">6.3 кВ</string>
+    <string name="v_rep">РЭП</string>
+    <string name="voltage">U = %s В</string>
+    <string name="responsibly">Ответственные</string>
+    <string name="s1">1</string>
+    <string name="s2">2</string>
+    <string name="s3">3</string>
+    <string name="s4">4</string>
+    <string name="s5">5</string>
+    <string name="s6">6</string>
+    <string name="s7">7</string>
+    <string name="s8">8</string>
+    <string name="s9">9</string>
+    <string name="filter">Фильтр: %s</string>
+    <string name="text_voltage">Электродвигатели по номинальному напряжению</string>
+    <string name="text_tg_title">Элктродвигатели Турбогенераторов</string>
+    <string name="text_ka_title">Электродвигатели котлоагрегатов</string>
+    <string name="text_ktc_to_title">Электродвигатели КТЦ т/о</string>
+    <string name="text_ktc_ko_title">Электродвигатели КТЦ к/о</string>
+    <string name="text_kry_315_title">КРУ - 3,15 кВ</string>
+    <string name="s_1">1 секция</string>
+    <string name="s_2">2 секция</string>
+    <string name="s_3">3 секция</string>
+    <string name="s_4">4 секция</string>
+    <string name="s_5">5 секция</string>
+    <string name="s_6">6 секция</string>
+    <string name="s_7">7 секция</string>
+    <string name="s_8">8 секция</string>
+    <string name="s_9">9 секция</string>
+    <string name="text_rusn_04_title">РУСН - 0,4 кВ</string>
+    <string name="pump">Насос</string>
+    <string name="close">Close</string>
+    <string name="text_create_em">name: %1$s\ncategory: %2$s\ncharacteristics: %3$s\nvoltage: %4$s\ngeneralCategory: %5$s\nindexSection: %6$s\nschema: %7$s\np: %8$s\ni: %9$s\npump: %10$s</string>
+
+
+</resources>
