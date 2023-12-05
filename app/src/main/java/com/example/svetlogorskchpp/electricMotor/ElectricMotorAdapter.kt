@@ -40,7 +40,7 @@ class ElectricMotorAdapter :
                     addDrag(SwipeLayout.DragEdge.Left, null)
                 }
 
-                textNameBlockElectricMotor.text = item.name
+                textNameBlockElectricMotor.text = item.name.replace("\\n", System.getProperty("line.separator"))
                 textGeneratorDetail.text =
                     item.characteristics.replace("\\n", System.getProperty("line.separator"))
                 textShemaAssembly.text = item.schema     //item.characteristics.split("\\n").last()
@@ -50,8 +50,8 @@ class ElectricMotorAdapter :
                 textTok.text = item.i
                 textCategory.text = item.category
                 textRep.visibility = if (item.rep) View.VISIBLE else View.GONE
-                imageShema.setImageResource(colorShema(item))
-                indexSection.text = item.indexSection
+               // imageShema.setImageResource(colorShema(item))
+               // indexSection.text = item.indexSection
                 //binding.nameElectricMotor.strokeColor = itemView.context.getColor(R.color.red_schema)
             }
         }

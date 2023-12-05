@@ -1,22 +1,26 @@
 package com.example.svetlogorskchpp.electricMotor
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.SharedPreferencesManager
 import com.example.svetlogorskchpp.databinding.FragmentElectricMotorBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+
+const val APP_PREFERENCES = "APP_PREFERENCES"
 
 class ElectricMotorFragment : Fragment() {
 
@@ -25,9 +29,13 @@ class ElectricMotorFragment : Fragment() {
     private val adapter = ElectricMotorAdapter()
     private val viewModel: ElectricMotorViewModel by viewModels()
 
-    /*private val viewModel: ElectricMotorViewModel by lazy {
-        ViewModelProvider(this)[ElectricMotorViewModel::class.java]
-    }*/
+    private val preferencesListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
+            if (key == "date_electric_motor1") {
+                val date = sharedPreferences.getString(key, "0")!!.toLong()
+                binding.textDate.text = viewModel.dateFormat(date)
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +45,9 @@ class ElectricMotorFragment : Fragment() {
         _binding = FragmentElectricMotorBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        /*binding.chipRep.setOnClickListener {
-            //viewModelA.getRepChip()
-        }*/
-
+        SharedPreferencesManager.sharedPreferences.registerOnSharedPreferenceChangeListener(
+            preferencesListener
+        )
         // (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         binding.apply {
@@ -354,12 +361,13 @@ class ElectricMotorFragment : Fragment() {
                 setOnClickListener {
                     viewElectric.smoothScrollTo(0, 0)
                 }
-
             }
+
+            chipFilterMenu.isGone = true
+            cardViewGroupVoltage.isGone = true
+
+            textDate.text = viewModel.getDataPref()
         }
-
-
-
         return view
     }
 
@@ -367,7 +375,7 @@ class ElectricMotorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.recycleElectricMotor.adapter = adapter
 
-        viewModel.boilerUnitLiveData.observe(viewLifecycleOwner) {
+        viewModel.listFilterLiveData.observe(viewLifecycleOwner) {
             binding.cardViewGroupVoltage.isVisible = it.isEmpty()
             binding.buttonClose.isVisible = it.isNotEmpty()
             binding.buttonUp.isVisible = it.isNotEmpty()
@@ -375,14 +383,22 @@ class ElectricMotorFragment : Fragment() {
             binding.textFilter.isVisible = it.isNotEmpty()
             adapter.submitList(it)
             binding.viewElectric.smoothScrollTo(0, 0)
-
         }
 
+        viewModel.dataElectricMotor.observe(viewLifecycleOwner) {
+            binding.chipFilterMenu.isVisible = true
+            binding.cardViewGroupVoltage.isVisible = true
+            binding.progress.isGone = true
+
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        SharedPreferencesManager.sharedPreferences.unregisterOnSharedPreferenceChangeListener(
+            preferencesListener
+        )
     }
 
     private fun chipFilter(filter: String, chipChecked: Boolean, chip: Chip) {
@@ -412,7 +428,7 @@ class ElectricMotorFragment : Fragment() {
             val chip1 = list[0]
             val dx = chip1.x
             binding.horizontalScrollView.scrollTo(dx.toInt(), 0)
-            if (list.getOrNull(1)!=null) {
+            if (list.getOrNull(1) != null) {
                 val chip2 = list.getOrNull(1)
                 val dx2 = chip2!!.x
                 binding.horizontalScrollView2.smoothScrollTo(dx2.toInt(), 0)
