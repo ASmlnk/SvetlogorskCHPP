@@ -384,6 +384,7 @@ class ElectricMotorFragment : Fragment() {
             binding.viewElectric.smoothScrollTo(0, 0)
         }
 
+
         viewModel.dataElectricMotor.observe(viewLifecycleOwner) {
             binding.chipFilterMenu.isVisible = true
             binding.cardViewGroupVoltage.isVisible = true
