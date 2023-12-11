@@ -377,7 +377,13 @@ class ElectricMotorFragment : Fragment() {
             binding.buttonUp.isVisible = it.isNotEmpty()
             binding.chipGroupCategory.isSelectionRequired = it.isNotEmpty()
             binding.textFilter.isVisible = it.isNotEmpty()
-            adapter.submitList(it)
+            lifecycleScope.launch {
+                delay(100)
+                adapter.submitList(it)
+                binding.progress.isVisible = false
+            }
+            binding.progress.isVisible = true
+
             binding.viewElectric.smoothScrollTo(0, 0)
         }
 
@@ -385,7 +391,6 @@ class ElectricMotorFragment : Fragment() {
             binding.chipFilterMenu.isVisible = true
             binding.cardViewGroupVoltage.isVisible = true
             binding.progress.isGone = true
-
         }
     }
 

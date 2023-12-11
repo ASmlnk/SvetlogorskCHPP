@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
@@ -17,7 +18,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ElectricMotorAdapter :
-    ListAdapter<ElectricMotor, ElectricMotorAdapter.ElectricMotorHolder>(ElectricMotorItemCallback()) {
+    ListAdapter<ElectricMotor, ElectricMotorAdapter.ElectricMotorHolder>(
+        AsyncDifferConfig.Builder(ElectricMotorItemCallback()).build()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectricMotorHolder =
         ElectricMotorHolder.inflateFrom(parent)
@@ -40,10 +42,6 @@ class ElectricMotorAdapter :
 
         fun bind(item: ElectricMotor) {
 
-            val name = item.name.replace("\\n", System.getProperty("line.separator"))
-            val characteristics = item.characteristics.replace("\\n", System.getProperty("line.separator"))
-            val pump = item.pump.replace("\\n", System.getProperty("line.separator"))
-
             binding.apply {
                 swipeItemBlock.apply {
                     showMode = SwipeLayout.ShowMode.LayDown
@@ -51,11 +49,11 @@ class ElectricMotorAdapter :
                     addDrag(SwipeLayout.DragEdge.Left, null)
                 }
 
-                textNameBlockElectricMotor.text = name
-                textGeneratorDetail.text = characteristics
+                textNameBlockElectricMotor.text = item.name.replace("\\n", System.getProperty("line.separator"))
+                textGeneratorDetail.text = item.characteristics.replace("\\n", System.getProperty("line.separator"))
                 textShemaAssembly.text = item.schema
                 textPower.text = item.p
-                textTurbinDetail.text = pump
+                textTurbinDetail.text = item.pump.replace("\\n", System.getProperty("line.separator"))
                 textVoltage.text = itemView.context.getString(R.string.voltage, item.voltage)
                 textTok.text = item.i
                 textCategory.text = item.category
