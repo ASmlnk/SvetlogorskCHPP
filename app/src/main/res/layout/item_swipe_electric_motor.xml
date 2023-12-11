@@ -203,7 +203,6 @@
                         android:fontFamily="@font/ru_hero"
                         android:hint=""
                         android:padding="2dp"
-                        android:text="Вакуумный насос для\n разгрузки кислоты  №1"
                         android:textColor="@color/text_recycle"
                         android:textIsSelectable="false"
                         android:textSize="16sp"

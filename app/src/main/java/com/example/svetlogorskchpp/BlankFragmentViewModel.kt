@@ -12,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 
 class BlankFragmentViewModel : ViewModel() {
 
-    val data = FirestoreRepository()
+    val data = FirestoreRepository.get()
     val listData = mutableListOf<ElectricMotor>()
     val liveData = MutableLiveData<Int>()
     val listDataFilter = mutableListOf<ElectricMotor>()
@@ -39,8 +39,6 @@ class BlankFragmentViewModel : ViewModel() {
             val p = it.characteristics.split("\\n").first()
             val schema = it.characteristics.split("\\n").last()
             val i = it.characteristics.split("\\n")[2]
-
-            val generalCategory = "К6-"
 
             val dataEM = HashMap<String, Any>()
             dataEM["schema"] = schema

@@ -20,7 +20,7 @@ import java.util.TimeZone
 
 class ElectricMotorViewModel : ViewModel() {
 
-    val data = FirestoreRepository()
+    val data = FirestoreRepository.get()
 
     private val listAll = mutableListOf<ElectricMotor>()
     val listFilterLiveData = MutableLiveData<List<ElectricMotor>>()
@@ -42,10 +42,6 @@ class ElectricMotorViewModel : ViewModel() {
                 listAll.addAll(dataList)
                 dataElectricMotor.value = dataList
             }
-
-           // val dataList = data.getAllElectricMotorCache()
-           // listAll.addAll(dataList)
-           // dataElectricMotor.value = dataList
         }
     }
 
@@ -100,13 +96,7 @@ class ElectricMotorViewModel : ViewModel() {
 
             else -> emptyList()
         }
-
         listFilterLiveData.value = listFilter
-    }
-
-    fun getAllChip() {
-        val list = listAll
-        listFilterLiveData.value = list
     }
 
     fun date(): String {
@@ -116,23 +106,13 @@ class ElectricMotorViewModel : ViewModel() {
         /*val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)*/
-
-
         val data = calendar.timeInMillis
-        val pattern = "dd.MM.yyyy HH:mm"
-       // val dateFormat = SimpleDateFormat(pattern).format(data)
 
         return data.toString()
     }
 
-    fun saveDatePref() {
-        val date = date()
-        SharedPreferencesManager.saveString("data_key", date)
-    }
-
     fun getDataPref(): String {
         val date = SharedPreferencesManager.getString("date_electric_motor1", "0")
-
         return dateFormat(date.toLong())
     }
 
@@ -145,16 +125,9 @@ class ElectricMotorViewModel : ViewModel() {
             dateFB.dayMonth.toInt()
         ).timeInMillis
 
-        Log.d("timezz", "timeFB ${dateFormat(dateUpdateDateFB)}")
-
         val dateCash = SharedPreferencesManager.getString("date_electric_motor1", "0").toLong()
-
-
-        Log.d("timezz", "time ${dateFormat(dateCash)}")
-
         return dateUpdateDateFB > dateCash
     }
 
     fun dateFormat(date: Long): String = SimpleDateFormat("dd.MM.yyyy HH:mm").format(date)
-
 }

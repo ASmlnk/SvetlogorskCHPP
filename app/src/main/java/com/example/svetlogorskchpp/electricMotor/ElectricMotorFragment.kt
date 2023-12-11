@@ -20,8 +20,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
-const val APP_PREFERENCES = "APP_PREFERENCES"
-
 class ElectricMotorFragment : Fragment() {
 
     private var _binding: FragmentElectricMotorBinding? = null
@@ -51,294 +49,294 @@ class ElectricMotorFragment : Fragment() {
         // (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         binding.apply {
-            chipAll.setOnCheckedChangeListener { compoundButton, b ->
+            chipAll.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "all", chipChecked = b, chip = chipAll)
             }
             materialCardViewVoltageAll.setOnClickListener {
                 activatedChip(listOf(binding.chipAll))
             }
 
-            chipVoltage.setOnCheckedChangeListener { compoundButton, b ->
+            chipVoltage.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupU, view = view, chipChecked = b)
             }
-            chipVoltage04.setOnCheckedChangeListener { compoundButton, b ->
+            chipVoltage04.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "380", chipChecked = b, chip = chipVoltage04)
             }
             materialCardView04.setOnClickListener {
                 activatedChip(listOf(binding.chipVoltage, binding.chipVoltage04))
             }
-            chipVoltage315.setOnCheckedChangeListener { compoundButton, b ->
+            chipVoltage315.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "3000", chipChecked = b, chip = chipVoltage315)
             }
             materialCardView315.setOnClickListener {
                 activatedChip(listOf(binding.chipVoltage, binding.chipVoltage315))
             }
-            chipVoltage63.setOnCheckedChangeListener { compoundButton, b ->
+            chipVoltage63.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "6000", chipChecked = b, chip = chipVoltage63)
             }
             materialCardView63.setOnClickListener {
                 activatedChip(listOf(binding.chipVoltage, binding.chipVoltage63))
             }
 
-            chipTg.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupTg, view = view, chipChecked = b)
             }
-            chipTg1.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg1.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ-1", chipChecked = b, chip = chipTg1)
             }
             materialCardViewTg1.setOnClickListener {
                 activatedChip(listOf(chipTg, chipTg1))
             }
-            chipTg3.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg3.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ-3", chipChecked = b, chip = chipTg3)
             }
             materialCardViewTg3.setOnClickListener {
                 activatedChip(listOf(chipTg, chipTg3))
             }
-            chipTg4.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg4.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ-4", chipChecked = b, chip = chipTg4)
             }
             materialCardViewTg4.setOnClickListener {
                 activatedChip(listOf(chipTg, chipTg4))
             }
-            chipTg5.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg5.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ-5", chipChecked = b, chip = chipTg5)
             }
             materialCardViewTg5.setOnClickListener {
                 activatedChip(listOf(chipTg, chipTg5))
             }
-            chipTg6.setOnCheckedChangeListener { compoundButton, b ->
+            chipTg6.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ-6", chipChecked = b, chip = chipTg6)
             }
             materialCardViewTg6.setOnClickListener {
                 activatedChip(listOf(chipTg, chipTg6))
             }
-            chipAllTg.setOnCheckedChangeListener { compoundButton, b ->
+            chipAllTg.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТГ", chipChecked = b, chip = chipAllTg)
             }
             materialCardViewTgAll.setOnClickListener {
                 activatedChip(listOf(chipTg, chipAllTg))
             }
 
-            chipKa.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupKa, view = view, chipChecked = b)
             }
-            chipKa1.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa1.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А-1", chipChecked = b, chip = chipKa1)
             }
             materialCardViewKa1.setOnClickListener {
                 activatedChip(listOf(chipKa, chipKa1))
             }
-            chipKa6.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa6.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А-6", chipChecked = b, chip = chipKa6)
             }
             materialCardViewKa6.setOnClickListener {
                 activatedChip(listOf(chipKa, chipKa6))
             }
-            chipKa7.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa7.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А-7", chipChecked = b, chip = chipKa7)
             }
             materialCardViewKa7.setOnClickListener {
                 activatedChip(listOf(chipKa, chipKa7))
             }
-            chipKa8.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa8.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А-8", chipChecked = b, chip = chipKa8)
             }
             materialCardViewKa8.setOnClickListener {
                 activatedChip(listOf(chipKa, chipKa8))
             }
-            chipKa9.setOnCheckedChangeListener { compoundButton, b ->
+            chipKa9.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А-9", chipChecked = b, chip = chipKa9)
             }
             materialCardViewKa9.setOnClickListener {
                 activatedChip(listOf(chipKa, chipKa9))
             }
-            chipAllKa.setOnCheckedChangeListener { compoundButton, b ->
+            chipAllKa.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К/А", chipChecked = b, chip = chipAllKa)
             }
             materialCardViewKaAll.setOnClickListener {
                 activatedChip(listOf(chipKa, chipAllKa))
             }
 
-            chipRep.setOnCheckedChangeListener { compoundButton, b ->
+            chipRep.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "РЭП", chipChecked = b, chip = chipRep)
             }
 
-            chipKtcTo.setOnCheckedChangeListener { compoundButton, b ->
+            chipKtcTo.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupKtcTo, view = view, chipChecked = b)
             }
-            chipPen.setOnCheckedChangeListener { compoundButton, b ->
+            chipPen.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ПЭН", chipChecked = b, chip = chipPen)
             }
             materialCardPen.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipPen))
             }
-            chipPn.setOnCheckedChangeListener { compoundButton, b ->
+            chipPn.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ПН", chipChecked = b, chip = chipPn)
             }
             materialCardViewPn.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipPn))
             }
-            chipSn.setOnCheckedChangeListener { compoundButton, b ->
+            chipSn.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "СН", chipChecked = b, chip = chipSn)
             }
             materialCardViewSn.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipSn))
             }
-            chipBnt.setOnCheckedChangeListener { compoundButton, b ->
+            chipBnt.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "БНТ", chipChecked = b, chip = chipBnt)
             }
             materialCardViewBnt.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipBnt))
             }
-            chipCoastal.setOnCheckedChangeListener { compoundButton, b ->
+            chipCoastal.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "НДВ", chipChecked = b, chip = chipCoastal)
             }
             materialCardViewCoastal.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipCoastal))
             }
-            chipCoolingTower.setOnCheckedChangeListener { compoundButton, b ->
+            chipCoolingTower.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ЦН", chipChecked = b, chip = chipCoolingTower)
             }
             materialCardViewCoolingTower.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipCoolingTower))
             }
-            chipAllKtcTo.setOnCheckedChangeListener { compoundButton, b ->
+            chipAllKtcTo.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "КТЦ т/о", chipChecked = b, chip = chipAllKtcTo)
             }
             materialCardViewAllKtcTo.setOnClickListener {
                 activatedChip(listOf(chipKtcTo, chipAllKtcTo))
             }
 
-            chipKtcKo.setOnCheckedChangeListener { compoundButton, b ->
+            chipKtcKo.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupKtcKo, view = view, chipChecked = b)
             }
-            chipBug.setOnCheckedChangeListener { compoundButton, b ->
+            chipBug.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Багерная", chipChecked = b, chip = chipBug)
             }
             materialCardBug.setOnClickListener {
                 activatedChip(listOf(chipKtcKo, chipBug))
             }
-            chipAllKtcKo.setOnCheckedChangeListener { compoundButton, b ->
+            chipAllKtcKo.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "КТЦ к/о", chipChecked = b, chip = chipAllKtcKo)
             }
             materialCardAllKtcKo.setOnClickListener {
                 activatedChip(listOf(chipKtcKo, chipAllKtcKo))
             }
 
-            chipKtcTy.setOnCheckedChangeListener { compoundButton, b ->
+            chipKtcTy.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ТУ", chipChecked = b, chip = chipKtcTy)
             }
 
-            chipHvo.setOnCheckedChangeListener { compoundButton, b ->
+            chipHvo.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ХОВ", chipChecked = b, chip = chipHvo)
             }
 
-            chipKry315.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry315.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupKry315, view = view, chipChecked = b)
             }
-            chipKry3151.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3151.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-1", chipChecked = b, chip = chipKry3151)
             }
             materialCardKry315s1.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3151))
             }
-            chipKry3153.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3153.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-3", chipChecked = b, chip = chipKry3153)
             }
             materialCardViewKry315s3.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3153))
             }
-            chipKry3154.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3154.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-4", chipChecked = b, chip = chipKry3154)
             }
             materialCardViewKry315s4.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3154))
             }
-            chipKry3155.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3155.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-5", chipChecked = b, chip = chipKry3155)
             }
             materialCardViewKry315s5.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3155))
             }
-            chipKry3156.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3156.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-6", chipChecked = b, chip = chipKry3156)
             }
             materialCardViewKry315s6.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3156))
             }
-            chipKry3157.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3157.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-7", chipChecked = b, chip = chipKry3157)
             }
             materialCardViewKry315s7.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3157))
             }
-            chipKry3158.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3158.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-8", chipChecked = b, chip = chipKry3158)
             }
             materialCardViewKry315s8.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3158))
             }
-            chipKry3159.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry3159.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К3-9", chipChecked = b, chip = chipKry3159)
             }
             materialCardViewKry315s9.setOnClickListener {
                 activatedChip(listOf(chipKry315, chipKry3159))
             }
 
-            chipKry63.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry63.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupKry63, view = view, chipChecked = b)
             }
-            chipKry631.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry631.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К6-1", chipChecked = b, chip = chipKry631)
             }
-            chipKry632.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry632.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К6-2", chipChecked = b, chip = chipKry632)
             }
-            chipKry633.setOnCheckedChangeListener { compoundButton, b ->
+            chipKry633.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "К6-3", chipChecked = b, chip = chipKry633)
             }
 
-            chipRusn.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn.setOnCheckedChangeListener { _, b ->
                 openChipGroup(chipGroup = binding.chipGroupRusn, view = view, chipChecked = b)
             }
-            chipRusn1.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn1.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-1", chipChecked = b, chip = chipRusn1)
             }
             materialCardRusnS1.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn1))
             }
-            chipRusn2.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn2.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-2", chipChecked = b, chip = chipRusn2)
             }
             materialCardViewRusnS2.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn2))
             }
-            chipRusn3.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn3.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-3", chipChecked = b, chip = chipRusn3)
             }
             materialCardViewRusnS3.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn3))
             }
-            chipRusn4.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn4.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-4", chipChecked = b, chip = chipRusn4)
             }
             materialCardViewRusnS4.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn4))
             }
-            chipRusn5.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn5.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-5", chipChecked = b, chip = chipRusn5)
             }
             materialCardViewRusnS5.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn5))
             }
-            chipRusn6.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn6.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-6", chipChecked = b, chip = chipRusn6)
             }
             materialCardViewRusnS6.setOnClickListener {
                 activatedChip(listOf(chipRusn, chipRusn6))
             }
-            chipRusn7.setOnCheckedChangeListener { compoundButton, b ->
+            chipRusn7.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "Р-7", chipChecked = b, chip = chipRusn7)
             }
             materialCardViewRusnS7.setOnClickListener {
@@ -350,7 +348,6 @@ class ElectricMotorFragment : Fragment() {
                     viewModel.getFilterList("")
                     closeChip(chipGroup = binding.chipGroupCategory, view = view)
                     viewElectric.smoothScrollTo(0, 0)
-                    // appBar.setScrimsShown(true)
                     horizontalScrollView.scrollTo(0, 0)
                     horizontalScrollView2.scrollTo(0, 0)
                 }
@@ -365,7 +362,6 @@ class ElectricMotorFragment : Fragment() {
 
             chipFilterMenu.isGone = true
             cardViewGroupVoltage.isGone = true
-
             textDate.text = viewModel.getDataPref()
         }
         return view
