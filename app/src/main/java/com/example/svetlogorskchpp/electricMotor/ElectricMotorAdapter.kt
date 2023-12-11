@@ -13,9 +13,6 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.ItemElectricMotorBinding
 import com.example.svetlogorskchpp.databinding.ItemSwipeElectricMotorBinding
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class ElectricMotorAdapter :
     ListAdapter<ElectricMotor, ElectricMotorAdapter.ElectricMotorHolder>(

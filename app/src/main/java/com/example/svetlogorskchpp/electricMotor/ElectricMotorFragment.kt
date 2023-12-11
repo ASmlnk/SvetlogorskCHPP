@@ -377,10 +377,10 @@ class ElectricMotorFragment : Fragment() {
             binding.buttonUp.isVisible = it.isNotEmpty()
             binding.chipGroupCategory.isSelectionRequired = it.isNotEmpty()
             binding.textFilter.isVisible = it.isNotEmpty()
-
+            lifecycleScope.launch {
+                delay(100)
                 adapter.submitList(it)
-
-
+            }
             binding.viewElectric.smoothScrollTo(0, 0)
         }
 
