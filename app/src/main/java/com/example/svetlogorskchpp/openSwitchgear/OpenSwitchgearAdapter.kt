@@ -3,23 +3,20 @@ package com.example.svetlogorskchpp.openSwitchgear
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.ItemSwipeOpenSwichgearBinding
 import com.example.svetlogorskchpp.model.powerLines.PowerLines
 
-class OpenSwitchgearAdapter(val list: List<PowerLines>):
-    RecyclerView.Adapter< OpenSwitchgearAdapter.OpenSwitchgearHolder>() {
-
+class OpenSwitchgearAdapter():
+    ListAdapter<PowerLines, OpenSwitchgearAdapter.OpenSwitchgearHolder>(PowerLinesItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OpenSwitchgearHolder =
         OpenSwitchgearHolder.inflateFrom(parent)
-
-    override fun getItemCount(): Int = list.size
-
     override fun onBindViewHolder(holder: OpenSwitchgearHolder, position: Int) {
-        val item = list[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 

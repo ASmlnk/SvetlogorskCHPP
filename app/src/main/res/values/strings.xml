@@ -98,6 +98,11 @@
     <string name="pump">Насос</string>
     <string name="close">Close</string>
     <string name="text_create_em">name: %1$s\ncategory: %2$s\ncharacteristics: %3$s\nvoltage: %4$s\ngeneralCategory: %5$s\nindexSection: %6$s\nschema: %7$s\np: %8$s\ni: %9$s\npump: %10$s</string>
+    <string name="hvo_desalting">Обессоливание</string>
+    <string name="hvo_pre_cleaning">Предочистка</string>
+    <string name="hvo_so">Очистные</string>
+    <string name="hvo_other">Остальное</string>
+    <string name="ec">ЭЦ, ЦЦР</string>
 
 
 </resources>

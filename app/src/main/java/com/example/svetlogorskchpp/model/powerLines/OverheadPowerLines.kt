@@ -4,7 +4,7 @@ import com.example.svetlogorskchpp.model.transformerNeeds.T
 
 class OverheadPowerLines {
 
-    fun getAllPowerLines() = listPowerLines
+    suspend fun getAllPowerLines() = listPowerLines
     val listPowerLines = mutableListOf<PowerLines>()
     init {
         val sziv = PowerLines(

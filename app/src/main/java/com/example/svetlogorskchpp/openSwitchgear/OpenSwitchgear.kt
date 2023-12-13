@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.openSwitchgear
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +17,7 @@ class OpenSwitchgear : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: OpenSwitchgearViewModel by viewModels()
-
-    private val data = OverheadPowerLines()
+    val adapter = OpenSwitchgearAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,15 +25,25 @@ class OpenSwitchgear : Fragment() {
     ): View? {
         _binding = FragmentOpenSwitchgearBinding.inflate(inflater, container, false)
 
-        val list = data.getAllPowerLines()
-        val adapter = OpenSwitchgearAdapter(list)
+      //  binding.recycleLep.layoutManager = LinearLayoutManager(context)
 
-        binding.recycleLep.apply {
-            layoutManager = LinearLayoutManager(context)
-            this.adapter = adapter }
 
+        val display = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(display)
+        val h = display.heightPixels
+        binding.recycleLep.layoutParams.height = h //* 80 / 100
+        binding.recycleLep.adapter = adapter
 
         return  binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.liveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+
     }
 
     override fun onDestroyView() {

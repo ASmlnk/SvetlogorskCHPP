@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.electricMotor
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.SharedPreferencesManager
 import com.example.svetlogorskchpp.databinding.FragmentElectricMotorBinding
@@ -49,6 +51,7 @@ class ElectricMotorFragment : Fragment() {
         // (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         binding.apply {
+
             chipAll.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "all", chipChecked = b, chip = chipAll)
             }
@@ -228,8 +231,43 @@ class ElectricMotorFragment : Fragment() {
                 chipFilter(filter = "ТУ", chipChecked = b, chip = chipKtcTy)
             }
 
+            chipEc.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ЭЦ", chipChecked = b, chip = chipEc)
+            }
+
             chipHvo.setOnCheckedChangeListener { _, b ->
-                chipFilter(filter = "ХОВ", chipChecked = b, chip = chipHvo)
+                openChipGroup(chipGroup = binding.chipGroupHvo, view = view, chipChecked = b)
+                //chipFilter(filter = "ХОВ", chipChecked = b, chip = chipHvo)
+            }
+            chipHvoDesalting.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ОБ", chipChecked = b, chip = chipHvoDesalting)
+            }
+            materialCardHvoDesalting.setOnClickListener {
+                activatedChip(listOf(chipHvo, chipHvoDesalting))
+            }
+            chipHvoPreCleaning.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ПР", chipChecked = b, chip = chipHvoPreCleaning)
+            }
+            materialCardViewHvoPreCleaning.setOnClickListener {
+                activatedChip(listOf(chipHvo, chipHvoPreCleaning))
+            }
+            chipHvoSo.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ОС", chipChecked = b, chip = chipHvoSo)
+            }
+            materialCardViewHvoOS.setOnClickListener {
+                activatedChip(listOf(chipHvo, chipHvoSo))
+            }
+            chipHvoOther.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ОСТ", chipChecked = b, chip = chipHvoOther)
+            }
+            materialCardViewHvoOther.setOnClickListener {
+                activatedChip(listOf(chipHvo, chipHvoOther))
+            }
+            chipHvoAll.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "ХОВ", chipChecked = b, chip = chipHvoAll)
+            }
+            materialCardViewHvoAll.setOnClickListener {
+                activatedChip(listOf(chipHvo, chipHvoAll))
             }
 
             chipKry315.setOnCheckedChangeListener { _, b ->
@@ -350,39 +388,62 @@ class ElectricMotorFragment : Fragment() {
                     viewElectric.smoothScrollTo(0, 0)
                     horizontalScrollView.scrollTo(0, 0)
                     horizontalScrollView2.scrollTo(0, 0)
+                    recycleElectricMotor.isGone = true
                 }
                 imageTintList = context?.getColorStateList(R.color.white)
+
             }
             buttonUp.apply {
                 imageTintList = context?.getColorStateList(R.color.white)
                 setOnClickListener {
-                    viewElectric.smoothScrollTo(0, 0)
+                    //viewElectric.smoothScrollTo(0, 0)
+                    recycleElectricMotor.smoothScrollToPosition(0)
                 }
             }
 
             chipFilterMenu.isGone = true
             cardViewGroupVoltage.isGone = true
             textDate.text = viewModel.getDataPref()
+            // recycleElectricMotor.setHasFixedSize(false)
         }
+
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recycleElectricMotor.adapter = adapter
+        val display = DisplayMetrics()
+            requireActivity().windowManager.defaultDisplay.getMetrics(display)
+        val h = display.heightPixels
+        binding.recycleElectricMotor.layoutParams.height = h * 80 / 100
+        binding.recycleElectricMotor.isGone = true
 
         viewModel.listFilterLiveData.observe(viewLifecycleOwner) {
             binding.cardViewGroupVoltage.isVisible = it.isEmpty()
-            binding.buttonClose.isVisible = it.isNotEmpty()
-            binding.buttonUp.isVisible = it.isNotEmpty()
+            binding.buttonClose.isGone = it.isEmpty()
+            binding.buttonUp.isGone = it.isEmpty()
             binding.chipGroupCategory.isSelectionRequired = it.isNotEmpty()
             binding.textFilter.isVisible = it.isNotEmpty()
-            lifecycleScope.launch {
-                delay(100)
-                adapter.submitList(it)
-            }
+            binding.recycleElectricMotor.isVisible = it.isNotEmpty()
+            adapter.submitList(it)
             binding.viewElectric.smoothScrollTo(0, 0)
         }
+
+        binding.recycleElectricMotor.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy > 0 ) {
+                    binding.buttonClose.isGone = true
+                    binding.buttonUp.isGone = true
+                } else {
+                    binding.buttonClose.isGone = false
+                    binding.buttonUp.isGone = false
+                }
+            }
+        })
 
 
         viewModel.dataElectricMotor.observe(viewLifecycleOwner) {
@@ -390,6 +451,11 @@ class ElectricMotorFragment : Fragment() {
             binding.cardViewGroupVoltage.isVisible = true
             binding.progress.isGone = true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!binding.recycleElectricMotor.isGone) binding.cardViewGroupVoltage.isGone = true
     }
 
     override fun onDestroyView() {
@@ -423,7 +489,7 @@ class ElectricMotorFragment : Fragment() {
     private fun activatedChip(list: List<Chip>) {
         list.forEach { it.isChecked = true }
         lifecycleScope.launch(Dispatchers.Default) {
-            delay(500)
+            delay(50)
             val chip1 = list[0]
             val dx = chip1.x
             binding.horizontalScrollView.scrollTo(dx.toInt(), 0)

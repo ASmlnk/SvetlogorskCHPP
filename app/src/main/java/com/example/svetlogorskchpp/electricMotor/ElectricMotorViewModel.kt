@@ -1,7 +1,5 @@
 package com.example.svetlogorskchpp.electricMotor
 
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,12 +7,12 @@ import com.example.svetlogorskchpp.SharedPreferencesManager
 import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotor
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
-import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.TimeZone
 
@@ -27,20 +25,24 @@ class ElectricMotorViewModel : ViewModel() {
     val dataElectricMotor = MutableLiveData<List<ElectricMotor>>()
 
     init {
-        viewModelScope.launch {
-            val date = async {  data.getUpdateDateFB()}
-            val b = equalsDate(date.await()!!)
+        viewModelScope.launch(Dispatchers.IO) {
+            val isUpdate = data.getUpdateDateFB()?.let {
+                equalsDate(it)
+            } ?: false
 
-            if (b) {
+            if (isUpdate) {
                 SharedPreferencesManager.saveString("date_electric_motor1", date())
                 val dataList = data.getAllElectricMotorServer()
-                listAll.addAll(dataList)
-                dataElectricMotor.value = dataList
-
+                withContext(Dispatchers.Main) {
+                    listAll.addAll(dataList)
+                    dataElectricMotor.value = dataList
+                }
             } else {
                val dataList =  data.getAllElectricMotorCache()
-                listAll.addAll(dataList)
-                dataElectricMotor.value = dataList
+                withContext(Dispatchers.Main) {
+                    listAll.addAll(dataList)
+                    dataElectricMotor.value = dataList
+                }
             }
         }
     }
@@ -93,6 +95,11 @@ class ElectricMotorViewModel : ViewModel() {
             "Р-5" -> listAll.filter { it.indexSection == "Р-5" }
             "Р-6" -> listAll.filter { it.indexSection == "Р-6" }
             "Р-7" -> listAll.filter { it.indexSection == "Р-7" }
+            "ЭЦ" -> listAll.filter { it.generalCategory == "ЭЦ" }
+            "ОБ" -> listAll.filter { it.indexSection == "Р-Х1" }
+            "ПР" -> listAll.filter { it.indexSection == "Р-Х2" }
+            "ОС" -> listAll.filter { it.indexSection == "Р-Х3" }
+            "ОСТ" -> listAll.filter { it.indexSection == "Р-Х4" }
 
             else -> emptyList()
         }
