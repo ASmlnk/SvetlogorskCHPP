@@ -388,7 +388,7 @@ class ElectricMotorFragment : Fragment() {
                     viewElectric.smoothScrollTo(0, 0)
                     horizontalScrollView.scrollTo(0, 0)
                     horizontalScrollView2.scrollTo(0, 0)
-                    recycleElectricMotor.isGone = true
+                    //recycleElectricMotor.isGone = true
                 }
                 imageTintList = context?.getColorStateList(R.color.white)
 
@@ -417,18 +417,22 @@ class ElectricMotorFragment : Fragment() {
         val display = DisplayMetrics()
             requireActivity().windowManager.defaultDisplay.getMetrics(display)
         val h = display.heightPixels
-        binding.recycleElectricMotor.layoutParams.height = h * 80 / 100
+        binding.recycleElectricMotor.layoutParams.height = h * 85 / 100
         binding.recycleElectricMotor.isGone = true
 
         viewModel.listFilterLiveData.observe(viewLifecycleOwner) {
             binding.cardViewGroupVoltage.isVisible = it.isEmpty()
-            binding.buttonClose.isGone = it.isEmpty()
-            binding.buttonUp.isGone = it.isEmpty()
             binding.chipGroupCategory.isSelectionRequired = it.isNotEmpty()
             binding.textFilter.isVisible = it.isNotEmpty()
             binding.recycleElectricMotor.isVisible = it.isNotEmpty()
+
             adapter.submitList(it)
             binding.viewElectric.smoothScrollTo(0, 0)
+            if (it.isEmpty()) {
+                binding.recycleElectricMotor.isGone = true
+                binding.buttonClose.isGone = true
+                binding.buttonUp.isGone = true
+            }
         }
 
         binding.recycleElectricMotor.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -436,15 +440,21 @@ class ElectricMotorFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 if (dy > 0 ) {
-                    binding.buttonClose.isGone = true
-                    binding.buttonUp.isGone = true
+                    if (!binding.recycleElectricMotor.isGone) {
+                    binding.buttonClose.hide()
+                    binding.buttonUp.hide()
+                    }
+                   // binding.buttonClose.isGone = true
+                   // binding.buttonUp.isGone = true
                 } else {
-                    binding.buttonClose.isGone = false
-                    binding.buttonUp.isGone = false
+                    if (!binding.recycleElectricMotor.isGone) {
+                    binding.buttonClose.show()
+                    binding.buttonUp.show()}
+                  //  binding.buttonClose.isGone = false
+                  //  binding.buttonUp.isGone = false
                 }
             }
         })
-
 
         viewModel.dataElectricMotor.observe(viewLifecycleOwner) {
             binding.chipFilterMenu.isVisible = true
