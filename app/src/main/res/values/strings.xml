@@ -103,6 +103,7 @@
     <string name="hvo_so">Очистные</string>
     <string name="hvo_other">Остальное</string>
     <string name="ec">ЭЦ, ЦЦР</string>
+    <string name="electrical_assembly">Эл. сборки</string>
 
 
 </resources>

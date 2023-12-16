@@ -25,8 +25,8 @@
         android:icon="@drawable/motor_5686786"/>
 
     <item
-        android:id="@+id/blankFragment"
-        android:title="@string/test"
+        android:id="@+id/electricalAssemblyFragment"
+        android:title="@string/electrical_assembly"
         android:enabled="true"
         android:icon="@drawable/baseline_bolt_24"/>
 

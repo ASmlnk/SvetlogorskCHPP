@@ -142,6 +142,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/view_electric"
         android:layout_width="match_parent"
+        android:background="@color/text_recycle"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -153,6 +154,7 @@
                 android:id="@+id/chip_filter_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:background="@color/text_recycle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -1087,16 +1089,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="24dp"
 
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_filter" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1105,30 +1098,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
-                android:indeterminateTint="@color/text_recycle"
+                android:indeterminateTint="@color/backgroundItem"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:background="@drawable/separator_radius_white_20"
                 android:id="@+id/recycle_electric_motor"
                 android:layout_width="match_parent"
                 android:layout_height="1000dp"
-                android:layout_marginTop="0dp"
+                android:paddingTop="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:fadeScrollbars="false"
                 android:paddingBottom="8dp"
                 android:scrollbarSize="5dp"
-                android:scrollbarThumbVertical="@color/text_recycle"
+                android:scrollbarThumbVertical="@drawable/separator_gradient_radius_20"
                 android:scrollbars="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view_group_voltage" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/separator_radius_white_20"
                 android:id="@+id/card_view_group_voltage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chip_filter_menu">
 

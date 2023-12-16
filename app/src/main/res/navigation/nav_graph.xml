@@ -29,5 +29,22 @@
         android:id="@+id/electricMotorFragment"
         android:name="com.example.svetlogorskchpp.electricMotor.ElectricMotorFragment"
         android:label="fragment_electric_motor"
-        tools:layout="@layout/fragment_electric_motor" />
+        tools:layout="@layout/fragment_electric_motor" >
+        <action
+            android:id="@+id/action_electricMotorFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/electricalAssemblyFragment"
+        android:name="com.example.svetlogorskchpp.electricalAssembly.ElectricalAssemblyFragment"
+        android:label="fragment_electrical_assembly"
+        tools:layout="@layout/fragment_electrical_assembly" >
+        <action
+            android:id="@+id/action_electricalAssemblyFragment_to_dialogFragmentAssembly"
+            app:destination="@id/dialogFragmentAssembly" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogFragmentAssembly"
+        android:name="com.example.svetlogorskchpp.electricalAssembly.DialogFragmentAssembly"
+        android:label="DialogFragmentAssembly" />
 </navigation>

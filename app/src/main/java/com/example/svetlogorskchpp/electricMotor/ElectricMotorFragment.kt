@@ -11,6 +11,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.SharedPreferencesManager
@@ -401,13 +402,16 @@ class ElectricMotorFragment : Fragment() {
                 }
             }
 
+            imageView5.setOnLongClickListener {
+                findNavController().navigate(R.id.action_electricMotorFragment_to_blankFragment)
+                return@setOnLongClickListener true
+            }
+
             chipFilterMenu.isGone = true
             cardViewGroupVoltage.isGone = true
             textDate.text = viewModel.getDataPref()
             // recycleElectricMotor.setHasFixedSize(false)
         }
-
-
         return view
     }
 
@@ -415,51 +419,64 @@ class ElectricMotorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.recycleElectricMotor.adapter = adapter
         val display = DisplayMetrics()
-            requireActivity().windowManager.defaultDisplay.getMetrics(display)
+        requireActivity().windowManager.defaultDisplay.getMetrics(display)
         val h = display.heightPixels
-        binding.recycleElectricMotor.layoutParams.height = h * 85 / 100
-        binding.recycleElectricMotor.isGone = true
+        binding.recycleElectricMotor.apply {
+            layoutParams.height = h * 85 / 100
+            isGone = true
+        }
 
         viewModel.listFilterLiveData.observe(viewLifecycleOwner) {
-            binding.cardViewGroupVoltage.isVisible = it.isEmpty()
-            binding.chipGroupCategory.isSelectionRequired = it.isNotEmpty()
-            binding.textFilter.isVisible = it.isNotEmpty()
-            binding.recycleElectricMotor.isVisible = it.isNotEmpty()
+            binding.apply {
+                cardViewGroupVoltage.isVisible = it.isEmpty()
+                chipGroupCategory.isSelectionRequired = it.isNotEmpty()
+                textFilter.isVisible = it.isNotEmpty()
+                recycleElectricMotor.isVisible = it.isNotEmpty()
+            }
 
             adapter.submitList(it)
             binding.viewElectric.smoothScrollTo(0, 0)
             if (it.isEmpty()) {
-                binding.recycleElectricMotor.isGone = true
-                binding.buttonClose.isGone = true
-                binding.buttonUp.isGone = true
+                binding.apply {
+                    recycleElectricMotor.isGone = true
+                    buttonClose.isGone = true
+                    buttonUp.isGone = true
+                }
             }
         }
 
-        binding.recycleElectricMotor.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        binding.recycleElectricMotor.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                if (dy > 0 ) {
+                if (dy > 0) {
                     if (!binding.recycleElectricMotor.isGone) {
-                    binding.buttonClose.hide()
-                    binding.buttonUp.hide()
+                        binding.apply {
+                            buttonClose.hide()
+                            buttonUp.hide()
+                        }
                     }
-                   // binding.buttonClose.isGone = true
-                   // binding.buttonUp.isGone = true
+                    // binding.buttonClose.isGone = true
+                    // binding.buttonUp.isGone = true
                 } else {
                     if (!binding.recycleElectricMotor.isGone) {
-                    binding.buttonClose.show()
-                    binding.buttonUp.show()}
-                  //  binding.buttonClose.isGone = false
-                  //  binding.buttonUp.isGone = false
+                        binding.apply {
+                            buttonClose.show()
+                            buttonUp.show()
+                        }
+                    }
+                    //  binding.buttonClose.isGone = false
+                    //  binding.buttonUp.isGone = false
                 }
             }
         })
 
         viewModel.dataElectricMotor.observe(viewLifecycleOwner) {
-            binding.chipFilterMenu.isVisible = true
-            binding.cardViewGroupVoltage.isVisible = true
-            binding.progress.isGone = true
+            binding.apply {
+                chipFilterMenu.isVisible = true
+                cardViewGroupVoltage.isVisible = true
+                progress.isGone = true
+            }
         }
     }
 
