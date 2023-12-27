@@ -146,14 +146,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.card.MaterialCardView
-            app:strokeWidth="1dp"
             android:id="@+id/swipe_center_block"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="8dp"
             app:cardBackgroundColor="@color/backgroundItem"
             app:cardCornerRadius="16dp"
@@ -162,7 +162,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -282,8 +283,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ru_hero"
-                    android:scrollHorizontally="false"
                     android:hint="3.15 кВ"
+                    android:scrollHorizontally="false"
                     android:textColor="#6C889C"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -295,8 +296,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ru_hero"
-                    android:scrollHorizontally="false"
                     android:hint="54 А"
+                    android:scrollHorizontally="false"
                     android:textColor="#6C889C"
                     android:textSize="14sp"
                     android:textStyle="bold"

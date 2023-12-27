@@ -21,7 +21,6 @@ import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 
 class ElectricMotorFragment : Fragment() {
 
@@ -403,7 +402,7 @@ class ElectricMotorFragment : Fragment() {
             }
 
             imageView5.setOnLongClickListener {
-                findNavController().navigate(R.id.action_electricMotorFragment_to_blankFragment)
+              //  findNavController().navigate(R.id.action_electricMotorFragment_to_blankFragment)
                 return@setOnLongClickListener true
             }
 
@@ -427,14 +426,13 @@ class ElectricMotorFragment : Fragment() {
         }
 
         viewModel.listFilterLiveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
             binding.apply {
                 cardViewGroupVoltage.isVisible = it.isEmpty()
                 chipGroupCategory.isSelectionRequired = it.isNotEmpty()
                 textFilter.isVisible = it.isNotEmpty()
                 recycleElectricMotor.isVisible = it.isNotEmpty()
             }
-
-            adapter.submitList(it)
             binding.viewElectric.smoothScrollTo(0, 0)
             if (it.isEmpty()) {
                 binding.apply {
@@ -515,8 +513,8 @@ class ElectricMotorFragment : Fragment() {
 
     private fun activatedChip(list: List<Chip>) {
         list.forEach { it.isChecked = true }
-        lifecycleScope.launch(Dispatchers.Default) {
-            delay(50)
+        lifecycleScope.launch(Dispatchers.Main) {
+           delay(50)
             val chip1 = list[0]
             val dx = chip1.x
             binding.horizontalScrollView.scrollTo(dx.toInt(), 0)

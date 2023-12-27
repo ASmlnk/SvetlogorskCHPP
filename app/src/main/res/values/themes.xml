@@ -16,6 +16,7 @@
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="windowActionBar">false</item>
     </style>
+
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
     </style>
@@ -29,18 +30,21 @@
 
     </style>
 
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
 
-        <style name="AppBottomSheetDialogTheme"
-            parent="Theme.Design.Light.BottomSheetDialog">
-            <item name="bottomSheetStyle">@style/AppModalStyle</item>
-        </style>
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
 
-        <style name="AppModalStyle"
-            parent="Widget.Design.BottomSheet.Modal">
-            <item name="android:background">@drawable/bottom_sheet_background</item>
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">5%</item>
+    </style>
 
-        </style>
-
+    <style name="ShapeAppearanceOverlay.App.CornerSize15Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
 
 
 </resources>

@@ -59,6 +59,9 @@
     <string name="bug">Багерная</string>
     <string name="ktc_ty">КТЦ ТУ</string>
     <string name="hvo">ХВО</string>
+    <string name="hc">ХЦ</string>
+    <string name="ry">РУ</string>
+    <string name="kry">КРУ</string>
     <string name="kry_3_15">КРУ-3,15</string>
     <string name="kry_6_3">КРУ-6,3</string>
     <string name="rusn">РУСН</string>
@@ -104,6 +107,25 @@
     <string name="hvo_other">Остальное</string>
     <string name="ec">ЭЦ, ЦЦР</string>
     <string name="electrical_assembly">Эл. сборки</string>
+    <string name="eclectrical_assembly_name_layout">Силовые сборки и распределительные устройства</string>
+    <string name="bns">БНС</string>
+    <string name="panel_block">Щит. блок</string>
+    <string name="ory_110_220">ОРУ-110кВ, ОРУ-220кВ</string>
+    <string name="name_ory_discription">
+        Две рабочие системы шин с обходной системой шин.
+        \n <b>Допустимое расстояние:</b>
+        \n<b>-</b> для человека: <b>до 1кВ</b> – на ВЛ 0,6м, в остальных электроустановках без прикосновения; <b>3-35кВ</b> – 0,6м; <b>110кВ</b> – 1,0м; <b>220кВ</b> – 2,0м.
+        \n<b>-</b> для механизмов: <b>до 1кВ</b> – 1,0м; <b>3-35кВ</b> – 1,0м; <b>110кВ</b> – 1,5м; <b>220кВ</b> – 2,5м.
+    </string>
+    <string name="name_ory_discription2">
+        Две рабочие системы шин с обходной системой шин.
+    </string>
+    <string name="name_tsn_discription"><b>Силовой рансформа́тор</b> — электротехническое устройство в сетях электроснабжения
+        (электросетях) с двумя или более обмотками (трансформатор), который посредством электромагнитной индукции преобразует
+        одну величину переменного напряжения и тока в другую величину переменного напряжения и тока, той же частоты без изменения
+        её передаваемой мощности.</string>
+    <string name="name_block_home">Блоки ГТ</string>
+    <string name="name_zero_vision">Vision Zero</string>
 
 
 </resources>

@@ -24,9 +24,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="1"
-                android:background="@drawable/motor_51"
+
                 android:scrollbarAlwaysDrawVerticalTrack="false"
                 app:layout_collapseMode="parallax">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shapeableImageView"
+                    android:layout_width="match_parent"
+                    app:strokeWidth="0dp"
+                    app:strokeColor="#437397"
+                    android:layout_height="224dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    app:srcCompat="@drawable/motor_51" />
 
                 <TextView
                     android:id="@+id/text_date"
@@ -89,10 +107,11 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/images"
+                    android:background="#00567993"
+                    android:src="@drawable/images1"
                     app:layout_constraintBottom_toBottomOf="@+id/textTitleName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textTitleName" />
@@ -132,7 +151,7 @@
         android:contentDescription="Up"
         android:src="@drawable/baseline_keyboard_double_arrow_up_24"
         android:visibility="gone"
-        app:backgroundTint="@color/text_recycle"
+        app:backgroundTint="@color/floatingActionButton"
         app:borderWidth="4dp"
         app:elevation="4dp"
         app:fabCustomSize="46dp"
@@ -1089,8 +1108,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ProgressBar
@@ -1112,7 +1129,7 @@
                 android:layout_marginEnd="4dp"
                 android:fadeScrollbars="false"
                 android:paddingBottom="8dp"
-                android:scrollbarSize="5dp"
+                android:scrollbarSize="2dp"
                 android:scrollbarThumbVertical="@drawable/separator_gradient_radius_20"
                 android:scrollbars="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -1132,7 +1149,7 @@
 
                 <TextView
                     android:id="@+id/text_voltage_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"

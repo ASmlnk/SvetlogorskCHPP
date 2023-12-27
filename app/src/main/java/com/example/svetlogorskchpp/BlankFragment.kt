@@ -26,6 +26,7 @@ class BlankFragment : Fragment() {
             //viewModel.get()
         }
         binding.buttonSet.setOnClickListener {
+            //viewModel.setNewElectricalAssembly()
             //viewModel.setNewEm()
         }
 

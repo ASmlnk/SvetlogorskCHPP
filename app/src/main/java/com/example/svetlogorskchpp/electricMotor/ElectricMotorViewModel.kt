@@ -8,9 +8,7 @@ import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotor
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.GregorianCalendar
@@ -26,7 +24,7 @@ class ElectricMotorViewModel : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val isUpdate = data.getUpdateDateFB()?.let {
+            val isUpdate = data.getUpdateDateElectricMotor()?.let {
                 equalsDate(it)
             } ?: false
 

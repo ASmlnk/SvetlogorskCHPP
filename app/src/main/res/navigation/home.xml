@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/openSwitchgear"
+    android:id="@+id/home">
+
+    <fragment
+        android:id="@+id/openSwitchgear"
+        android:name="com.example.svetlogorskchpp.openSwitchgear.OpenSwitchgear"
+        android:label="fragment_open_switchgear"
+        app:startDestination="@+id/openSwitchgear"
+        tools:layout="@layout/fragment_open_switchgear" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.svetlogorskchpp.homePage.HomePageFragment"
+        tools:layout="@layout/fragment_home_page"
+        android:label="HomePageFragment" >
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgear"
+            app:destination="@id/openSwitchgear" />
+        <action
+            android:id="@+id/action_homePageFragment_to_transformerOfOwnNeeds2"
+            app:destination="@id/transformerOfOwnNeeds2" />
+        <action
+            android:id="@+id/action_homePageFragment_to_blockGeneratorTransformer2"
+            app:destination="@id/blockGeneratorTransformer2" />
+    </fragment>
+    <fragment
+        android:id="@+id/transformerOfOwnNeeds2"
+        android:name="com.example.svetlogorskchpp.transformerOfOwnNeeds.TransformerOfOwnNeeds"
+        android:label="fragment_transformer_of_own_needs"
+        tools:layout="@layout/fragment_transformer_of_own_needs" />
+    <fragment
+        android:id="@+id/blockGeneratorTransformer2"
+        android:name="com.example.svetlogorskchpp.blockGeneratorTransformer.BlockGeneratorTransformer"
+        android:label="fragment_block_generator_transformer"
+        tools:layout="@layout/fragment_block_generator_transformer" />
+
+</navigation>

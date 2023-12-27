@@ -19,7 +19,7 @@ enum class PL(val get: String) {
     TN220("ТН-220"),
     TN220_2("ТН IIСШ-220"),
     TN110_OSH("ТН ОСШ-110"),
-    MIRADINO("ВЛ-22 Мирадино"),
+    MIRADINO("ВЛ-220 Мирадино"),
     SVETLOGORSK("ВЛ-220 Светлогорск"),
     SHSV2("ШСВ-220"),
     OVV220("ОВВ-220"),

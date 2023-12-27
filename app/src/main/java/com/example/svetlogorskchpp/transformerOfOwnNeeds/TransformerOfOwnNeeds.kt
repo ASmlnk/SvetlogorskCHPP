@@ -31,6 +31,22 @@ class TransformerOfOwnNeeds : Fragment() {
         val h = display.heightPixels
         binding.recycleTsn.layoutParams.height = h //* 80 / 100
         binding.recycleTsn.adapter = adapter
+        binding.apply {
+            chipAll.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "", chipChecked = b)
+            }
+            chipVoltage04.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "РУСН-0,4 кВ", chipChecked = b)
+            }
+            chipVoltage315.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "КРУ-3,15 кВ", chipChecked = b)
+            }
+            chipVoltage63.setOnCheckedChangeListener { _, b ->
+                chipFilter(filter = "КРУ-6,3 кВ", chipChecked = b)
+            }
+        }
+
+
         return binding.root
     }
 
@@ -45,5 +61,12 @@ class TransformerOfOwnNeeds : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun chipFilter(filter: String, chipChecked: Boolean) {
+        if (chipChecked) {
+            viewModel.getFilterList(filter)
+        }
+
     }
 }

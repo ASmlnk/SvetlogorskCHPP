@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/text_recycle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/text_recycle"
     tools:context=".electricalAssembly.ElectricalAssemblyFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,20 +15,47 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="310dp"
             app:contentScrim="@color/text_recycle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="320dp"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                app:layout_collapseMode="parallax">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/shapeableImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="60dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/electrical_assembly"
+                    app:strokeColor="@color/text_recycle_smile"
+                    app:strokeWidth="0dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/separator_electrical_assembly_line"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
 
                 <TextView
                     android:id="@+id/textTitleName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#00214763"
                     android:fontFamily="@font/ru_hero"
                     android:text="Светлогорская ТЭЦ"
                     android:textColor="@color/white"
@@ -38,74 +64,168 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_width="wrap_content"
+                <HorizontalScrollView
+                    android:id="@+id/horizontalScrollView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
+                    android:background="#00FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:singleSelection="true">
+                    app:layout_constraintStart_toStartOf="parent">
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chip_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:fontFamily="@font/ru_hero"
-                        android:text="ОРУ"
-                        android:textColor="@color/text_recycle"
-                        android:textStyle="bold"
-                        app:chipBackgroundColor="#D6E7F3"
-                        app:chipCornerRadius="8dp"
-                        app:rippleColor="@color/text_recycle" />
+                        android:background="#00214763"
+                        app:singleSelection="true">
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ru_hero"
-                        android:text="ОРУ-110"
-                        android:textColor="@color/text_recycle"
-                        android:textStyle="bold"
-                        app:chipBackgroundColor="#D6E7F3"
-                        app:chipCornerRadius="8dp"
-                        app:rippleColor="@color/text_recycle" />
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_all"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/v_all"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ru_hero"
-                        android:text="ОРУ-220"
-                        android:textColor="@color/text_recycle"
-                        android:textStyle="bold"
-                        app:chipBackgroundColor="#D6E7F3"
-                        app:chipCornerRadius="8dp"
-                        app:rippleColor="@color/text_recycle" />
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_hc"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/hc"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
 
-                </com.google.android.material.chip.ChipGroup>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_ktc_to"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/ktc_to"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
 
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_ktc_ko"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/ktc_ko"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
 
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_bns"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/bns"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_cooling_tower"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/cooling_tower"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_ry"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/ry"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_panel_block"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/panel_block"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_kry"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ru_hero"
+                            android:text="@string/kry"
+                            android:textColor="@color/text_recycle"
+                            android:textStyle="bold"
+                            app:chipBackgroundColor="#D6E7F3"
+                            app:chipCornerRadius="8dp"
+                            app:rippleColor="@color/text_recycle" />
+
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#00214763"
                     android:fontFamily="@font/ru_hero"
-                    android:text="Открытое распределительное устройство"
+                    android:text="@string/eclectrical_assembly_name_layout"
                     android:textColor="#A7D0EF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textTitleName" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="41dp"
-                    android:layout_height="35dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/images"
+                    android:background="#00214763"
+                    android:src="@drawable/images1"
                     app:layout_constraintBottom_toBottomOf="@+id/textTitleName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textTitleName" />
@@ -116,30 +236,471 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/close"
+        android:src="@drawable/baseline_close_24"
+        android:visibility="gone"
+        app:backgroundTint="@color/floatingActionButton"
+        app:borderWidth="4dp"
+        app:elevation="4dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+        app:maxImageSize="32dp" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/separator_gradient_radius_20"
+        android:background="#00214763"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:id="@+id/fragment_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/separator_radius_white_20"
-            android:orientation="vertical"
-            android:paddingTop="8dp">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/dialog_button"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="24dp"
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dialog"/>
+                android:layout_marginTop="80dp"
+                android:indeterminateTint="@color/chip_appbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrain_material_card"
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/separator_radius_white_20"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewHc"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity=""
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewKtcKo"
+                    app:layout_constraintEnd_toStartOf="@+id/materialCardViewKtcTo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/chemistry_class_6837437" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/hc"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
 
+                    </LinearLayout>
 
 
-        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewKtcTo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewRy"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewHc"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/factory_1643683" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/ktc_to"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewBns"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewKry"
+                    app:layout_constraintEnd_toStartOf="@+id/materialCardViewCn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewKtcKo">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/water_tank_9614228" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/bns"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewRy"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewCn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewKtcKo"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewKtcTo">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/electrical_panel_1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/ry"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewKtcKo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewBns"
+                    app:layout_constraintEnd_toStartOf="@+id/materialCardViewRy"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewHc">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/water_boiler" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/ktc_ko"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewCn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewPanelBlock"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewBns"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewRy">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/power_plant_4491274" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/cooling_tower"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewPanelBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewAll"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardViewKry"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewCn">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/high_voltage_8107242" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/panel_block"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewKry"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewAll"
+                    app:layout_constraintEnd_toStartOf="@+id/materialCardViewPanelBlock"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewBns">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/power_supply_283291" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/kry"
+                            android:textColor="@color/text_recycle"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewAll"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/backgroundItem"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:fontFamily="@font/ru_hero"
+                        android:gravity="center"
+                        android:text="@string/v_all"
+                        android:textColor="@color/text_recycle"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/separator_radius_white_20"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constrain_material_card">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_electrical_assembly"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/separator_radius_white_20"
+                    android:fadeScrollbars="false"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:scrollbarSize="2dp"
+                    android:scrollbarThumbVertical="@drawable/separator_gradient_radius_20"
+                    android:scrollbars="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

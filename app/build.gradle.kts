@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.svetlogorskchpp"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -81,4 +81,5 @@ implementation ("com.android.support:support-v4:28.0.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+   
 }
