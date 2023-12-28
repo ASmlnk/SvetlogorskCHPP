@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/openSwitchgear"
+    app:startDestination="@+id/homePageFragment"
     android:id="@+id/home">
 
     <fragment
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.svetlogorskchpp.homePage.HomePageFragment"
+        android:name="com.example.svetlogorskchpp.HomePageFragment"
         tools:layout="@layout/fragment_home_page"
         android:label="HomePageFragment" >
         <action
@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_blockGeneratorTransformer2"
             app:destination="@id/blockGeneratorTransformer2" />
+        <action
+            android:id="@+id/action_homePageFragment_to_zeroVisionFragment"
+            app:destination="@id/zeroVisionFragment" />
     </fragment>
     <fragment
         android:id="@+id/transformerOfOwnNeeds2"
@@ -38,5 +41,24 @@
         android:name="com.example.svetlogorskchpp.blockGeneratorTransformer.BlockGeneratorTransformer"
         android:label="fragment_block_generator_transformer"
         tools:layout="@layout/fragment_block_generator_transformer" />
+    <fragment
+        android:id="@+id/zeroVisionFragment"
+        android:name="com.example.svetlogorskchpp.zeroVision.ZeroVisionFragment"
+        android:label="fragment_zero_vision"
+        tools:layout="@layout/fragment_zero_vision" >
+        <action
+            android:id="@+id/action_zeroVisionFragment_to_zeroVisionDialog1"
+            app:destination="@id/zeroVisionDialog1" />
+    </fragment>
+    <dialog
+        android:id="@+id/zeroVisionDialog1"
+        android:name="com.example.svetlogorskchpp.zeroVision.ZeroVisionDialog"
+        android:label="dialog_zero_vision_1"
+        tools:layout="@layout/dialog_zero_vision_1" >
+        <argument
+            android:name="inexZeroVision"
+            app:argType="string" />
+    </dialog>
+
 
 </navigation>

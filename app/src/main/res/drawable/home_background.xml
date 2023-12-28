@@ -11,5 +11,5 @@
         android:right="0dip"
         android:top="0dip" />
     <solid android:color="#ffffff" />
-    <gradient android:angle="10.0" android:endColor="@color/text_recycle" android:startColor="#193347" android:type="linear" />
+    <gradient android:angle="270.0" android:endColor="@color/text_recycle" android:startColor="#193347" android:type="linear" />
 </shape>

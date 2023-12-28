@@ -14,6 +14,8 @@
     <color name="chip_appbar">#D6E7F3</color>
     <color name="name_devices_appbar">#A7D0EF</color>
     <color name="red_schema">#C9322F</color>
+    <color name="red_danger">#BA2F2C</color>
+    <color name="red_text_zero_vision">#C92F65</color>
     <color name="floatingActionButton">#265271</color>
     <color name="text_input_assembly">#EFD2A7</color>
 </resources>

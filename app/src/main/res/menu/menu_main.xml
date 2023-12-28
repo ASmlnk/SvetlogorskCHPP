@@ -2,19 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="ЛЭП"
+        android:title="Home"
         android:enabled="true"
-        android:icon="@drawable/klipartz_com3"/>
-    <item
-        android:id="@+id/transformerOfOwnNeeds"
-        android:title="ТСН"
-        android:enabled="true"
-        android:icon="@drawable/transformer_1"/>
-    <item
-        android:id="@+id/blockGeneratorTransformer"
-        android:title="Блок ГТ"
-        android:enabled="true"
-        android:icon="@drawable/generator_1"/>
+        android:icon="@drawable/baseline_bolt_24"/>
 
     <item
         android:id="@+id/electricMotorFragment"

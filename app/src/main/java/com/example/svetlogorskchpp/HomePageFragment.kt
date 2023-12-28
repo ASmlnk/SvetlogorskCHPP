@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.homePage
+package com.example.svetlogorskchpp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.databinding.FragmentHomePageBinding
 import com.example.svetlogorskchpp.databinding.FragmentHomePageSmallBinding
 
 class HomePageFragment : Fragment() {
@@ -31,6 +29,9 @@ class HomePageFragment : Fragment() {
             }
             materialCardViewBlockGT.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_blockGeneratorTransformer2)
+            }
+            materialCardViewZeroVision.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_zeroVisionFragment)
             }
         }
 
