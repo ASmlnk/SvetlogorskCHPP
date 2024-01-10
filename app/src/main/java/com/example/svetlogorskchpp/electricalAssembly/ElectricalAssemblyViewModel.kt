@@ -6,9 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.SharedPreferencesManager
 import com.example.svetlogorskchpp.model.ElectricalAssemblyFirebase
+import com.example.svetlogorskchpp.model.ElectricalAssemblySearch
 import com.example.svetlogorskchpp.model.UpdateDateFB
+import com.example.svetlogorskchpp.model.electricMotor.ElectricMotorSearch
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.GregorianCalendar
@@ -29,6 +33,14 @@ class ElectricalAssemblyViewModel : ViewModel() {
     private val _navigateToDialogAssembly = MutableLiveData<String?>()
     val navigateToDialogAssembly: LiveData<String?>
         get() = _navigateToDialogAssembly
+
+    private val _listSearchLiveData = MutableLiveData<List<ElectricalAssemblySearch>>()
+    val listSearchLiveData: LiveData<List<ElectricalAssemblySearch>>
+        get() = _listSearchLiveData
+
+    private val _searchStateFlow = MutableStateFlow(false)
+    val searchStateFlow: StateFlow<Boolean>
+        get() = _searchStateFlow
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -96,6 +108,31 @@ class ElectricalAssemblyViewModel : ViewModel() {
             .getInstance(TimeZone.getTimeZone("GMT+3")).apply { firstDayOfWeek = 2 }
 
         return calendar.timeInMillis.toString()
+    }
+
+    fun search(textSearch: String) {
+        if (textSearch == "") {
+            _listSearchLiveData.value = emptyList()
+        } else {
+            val text = textSearch.lowercase()
+            val list = mutableListOf<ElectricalAssemblySearch>()
+            for (electricalAssembly in listAllAssembly) {
+                val listItem = electricalAssembly.listItemAssembly.keys.toList()   //lowercase().indexOf(text)
+                for (i in listItem) {
+                    val index = i.lowercase().indexOf(text)
+                    if (index >= 0) list.add(ElectricalAssemblySearch(name=i, index = index, electricalAssembly = electricalAssembly))
+                }
+            }
+            _listSearchLiveData.value = list.sortedBy { it.name }.sortedBy { it.index }
+        }
+    }
+
+    fun openSearch() {
+            _searchStateFlow.value = true
+    }
+
+    fun closeSearch() {
+            _searchStateFlow.value = false
     }
 
     fun textNameElectricalAssembly(nameDepartment: String): String {

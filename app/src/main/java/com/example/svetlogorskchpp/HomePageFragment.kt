@@ -33,6 +33,9 @@ class HomePageFragment : Fragment() {
             materialCardViewZeroVision.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_zeroVisionFragment)
             }
+            materialCardViewElectricMotor.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment)
+            }
         }
 
         return binding.root

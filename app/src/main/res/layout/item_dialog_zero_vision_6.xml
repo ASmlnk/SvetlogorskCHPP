@@ -8,6 +8,34 @@
     app:layout_constrainedHeight="true"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/zero_vision_memo"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/zero_vision_education"
+        android:textColor="@color/black_memo"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_zero_education"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/ru_hero"
+        android:text="text_education"
+        android:textColor="@color/chip_appbar"
+        android:textStyle="bold" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView3"
         android:layout_width="match_parent"
@@ -49,6 +77,68 @@
                 android:text="text_supervision"
                 android:textColor="@color/text_recycle"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewSafelyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/zero_vision_yellow"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="textSafelyName"
+                android:textColor="@color/black_memo"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_safely"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:textSize="16sp"
+                android:background="@drawable/zero_vision_kontur"
+                android:text="text_view_safely"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewUnsafelyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/zero_vision_yellow"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="textUnsafelyName"
+                android:textColor="@color/black_memo"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_view_unsafely"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:background="@drawable/zero_vision_kontur"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:textSize="16sp"
+                android:text="text_view_unsafely"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
 
 

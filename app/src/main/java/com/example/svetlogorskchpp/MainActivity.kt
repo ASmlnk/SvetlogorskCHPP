@@ -33,14 +33,14 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
 
-         appBarConfiguration = AppBarConfiguration(
+         /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)
-        )
+        )*/
        //setupActionBarWithNavController(navController,appBarConfiguration)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
+    /*override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
-    }
+    }*/
 
 }

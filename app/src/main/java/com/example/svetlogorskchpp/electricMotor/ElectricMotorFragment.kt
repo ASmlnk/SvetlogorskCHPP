@@ -1,12 +1,14 @@
 package com.example.svetlogorskchpp.electricMotor
 
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -37,6 +39,7 @@ class ElectricMotorFragment : Fragment() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

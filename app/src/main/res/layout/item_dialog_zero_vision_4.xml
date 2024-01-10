@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#00FFFFFF"
+    android:orientation="vertical"
+    app:layout_constrainedHeight="true"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/zero_vision_memo"
+            android:fontFamily="@font/ru_hero"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/zero_vision_syot"
+            android:textColor="@color/black_memo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="53dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:rotation="90"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toTopOf="@+id/materialCardView5"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView5"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <ImageView
+            android:id="@+id/imageView72"
+            android:layout_width="53dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:rotation="270"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toTopOf="@+id/materialCardView51"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView51"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView51"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <ImageView
+            android:id="@+id/imageView71"
+            android:layout_width="82dp"
+            android:layout_height="16dp"
+            android:rotation="180"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/materialCardView5"
+            app:layout_constraintEnd_toStartOf="@+id/materialCardView51"
+            app:layout_constraintStart_toEndOf="@+id/materialCardView5"
+            app:layout_constraintTop_toTopOf="@+id/materialCardView5" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView71"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:strokeColor="@color/zero_vision_memo"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/text_zero_chief_engineer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
+                android:text="@string/chief_engineer"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView71"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView71"
+            app:layout_constraintTop_toTopOf="@+id/imageView71"
+            app:strokeColor="@color/zero_vision_memo"
+            app:strokeWidth="1dp">
+
+            <TextView
+                android:id="@+id/text_zero_engineer_ot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
+                android:text="@string/engineer_ot"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_zero_syot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/ru_hero"
+        android:text="text_syot"
+        android:textColor="@color/chip_appbar"
+        android:textStyle="bold" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/chip_appbar"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_kontrol_syot"
+                android:textColor="@color/backgroundRecycle"
+                android:background="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_kontrol_syot_supervision"
+                android:textColor="@color/backgroundRecycle"
+                android:background="@color/red_text_zero_vision"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_zero_vision_kontrol_syot_supervision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_purposes"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_master"
+                android:textColor="@color/backgroundRecycle"
+                android:background="@color/red_text_zero_vision"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_zero_vision_master"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_master"
+                android:textSize="16sp"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/chip_appbar"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/name_devices_appbar"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_kontrol_syot_worker"
+                android:textColor="@color/chip_appbar"
+                android:background="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                app:strokeWidth="1dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/teal_700"
+                app:cardCornerRadius="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:text="@string/text_corporate_safety"
+                    android:textColor="@color/text_recycle"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                app:strokeWidth="1dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/teal_700"
+                app:cardCornerRadius="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:text="@string/text_corporate_safety_1"
+                    android:textColor="@color/text_recycle"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                app:strokeWidth="1dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/teal_700"
+                app:cardCornerRadius="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:text="@string/text_corporate_safety_2"
+                    android:textColor="@color/text_recycle"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                app:strokeWidth="1dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/teal_700"
+                app:cardCornerRadius="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:padding="8dp"
+                    android:textSize="16sp"
+                    android:text="@string/text_corporate_safety_3"
+                    android:textColor="@color/text_recycle"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_worker"
+                android:textColor="@color/chip_appbar"
+                android:background="@color/text_recycle"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_zero_worker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_kontrol_worker"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

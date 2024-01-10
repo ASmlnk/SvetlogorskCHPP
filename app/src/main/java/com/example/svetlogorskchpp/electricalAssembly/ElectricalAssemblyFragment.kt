@@ -1,14 +1,24 @@
 package com.example.svetlogorskchpp.electricalAssembly
 
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +39,11 @@ class ElectricalAssemblyFragment : Fragment() {
     private val adapter = ElectricalAssemblyAdapter {
         viewModel.onClickedDialogAssembly(it)
     }
+    private val adapterSearch = ElectricalAssemblySearchAdapter{
+        viewModel.onClickedDialogAssembly(it)
+    }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,12 +54,14 @@ class ElectricalAssemblyFragment : Fragment() {
         val display = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(display)
         val h = display.heightPixels
+
         binding.apply {
             recyclerLayout.apply {
                 layoutParams.height = h * 88 / 100
             }
             constrainMaterialCard.layoutParams.height = h * 88 / 100
             recycleElectricalAssembly.adapter = adapter
+            recycleElectricalAssemblySearch.adapter = adapterSearch
 
             chipHc.setOnCheckedChangeListener { _, b ->
                 chipFilter(filter = "ХЦ", chipChecked = b)
@@ -92,6 +108,17 @@ class ElectricalAssemblyFragment : Fragment() {
             }
             materialCardViewPanelBlock.setOnClickListener { activatedChip(chipPanelBlock) }
 
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    viewModel.search(newText.toString())
+                    return false
+                }
+            })
+
             buttonClose.apply {
                 setOnClickListener {
                     viewModel.getFilterList("")
@@ -103,8 +130,34 @@ class ElectricalAssemblyFragment : Fragment() {
                 }
                 imageTintList = context?.getColorStateList(R.color.white)
             }
+
+            buttonSearch.apply {
+                setOnClickListener {
+                    /*appBarLayout.isGone = true
+                    nestedScroll.isGone = true
+                    searchLayout.isGone = false
+                    buttonSearchClose.isGone = false
+                    buttonSearch.isGone = true*/
+                    viewModel.openSearch()
+                }
+                imageTintList = context?.getColorStateList(R.color.white)
+            }
+
+            buttonSearchClose.apply {
+                    setOnClickListener {
+                        /*appBarLayout.isGone = false
+                        nestedScroll.isGone = false
+                        searchLayout.isGone = true
+                        buttonSearch.isGone = false
+                        buttonSearchClose.isGone = true*/
+                        viewModel.closeSearch()
+                    }
+                    imageTintList = context?.getColorStateList(R.color.white)
+            }
+
             constrainMaterialCard.isGone = true
         }
+
         return view
     }
 
@@ -126,6 +179,7 @@ class ElectricalAssemblyFragment : Fragment() {
                     recyclerLayout.isGone = it.isEmpty()
                     buttonClose.isGone = it.isEmpty()
                     constrainMaterialCard.isGone = it.isNotEmpty()
+                    buttonSearch.isGone = it.isNotEmpty()
                 }
             }
         }
@@ -138,6 +192,44 @@ class ElectricalAssemblyFragment : Fragment() {
             }
         }
 
+        viewModel.listSearchLiveData.observe(viewLifecycleOwner) {
+            binding.recycleElectricalAssemblySearch.isGone = false
+            adapterSearch.submitList(it) {
+                binding.recycleElectricalAssemblySearch.scrollToPosition(0)
+            }
+
+        }
+
+        lifecycleScope.launch {
+            viewModel.searchStateFlow.collect{
+                if (it) {
+                    binding.apply {
+                        appBarLayout.isGone = true
+                        nestedScroll.isGone = true
+                        searchLayout.isGone = false
+                        buttonSearchClose.isGone = false
+                        buttonSearch.isGone = true
+                    }
+                } else {
+                    binding.apply {
+                        appBarLayout.isGone = false
+                        nestedScroll.isGone = false
+                        searchLayout.isGone = true
+                        buttonSearch.isGone = false
+                        buttonSearchClose.isGone = true
+                    }
+                }
+            }
+        }
+
+        binding.recycleElectricalAssemblySearch.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy != 0) binding.searchView.clearFocus()
+            }
+        })
+
         binding.recycleElectricalAssembly.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -146,6 +238,7 @@ class ElectricalAssemblyFragment : Fragment() {
                     if (!binding.recyclerLayout.isGone) {
                         binding.apply {
                             buttonClose.hide()
+
                             //buttonUp.hide()
                         }
                     }
@@ -165,6 +258,8 @@ class ElectricalAssemblyFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
     private fun chipFilter(filter: String, chipChecked: Boolean) {
         if (chipChecked) {

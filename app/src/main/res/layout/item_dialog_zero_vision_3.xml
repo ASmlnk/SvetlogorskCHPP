@@ -9,6 +9,95 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/chip_appbar"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_purposes"
+                android:textColor="@color/backgroundRecycle"
+                android:background="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_zero_vision_purposes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_purposes"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/chip_appbar"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/zero_vision_tasks"
+                android:textColor="@color/backgroundRecycle"
+                android:background="@color/teal_700"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_zero_vision_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_tasks"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,12 +129,12 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_supervision_1"
+                android:id="@+id/text_supervision_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/ru_hero"
                 android:textSize="16sp"
+                android:fontFamily="@font/ru_hero"
                 android:text="text_supervision"
                 android:textColor="@color/text_recycle"
                 android:textStyle="bold" />
@@ -60,6 +149,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/chip_appbar"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
@@ -84,7 +174,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_worker_1"
+                android:id="@+id/text_worker_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -93,7 +183,6 @@
                 android:text="text_worker"
                 android:textColor="@color/text_recycle"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
 

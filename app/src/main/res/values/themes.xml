@@ -46,5 +46,12 @@
         <item name="cornerSize">10%</item>
     </style>
 
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:editTextColor">@color/chip_appbar</item>
+        <item name="android:textColor">@color/chip_appbar</item>
+        <item name="fontFamily">@font/ru_hero</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
 </resources>

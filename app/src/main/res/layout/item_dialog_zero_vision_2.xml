@@ -44,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/ru_hero"
                 android:text="text_supervision"
                 android:textColor="@color/text_recycle"
@@ -85,10 +86,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_supervision_1"
+                android:id="@+id/text_supervision_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/ru_hero"
                 android:text="text_supervision"
                 android:textColor="@color/text_recycle"
@@ -128,19 +130,162 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_worker_1"
+                android:id="@+id/text_worker_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/ru_hero"
                 android:text="text_worker"
                 android:textColor="@color/text_recycle"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/chip_appbar"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/text_input_assembly"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black_memo"
+                android:background="@color/zero_vision_memo"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:text="@string/zero_vision_memo_1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_worker_memo_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:textSize="16sp"
+                android:text="text_worker_memo_1"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black_memo"
+                android:background="@color/zero_vision_memo"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:text="@string/zero_vision_memo_2"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_worker_memo_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_worker_memo_2"
+                android:textSize="16sp"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black_memo"
+                android:background="@color/zero_vision_memo"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:text="@string/zero_vision_memo_3"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_worker_memo_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:text="text_worker_memo_3"
+                android:textSize="16sp"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/black_memo"
+                android:background="@color/zero_vision_memo"
+                android:fontFamily="@font/ru_hero"
+                android:gravity="center"
+                android:text="@string/zero_vision_memo_4"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_worker_memo_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="@font/ru_hero"
+                android:textSize="16sp"
+                android:text="text_worker_memo_4"
+                android:textColor="@color/text_recycle"
+                android:textStyle="bold" />
+
 
 
         </LinearLayout>
 
 
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/text_zero_vision_end_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/name_devices_appbar"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="@string/zero_vision_memo_4"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_zero_vision_end_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#FB2622"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="@string/zero_vision_memo_4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

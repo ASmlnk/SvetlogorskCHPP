@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_zeroVisionFragment"
             app:destination="@id/zeroVisionFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_electricMotorSearchFragment"
+            app:destination="@id/electricMotorSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/transformerOfOwnNeeds2"
@@ -59,6 +62,11 @@
             android:name="inexZeroVision"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/electricMotorSearchFragment"
+        android:name="com.example.svetlogorskchpp.electricMotor.ElectricMotorSearchFragment"
+        android:label="fragment_electric_motor_search"
+        tools:layout="@layout/fragment_electric_motor_search" />
 
 
 </navigation>

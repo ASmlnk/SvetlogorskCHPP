@@ -157,6 +157,27 @@
         • Я внимателен по отношению к безопасному выполнению работ другими работниками\n
     </string>
     <string name="zero_vision_danger">Опасность!</string>
+    <string name="zero_vision_memo_1">Перед началом работы:</string>
+    <string name="zero_vision_memo_2">При выполнении работы</string>
+    <string name="zero_vision_memo_3">Контроль опасностей: что мне нужно?</string>
+    <string name="zero_vision_memo_4">После работы</string>
+    <string name="zero_vision_purposes">Цели</string>
+    <string name="zero_vision_tasks">Задачи</string>
+    <string name="zero_vision_syot">СУОТ-система управления охраной труда корпоративная культура безопасности труда</string>
+    <string name="chief_engineer">Главный\nинженер</string>
+    <string name="engineer_ot">Инженер по\nохране труда</string>
+    <string name="zero_vision_kontrol_syot">Контроль за соблюдением работниками требований по охране труда</string>
+    <string name="zero_vision_kontrol_syot_supervision">ЕЖЕМЕСЯЧНЫЙ (начальник участка)</string>
+    <string name="zero_vision_master">ЕЖЕДНЕВНЫЙ (мастер, общественный инспектор по охране труда)</string>
+    <string name="zero_vision_kontrol_syot_worker">Корпоративная культура безопасности</string>
+    <string name="text_corporate_safety">Осмысление работниками необходимости соблюдения требований, инструкций по охране труда и личная ответственность за безопасность</string>
+    <string name="text_corporate_safety_1">Организация рабочего места и трудового процесса</string>
+    <string name="text_corporate_safety_2">Культура безопасности труда личности: профессиональные знания, опыт прошлых ошибок, личная дисциплина, мотивация, инициатива.</string>
+    <string name="text_corporate_safety_3">Доверие и культура взаимоотношений между работниками (нравственно-психологический климат), привлечение работников к обеспечению безопасности</string>
+    <string name="zero_vision_engineer">Инженер по охране:</string>
+    <string name="zero_vision_education">Обучение по охране труда работников – это получение знаний, умений и навыков в ходе проведения:</string>
+    <string name="name_electric_motor_search">Электрические\nдвигатели\n(поиск)</string>
+    <string name="search">Поиск</string>
 
 
 </resources>

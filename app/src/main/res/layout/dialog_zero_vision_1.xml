@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:textStyle="bold"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/ru_hero"
         android:text="@string/zero_vision_11"
