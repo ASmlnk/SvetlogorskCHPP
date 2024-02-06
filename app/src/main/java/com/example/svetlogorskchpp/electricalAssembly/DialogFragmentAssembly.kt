@@ -25,10 +25,8 @@ class DialogFragmentAssembly : BottomSheetDialogFragment() {
 
         _binding = DialogFragmentAssemblyBinding.bind(inflater.inflate(R.layout.dialog_fragment_assembly, container))
 
-
         val idElectricalAssembly =
             DialogFragmentAssemblyArgs.fromBundle(requireArguments()).idElectricalAssembly
-
 
         val viewModelFactory = DialogAssemblyViewModelFactory(idElectricalAssembly)
         val viewModel =
@@ -55,19 +53,10 @@ class DialogFragmentAssembly : BottomSheetDialogFragment() {
                 }
             )
         }
-
-
         binding.recycleItemElectricAssembly.adapter = adapter
         val view = binding.root
 
         return view
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     override fun onDestroyView() {

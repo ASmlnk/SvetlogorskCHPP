@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_background"
+    tools:context=".inspectionSchedule.DialogCalendarFragment">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="100dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bottom_sheet_background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_checklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout">
+
+        <ImageView
+            android:id="@+id/imageDate"
+            android:layout_width="80dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/free_icon_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_name_checklist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/ru_hero"
+            android:text="@string/inspection_schedule_checklist"
+            android:textColor="@color/name_devices_appbar"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/imageDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_name_checklist_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/ru_hero"
+            android:text="@string/title_checklist"
+            android:textColor="@color/text_input_assembly"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_name_checklist" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_checklist"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_all"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginEnd="4dp"
+            android:checked="true"
+            android:fontFamily="@font/ru_hero"
+            android:text="@string/v_all"
+            android:textColor="@color/text_recycle"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:chipBackgroundColor="#EFEEEB"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/text_input_assembly"
+            app:chipStrokeWidth="1dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_nse"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/ru_hero"
+            android:text="@string/nse"
+            android:textColor="@color/text_recycle"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:chipBackgroundColor="#EFEEEB"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/text_input_assembly"
+            app:chipStrokeWidth="1dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_dem"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:fontFamily="@font/ru_hero"
+            android:text="@string/dem"
+            android:textColor="@color/text_recycle"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:chipBackgroundColor="#EFEEEB"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/text_input_assembly"
+            app:chipStrokeWidth="1dp"
+            app:rippleColor="@color/text_recycle" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_inspection_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/calendar_fragment_kontur_revers"
+        android:paddingStart="6dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="6dp"
+        android:paddingBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

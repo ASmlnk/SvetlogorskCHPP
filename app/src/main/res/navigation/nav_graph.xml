@@ -39,20 +39,7 @@
             app:argType="string" />
     </dialog>
     <include app:graph="@navigation/home" />
-    <fragment
-        android:id="@+id/openSwitchgear2"
-        android:name="com.example.svetlogorskchpp.openSwitchgear.OpenSwitchgear"
-        android:label="fragment_open_switchgear"
-        tools:layout="@layout/fragment_open_switchgear" />
-    <fragment
-        android:id="@+id/blockGeneratorTransformer"
-        android:name="com.example.svetlogorskchpp.blockGeneratorTransformer.BlockGeneratorTransformer"
-        android:label="fragment_block_generator_transformer"
-        tools:layout="@layout/fragment_block_generator_transformer" />
-    <fragment
-        android:id="@+id/transformerOfOwnNeeds"
-        android:name="com.example.svetlogorskchpp.transformerOfOwnNeeds.TransformerOfOwnNeeds"
-        android:label="fragment_transformer_of_own_needs"
-        tools:layout="@layout/fragment_transformer_of_own_needs" />
+    <include app:graph="@navigation/inspection" />
+
 
 </navigation>

@@ -36,6 +36,9 @@ class HomePageFragment : Fragment() {
             materialCardViewElectricMotor.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment)
             }
+            materialCardViewValve.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_valveFragment)
+            }
         }
 
         return binding.root

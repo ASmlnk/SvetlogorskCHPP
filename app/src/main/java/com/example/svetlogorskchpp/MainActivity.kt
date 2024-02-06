@@ -1,5 +1,7 @@
 package com.example.svetlogorskchpp
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +39,15 @@ private lateinit var appBarConfiguration: AppBarConfiguration
             setOf(R.id.openSwitchgear)
         )*/
        //setupActionBarWithNavController(navController,appBarConfiguration)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+
+        val newOverride = Configuration(newBase?.resources?.configuration)
+        newOverride.fontScale = 1.0f
+        applyOverrideConfiguration(newOverride)
+
+        super.attachBaseContext(newBase)
     }
 
     /*override fun onSupportNavigateUp(): Boolean {

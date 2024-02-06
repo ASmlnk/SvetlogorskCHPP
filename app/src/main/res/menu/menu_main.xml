@@ -18,4 +18,10 @@
         android:enabled="true"
         android:icon="@drawable/high_voltage_8107242"/>
 
+    <item
+        android:id="@+id/inspection"
+        android:title="График"
+        android:enabled="true"
+        android:icon="@drawable/free_icon_calendar1"/>
+
 </menu>

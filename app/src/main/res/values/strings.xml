@@ -178,6 +178,24 @@
     <string name="zero_vision_education">Обучение по охране труда работников – это получение знаний, умений и навыков в ходе проведения:</string>
     <string name="name_electric_motor_search">Электрические\nдвигатели\n(поиск)</string>
     <string name="search">Поиск</string>
-
+    <string name="cd_previous">previous</string>
+    <string name="cd_next">next</string>
+    <string name="inspection_schedule">График осмотра и опробования электрооборудования</string>
+    <string name="inspection_schedule_day">Дневная\nсмена</string>
+    <string name="inspection_schedule_night">Ночная\nсмена</string>
+    <string name="inspection_schedule_today_data">"График на дату %s"</string>
+    <string name="inspection_schedule_date_day">"Дневная смена %s"</string>
+    <string name="inspection_schedule_date_night">"Ночная смена с %1$s на %2$s"</string>
+    <string name="inspection_schedule_date_day_night">"Дневная смена %1$s\nНочная смена с %2$s на %3$s "</string>
+    <string name="title_checklist">Полный список осмотров и опробований оборудования</string>
+    <string name="inspection_schedule_checklist">Перечень</string>
+    <string name="dem">ДЭМ</string>
+    <string name="nse">НСЭ</string>
+    <string name="inspection_schedule_avr">Программы опробования АВР собственных нужд</string>
+    <string name="inspection_schedule_inspection">Бланки осмотра электрооборудования</string>
+    <string name="valve">Задвижки водяного пожаротушения</string>
+    <string name="valve_location">Раcположение</string>
+    <string name="valve_control">Направление</string>
+    <string name="valve_schema">Схема</string>
 
 </resources>

@@ -127,7 +127,7 @@
                             android:gravity="center"
                             android:text="@string/ory_110_220"
                             android:textColor="@color/floatingActionButton"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -185,12 +185,14 @@
                             android:gravity="center"
                             android:text="@string/name_tsn"
                             android:textColor="@color/floatingActionButton"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/shapeableImageView2"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.543" />
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/shapeableImageView2"
@@ -289,7 +291,7 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="128dp"
-                            android:layout_height="128dp"
+                            android:layout_height="94dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/shapeableImageViewZeroVision"
                             app:layout_constraintStart_toStartOf="parent"
@@ -298,18 +300,17 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/shapeableImageViewZeroVision"
-                            android:layout_width="112dp"
-                            android:layout_height="112dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
+                            android:layout_width="104dp"
+                            android:layout_height="104dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginBottom="8dp"
                             android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
                             app:srcCompat="@drawable/vision_zero" />
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -322,11 +323,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="8dp"
                     app:cardBackgroundColor="#D6EAED"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/materialCardViewValve"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardViewZeroVision"
@@ -349,7 +350,7 @@
                             android:gravity="center"
                             android:text="@string/name_electric_motor_search"
                             android:textColor="@color/floatingActionButton"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -358,8 +359,8 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/shapeableImageViewElectricMotor"
-                            android:layout_width="190dp"
-                            android:layout_height="118dp"
+                            android:layout_width="170dp"
+                            android:layout_height="110dp"
                             android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -367,6 +368,63 @@
                             app:layout_constraintVertical_bias="0.0"
                             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
                             app:srcCompat="@drawable/motor_5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardViewValve"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="24dp"
+                    app:cardBackgroundColor="#F4F5F0"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewElectricMotor"
+                    app:strokeWidth="1dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textTitleValve"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#00214763"
+                            android:fontFamily="@font/ru_hero"
+                            android:gravity="center"
+                            android:text="@string/valve"
+                            android:textColor="@color/floatingActionButton"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/shapeableImageViewValve"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/shapeableImageViewValve"
+                            android:layout_width="168dp"
+                            android:layout_height="123dp"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:alpha="0.9"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+                            app:srcCompat="@drawable/zadvizhka2" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

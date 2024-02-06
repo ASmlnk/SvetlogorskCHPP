@@ -416,6 +416,10 @@ class ZeroVisionAdapter(val indexZeroVision: String) :
                     R.color.red_text_zero_vision,
                     ZeroVisionType.ZERO_VISION_3_SUPERVISION_4.text,
                     ZeroVisionType.ZERO_VISION_3_SUPERVISION_COLOR_4.text, itemView.context
+                ), textColorForegroundSpannable(
+                    R.color.red_text_zero_vision,
+                    ZeroVisionType.ZERO_VISION_3_SUPERVISION_5.text,
+                    ZeroVisionType.ZERO_VISION_3_SUPERVISION_COLOR_5.text, itemView.context
                 )
             )
 
@@ -543,9 +547,9 @@ class ZeroVisionAdapter(val indexZeroVision: String) :
                     ZeroVisionType.ZERO_VISION_4_MASTER_6.text ,ZeroVisionType.ZERO_VISION_2_WORKER_ORANGE.text, itemView.context
                 ), textColorForegroundSpannable(R.color.orange_zero_vision,
                     ZeroVisionType.ZERO_VISION_4_MASTER_7.text ,ZeroVisionType.ZERO_VISION_2_WORKER_ORANGE.text, itemView.context
-                ), textColorForegroundSpannable(R.color.orange_zero_vision,
+                )/*, textColorForegroundSpannable(R.color.orange_zero_vision,
                     ZeroVisionType.ZERO_VISION_4_MASTER_8.text ,ZeroVisionType.ZERO_VISION_2_WORKER_ORANGE.text, itemView.context
-                )
+                )*/
             )
 
             val textWorker = TextUtils.concat (
@@ -610,10 +614,10 @@ class ZeroVisionAdapter(val indexZeroVision: String) :
                 ), textColorForegroundSpannable(R.color.red_text_zero_vision,
                     ZeroVisionType.ZERO_VISION_5_SUPERVISION_6.text ,
                     ZeroVisionType.ZERO_VISION_5_SUPERVISION_COLOR_6.text  , itemView.context
-                ), textColorForegroundSpannable(R.color.red_text_zero_vision,
+                )/*, textColorForegroundSpannable(R.color.red_text_zero_vision,
                     ZeroVisionType.ZERO_VISION_5_SUPERVISION_7.text ,
                     ZeroVisionType.ZERO_VISION_5_SUPERVISION_COLOR_7.text  , itemView.context
-                )
+                )*/
             )
 
             val textWorker = TextUtils.concat (

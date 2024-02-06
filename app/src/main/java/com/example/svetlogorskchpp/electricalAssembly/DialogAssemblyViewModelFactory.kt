@@ -11,6 +11,4 @@ class DialogAssemblyViewModelFactory(private val idElectricalAssembly: String): 
         }
         throw IllegalArgumentException("Unknown ViewModel")
     }
-
-
 }

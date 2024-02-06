@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Svetlogorsk CHPP"
 include(":app")
- 
+include(":visionzero")

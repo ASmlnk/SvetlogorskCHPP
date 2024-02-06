@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">VisionZero</string>
+    <string name="name_zero_vision">Vision Zero</string>
+    <string name="zero_vision_1">Стать лидером</string>
+    <string name="zero_vision_2">Выявлять угрозы</string>
+    <string name="zero_vision_3">Определять цели</string>
+    <string name="zero_vision_4">Создать систему безопасности и гигиены труда</string>
+    <string name="zero_vision_5">Обеспечить безопасность и гигиену на рабочих местах</string>
+    <string name="zero_vision_6">Повышать квалификацию</string>
+    <string name="zero_vision_7">Инвестировать в кадры</string>
+    <string name="zero_vision_11">показать приверженность принципам</string>
+    <string name="zero_vision_21">контролировать риски</string>
+    <string name="zero_vision_31">разрабатывать программы</string>
+    <string name="zero_vision_41">достичь высокого уровня организации</string>
+    <string name="zero_vision_51">при эксплуатации оборудования</string>
+    <string name="zero_vision_61">развивать профессиональные навыки</string>
+    <string name="zero_vision_71">мотивировать посредством участия</string>
+    <string name="zero_vision_supervisor">Руководитель работ \n(начальник участка, мастер):</string>
+    <string name="zero_vision_supervisor_1">
+        • Я подаю пример своим работникам для подражания и демонстрирую приверженность принципам безопасности и гигиены труда;\n\n
+        • Я следую правилам и использую средства индивидуальной защиты;\n\n
+        • Я немедленно реагирую на нарушение моим работником требований охраны труда и провожу инструктаж;\n\n
+        • Я не допускаю беспорядка и халатности на рабочем месте.\n
+    </string>
+    <string name="zero_vision_worker">Работник:</string>
+    <string name="zero_vision_worker_1">
+        • Я несу персональную ответственность за безопасное выполнение поставленных ему задач и безопасное рабочее место;\n\n
+        • Я соблюдаю инструкции (инструкции по охране труда, пожарной безопасности, технологические инструкции) и применяю безопасные методы труда;\n\n
+        • Я использую средства индивидуальной защиты и следую знакам безопасности;\n\n
+        • Я обращаюсь за помощью к своему руководителю при возникновении вопросов по безопасному проведению работ;\n\n
+        • Я применяю <b>«ПРАВО НА ПРИОСТАНОВКУ РАБОТ»</b> в случае выявления небезопасного проведения работ для предотвращения возможных происшествий;\n\n
+        • Я внимателен по отношению к безопасному выполнению работ другими работниками\n
+    </string>
+    <string name="zero_vision_danger">Опасность!</string>
+    <string name="zero_vision_memo_1">Перед началом работы:</string>
+    <string name="zero_vision_memo_2">При выполнении работы</string>
+    <string name="zero_vision_memo_3">Контроль опасностей: что мне нужно?</string>
+    <string name="zero_vision_memo_4">После работы</string>
+    <string name="zero_vision_purposes">Цели</string>
+    <string name="zero_vision_tasks">Задачи</string>
+    <string name="zero_vision_syot">СУОТ-система управления охраной труда корпоративная культура безопасности труда</string>
+    <string name="chief_engineer">Главный\nинженер</string>
+    <string name="engineer_ot">Инженер по\nохране труда</string>
+    <string name="zero_vision_kontrol_syot">Контроль за соблюдением работниками требований по охране труда</string>
+    <string name="zero_vision_kontrol_syot_supervision">ЕЖЕМЕСЯЧНЫЙ (начальник участка)</string>
+    <string name="zero_vision_master">ЕЖЕДНЕВНЫЙ (мастер, общественный инспектор по охране труда)</string>
+    <string name="zero_vision_kontrol_syot_worker">Корпоративная культура безопасности</string>
+    <string name="text_corporate_safety">Осмысление работниками необходимости соблюдения требований, инструкций по охране труда и личная ответственность за безопасность</string>
+    <string name="text_corporate_safety_1">Организация рабочего места и трудового процесса</string>
+    <string name="text_corporate_safety_2">Культура безопасности труда личности: профессиональные знания, опыт прошлых ошибок, личная дисциплина, мотивация, инициатива.</string>
+    <string name="text_corporate_safety_3">Доверие и культура взаимоотношений между работниками (нравственно-психологический климат), привлечение работников к обеспечению безопасности</string>
+    <string name="zero_vision_engineer">Инженер по охране:</string>
+    <string name="zero_vision_education">Обучение по охране труда работников – это получение знаний, умений и навыков в ходе проведения:</string>
+</resources>

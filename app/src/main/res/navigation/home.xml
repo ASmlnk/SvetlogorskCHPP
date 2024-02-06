@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_electricMotorSearchFragment"
             app:destination="@id/electricMotorSearchFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_valveFragment"
+            app:destination="@id/valveFragment" />
     </fragment>
     <fragment
         android:id="@+id/transformerOfOwnNeeds2"
@@ -67,6 +70,10 @@
         android:name="com.example.svetlogorskchpp.electricMotor.ElectricMotorSearchFragment"
         android:label="fragment_electric_motor_search"
         tools:layout="@layout/fragment_electric_motor_search" />
+    <fragment
+        android:id="@+id/valveFragment"
+        android:name="com.example.svetlogorskchpp.inspectionSchedule.ValveFragment"
+        android:label="ValveFragment" />
 
 
 </navigation>
