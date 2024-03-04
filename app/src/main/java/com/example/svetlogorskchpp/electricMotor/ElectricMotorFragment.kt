@@ -405,7 +405,7 @@ class ElectricMotorFragment : Fragment() {
             }
 
             imageView5.setOnLongClickListener {
-              //  findNavController().navigate(R.id.action_electricMotorFragment_to_blankFragment)
+              // findNavController().navigate(R.id.action_electricMotorFragment_to_blankFragment)
                 return@setOnLongClickListener true
             }
 

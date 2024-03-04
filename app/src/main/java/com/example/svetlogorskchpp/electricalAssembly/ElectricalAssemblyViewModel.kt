@@ -10,6 +10,7 @@ import com.example.svetlogorskchpp.model.ElectricalAssemblySearch
 import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotorSearch
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
+import com.example.svetlogorskchpp.zeroVision.ZeroVisionType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -74,19 +75,9 @@ class ElectricalAssemblyViewModel : ViewModel() {
     }
 
     fun getFilterList(filter: String) {
-        val listFilter = when (filter) {
-            "ХЦ" -> listAllAssembly.filter { it.nameDepartment == "ХЦ" }
-            "КТЦ т/о" -> listAllAssembly.filter { it.nameDepartment == "КТЦ т/о" }
-            "КТЦ к/о" -> listAllAssembly.filter { it.nameDepartment == "КТЦ к/о" }
-            "БНС" -> listAllAssembly.filter { it.nameDepartment == "БНС" }
-            "Градирня" -> listAllAssembly.filter { it.nameDepartment == "Градирня" }
-            "Щит. блок" -> listAllAssembly.filter { it.nameDepartment == "Щит. блок" }
-            "КРУ" -> listAllAssembly.filter { it.nameDepartment == "КРУ" }
-            "РУ" -> listAllAssembly.filter { it.nameDepartment == "РУ" }
-            "Все" -> listAllAssembly
+        val listFilter = if (filter == "Все") listAllAssembly else listAllAssembly.filter { it.nameDepartment == filter }
 
-            else -> emptyList()
-        }
+
         _listFilterAssembly.value = listFilter.sortedBy { it.nameAssembly }
     }
 

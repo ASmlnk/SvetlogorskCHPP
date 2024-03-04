@@ -11,17 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.svetlogorskchpp.databinding.FragmentBlankBinding
 
-class BlankFragment : Fragment() {
-    private var _binding: FragmentBlankBinding? = null
+class BlankFragment : BaseFragment<FragmentBlankBinding>() {
     private val binding get() = _binding!!
+
     private val viewModel: BlankFragmentViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentBlankBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun getViewId(): Int  = R.layout.fragment_blank
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.buttonGet.setOnClickListener {
             //viewModel.get()
         }
@@ -59,20 +58,9 @@ class BlankFragment : Fragment() {
             addElementFirebase("Остальное")
         }
 
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         viewModel.liveData.observe(viewLifecycleOwner) {
             binding.textListSize.text = it.toString()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun addElementFirebase(nameChapter: String) {
