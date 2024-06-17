@@ -1,4 +1,4 @@
-package com.example.mylibrary.RxJava.lessons_9_retrofit.no_rx
+package com.example.mylibrary.RxJava.lessons_9_retrofit
 
 import com.google.gson.annotations.SerializedName
 

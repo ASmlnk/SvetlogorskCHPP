@@ -1,5 +1,6 @@
 package com.example.mylibrary.RxJava.lessons_9_retrofit.no_rx
 
+import com.example.mylibrary.RxJava.lessons_9_retrofit.Message
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
