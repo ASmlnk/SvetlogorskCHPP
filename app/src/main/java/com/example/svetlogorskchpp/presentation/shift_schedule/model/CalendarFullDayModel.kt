@@ -1,7 +1,6 @@
-package com.example.svetlogorskchpp.presentation.shift_schedule
+package com.example.svetlogorskchpp.presentation.shift_schedule.model
 
 import java.util.Calendar
-import java.util.Date
 
 data class CalendarFullDayModel(
     val data: Calendar,

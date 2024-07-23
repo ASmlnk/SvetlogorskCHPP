@@ -42,7 +42,7 @@
     <include app:graph="@navigation/inspection" />
     <fragment
         android:id="@+id/shiftScheduleFragment"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.ShiftScheduleFragment"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.fragment.ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule"
         android:label="ShiftScheduleFragment" />
 

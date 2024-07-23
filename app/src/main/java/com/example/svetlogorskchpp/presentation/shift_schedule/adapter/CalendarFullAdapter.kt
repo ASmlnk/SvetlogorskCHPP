@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.presentation.shift_schedule
+package com.example.svetlogorskchpp.presentation.shift_schedule.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,6 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.MonthCalendar
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.Shift
 
 class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: CalendarFullDayModel, position: Int) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

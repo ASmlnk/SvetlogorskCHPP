@@ -1,7 +1,6 @@
-package com.example.svetlogorskchpp.presentation.shift_schedule
+package com.example.svetlogorskchpp.presentation.shift_schedule.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,12 @@ import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
 import com.example.svetlogorskchpp.inspectionSchedule.CalendarViewModel
 import com.example.svetlogorskchpp.inspectionSchedule.CalendarViewModelFactory
 import com.example.svetlogorskchpp.model.CalendarDateModel
+import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.CalendarFullAdapter
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
+import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.MonthCalendar
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.Shift
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.Math.abs
 import java.text.SimpleDateFormat
@@ -20,6 +25,7 @@ import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
 
+@AndroidEntryPoint
 class ShiftScheduleFragment: Fragment() {
 
     private var _binding: FragmentShiftScheduleBinding? = null
