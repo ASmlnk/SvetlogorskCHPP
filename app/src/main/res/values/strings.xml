@@ -197,5 +197,13 @@
     <string name="valve_location">Раcположение</string>
     <string name="valve_control">Направление</string>
     <string name="valve_schema">Схема</string>
+    <string name="monday">Пн</string>
+    <string name="tuesday">Вт</string>
+    <string name="wednesday">Ср</string>
+    <string name="thursday">Чт</string>
+    <string name="friday">Пт</string>
+    <string name="saturday">Сб</string>
+    <string name="sunday">Вс</string>
+    <string name="date">Oct 2020</string>
 
 </resources>

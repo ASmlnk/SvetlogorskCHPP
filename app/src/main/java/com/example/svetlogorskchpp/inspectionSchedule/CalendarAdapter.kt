@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.model.CalendarDateModel
 
-
 class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateModel, position: Int) -> Unit) :
     RecyclerView.Adapter<CalendarAdapter.MyViewHolder>() {
     private val list = ArrayList<CalendarDateModel>()

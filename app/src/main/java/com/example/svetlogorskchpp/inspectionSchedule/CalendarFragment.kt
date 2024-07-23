@@ -35,14 +35,16 @@ class CalendarFragment : Fragment() {
     private val sdfDate = SimpleDateFormat("dd")
     private val sdfMonth = SimpleDateFormat("MMM")
     private val sdfFullDate = SimpleDateFormat("dd MMMM yyyy")
-    private val cal: Calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("GMT+3")).apply{
+    private val cal: Calendar = GregorianCalendar.getInstance(TimeZone.getTimeZone("GMT+3")).apply {
         firstDayOfWeek = 2
     }
     private val dates = ArrayList<Date>()
     private lateinit var adapter: CalendarAdapter
     private val calendarList2 = ArrayList<CalendarDateModel>()
+
     private var _binding: FragmentInspectionScheduleCalendarBinding? = null
     private val binding get() = _binding!!
+
     private val viewModelFactory = CalendarViewModelFactory(cal.time)
     private lateinit var viewModel: CalendarViewModel
 
@@ -59,7 +61,7 @@ class CalendarFragment : Fragment() {
         setUpAdapter()
 
         setUpClickListener()
-       // setUpCalendar()
+        // setUpCalendar()
         binding.apply {
             textDayToday.text = sdfDate.format(cal.time)
             textMonthToday.text = sdfMonth.format(cal.time)
@@ -86,7 +88,10 @@ class CalendarFragment : Fragment() {
             }
 
             imageSelectCalendar.setOnClickListener {
-                val action = CalendarFragmentDirections.actionCalendarFragmentToDialogDatePickerFragment(viewModel.selectDateStateFlow.value)
+                val action =
+                    CalendarFragmentDirections.actionCalendarFragmentToDialogDatePickerFragment(
+                        viewModel.selectDateStateFlow.value
+                    )
                 findNavController().navigate(action)
             }
 
@@ -95,9 +100,13 @@ class CalendarFragment : Fragment() {
                 setUpCalendar()
                 lifecycleScope.launch {
                     delay(500)
-                    binding.recyclerView.smoothScrollToPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1)
+                    binding.recyclerView.smoothScrollToPosition(
+                        viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1
+                    )
                     delay(50)
-                    binding.recyclerView.findViewHolderForAdapterPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1)?.itemView?.performClick()
+                    binding.recyclerView.findViewHolderForAdapterPosition(
+                        viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1
+                    )?.itemView?.performClick()
                 }
             }
             cardViewChecklist.setOnClickListener {
@@ -105,7 +114,10 @@ class CalendarFragment : Fragment() {
             }
 
             cardViewInspection.setOnClickListener {
-                val action = CalendarFragmentDirections.actionCalendarFragmentToChecklistInspectionFragment(InSc.INSPECTION.get)
+                val action =
+                    CalendarFragmentDirections.actionCalendarFragmentToChecklistInspectionFragment(
+                        InSc.INSPECTION.get
+                    )
                 findNavController().navigate(action)
             }
         }
@@ -119,8 +131,8 @@ class CalendarFragment : Fragment() {
                 )
             }
         }
-         lifecycleScope.launch {
-            viewModel.calendarAdapterStateFlow.collect{
+        lifecycleScope.launch {
+            viewModel.calendarAdapterStateFlow.collect {
                 setUpCalendar()
             }
         }
@@ -135,7 +147,7 @@ class CalendarFragment : Fragment() {
             setUpCalendar()
             lifecycleScope.launch {
                 delay(50)
-                binding.recyclerView.smoothScrollToPosition(cal.get(Calendar.DAY_OF_MONTH) -1 )
+                binding.recyclerView.smoothScrollToPosition(cal.get(Calendar.DAY_OF_MONTH) - 1)
                 delay(500)
                 binding.recyclerView.findViewHolderForAdapterPosition(cal.get(Calendar.DAY_OF_MONTH) - 1)?.itemView?.performClick()
             }
@@ -143,14 +155,11 @@ class CalendarFragment : Fragment() {
 
         lifecycleScope.launch {
             delay(50)
-            binding.recyclerView.findViewHolderForAdapterPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1)?.itemView?.performClick()
+            binding.recyclerView.findViewHolderForAdapterPosition(
+                viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 1
+            )?.itemView?.performClick()
         }
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {
@@ -172,7 +181,9 @@ class CalendarFragment : Fragment() {
         binding.recyclerView.addItemDecoration(HorizontalItemDecoration(spacingInPixels))
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.recyclerView)
-        binding.recyclerView.layoutManager?.scrollToPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 3)
+        binding.recyclerView.layoutManager?.scrollToPosition(
+            viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 3
+        )
 //
         adapter = CalendarAdapter { calendarDateModel: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
@@ -182,7 +193,7 @@ class CalendarFragment : Fragment() {
             adapter.setData(calendarList2)
         }
         binding.recyclerView.adapter = adapter
-       // binding.recyclerView.scrollToPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 3)
+        // binding.recyclerView.scrollToPosition(viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 3)
     }
 
     private fun setUpCalendar() {

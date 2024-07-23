@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_calendar_month_prev"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="top|center"
+                android:id="@+id/tv_calendar_date"
+
+                android:alpha="0.5"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/name_devices_appbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+
+                android:gravity="start"
+                android:alpha="0.5"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:src="@drawable/arrow_right"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="A"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textColor="@color/chip_appbar"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:alpha="0.5"
+                android:visibility="invisible"
+                android:layout_gravity="center"
+                android:text="B"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/chip_appbar"/>
+
+            <LinearLayout
+                android:alpha="0.5"
+                android:gravity="end"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="C"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:textColor="@color/chip_appbar"/>
+
+                <ImageView
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:src="@drawable/arrow_right"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+</layout>

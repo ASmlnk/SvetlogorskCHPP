@@ -40,6 +40,11 @@
     </dialog>
     <include app:graph="@navigation/home" />
     <include app:graph="@navigation/inspection" />
+    <fragment
+        android:id="@+id/shiftScheduleFragment"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.ShiftScheduleFragment"
+        tools:layout="@layout/fragment_shift_schedule"
+        android:label="ShiftScheduleFragment" />
 
 
 </navigation>
