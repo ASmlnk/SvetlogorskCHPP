@@ -25,7 +25,7 @@ import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class ShiftScheduleFragment: Fragment() {
 
     private var _binding: FragmentShiftScheduleBinding? = null
@@ -82,11 +82,7 @@ class ShiftScheduleFragment: Fragment() {
         dates.clear()
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
         val list = generateDays(monthCalendar)
-       /* while (dates.size < maxDaysInMonth) {
-            dates.add(monthCalendar.time)
-            calendarList.add(CalendarDateModel(monthCalendar.time))
-            monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
-        }*/
+
         calendarList3.clear()
         calendarList3.addAll(list)
 
@@ -101,7 +97,7 @@ class ShiftScheduleFragment: Fragment() {
             viewModel.selectDateStart().get(Calendar.DAY_OF_MONTH) - 3
         )
         binding.recyclerView.setItemViewCacheSize(0)  // Отключение кэширования представлений
-       // binding.recyclerView.addItemDecoration(itemDecoration)
+       binding.recyclerView.addItemDecoration(itemDecoration)
 
         adapter = CalendarFullAdapter { calendarDateModel: CalendarFullDayModel, position: Int ->
             calendarList3.forEachIndexed { index, calendarModel ->

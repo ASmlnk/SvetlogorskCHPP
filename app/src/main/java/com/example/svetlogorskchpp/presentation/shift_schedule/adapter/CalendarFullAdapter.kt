@@ -50,7 +50,8 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                 imageNext.alpha = 0.6F
             }
             if (calendarDateModel.dateDay) {
-                calendarDate.background = itemView.context.getDrawable(R.drawable.zerovision_green_gradient)
+                item.background = itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
+               // item.alpha = 0.5F
             }
             if (calendarDateModel.calendarDayWeekend) {
                 calendarDate.setTextColor( itemView.context.getColor(R.color.orange_zero_vision))

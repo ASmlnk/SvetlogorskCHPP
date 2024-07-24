@@ -20,6 +20,7 @@ class ItemOffsetDecoration(private val context: Context) :
         val itemPosition = parent.getChildLayoutPosition(view)
 
             outRect.bottom = context.resources.getDimensionPixelSize(R.dimen.calendar_item_margin)
+            outRect.left = context.resources.getDimensionPixelSize(R.dimen.calendar_item_margin)
 
     }
 
