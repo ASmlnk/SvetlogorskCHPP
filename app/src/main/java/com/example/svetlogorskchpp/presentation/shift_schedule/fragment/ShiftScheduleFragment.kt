@@ -59,8 +59,8 @@ class ShiftScheduleFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
                     binding.apply {
+                        isProgressBar(state.calendarList.isEmpty())
                         if (state.calendarList.isNotEmpty()) {
-                            delay(10)
                             adapter.setData(state.calendarList, state.selectShift)
                             binding.apply {
                                 recyclerView.adapter = adapter
@@ -130,6 +130,7 @@ class ShiftScheduleFragment : Fragment() {
         binding.apply {
             chipGroup.isGone = isProgress
             constraintLayoutCalendar.isGone = isProgress
+            progressBar.isGone = !isProgress
         }
     }
 

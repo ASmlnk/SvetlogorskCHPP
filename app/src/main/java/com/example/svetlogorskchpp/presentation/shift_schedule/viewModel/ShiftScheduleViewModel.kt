@@ -7,6 +7,7 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFul
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.ShiftScheduleUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -41,7 +42,10 @@ class ShiftScheduleViewModel @Inject constructor(
 
 
     init {
-         setUpCalendar()
+        viewModelScope.launch {
+            delay(200)
+            setUpCalendar()
+        }
 
         viewModelScope.launch {
             shiftScheduleInteractor.getDaysFullCalendarStream()

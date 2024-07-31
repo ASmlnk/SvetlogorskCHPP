@@ -13,6 +13,16 @@
         android:layout_height="match_parent"
         android:background="@drawable/zerovision_blue_gradient2">
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:indeterminateTint="@color/calendar_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="wrap_content"
