@@ -2,93 +2,104 @@ package com.example.svetlogorskchpp.presentation.shift_schedule.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.databinding.ItemFullCalendarMonthBinding
+import com.example.svetlogorskchpp.databinding.ItemFullCalendarPrevMonthBinding
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
-import com.example.svetlogorskchpp.presentation.shift_schedule.model.MonthCalendar
-import com.example.svetlogorskchpp.presentation.shift_schedule.model.Shift
+import com.example.svetlogorskchpp.domain.model.MonthCalendar
+import com.example.svetlogorskchpp.domain.model.Shift
 
 class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: CalendarFullDayModel, position: Int) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val list = ArrayList<CalendarFullDayModel>()
 
-    inner class CalendarMonthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private val list = ArrayList<CalendarFullDayModel>()
+    private var shift = Shift.NO_SHIFT
+
+    class CalendarMonthViewHolder(val binding: ItemFullCalendarMonthBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(calendarDateModel: CalendarFullDayModel) {
-            val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
-            val prevNightShift = itemView.findViewById<TextView>(R.id.text_prev_night_shift)
-            val dayShift = itemView.findViewById<TextView>(R.id.text_day_shift)
-            val nextNightShift = itemView.findViewById<TextView>(R.id.text_nex_night_shift)
-            val imagePrev = itemView.findViewById<LinearLayout>(R.id.image_prev_night_shift)
-            val imageNext = itemView.findViewById<LinearLayout>(R.id.image_nex_night_shift)
-            val item = itemView.findViewById<LinearLayout>(R.id.item_layout)
+        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift) {
 
-            prevNightShift.text = shift(calendarDateModel.prevNightShift)
-            dayShift.text = shift(calendarDateModel.dayShift)
-            nextNightShift.text = shift(calendarDateModel.nextNightShift)
+            binding.apply {
+                textPrevNightShift.text = shift(calendarDateModel.prevNightShift)
+                textDayShift.text = shift(calendarDateModel.dayShift)
+                textNexNightShift.text = shift(calendarDateModel.nextNightShift)
 
-            calendarDate.text = calendarDateModel.calendarDate
+                tvCalendarDate.text = calendarDateModel.calendarDate
 
-            if (calendarDateModel.prevNightShift == Shift.A_SHIFT) {
-              //  prevNightShift.setTextColor(itemView.context.getColor(R.color.red_danger))
-                imagePrev.background = itemView.context.getDrawable(R.drawable.background_calendar_select_shift_night)
-                imagePrev.alpha = 0.6F
+                if (calendarDateModel.prevNightShift == shift) {
+                    imagePrevNightShift.apply {
+                        background =
+                            itemView.context.getDrawable(R.drawable.background_calendar_select_shift_night)
+                        alpha = 0.6F
+                    }
+                }
+                if (calendarDateModel.dayShift == shift) {
+                    textDayShift.apply {
+                        background =
+                            itemView.context.getDrawable(R.drawable.background_calendar_select_shift_day)
+                        alpha = 0.85F
+                    }
+                }
+                if (calendarDateModel.nextNightShift == shift) {
+                    imageNexNightShift.apply {
+                        background =
+                            itemView.context.getDrawable(R.drawable.background_calendar_select_shift_night)
+                        alpha = 0.6F
+                    }
+                }
+                if (calendarDateModel.dateDay) {
+                    itemLayout.background =
+                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
+                }
+                if (calendarDateModel.calendarDayWeekend) {
+                    tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
+                }
+                itemView.setOnClickListener {
+                    //listener.invoke(calendarDateModel, adapterPosition)
+                }
             }
-            if (calendarDateModel.dayShift == Shift.A_SHIFT) {
-              //  prevNightShift.setTextColor(itemView.context.getColor(R.color.red_danger))
-                dayShift.background = itemView.context.getDrawable(R.drawable.background_calendar_select_shift_day)
-                dayShift.alpha = 0.85F
-            }
-            if (calendarDateModel.nextNightShift == Shift.A_SHIFT) {
-              //  prevNightShift.setTextColor(itemView.context.getColor(R.color.red_danger))
-                imageNext.background = itemView.context.getDrawable(R.drawable.background_calendar_select_shift_night)
-                imageNext.alpha = 0.6F
-            }
-            if (calendarDateModel.dateDay) {
-                item.background = itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
-               // item.alpha = 0.5F
-            }
-            if (calendarDateModel.calendarDayWeekend) {
-                calendarDate.setTextColor( itemView.context.getColor(R.color.orange_zero_vision))
-            }
+        }
 
-            itemView.setOnClickListener {
-                //listener.invoke(calendarDateModel, adapterPosition)
+        companion object {
+            fun inflateFrom(parent: ViewGroup): CalendarMonthViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ItemFullCalendarMonthBinding.inflate(layoutInflater, parent, false)
+                return CalendarMonthViewHolder(binding)
             }
         }
     }
 
-    inner class CalendarPrevMonthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class CalendarPrevMonthViewHolder(val binding: ItemFullCalendarPrevMonthBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        companion object {
+            fun inflateFrom(parent: ViewGroup): CalendarPrevMonthViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding =
+                    ItemFullCalendarPrevMonthBinding.inflate(layoutInflater, parent, false)
+                return CalendarPrevMonthViewHolder(binding)
+            }
+        }
+
         fun bind(calendarDateModel: CalendarFullDayModel) {
-            val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
-            calendarDate.text = calendarDateModel.calendarDate
+            binding.tvCalendarDate.text = calendarDateModel.calendarDate
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            2 -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_full_calendar_month, parent, false)
-                CalendarMonthViewHolder(view)
-            }
-
-            else -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_full_calendar_prev_month, parent, false)
-                CalendarPrevMonthViewHolder(view)
-            }
+            2 -> CalendarMonthViewHolder.inflateFrom(parent)
+            else -> CalendarPrevMonthViewHolder.inflateFrom(parent)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CalendarMonthViewHolder -> holder.bind(list[position])
+            is CalendarMonthViewHolder -> holder.bind(list[position], shift)
             is CalendarPrevMonthViewHolder -> holder.bind(list[position])
         }
     }
@@ -106,18 +117,22 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(calendarList: List<CalendarFullDayModel>) {
+    fun setData(calendarList: List<CalendarFullDayModel>, selectShift: Shift) {
         list.clear()
         list.addAll(calendarList)
+        shift = selectShift
         notifyDataSetChanged()
     }
 
-    fun shift(shift: Shift): String {
-        return when(shift) {
-           Shift.A_SHIFT -> "А"
-           Shift.B_SHIFT -> "Б"
-           Shift.C_SHIFT -> "В"
-           Shift.D_SHIFT -> "Г"
+    companion object {
+        fun shift(shift: Shift): String {
+            return when (shift) {
+                Shift.A_SHIFT -> "А"
+                Shift.B_SHIFT -> "Б"
+                Shift.C_SHIFT -> "В"
+                Shift.D_SHIFT -> "Г"
+                Shift.NO_SHIFT -> ""
+            }
         }
     }
 }

@@ -53,5 +53,12 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <!-- Цвет фона Chip в состоянии checked -->
+        <item name="chipBackgroundColor">@color/chip_shif_schedule</item>
+        <!-- Цвет флажка -->
+        <item name="checkedIconTint">@color/calendar_background</item>
+    </style>
+
 
 </resources>

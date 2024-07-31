@@ -1,5 +1,7 @@
 package com.example.svetlogorskchpp.presentation.shift_schedule.model
 
+import com.example.svetlogorskchpp.domain.model.MonthCalendar
+import com.example.svetlogorskchpp.domain.model.Shift
 import java.util.Calendar
 
 data class CalendarFullDayModel(
@@ -7,14 +9,14 @@ data class CalendarFullDayModel(
     val month: MonthCalendar,
     val prevNightShift: Shift,
     val dayShift: Shift,
-    val nextNightShift: Shift
-    ) {
+    val nextNightShift: Shift,
+) {
 
     val calendarDayWeekend: Boolean
-    get()  {
-        val dayOfWeek = data.get(Calendar.DAY_OF_WEEK)
-        return dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY
-    }
+        get() {
+            val dayOfWeek = data.get(Calendar.DAY_OF_WEEK)
+            return dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY
+        }
 
     val calendarDate: String
         get() {
