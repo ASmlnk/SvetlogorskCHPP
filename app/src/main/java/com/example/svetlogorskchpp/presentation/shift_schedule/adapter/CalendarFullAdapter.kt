@@ -6,16 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.ItemFullCalendarMonthBinding
+import com.example.svetlogorskchpp.databinding.ItemFullCalendarMonthV2Binding
 import com.example.svetlogorskchpp.databinding.ItemFullCalendarPrevMonthBinding
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.domain.model.Shift
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 
 class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: CalendarFullDayModel, position: Int) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list = ArrayList<CalendarFullDayModel>()
-    private var shift = Shift.NO_SHIFT
+
+    // private var shift = Shift.NO_SHIFT
+    private var stateUi = AdapterUiState()
 
     class CalendarMonthViewHolder(val binding: ItemFullCalendarMonthBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -73,6 +77,55 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
         }
     }
 
+    class CalendarMonthViewHolderV2(val binding: ItemFullCalendarMonthV2Binding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift) {
+            val shiftText = shift(calendarDateModel, shift)
+
+            binding.apply {
+                textShift.text = shiftText
+
+                tvCalendarDate.text = calendarDateModel.calendarDate
+
+                if (shiftText == "4" || shiftText == "8/4" || shiftText == "8") {
+                    layoutShift.apply {
+                        background =
+                            itemView.context.getDrawable(R.drawable.background_calendar_select_shift_night)
+                        alpha = 0.6F
+                    }
+                }
+                if (shiftText == "12") {
+                    layoutShift.apply {
+                        background =
+                            itemView.context.getDrawable(R.drawable.background_calendar_select_shift_day)
+                        alpha = 0.85F
+                    }
+                }
+
+                if (calendarDateModel.dateDay) {
+                    itemLayout.background =
+                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
+                }
+                if (calendarDateModel.calendarDayWeekend) {
+                    tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
+                }
+                itemView.setOnClickListener {
+                    //listener.invoke(calendarDateModel, adapterPosition)
+                }
+            }
+        }
+
+        companion object {
+            fun inflateFrom(parent: ViewGroup): CalendarMonthViewHolderV2 {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ItemFullCalendarMonthV2Binding.inflate(layoutInflater, parent, false)
+                return CalendarMonthViewHolderV2(binding)
+            }
+        }
+    }
+
     class CalendarPrevMonthViewHolder(val binding: ItemFullCalendarPrevMonthBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -92,14 +145,16 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            2 -> CalendarMonthViewHolder.inflateFrom(parent)
+            1 -> CalendarMonthViewHolder.inflateFrom(parent)
+            2 -> CalendarMonthViewHolderV2.inflateFrom(parent)
             else -> CalendarPrevMonthViewHolder.inflateFrom(parent)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CalendarMonthViewHolder -> holder.bind(list[position], shift)
+            is CalendarMonthViewHolder -> holder.bind(list[position], stateUi.shift)
+            is CalendarMonthViewHolderV2 -> holder.bind(list[position], stateUi.shift)
             is CalendarPrevMonthViewHolder -> holder.bind(list[position])
         }
     }
@@ -109,18 +164,20 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (list[position].month) {
-            MonthCalendar.PREV_MONTH -> 1
-            MonthCalendar.ACTUAL_MONTH -> 2
-            MonthCalendar.NEXT_MONTH -> 3
+        return when {
+            list[position].month == MonthCalendar.PREV_MONTH -> 3
+            list[position].month == MonthCalendar.ACTUAL_MONTH && stateUi.calendarView == "1" -> 1
+            list[position].month == MonthCalendar.NEXT_MONTH -> 3
+            else -> 2
+
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(calendarList: List<CalendarFullDayModel>, selectShift: Shift) {
+    fun setData(calendarList: List<CalendarFullDayModel>, state: AdapterUiState) {
         list.clear()
         list.addAll(calendarList)
-        shift = selectShift
+        stateUi = state
         notifyDataSetChanged()
     }
 
@@ -133,6 +190,18 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                 Shift.D_SHIFT -> "Г"
                 Shift.NO_SHIFT -> ""
             }
+        }
+
+        fun shift(calendarDateModel: CalendarFullDayModel, shift: Shift): String {
+            return if (calendarDateModel.dayShift == shift) {
+                "12"
+            } else if (calendarDateModel.nextNightShift == shift && calendarDateModel.prevNightShift == shift) {
+                "8/4"
+            } else if (calendarDateModel.nextNightShift == shift && calendarDateModel.prevNightShift != shift) {
+                "4"
+            } else if (calendarDateModel.nextNightShift != shift && calendarDateModel.prevNightShift == shift) {
+                "8"
+            } else ""
         }
     }
 }

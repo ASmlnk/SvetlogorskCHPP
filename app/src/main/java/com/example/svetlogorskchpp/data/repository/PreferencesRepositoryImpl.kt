@@ -23,9 +23,18 @@ class PreferencesRepositoryImpl @Inject constructor(
         }
     }
 
+    override val selectCalendarViewShiftSchedule: Flow<String> = dataStore.data.map {
+        it[SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY] ?: "1"
+    }.distinctUntilChanged()
 
+    override suspend fun setSelectCalendarViewShiftSchedule(view: String) {
+        dataStore.edit {
+            it[SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY] = view
+        }
+    }
 
     companion object {
         private val SELECT_SHIFT_SCHEDULE_KEY = stringPreferencesKey("select_shift_schedule")
+        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY = stringPreferencesKey("select_calendar_view")
     }
 }

@@ -7,6 +7,7 @@ import java.util.Calendar
 
 interface ShiftScheduleInteractor {
     fun generateDaysFullCalendar(calendar: Calendar)
-     fun getDaysFullCalendarStream(): Flow<CalendarFullDayShiftModel>
+    fun getDaysFullCalendarStream(): Flow<CalendarFullDayShiftModel>
     suspend fun setSelectShiftSchedule(shift: String)
+    suspend fun setSelectCalendarView(view: String)
 }

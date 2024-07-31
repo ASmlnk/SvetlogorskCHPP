@@ -8,6 +8,11 @@
     android:background="@color/floatingActionButton"
     android:layout_height="match_parent">
 
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,75 +28,134 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/ru_hero"
+            android:text="Смены:"
+            android:textColor="@color/calendar_background"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
             app:selectionRequired="false"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_shift_a"
+                style="@style/CustomChipStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:chipStrokeColor="@color/calendar_background"
-                app:chipStrokeWidth="2dp"
-                app:chipBackgroundColor="@color/chip_shif_schedule"
-                style="@style/CustomChipStyle"
-                android:textColor="@color/calendar_background"
                 android:fontFamily="@font/ru_hero"
                 android:text="А"
+                android:textColor="@color/calendar_background"
                 android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
                 app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
                 app:rippleColor="@color/text_recycle" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_shift_b"
-                app:chipStrokeColor="@color/calendar_background"
-                app:chipStrokeWidth="2dp"
-                app:chipBackgroundColor="@color/chip_shif_schedule"
                 style="@style/CustomChipStyle"
-                android:textColor="@color/calendar_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ru_hero"
                 android:text="Б"
+                android:textColor="@color/calendar_background"
                 android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
                 app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
                 app:rippleColor="@color/text_recycle" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_shift_c"
-                app:chipStrokeColor="@color/calendar_background"
-                app:chipStrokeWidth="2dp"
-                app:chipBackgroundColor="@color/chip_shif_schedule"
                 style="@style/CustomChipStyle"
-                android:textColor="@color/calendar_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ru_hero"
                 android:text="В"
+                android:textColor="@color/calendar_background"
                 android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
                 app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
                 app:rippleColor="@color/text_recycle" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_shift_d"
-                app:chipStrokeColor="@color/calendar_background"
-                app:chipStrokeWidth="2dp"
-                app:chipBackgroundColor="@color/chip_shif_schedule"
                 style="@style/CustomChipStyle"
-                android:textColor="@color/calendar_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ru_hero"
                 android:text="Г"
+                android:textColor="@color/calendar_background"
                 android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
                 app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
+                app:rippleColor="@color/text_recycle" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_calendar_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionRequired="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_calendar_view_1"
+                style="@style/CustomChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ru_hero"
+                android:text="Вид 1"
+                android:textColor="@color/calendar_background"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
+                app:chipCornerRadius="8dp"
+                app:checkedIconVisible="false"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
+                app:rippleColor="@color/text_recycle" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_calendar_view_2"
+                style="@style/CustomChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ru_hero"
+                android:text="Вид 2"
+                app:checkedIconVisible="false"
+                android:textColor="@color/calendar_background"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
                 app:rippleColor="@color/text_recycle" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -253,4 +317,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

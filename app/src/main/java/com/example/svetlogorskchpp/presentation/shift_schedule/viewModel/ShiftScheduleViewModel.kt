@@ -40,7 +40,6 @@ class ShiftScheduleViewModel @Inject constructor(
 
     private val _calendarAdapterStateFlow = MutableStateFlow(cal)
 
-
     init {
         viewModelScope.launch {
             delay(200)
@@ -53,7 +52,8 @@ class ShiftScheduleViewModel @Inject constructor(
                     _uiState.update { oldState ->
                         oldState.copy(
                             calendarList = calendarFullDayShiftModel.calendarFullDayModels,
-                            selectShift = calendarFullDayShiftModel.shiftSelect
+                            selectShift = calendarFullDayShiftModel.shiftSelect,
+                            calendarView = calendarFullDayShiftModel.calendarView
                         )
                     }
                 }
@@ -113,7 +113,10 @@ class ShiftScheduleViewModel @Inject constructor(
 
     suspend fun setSelectShiftSchedule(shift: String) {
          shiftScheduleInteractor.setSelectShiftSchedule(shift)
-        // setUpCalendar()
+    }
+
+    suspend fun setSelectCalendarView(view: String) {
+        shiftScheduleInteractor.setSelectCalendarView(view)
     }
 
     private fun date() = GregorianCalendar

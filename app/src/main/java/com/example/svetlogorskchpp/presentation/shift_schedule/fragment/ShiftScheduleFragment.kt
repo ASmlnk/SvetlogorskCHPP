@@ -17,6 +17,7 @@ import com.example.svetlogorskchpp.domain.model.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.CalendarFullAdapter
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,12 +64,14 @@ class ShiftScheduleFragment : Fragment() {
                     binding.apply {
                         isProgressBar(state.calendarList.isEmpty())
                         if (state.calendarList.isNotEmpty()) {
-                            adapter.setData(state.calendarList, state.selectShift)
+                            val adapterState = AdapterUiState(shift = state.selectShift, calendarView = state.calendarView)
+                            adapter.setData(state.calendarList, adapterState)
                             binding.apply {
                                 recyclerView.adapter = adapter
                                 tvDateMonth.text = state.textDateMonth
                             }
                             isCheckedChipShift(state.selectShift)
+                            isCheckedChipCalendarView(state.calendarView)
                         }
                     }
                 }
@@ -118,6 +121,16 @@ class ShiftScheduleFragment : Fragment() {
             chipShiftD.setOnCheckedChangeListener { _, b ->
                 selectChip(b, "D")
             }
+            chipCalendarView1.setOnCheckedChangeListener { _, b ->
+                lifecycleScope.launch {
+                    if (b) viewModel.setSelectCalendarView("1")
+                }
+            }
+            chipCalendarView2.setOnCheckedChangeListener { _, b ->
+                lifecycleScope.launch {
+                    if (b) viewModel.setSelectCalendarView("2")
+                }
+            }
         }
     }
 
@@ -143,6 +156,13 @@ class ShiftScheduleFragment : Fragment() {
             Shift.C_SHIFT -> binding.chipShiftC.isChecked = true
             Shift.D_SHIFT -> binding.chipShiftD.isChecked = true
             Shift.NO_SHIFT -> Any()
+        }
+    }
+
+    private fun isCheckedChipCalendarView(view: String) {
+        when (view) {
+            "1" -> binding.chipCalendarView1.isChecked = true
+            else -> binding.chipCalendarView2.isChecked = true
         }
     }
 }

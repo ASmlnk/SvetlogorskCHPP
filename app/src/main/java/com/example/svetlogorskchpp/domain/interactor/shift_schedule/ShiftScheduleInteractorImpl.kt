@@ -1,7 +1,6 @@
 package com.example.svetlogorskchpp.domain.interactor.shift_schedule
 
 import com.example.svetlogorskchpp.data.repository.PreferencesRepository
-import com.example.svetlogorskchpp.domain.model.CalendarFullDayUsModel
 import com.example.svetlogorskchpp.domain.model.Shift
 import com.example.svetlogorskchpp.domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.domain.usecases.GenerateDaysFullCalendarUseCases
@@ -12,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -25,18 +23,22 @@ class ShiftScheduleInteractorImpl @Inject constructor(
     private val preferencesRepository: PreferencesRepository,
 ) : ShiftScheduleInteractor {
 
-    private val _preferencesRepositoryFlow = preferencesRepository.selectShiftSchedule
+    private val _selectShiftScheduleStream = preferencesRepository.selectShiftSchedule
+    private val _selectCalendarViewShiftSchedule = preferencesRepository.selectCalendarViewShiftSchedule
     private val _getDaysFullCalendarFlow =
         MutableStateFlow<List<CalendarFullDayModel>>(emptyList())
 
     override fun getDaysFullCalendarStream(): Flow<CalendarFullDayShiftModel> {
         return combine(
-            _preferencesRepositoryFlow,
-            _getDaysFullCalendarFlow
-        ) { preferencesRepositoryFlow, getDaysFullCalendarFlow ->
+            _selectShiftScheduleStream,
+            _getDaysFullCalendarFlow,
+            _selectCalendarViewShiftSchedule
+        ) { preferencesRepositoryFlow, getDaysFullCalendarFlow, getSelectCalendarView ->
             CalendarFullDayShiftModel().copy(
                 calendarFullDayModels = getDaysFullCalendarFlow,
-                shiftSelect = shift(preferencesRepositoryFlow))
+                shiftSelect = shift(preferencesRepositoryFlow),
+                calendarView = getSelectCalendarView
+            )
         }.stateIn(
             scope = CoroutineScope(Dispatchers.Default),
             started = SharingStarted.Lazily,
@@ -46,6 +48,10 @@ class ShiftScheduleInteractorImpl @Inject constructor(
 
     override suspend fun setSelectShiftSchedule(shift: String) {
         preferencesRepository.setSelectShiftSchedule(shift)
+    }
+
+    override suspend fun setSelectCalendarView(view: String) {
+        preferencesRepository.setSelectCalendarViewShiftSchedule(view)
     }
 
     override fun generateDaysFullCalendar(calendar: Calendar) {

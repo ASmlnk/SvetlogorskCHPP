@@ -1,105 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-        <LinearLayout
-            android:id="@+id/item_layout"
+
+    <LinearLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_calendar_month"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_calendar_date"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/background_calendar_month"
-            android:orientation="vertical">
+            android:layout_gravity="top|center"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/calendar_background"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:alpha="0.3"
+            android:background="@drawable/home_background" />
+
+        <LinearLayout
+            android:id="@+id/image_prev_night_shift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:alpha="0.5"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:src="@drawable/arrow_right" />
 
             <TextView
-                android:textSize="20sp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="10dp"
-               
-
-                android:layout_gravity="top|center"
-                android:id="@+id/tv_calendar_date"
-
+                android:id="@+id/text_prev_night_shift"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/calendar_background"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:background="@drawable/home_background"
-                android:alpha="0.3"
-                android:layout_height="2dp" />
-
-
-            <LinearLayout
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:id="@+id/image_prev_night_shift"
-                android:gravity="start"
-                android:alpha="0.5"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:src="@drawable/arrow_right" />
-                <TextView
-                    android:id="@+id/text_prev_night_shift"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:text="A"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:textColor="@color/chip_appbar"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:alpha="0.5"
-                android:gravity="center"
-                android:id="@+id/text_day_shift"
-                android:text="B"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/chip_appbar"/>
-
-            <LinearLayout
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="2dp"
-                android:id="@+id/image_nex_night_shift"
-                android:alpha="0.5"
-                android:gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/text_nex_night_shift"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:text="C"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:textColor="@color/chip_appbar"/>
-
-                <ImageView
-
-                    android:layout_gravity="end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:src="@drawable/arrow_right"/>
-
-            </LinearLayout>
-
+                android:text="A"
+                android:textColor="@color/chip_appbar"
+                android:textSize="10sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_day_shift"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:alpha="0.5"
+            android:gravity="center"
+            android:text="B"
+            android:textColor="@color/chip_appbar"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/image_nex_night_shift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:alpha="0.5"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_nex_night_shift"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="C"
+                android:textColor="@color/chip_appbar"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_gravity="end"
+                android:src="@drawable/arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
 </layout>
