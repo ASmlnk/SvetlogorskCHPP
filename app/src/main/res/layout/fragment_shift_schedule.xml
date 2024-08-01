@@ -1,97 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
+    android:background="@color/text_recycle"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
-        android:fitsSystemWindows="true"
-        app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/nestedScrollView"
+        android:layout_height="wrap_content"
         android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/appBar"
+            android:id="@+id/appBar1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="@color/text_recycle"
-            app:layout_scrollFlags="scroll|enterAlways|snap|snapMargins">
+            android:layout_height="wrap_content"
+
+            app:layout_scrollFlags="">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="1"
-                android:scrollbarAlwaysDrawVerticalTrack="false"
-                app:layout_collapseMode="parallax">
-
-                <ImageView
-                    android:id="@+id/shift_composition_editor"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/image_editor_shift_schedule_click" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:layout_width="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/zerovision_blue_gradient2"
-                android:paddingBottom="8dp">
-
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/calendar_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textShiftName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/ru_hero"
-                    android:text="Смены:"
-                    android:textColor="@color/calendar_background"
-                    android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+android:paddingBottom="8dp"
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textShiftName"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:selectionRequired="false"
                     app:singleSelection="true">
 
@@ -175,177 +118,263 @@
                     app:layout_constraintTop_toTopOf="@+id/chip_group"
                     app:rippleColor="@color/text_recycle" />
 
-                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                    android:id="@+id/swipeRefreshLayout"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.example.svetlogorskchpp.presentation.shift_schedule.view.NestedScrollCoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/text_recycle"
+                app:layout_scrollFlags="scroll|enterAlways|snap|snapMargins">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="1"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/shift_composition_editor"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/image_editor_shift_schedule_click" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:background="@drawable/zerovision_blue_gradient2_2"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:paddingBottom="8dp">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/calendar_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textShiftName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="Смены:"
+                    android:textColor="@color/calendar_background"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_layout_calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
-                    android:background="@color/background_calendar_month_prev"
+                    android:background="@drawable/calendar_fragment_kontur_revers"
+                    android:paddingBottom="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/chip_group">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraint_layout_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/calendar_fragment_kontur_revers"
-                        android:paddingBottom="5dp"
+                    <ImageView
+                        android:id="@+id/iv_calendar_previous"
+                        android:layout_width="80dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="32dp"
+                        android:alpha="0.4"
+                        android:contentDescription="@string/cd_previous"
+                        android:src="@drawable/ic_previous"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_date_month"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_date_month" />
+
+                    <ImageView
+                        android:id="@+id/iv_calendar_next"
+                        android:layout_width="80dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="32dp"
+                        android:alpha="0.4"
+                        android:contentDescription="@string/cd_next"
+                        android:src="@drawable/ic_next"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_date_month"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintTop_toTopOf="@+id/tv_date_month" />
 
-                        <ImageView
-                            android:id="@+id/iv_calendar_previous"
-                            android:layout_width="80dp"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="32dp"
-                            android:alpha="0.4"
-                            android:contentDescription="@string/cd_previous"
-                            android:src="@drawable/ic_previous"
-                            app:layout_constraintBottom_toBottomOf="@+id/tv_date_month"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/tv_date_month" />
+                    <TextView
+                        android:id="@+id/tv_date_month"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:textColor="@color/name_devices_appbar"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="December 2020" />
 
-                        <ImageView
-                            android:id="@+id/iv_calendar_next"
-                            android:layout_width="80dp"
-                            android:layout_height="36dp"
-                            android:layout_marginEnd="32dp"
-                            android:alpha="0.4"
-                            android:contentDescription="@string/cd_next"
-                            android:src="@drawable/ic_next"
-                            app:layout_constraintBottom_toBottomOf="@+id/tv_date_month"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/tv_date_month" />
+                    <LinearLayout
+                        android:id="@+id/calendar_header"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_month"
+                        tools:layout_editor_absoluteX="8dp">
 
                         <TextView
-                            android:id="@+id/tv_date_month"
-                            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:textColor="@color/text_recycle_smile"
-                            android:textSize="20sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="December 2020" />
-
-                        <LinearLayout
-                            android:id="@+id/calendar_header"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="16dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_date_month"
-                            tools:layout_editor_absoluteX="8dp">
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:alpha="0.5"
-                                android:gravity="center"
-                                android:text="@string/monday"
-                                android:textColor="@color/text_input_assembly"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.5"
-                                android:gravity="center_horizontal"
-                                android:text="@string/tuesday"
-                                android:textColor="@color/text_input_assembly"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.5"
-                                android:gravity="center_horizontal"
-                                android:text="@string/wednesday"
-                                android:textColor="@color/text_input_assembly"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.5"
-                                android:gravity="center_horizontal"
-                                android:text="@string/thursday"
-                                android:textColor="@color/text_input_assembly"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.5"
-                                android:gravity="center_horizontal"
-                                android:text="@string/friday"
-                                android:textColor="@color/text_input_assembly"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.7"
-                                android:gravity="center_horizontal"
-                                android:text="@string/saturday"
-                                android:textColor="@color/red_danger"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:alpha="0.7"
-                                android:gravity="center_horizontal"
-                                android:text="@string/sunday"
-                                android:textColor="@color/red_danger"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerView"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="8dp"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/calendar_header"
-                            app:spanCount="7" />
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="@string/monday"
+                            android:textColor="@color/text_input_assembly"
+                            android:textSize="14sp" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.5"
+                            android:gravity="center_horizontal"
+                            android:text="@string/tuesday"
+                            android:textColor="@color/text_input_assembly"
+                            android:textSize="14sp" />
 
-                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.5"
+                            android:gravity="center_horizontal"
+                            android:text="@string/wednesday"
+                            android:textColor="@color/text_input_assembly"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.5"
+                            android:gravity="center_horizontal"
+                            android:text="@string/thursday"
+                            android:textColor="@color/text_input_assembly"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.5"
+                            android:gravity="center_horizontal"
+                            android:text="@string/friday"
+                            android:textColor="@color/text_input_assembly"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.7"
+                            android:gravity="center_horizontal"
+                            android:text="@string/saturday"
+                            android:textColor="@color/red_danger"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:alpha="0.7"
+                            android:gravity="center_horizontal"
+                            android:text="@string/sunday"
+                            android:textColor="@color/red_danger"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/calendar_header"
+                        app:spanCount="7" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.example.svetlogorskchpp.presentation.shift_schedule.view.NestedScrollCoordinatorLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
