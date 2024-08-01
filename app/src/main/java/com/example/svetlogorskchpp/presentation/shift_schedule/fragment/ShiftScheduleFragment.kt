@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.core.view.children
 import androidx.core.view.isGone
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -31,7 +33,6 @@ class ShiftScheduleFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var adapter: CalendarFullAdapter
-
     private val viewModel: ShiftScheduleViewModel by viewModels()
 
     @SuppressLint("ClickableViewAccessibility")
@@ -50,6 +51,7 @@ class ShiftScheduleFragment : Fragment() {
                 }, 100)
             }
         }
+
         setUpAdapter()
         setUpClickListener()
         return binding.root
@@ -123,12 +125,7 @@ class ShiftScheduleFragment : Fragment() {
             }
             chipCalendarView1.setOnCheckedChangeListener { _, b ->
                 lifecycleScope.launch {
-                    if (b) viewModel.setSelectCalendarView("1")
-                }
-            }
-            chipCalendarView2.setOnCheckedChangeListener { _, b ->
-                lifecycleScope.launch {
-                    if (b) viewModel.setSelectCalendarView("2")
+                    if (b) viewModel.setSelectCalendarView("1") else viewModel.setSelectCalendarView("2")
                 }
             }
         }
@@ -138,6 +135,8 @@ class ShiftScheduleFragment : Fragment() {
         binding.apply {
             chipGroup.isGone = isProgress
             constraintLayoutCalendar.isGone = isProgress
+            textShiftName.isGone = isProgress
+            chipCalendarView1.isGone = isProgress
             progressBar.isGone = !isProgress
         }
     }
@@ -162,7 +161,7 @@ class ShiftScheduleFragment : Fragment() {
     private fun isCheckedChipCalendarView(view: String) {
         when (view) {
             "1" -> binding.chipCalendarView1.isChecked = true
-            else -> binding.chipCalendarView2.isChecked = true
+            else -> binding.chipCalendarView1.isChecked = false
         }
     }
 }

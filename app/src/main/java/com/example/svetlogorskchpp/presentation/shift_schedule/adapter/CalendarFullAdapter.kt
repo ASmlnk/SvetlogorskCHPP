@@ -201,7 +201,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                 "4"
             } else if (calendarDateModel.nextNightShift != shift && calendarDateModel.prevNightShift == shift) {
                 "8"
-            } else ""
+            } else "В"
         }
     }
 }
