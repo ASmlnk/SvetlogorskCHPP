@@ -7,9 +7,16 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.DialogFragmentAssemblyBinding
+import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DialogFragmentAssembly : BottomSheetDialogFragment() {
+
+    @Inject
+    lateinit var data: FirestoreRepository
 
     private var _binding: DialogFragmentAssemblyBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +35,7 @@ class DialogFragmentAssembly : BottomSheetDialogFragment() {
         val idElectricalAssembly =
             DialogFragmentAssemblyArgs.fromBundle(requireArguments()).idElectricalAssembly
 
-        val viewModelFactory = DialogAssemblyViewModelFactory(idElectricalAssembly)
+        val viewModelFactory = DialogAssemblyViewModelFactory(idElectricalAssembly, data)
         val viewModel =
             ViewModelProvider(this, viewModelFactory)[DialogFragmentAssemblyViewModel::class.java]
 

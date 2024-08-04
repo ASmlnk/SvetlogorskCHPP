@@ -14,10 +14,15 @@ import java.util.Calendar
 import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
+import javax.inject.Inject
 
-class DialogCalendarDateViewModel(private val date: Date, private val workingShift: String) :
-    ViewModel() {
-    private val data = FirestoreRepository.get()
+class DialogCalendarDateViewModel(
+    private val date: Date,
+    private val workingShift: String,
+    private val data: FirestoreRepository
+) : ViewModel() {
+
+   // @Inject lateinit var data: FirestoreRepository
     private val _inspectionStateFlow = MutableStateFlow<List<Inspection>>(emptyList())
     val inspectionStateFlow: StateFlow<List<Inspection>>
         get() = _inspectionStateFlow

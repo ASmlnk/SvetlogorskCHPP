@@ -8,12 +8,17 @@ import com.example.svetlogorskchpp.model.electricMotor.ElectricMotor
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.toObject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class BlankFragmentViewModel : ViewModel() {
+@HiltViewModel
+class BlankFragmentViewModel @Inject constructor(
+    private val data: FirestoreRepository,
+): ViewModel() {
 
-    val data = FirestoreRepository.get()
+    //val data = FirestoreRepository.get()
     val listData = mutableListOf<ElectricMotor>()
     val liveData = MutableLiveData<Int>()
     val listDataFilter = mutableListOf<ElectricMotor>()

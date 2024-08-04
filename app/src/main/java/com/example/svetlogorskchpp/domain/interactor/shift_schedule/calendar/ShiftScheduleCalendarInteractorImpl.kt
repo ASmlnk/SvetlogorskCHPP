@@ -1,9 +1,9 @@
-package com.example.svetlogorskchpp.domain.interactor.shift_schedule
+package com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar
 
-import com.example.svetlogorskchpp.data.repository.PreferencesRepository
-import com.example.svetlogorskchpp.domain.model.Shift
+import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.domain.usecases.GenerateDaysFullCalendarUseCases
+import com.example.svetlogorskchpp.domain.usecases.ShiftUseCases
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
 import kotlinx.coroutines.CoroutineScope
@@ -17,11 +17,12 @@ import kotlinx.coroutines.flow.update
 import java.util.Calendar
 import javax.inject.Inject
 
-class ShiftScheduleInteractorImpl @Inject constructor(
+class ShiftScheduleCalendarInteractorImpl @Inject constructor(
     private val generateDaysFullCalendarUseCases: GenerateDaysFullCalendarUseCases,
     private val calendarAddShift: CalendarAddShiftUseCases,
     private val preferencesRepository: PreferencesRepository,
-) : ShiftScheduleInteractor {
+    private val shiftUseCases: ShiftUseCases,
+) : ShiftScheduleCalendarInteractor {
 
     private val _selectShiftScheduleStream = preferencesRepository.selectShiftSchedule
     private val _selectCalendarViewShiftSchedule = preferencesRepository.selectCalendarViewShiftSchedule
@@ -36,7 +37,7 @@ class ShiftScheduleInteractorImpl @Inject constructor(
         ) { preferencesRepositoryFlow, getDaysFullCalendarFlow, getSelectCalendarView ->
             CalendarFullDayShiftModel().copy(
                 calendarFullDayModels = getDaysFullCalendarFlow,
-                shiftSelect = shift(preferencesRepositoryFlow),
+                shiftSelect = shiftUseCases.stringToShift(preferencesRepositoryFlow),
                 calendarView = getSelectCalendarView
             )
         }.stateIn(
@@ -59,16 +60,6 @@ class ShiftScheduleInteractorImpl @Inject constructor(
         val listAddShift = calendarAddShift.addShiftOfCalendar(list)
         _getDaysFullCalendarFlow.update {
             listAddShift
-        }
-    }
-
-    fun shift(str: String): Shift {
-        return when (str) {
-            "A" -> Shift.A_SHIFT
-            "B" -> Shift.B_SHIFT
-            "C" -> Shift.C_SHIFT
-            "D" -> Shift.D_SHIFT
-            else -> Shift.NO_SHIFT
         }
     }
 }

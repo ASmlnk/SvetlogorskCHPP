@@ -1,9 +1,8 @@
 package com.example.svetlogorskchpp.domain.usecases
 
 import com.example.svetlogorskchpp.domain.model.CalendarDayOfMonth
-import com.example.svetlogorskchpp.domain.model.CalendarFullDayUsModel
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
-import com.example.svetlogorskchpp.domain.model.Shift
+import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import java.lang.Math.abs
 import java.util.Calendar

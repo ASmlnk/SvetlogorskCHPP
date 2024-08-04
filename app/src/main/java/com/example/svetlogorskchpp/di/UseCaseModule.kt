@@ -1,10 +1,16 @@
 package com.example.svetlogorskchpp.di
 
-import com.example.svetlogorskchpp.data.repository.PreferencesRepository
-import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftScheduleInteractor
-import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftScheduleInteractorImpl
+import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
+import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
+import com.example.svetlogorskchpp.domain.en.JobTitle
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractorImpl
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.domain.usecases.GenerateDaysFullCalendarUseCases
+import com.example.svetlogorskchpp.domain.usecases.JobTitleUseCases
+import com.example.svetlogorskchpp.domain.usecases.ShiftUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,16 +23,33 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideShiftScheduleInteractor(
+    fun provideShiftScheduleCalendarInteractor(
         generateDaysFullCalendarUseCases: GenerateDaysFullCalendarUseCases,
         calendarAddShiftUseCases: CalendarAddShiftUseCases,
-        preferencesRepository: PreferencesRepository
-    ): ShiftScheduleInteractor {
-        return ShiftScheduleInteractorImpl(
+        preferencesRepository: PreferencesRepository,
+        shiftUseCases: ShiftUseCases,
+    ): ShiftScheduleCalendarInteractor {
+        return ShiftScheduleCalendarInteractorImpl(
             generateDaysFullCalendarUseCases,
             calendarAddShiftUseCases,
-            preferencesRepository
+            preferencesRepository,
+            shiftUseCases
         )
     }
+
+    @Provides
+    @ViewModelScoped
+    fun provideShiftScheduleShiftPersonalInteractor(
+        shiftPersonalRepository: ShiftPersonalRepository,
+        shiftUseCases: ShiftUseCases,
+        jobTitleUseCases: JobTitleUseCases
+    ): ShiftScheduleShiftPersonalInteractor {
+        return ShiftScheduleShiftPersonalInteractorImpl(
+            shiftPersonalRepository,
+            shiftUseCases,
+            jobTitleUseCases
+        )
+    }
+
 
 }

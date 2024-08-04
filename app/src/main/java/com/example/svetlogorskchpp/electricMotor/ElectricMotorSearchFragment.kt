@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.databinding.FragmentElectricMotorSearchBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class ElectricMotorSearchFragment : Fragment() {
 
     private var _binding: FragmentElectricMotorSearchBinding? = null

@@ -6,9 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ChecklistInspectionViewModel(val nameCategory: String): ViewModel() {
-    val data = FirestoreRepository.get()
+
+class ChecklistInspectionViewModel (val nameCategory: String, val data: FirestoreRepository): ViewModel() {
+
+   // @Inject lateinit var data: FirestoreRepository
+   // val data = FirestoreRepository.get()
 
     private val _navigateToDialogChecklist = MutableLiveData<String?>()
     val navigateToDialogChecklist: LiveData<String?>

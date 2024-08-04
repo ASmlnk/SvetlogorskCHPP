@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ValveViewModel(): ViewModel() {
-    val data = FirestoreRepository.get()
+
+class ValveViewModel() /*: ViewModel()*/ {
+    /*@Inject lateinit var data: FirestoreRepository
 
     init {
         viewModelScope.launch {
@@ -20,5 +23,5 @@ class ValveViewModel(): ViewModel() {
     override fun onCleared() {
         super.onCleared()
         data.clearListValue()
-    }
+    }*/
 }

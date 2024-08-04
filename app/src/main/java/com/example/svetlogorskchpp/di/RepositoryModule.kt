@@ -5,8 +5,14 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.svetlogorskchpp.data.repository.PreferencesRepository
-import com.example.svetlogorskchpp.data.repository.PreferencesRepositoryImpl
+import com.example.svetlogorskchpp.data.database.ShiftPersonalDao
+import com.example.svetlogorskchpp.data.model.ShiftPersonalDto
+import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
+import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepositoryImpl
+import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
+import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepositoryImpl
+import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,4 +37,17 @@ class RepositoryModule {
     fun providePreferencesRepository(dataStore: DataStore<Preferences>): PreferencesRepository {
         return PreferencesRepositoryImpl(dataStore)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirestoreRepository(remoteDB: FirebaseFirestore): FirestoreRepository {
+        return FirestoreRepository(remoteDB)
+    }
+
+    @Provides
+    @Singleton
+    fun provideShiftPersonalRepository(remoteDB: FirebaseFirestore, shiftPersonalDao: ShiftPersonalDao): ShiftPersonalRepository {
+        return ShiftPersonalRepositoryImpl(remoteDB, shiftPersonalDao)
+    }
+
 }

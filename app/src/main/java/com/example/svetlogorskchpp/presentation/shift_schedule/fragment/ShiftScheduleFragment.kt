@@ -5,17 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import androidx.core.view.children
 import androidx.core.view.isGone
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
-import com.example.svetlogorskchpp.domain.model.Shift
+import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.CalendarFullAdapter
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
@@ -23,7 +23,6 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiSt
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -71,6 +70,8 @@ class ShiftScheduleFragment : Fragment() {
                             binding.apply {
                                 recyclerView.adapter = adapter
                                 tvDateMonth.text = state.textDateMonth
+                                todayDateTextView.text = state.textTodayDate
+
                             }
                             isCheckedChipShift(state.selectShift)
                             isCheckedChipCalendarView(state.calendarView)
@@ -128,6 +129,10 @@ class ShiftScheduleFragment : Fragment() {
                     if (b) viewModel.setSelectCalendarView("1") else viewModel.setSelectCalendarView("2")
                 }
             }
+
+            shiftCompositionEditor.setOnClickListener {
+                findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment)
+            }
         }
     }
 
@@ -137,7 +142,9 @@ class ShiftScheduleFragment : Fragment() {
             constraintLayoutCalendar.isGone = isProgress
             textShiftName.isGone = isProgress
             chipCalendarView1.isGone = isProgress
+            constraintEditShift.isGone = isProgress
             progressBar.isGone = !isProgress
+
         }
     }
 
@@ -154,6 +161,7 @@ class ShiftScheduleFragment : Fragment() {
             Shift.B_SHIFT -> binding.chipShiftB.isChecked = true
             Shift.C_SHIFT -> binding.chipShiftC.isChecked = true
             Shift.D_SHIFT -> binding.chipShiftD.isChecked = true
+            Shift.E_SHIFT -> Any()
             Shift.NO_SHIFT -> Any()
         }
     }

@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.data.repository
+package com.example.svetlogorskchpp.data.repository.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

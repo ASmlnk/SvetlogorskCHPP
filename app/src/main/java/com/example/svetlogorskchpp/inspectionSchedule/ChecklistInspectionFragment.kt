@@ -13,10 +13,16 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentChecklistInspectionBinding
 import com.example.svetlogorskchpp.databinding.FragmentInspectionScheduleCalendarBinding
 import com.example.svetlogorskchpp.electricalAssembly.ElectricalAssemblyFragmentDirections
+import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ChecklistInspectionFragment : Fragment() {
+
+    @Inject lateinit var data: FirestoreRepository
 
     private var _binding: FragmentChecklistInspectionBinding? = null
     private val binding get() = _binding!!
@@ -34,7 +40,7 @@ class ChecklistInspectionFragment : Fragment() {
     ): View? {
         _binding = FragmentChecklistInspectionBinding.inflate(inflater, container, false)
         val args = ChecklistInspectionFragmentArgs.fromBundle(requireArguments()).nameCheklist
-        viewModelFactory = CheckListInspectionViewModelFactory(args)
+        viewModelFactory = CheckListInspectionViewModelFactory(args, data)
         viewModel = ViewModelProvider (this, viewModelFactory) [ChecklistInspectionViewModel::class.java]
 
         binding.apply {

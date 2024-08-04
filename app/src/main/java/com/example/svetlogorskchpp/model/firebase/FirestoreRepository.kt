@@ -20,10 +20,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.GregorianCalendar
+import javax.inject.Inject
 
-class FirestoreRepository private constructor(context: Context) {
+class FirestoreRepository @Inject constructor(
+     val remoteDB: FirebaseFirestore
+) {
 
-    val remoteDB = FirebaseFirestore.getInstance()
+    //val remoteDB = FirebaseFirestore.getInstance()
     private val _listInspectionScheduleStateFlow = MutableStateFlow<List<Inspection>>(emptyList())
     val listInspectionStateFlow: StateFlow<List<Inspection>>
         get() = _listInspectionScheduleStateFlow
@@ -49,6 +52,7 @@ class FirestoreRepository private constructor(context: Context) {
             remoteDB.enableNetwork()
             val list = mutableListOf<ChecklistInspection>()
             val data = remoteDB.collection(InSc.CHECKLIST.get).document(nameCategory).get()
+
             val listData = data.await().data
             listData?.forEach {
                 val nameBlank = it.key
@@ -249,20 +253,5 @@ class FirestoreRepository private constructor(context: Context) {
             list.add(it.toObject<ElectricMotor>().apply { id = it.id })
         }
         return list
-    }
-
-    companion object {
-        private var INSTANCE: FirestoreRepository? = null
-
-        fun initialize(context: Context) {
-            if (INSTANCE == null) {
-                INSTANCE = FirestoreRepository(context)
-            }
-        }
-
-        fun get(): FirestoreRepository {
-            return INSTANCE
-                ?: throw IllegalStateException("FirestoreRepository must be initialized")
-        }
     }
 }

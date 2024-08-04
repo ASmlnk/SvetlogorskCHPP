@@ -10,14 +10,17 @@ import com.example.svetlogorskchpp.databinding.DialogInspectionScheduleCalendarB
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.InspectionChecklist
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DialogCalendarFragment : BottomSheetDialogFragment() {
 
     private var _binding: DialogInspectionScheduleCalendarBinding? = null
     private val binding get() = _binding!!
 
-    private val data = FirestoreRepository.get()
+    @Inject lateinit var data: FirestoreRepository
 
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
     private val adapter = InspectionChecklistAdapter()

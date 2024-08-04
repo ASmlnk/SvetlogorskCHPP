@@ -13,10 +13,13 @@ import java.util.Calendar
 import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
+import javax.inject.Inject
 
-class CalendarViewModel(private val date: Date): ViewModel() {
+class CalendarViewModel(
+    private val date: Date,
+    private val data: FirestoreRepository): ViewModel() {
 
-    private val data = FirestoreRepository.get()
+
 
     private val _selectDateStateFlow = MutableStateFlow(date)
     val selectDateStateFlow: StateFlow<Date>

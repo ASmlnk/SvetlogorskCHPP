@@ -20,10 +20,12 @@ import com.example.svetlogorskchpp.SharedPreferencesManager
 import com.example.svetlogorskchpp.databinding.FragmentElectricMotorBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ElectricMotorFragment : Fragment() {
 
     private var _binding: FragmentElectricMotorBinding? = null

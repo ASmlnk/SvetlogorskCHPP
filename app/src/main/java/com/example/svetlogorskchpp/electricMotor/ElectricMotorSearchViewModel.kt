@@ -9,16 +9,21 @@ import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotor
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotorSearch
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.GregorianCalendar
 import java.util.Locale
 import java.util.TimeZone
+import javax.inject.Inject
 
-class ElectricMotorSearchViewModel: ViewModel() {
+@HiltViewModel
+class ElectricMotorSearchViewModel@Inject constructor(
+    private val data: FirestoreRepository,
+): ViewModel() {
 
-    val data = FirestoreRepository.get()
+    //val data = FirestoreRepository.get()
     private val listAll = mutableListOf<ElectricMotor>()
     private val _listSearchLiveData = MutableLiveData<List<ElectricMotor>>()
     val listSearchLiveData: LiveData<List<ElectricMotor>> get() = _listSearchLiveData

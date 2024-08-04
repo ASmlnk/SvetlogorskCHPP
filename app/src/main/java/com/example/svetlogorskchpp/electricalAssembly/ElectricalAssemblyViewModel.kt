@@ -11,6 +11,7 @@ import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotorSearch
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.zeroVision.ZeroVisionType
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,10 +19,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.GregorianCalendar
 import java.util.TimeZone
+import javax.inject.Inject
 
-class ElectricalAssemblyViewModel : ViewModel() {
+@HiltViewModel
+class ElectricalAssemblyViewModel @Inject constructor(
+    private val data: FirestoreRepository,
+): ViewModel() {
 
-    private val data = FirestoreRepository.get()
+   // private val data = FirestoreRepository.get()
     private val listAllAssembly = mutableListOf<ElectricalAssemblyFirebase>()
     private val _liveDataAssembly = MutableLiveData<List<ElectricalAssemblyFirebase>>()
     val liveDataAssembly: LiveData<List<ElectricalAssemblyFirebase>>

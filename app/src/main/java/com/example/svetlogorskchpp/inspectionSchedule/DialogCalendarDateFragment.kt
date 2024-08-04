@@ -13,10 +13,15 @@ import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
 import com.example.svetlogorskchpp.model.inspectionSchedule.Inspection
 import com.example.svetlogorskchpp.model.inspectionSchedule.InspectionChecklist
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DialogCalendarDateFragment : BottomSheetDialogFragment() {
+
+    @Inject lateinit var data: FirestoreRepository
 
     private var _binding: DialogInspectionScheduleCalendarBinding? = null
     private val binding get() = _binding!!
@@ -45,7 +50,7 @@ class DialogCalendarDateFragment : BottomSheetDialogFragment() {
         val workingShift =
             DialogCalendarDateFragmentArgs.fromBundle(requireArguments()).workingShift
 
-        viewModelFactory = DialogCalendarDateViewModelFactory(date, workingShift)
+        viewModelFactory = DialogCalendarDateViewModelFactory(date, workingShift, data)
         viewModel =
             ViewModelProvider(this, viewModelFactory)[DialogCalendarDateViewModel::class.java]
 

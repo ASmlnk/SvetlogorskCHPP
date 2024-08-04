@@ -1,19 +1,17 @@
 package com.example.svetlogorskchpp.presentation.shift_schedule.viewModel
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftScheduleInteractor
-import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.ShiftScheduleUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -23,11 +21,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShiftScheduleViewModel @Inject constructor(
-    private val shiftScheduleInteractor: ShiftScheduleInteractor,
+    private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
 ) : ViewModel() {
 
     private val cal = date().time
+
+    @SuppressLint("SimpleDateFormat")
     private val sdf = SimpleDateFormat("MMMM yyyy")
+
+    @SuppressLint("SimpleDateFormat")
+    private val patternTodayDate = SimpleDateFormat("dd MMMM yyyy")
 
     private val _uiState: MutableStateFlow<ShiftScheduleUiState> =
         MutableStateFlow(ShiftScheduleUiState())
@@ -44,10 +47,17 @@ class ShiftScheduleViewModel @Inject constructor(
         viewModelScope.launch {
             delay(200)
             setUpCalendar()
+
+            val textTodayDate = patternTodayDate.format(cal.time)
+            _uiState.update { oldState ->
+                oldState.copy(
+                    textTodayDate = textTodayDate
+                )
+            }
         }
 
         viewModelScope.launch {
-            shiftScheduleInteractor.getDaysFullCalendarStream()
+            shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
                 .collect { calendarFullDayShiftModel ->
                     _uiState.update { oldState ->
                         oldState.copy(
@@ -69,7 +79,7 @@ class ShiftScheduleViewModel @Inject constructor(
 
         _uiState.update { oldState ->
             oldState.copy(
-                textDateMonth = textDateMonth
+                textDateMonth = textDateMonth,
             )
         }
     }
@@ -107,16 +117,15 @@ class ShiftScheduleViewModel @Inject constructor(
     private fun generateDays() {
         val monthCalendar = adapterDate()
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
-        shiftScheduleInteractor.generateDaysFullCalendar(monthCalendar)
+        shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
     }
 
-
     suspend fun setSelectShiftSchedule(shift: String) {
-         shiftScheduleInteractor.setSelectShiftSchedule(shift)
+         shiftScheduleCalendarInteractor.setSelectShiftSchedule(shift)
     }
 
     suspend fun setSelectCalendarView(view: String) {
-        shiftScheduleInteractor.setSelectCalendarView(view)
+        shiftScheduleCalendarInteractor.setSelectCalendarView(view)
     }
 
     private fun date() = GregorianCalendar

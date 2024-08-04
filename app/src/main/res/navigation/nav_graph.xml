@@ -44,7 +44,16 @@
         android:id="@+id/shiftScheduleFragment"
         android:name="com.example.svetlogorskchpp.presentation.shift_schedule.fragment.ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule"
-        android:label="ShiftScheduleFragment" />
+        android:label="ShiftScheduleFragment" >
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
+            app:destination="@id/shiftScheduleEditCompositionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shiftScheduleEditCompositionFragment"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
+        tools:layout="@layout/fragment_shift_schedule_edit_composition"
+        android:label="ShiftScheduleEditCompositionFragment" />
 
 
 </navigation>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_callendar_day_actual">
+
+    <TextView
+        android:id="@+id/shiftANssTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColor="@color/name_devices_appbar"
+        android:textColorHint="@color/floatingActionButton"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitANssTextView"
+        app:layout_constraintEnd_toStartOf="@+id/shiftANssEdit"
+        app:layout_constraintStart_toEndOf="@+id/shitANssTextView"
+        app:layout_constraintTop_toTopOf="@+id/shitANssTextView" />
+
+    <ImageView
+        android:id="@+id/shiftANssEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shiftANssTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shiftANssTextView"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
+    <TextView
+        android:id="@+id/shitANssTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:fontFamily="@font/ru_hero"
+        android:padding="8dp"
+        android:text="А"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteNss" />
+
+    <TextView
+        android:id="@+id/textNameNss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:text="Начальник смены электростанции"
+        android:textColor="@color/text_input_assembly"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteNss"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите текст"
+        android:textColor="@color/name_devices_appbar"
+        android:textColorHint="@color/text_recycle_smile"
+        app:layout_constraintEnd_toStartOf="@+id/saveNss"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNameNss" />
+
+    <ImageView
+        android:id="@+id/saveNss"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/autoCompleteNss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/autoCompleteNss"
+        app:srcCompat="@drawable/baseline_save_24" />
+
+    <TextView
+        android:id="@+id/shitBNssTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="Б"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitANssTextView" />
+
+    <TextView
+        android:id="@+id/shiftBNssTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitBNssTextView"
+        app:layout_constraintEnd_toStartOf="@+id/shiftBNssEdit"
+        app:layout_constraintStart_toEndOf="@+id/shitBNssTextView"
+        app:layout_constraintTop_toTopOf="@+id/shitBNssTextView" />
+
+    <ImageView
+        android:id="@+id/shiftBNssEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shiftBNssTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shiftBNssTextView"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
+    <TextView
+        android:id="@+id/shitCNssTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="В"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitBNssTextView" />
+
+    <TextView
+        android:id="@+id/shiftCNssTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitCNssTextView"
+        app:layout_constraintEnd_toStartOf="@+id/shiftCNssEdit"
+        app:layout_constraintStart_toEndOf="@+id/shitCNssTextView"
+        app:layout_constraintTop_toTopOf="@+id/shitCNssTextView" />
+
+    <ImageView
+        android:id="@+id/shiftCNssEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shiftCNssTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shiftCNssTextView"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
+    <TextView
+        android:id="@+id/shitDNssTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="Г"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitCNssTextView" />
+
+    <TextView
+        android:id="@+id/shiftDNssTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitDNssTextView"
+        app:layout_constraintEnd_toStartOf="@+id/shiftDNssEdit"
+        app:layout_constraintStart_toEndOf="@+id/shitDNssTextView"
+        app:layout_constraintTop_toTopOf="@+id/shitDNssTextView" />
+
+    <ImageView
+        android:id="@+id/shiftDNssEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shiftDNssTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shiftDNssTextView"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
+    <TextView
+        android:id="@+id/shitENssTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="Д"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitDNssTextView" />
+
+    <TextView
+        android:id="@+id/shiftENssTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitENssTextView"
+        app:layout_constraintEnd_toStartOf="@+id/shiftENssEdit"
+        app:layout_constraintStart_toEndOf="@+id/shitENssTextView"
+        app:layout_constraintTop_toTopOf="@+id/shitENssTextView" />
+
+    <ImageView
+        android:id="@+id/shiftENssEdit"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shiftENssTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shiftENssTextView"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

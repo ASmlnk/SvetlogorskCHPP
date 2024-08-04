@@ -10,7 +10,7 @@ import com.example.svetlogorskchpp.databinding.ItemFullCalendarMonthV2Binding
 import com.example.svetlogorskchpp.databinding.ItemFullCalendarPrevMonthBinding
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
-import com.example.svetlogorskchpp.domain.model.Shift
+import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 
 class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: CalendarFullDayModel, position: Int) -> Unit) :
@@ -188,6 +188,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                 Shift.B_SHIFT -> "Б"
                 Shift.C_SHIFT -> "В"
                 Shift.D_SHIFT -> "Г"
+                Shift.E_SHIFT -> "Д"
                 Shift.NO_SHIFT -> ""
             }
         }

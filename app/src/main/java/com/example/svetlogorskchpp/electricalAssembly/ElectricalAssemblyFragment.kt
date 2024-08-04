@@ -27,10 +27,12 @@ import com.example.svetlogorskchpp.databinding.FragmentElectricalAssemblyBinding
 import com.example.svetlogorskchpp.model.transformerNeeds.T
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ElectricalAssemblyFragment : Fragment() {
 
     private var _binding: FragmentElectricalAssemblyBinding? = null

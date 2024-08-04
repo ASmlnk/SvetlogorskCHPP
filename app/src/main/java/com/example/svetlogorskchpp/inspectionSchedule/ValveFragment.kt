@@ -15,43 +15,45 @@ import com.example.svetlogorskchpp.databinding.FragmentChecklistInspectionBindin
 import com.example.svetlogorskchpp.databinding.FragmentInspectionScheduleCalendarBinding
 import com.example.svetlogorskchpp.electricalAssembly.ElectricalAssemblyFragmentDirections
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-class ValveFragment : Fragment() {
 
-    private var _binding: FragmentChecklistInspectionBinding? = null
-    private val binding get() = _binding!!
+class ValveFragment /*: Fragment()*/ {
+/*
+  private var _binding: FragmentChecklistInspectionBinding? = null
+   private val binding get() = _binding!!
 
-    private lateinit var adapterValve: ChecklistInspectionCheckAdapter
-    private val viewModel: ValveViewModel by viewModels()
+   private lateinit var adapterValve: ChecklistInspectionCheckAdapter
+   private val viewModel: ValveViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentChecklistInspectionBinding.inflate(inflater, container, false)
+   override fun onCreateView(
+       inflater: LayoutInflater, container: ViewGroup?,
+       savedInstanceState: Bundle?
+   ): View? {
+       _binding = FragmentChecklistInspectionBinding.inflate(inflater, container, false)
 
-        adapterValve = ChecklistInspectionCheckAdapter(InSc.VALVE.get)
+       adapterValve = ChecklistInspectionCheckAdapter(InSc.VALVE.get)
 
 
-        binding.apply {
-            recycleChecklist.adapter = adapterValve
+       binding.apply {
+           recycleChecklist.adapter = adapterValve
 
-            textView8.text = getString(R.string.valve)
-        }
+           textView8.text = getString(R.string.valve)
+       }
 
-        return binding.root
-    }
+       return binding.root
+   }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launch {
-            viewModel.data.listValveSateFlow.collect {
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+       super.onViewCreated(view, savedInstanceState)
+       lifecycleScope.launch {
+           viewModel.data.listValveSateFlow.collect {
 
-                adapterValve.submitList(it.sortedBy { it.numberChecklist.toInt() })
-                binding.progress.isGone = it.isNotEmpty()
-            }
-        }
-    }
-
+               adapterValve.submitList(it.sortedBy { it.numberChecklist.toInt() })
+               binding.progress.isGone = it.isNotEmpty()
+           }
+       }
+   }
+*/
 }

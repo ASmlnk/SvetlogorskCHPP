@@ -1,35 +1,36 @@
 package com.example.svetlogorskchpp.inspectionSchedule
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentInspectionScheduleCalendarBinding
 import com.example.svetlogorskchpp.model.CalendarDateModel
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.GregorianCalendar
-import java.util.Locale
 import java.util.TimeZone
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CalendarFragment : Fragment() {
+
+    @Inject
+    lateinit var data: FirestoreRepository
 
     private val sdf = SimpleDateFormat("MMMM yyyy")
     private val sdfDate = SimpleDateFormat("dd")
@@ -45,7 +46,7 @@ class CalendarFragment : Fragment() {
     private var _binding: FragmentInspectionScheduleCalendarBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModelFactory = CalendarViewModelFactory(cal.time)
+    private lateinit var viewModelFactory: CalendarViewModelFactory
     private lateinit var viewModel: CalendarViewModel
 
     override fun onCreateView(
@@ -54,6 +55,8 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentInspectionScheduleCalendarBinding.inflate(inflater, container, false)
+
+        viewModelFactory = CalendarViewModelFactory(cal.time, data)
 
         viewModel =
             ViewModelProvider(this, viewModelFactory)[CalendarViewModel::class.java]
