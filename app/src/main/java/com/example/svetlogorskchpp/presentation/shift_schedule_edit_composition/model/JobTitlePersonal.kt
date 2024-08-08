@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model
 
+
 import com.example.svetlogorskchpp.domain.en.JobTitle
 
 data class JobTitlePersonal(

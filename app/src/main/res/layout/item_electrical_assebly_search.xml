@@ -41,13 +41,13 @@
                 android:textIsSelectable="false"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/text_name_electrical_assembly"
+                app:layout_constraintBottom_toTopOf="@+id/textNameElectricalAssembly"
                 app:layout_constraintEnd_toStartOf="@+id/image_item_electrical_assembly"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_name_electrical_assembly"
+                android:id="@+id/textNameElectricalAssembly"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"

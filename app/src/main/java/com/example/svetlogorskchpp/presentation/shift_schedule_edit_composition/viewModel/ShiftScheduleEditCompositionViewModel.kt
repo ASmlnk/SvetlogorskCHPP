@@ -2,19 +2,16 @@ package com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.data.database.ShiftPersonalEntity
-import com.example.svetlogorskchpp.data.model.ShiftPersonalDto
-import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
-import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepositoryImpl
-import com.example.svetlogorskchpp.domain.en.JobTitle
-import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
-import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractorImpl
-import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.ShiftPersonal
+import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.JobTitlePersonal
+import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.ShiftScheduleEditUiState
+import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.Staff
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -25,35 +22,59 @@ class ShiftScheduleEditCompositionViewModel @Inject constructor(
     private val shiftScheduleShiftPersonalInteractor: ShiftScheduleShiftPersonalInteractor
 ) : ViewModel() {
 
-    private val _editList: MutableStateFlow<List<ShiftPersonal>> = MutableStateFlow(emptyList())
+    private val _jobTitlePersonalUi: MutableStateFlow<ShiftScheduleEditUiState> = MutableStateFlow(ShiftScheduleEditUiState())
+    val jobTitlePersonalUi: StateFlow<ShiftScheduleEditUiState>
+        get() = _jobTitlePersonalUi.asStateFlow()
 
-    val shiftPersonalFlow: StateFlow<List<ShiftPersonal>> = shiftScheduleShiftPersonalInteractor.getShiftPersonalStream()
+    private val _staffStream: StateFlow<List<Staff>> = shiftScheduleShiftPersonalInteractor.getStaffStream()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+    private val _jobTitlePersonalStream: StateFlow<List<JobTitlePersonal>> = shiftScheduleShiftPersonalInteractor.getShiftPersonalStream()
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+    private val _stateSave: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     init {
         viewModelScope.launch {
-            shiftPersonalFlow.collect { listShiftPersonal ->
-                _editList.update { listShiftPersonal }
+            _jobTitlePersonalStream.collect { listJobTitlePersonals ->
+                _jobTitlePersonalUi.update { oldState ->
+                    oldState.copy(
+                        jobTitlePersonals = listJobTitlePersonals
+                    )
+                }
+            }
+        }
+        viewModelScope.launch {
+            _staffStream.collect { listStaff ->
+                _jobTitlePersonalUi.update { oldState ->
+                    oldState.copy(
+                        staffs = listStaff
+                    )
+                }
             }
         }
     }
 
-    fun save(jobTitle: JobTitle, shift: Shift, name: String) {
-        val list = _editList.value.toMutableList()
+    fun save(jobTitlePersonal: JobTitlePersonal) {
+        val list = _jobTitlePersonalUi.value.jobTitlePersonals.toMutableList()
 
         if (list.isNotEmpty()) {
             val shiftPersonalApi =
-                list.filter { it.shift == shift }.first { it.jobTitle == jobTitle }
+                list.first { it.jobTitle == jobTitlePersonal.jobTitle }
+            val index = list.indexOf(shiftPersonalApi)
             list.remove(shiftPersonalApi)
-            val new = shiftPersonalApi.copy(
-                namePersonal = name)
-            list.add(new)
-            _editList.update { list }
+            list.add(index, jobTitlePersonal)
+            _jobTitlePersonalUi.update { oldState ->
+                oldState.copy(
+                    jobTitlePersonals = list
+                )
+            }
+            _stateSave.update { true }
         }
     }
 
     suspend fun saveBd() {
-        shiftScheduleShiftPersonalInteractor.setShiftPersonalBD(_editList.value)
+       if (_stateSave.value) shiftScheduleShiftPersonalInteractor.setShiftPersonalBD(_jobTitlePersonalUi.value.jobTitlePersonals)
     }
 }
 

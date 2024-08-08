@@ -21,6 +21,7 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFul
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
+import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.JobTitlePersonal
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -71,7 +72,6 @@ class ShiftScheduleFragment : Fragment() {
                                 recyclerView.adapter = adapter
                                 tvDateMonth.text = state.textDateMonth
                                 todayDateTextView.text = state.textTodayDate
-
                             }
                             isCheckedChipShift(state.selectShift)
                             isCheckedChipCalendarView(state.calendarView)
@@ -133,6 +133,27 @@ class ShiftScheduleFragment : Fragment() {
             shiftCompositionEditor.setOnClickListener {
                 findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment)
             }
+
+            dialogStaffA.setOnClickListener {
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.A_SHIFT)
+                findNavController().navigate(action)
+            }
+            dialogStaffB.setOnClickListener {
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.B_SHIFT)
+                findNavController().navigate(action)
+            }
+            dialogStaffC.setOnClickListener {
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.C_SHIFT)
+                findNavController().navigate(action)
+            }
+            dialogStaffD.setOnClickListener {
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.D_SHIFT)
+                findNavController().navigate(action)
+            }
+            dialogStaffE.setOnClickListener {
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.E_SHIFT)
+                findNavController().navigate(action)
+            }
         }
     }
 
@@ -144,7 +165,6 @@ class ShiftScheduleFragment : Fragment() {
             chipCalendarView1.isGone = isProgress
             constraintEditShift.isGone = isProgress
             progressBar.isGone = !isProgress
-
         }
     }
 

@@ -48,12 +48,25 @@
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
             app:destination="@id/shiftScheduleEditCompositionFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleStaffDialog"
+            app:destination="@id/shiftScheduleStaffDialog" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
         android:name="com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
         tools:layout="@layout/fragment_shift_schedule_edit_composition"
         android:label="ShiftScheduleEditCompositionFragment" />
+    <dialog
+        android:id="@+id/shiftScheduleStaffDialog"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.dialog.ShiftScheduleStaffDialog"
+        android:label="dialog_shift_schedule_personal"
+        tools:layout="@layout/dialog_shift_schedule_personal" >
+
+        <argument
+            android:name="shift"
+            app:argType="com.example.svetlogorskchpp.domain.en.Shift" />
+    </dialog>
 
 
 </navigation>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shift_schedule_edit_composition_background">
+
+    <TextView
+        android:id="@+id/tvNamePersonalShiftA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColor="@color/name_devices_appbar"
+        android:textColorHint="@color/floatingActionButton"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitA"
+        app:layout_constraintEnd_toStartOf="@+id/ivNamePersonalShiftEditA"
+        app:layout_constraintStart_toEndOf="@+id/shitA"
+        app:layout_constraintTop_toTopOf="@+id/shitA" />
+
+    <ImageView
+        android:id="@+id/ivNamePersonalShiftEditA"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePersonalShiftA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePersonalShiftA"
+        app:srcCompat="@drawable/shift_schedule_edit_click" />
+
+    <TextView
+        android:id="@+id/shitA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:fontFamily="@font/ru_hero"
+        android:padding="8dp"
+        android:text="А"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoComplete" />
+
+    <TextView
+        android:id="@+id/tvJobTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:text="Начальник смены электростанции"
+        android:textColor="@color/text_input_assembly"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoComplete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите текст"
+        android:textColor="@color/name_devices_appbar"
+        android:textColorHint="@color/text_recycle_smile"
+        app:layout_constraintEnd_toStartOf="@+id/ivSave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJobTitle" />
+
+    <ImageView
+        android:id="@+id/ivSave"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:visibility="gone"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/autoComplete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/autoComplete"
+        app:srcCompat="@drawable/shift_schedule_save_click" />
+
+    <TextView
+        android:id="@+id/shitB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="Б"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitA" />
+
+    <TextView
+        android:id="@+id/tvNamePersonalShiftB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitB"
+        app:layout_constraintEnd_toStartOf="@+id/ivNamePersonalShiftEditB"
+        app:layout_constraintStart_toEndOf="@+id/shitB"
+        app:layout_constraintTop_toTopOf="@+id/shitB" />
+
+    <ImageView
+        android:id="@+id/ivNamePersonalShiftEditB"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePersonalShiftB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePersonalShiftB"
+        app:srcCompat="@drawable/shift_schedule_edit_click" />
+
+    <TextView
+        android:id="@+id/shitC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="В"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitB" />
+
+    <TextView
+        android:id="@+id/tvNamePersonalShiftC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitC"
+        app:layout_constraintEnd_toStartOf="@+id/ivNamePersonalShiftEditC"
+        app:layout_constraintStart_toEndOf="@+id/shitC"
+        app:layout_constraintTop_toTopOf="@+id/shitC" />
+
+    <ImageView
+        android:id="@+id/ivNamePersonalShiftEditC"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePersonalShiftC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePersonalShiftC"
+        app:srcCompat="@drawable/shift_schedule_edit_click" />
+
+    <TextView
+        android:id="@+id/shitD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:text="Г"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitC" />
+
+    <TextView
+        android:id="@+id/tvNamePersonalShiftD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitD"
+        app:layout_constraintEnd_toStartOf="@+id/ivNamePersonalShiftEditD"
+        app:layout_constraintStart_toEndOf="@+id/shitD"
+        app:layout_constraintTop_toTopOf="@+id/shitD" />
+
+    <ImageView
+        android:id="@+id/ivNamePersonalShiftEditD"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePersonalShiftD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePersonalShiftD"
+        app:srcCompat="@drawable/shift_schedule_edit_click" />
+
+    <TextView
+        android:id="@+id/shitE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:fontFamily="@font/ru_hero"
+        android:padding="8dp"
+        android:text="Д"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shitD" />
+
+    <TextView
+        android:id="@+id/tvNamePersonalShiftE"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:hint="Введите ФИО"
+        android:textColorHint="@color/floatingActionButton"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shitE"
+        app:layout_constraintEnd_toStartOf="@+id/ivNamePersonalShiftEditE"
+        app:layout_constraintStart_toEndOf="@+id/shitE"
+        app:layout_constraintTop_toTopOf="@+id/shitE" />
+
+    <ImageView
+        android:id="@+id/ivNamePersonalShiftEditE"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePersonalShiftE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePersonalShiftE"
+        app:srcCompat="@drawable/shift_schedule_edit_click" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

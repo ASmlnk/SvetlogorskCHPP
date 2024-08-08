@@ -18,6 +18,8 @@ import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
 import javax.inject.Inject
+import javax.inject.Singleton
+
 
 @HiltViewModel
 class ShiftScheduleViewModel @Inject constructor(

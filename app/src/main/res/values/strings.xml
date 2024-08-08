@@ -205,5 +205,6 @@
     <string name="saturday">Сб</string>
     <string name="sunday">Вс</string>
     <string name="date">Oct 2020</string>
+    <string name="shift_personal">Персонал смены %s</string>
 
 </resources>

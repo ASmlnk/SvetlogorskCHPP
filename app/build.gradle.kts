@@ -6,6 +6,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("kotlin-parcelize")
 
 }
 
@@ -100,4 +101,7 @@ dependencies {
 
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(kotlin("reflect"))
+
+    implementation ("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 }

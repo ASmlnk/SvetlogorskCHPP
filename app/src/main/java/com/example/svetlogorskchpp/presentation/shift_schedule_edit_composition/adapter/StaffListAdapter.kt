@@ -27,6 +27,12 @@ class StaffListAdapter(private val context: Context, private val suggestions: Li
         return view
     }
 
+    fun submitList(listUpdate: List<Staff>) {
+        filteredSuggestions.clear()
+        filteredSuggestions.addAll(listUpdate)
+        notifyDataSetChanged()
+    }
+
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {

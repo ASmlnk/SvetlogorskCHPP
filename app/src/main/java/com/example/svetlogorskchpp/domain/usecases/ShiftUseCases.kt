@@ -15,17 +15,4 @@ class ShiftUseCases @Inject constructor() {
             else -> Shift.NO_SHIFT
         }
     }
-
-    fun shiftToString(shift: Shift): String {
-        return when (shift) {
-            Shift.A_SHIFT -> "A"
-            Shift.B_SHIFT -> "B"
-            Shift.C_SHIFT -> "C"
-            Shift.D_SHIFT -> "D"
-            Shift.E_SHIFT -> "E"
-            Shift.NO_SHIFT -> ""
-        }
-    }
-
-
 }

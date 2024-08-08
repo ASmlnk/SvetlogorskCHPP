@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_input_assembly" />
 
     <TextView
-        android:id="@+id/text_name_electrical_assembly"
+        android:id="@+id/textNameElectricalAssembly"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -76,8 +76,8 @@
         android:textColor="@color/text_input_assembly"
         app:layout_constraintBottom_toTopOf="@+id/recycle_item_electric_assembly"
         app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/text_name_electrical_assembly"
-        app:layout_constraintTop_toBottomOf="@+id/text_name_electrical_assembly" />
+        app:layout_constraintStart_toStartOf="@+id/textNameElectricalAssembly"
+        app:layout_constraintTop_toBottomOf="@+id/textNameElectricalAssembly" />
 
 
 

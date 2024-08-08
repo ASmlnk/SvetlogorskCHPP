@@ -8,6 +8,7 @@ import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersona
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.domain.usecases.CalendarAddShiftUseCases
+import com.example.svetlogorskchpp.domain.usecases.FilterUseCases
 import com.example.svetlogorskchpp.domain.usecases.GenerateDaysFullCalendarUseCases
 import com.example.svetlogorskchpp.domain.usecases.JobTitleUseCases
 import com.example.svetlogorskchpp.domain.usecases.ShiftUseCases
@@ -42,12 +43,14 @@ class UseCaseModule {
     fun provideShiftScheduleShiftPersonalInteractor(
         shiftPersonalRepository: ShiftPersonalRepository,
         shiftUseCases: ShiftUseCases,
-        jobTitleUseCases: JobTitleUseCases
+        jobTitleUseCases: JobTitleUseCases,
+        filterUseCases: FilterUseCases
     ): ShiftScheduleShiftPersonalInteractor {
         return ShiftScheduleShiftPersonalInteractorImpl(
             shiftPersonalRepository,
             shiftUseCases,
-            jobTitleUseCases
+            jobTitleUseCases,
+            filterUseCases
         )
     }
 

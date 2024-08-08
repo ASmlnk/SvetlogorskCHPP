@@ -28,7 +28,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/text_name_electrical_assembly"
+                android:id="@+id/textNameElectricalAssembly"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -60,7 +60,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_name_electrical_assembly" />
+                app:layout_constraintTop_toBottomOf="@+id/textNameElectricalAssembly" />
 
             <TextView
                 android:id="@+id/text_department"
@@ -75,7 +75,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/image_item_electrical_assembly"
                 app:layout_constraintEnd_toEndOf="@+id/image_item_electrical_assembly"
                 app:layout_constraintStart_toStartOf="@+id/image_item_electrical_assembly"
-                app:layout_constraintTop_toTopOf="@+id/text_name_electrical_assembly" />
+                app:layout_constraintTop_toTopOf="@+id/textNameElectricalAssembly" />
 
             <ImageView
                 android:id="@+id/image_item_electrical_assembly"
