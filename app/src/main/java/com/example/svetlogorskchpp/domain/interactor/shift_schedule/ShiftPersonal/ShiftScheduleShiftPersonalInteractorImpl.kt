@@ -6,6 +6,7 @@ import com.example.svetlogorskchpp.domain.en.JobTitle
 import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.domain.usecases.FilterUseCases
 import com.example.svetlogorskchpp.domain.usecases.JobTitleUseCases
+import com.example.svetlogorskchpp.domain.usecases.NetworkAvailableUseCase
 import com.example.svetlogorskchpp.domain.usecases.ShiftUseCases
 import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.JobTitlePersonal
 import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.ShiftPersonal
@@ -19,12 +20,15 @@ class ShiftScheduleShiftPersonalInteractorImpl @Inject constructor(
     private val shiftUseCases: ShiftUseCases,
     private val jobTitleUseCases: JobTitleUseCases,
     private val filterUseCases: FilterUseCases,
+    private val networkAvailableUseCase: NetworkAvailableUseCase,
 ) : ShiftScheduleShiftPersonalInteractor {
 
     private val jobTitles = listOf(JobTitle.NSS, JobTitle.NSE, JobTitle.DEM_6R, JobTitle.DEM_5R)
 
     override fun getShiftPersonalStream(): Flow<List<JobTitlePersonal>> =
-        shiftPersonalRepository.getShiftPersonalStream().map { shiftPersonalDto ->
+        shiftPersonalRepository.getShiftPersonalStream(
+            networkAvailableUseCase.isNetworkAvailable()
+        ).map { shiftPersonalDto ->
             val shiftPersonals = shiftPersonalDto.map {
                 ShiftPersonal(
                     shift = shiftUseCases.stringToShift(it.shift),
@@ -36,7 +40,8 @@ class ShiftScheduleShiftPersonalInteractorImpl @Inject constructor(
         }
 
     override fun getStaffStream(): Flow<List<Staff>> =
-        shiftPersonalRepository.getShiftPersonalStream().map { shiftPersonalDto ->
+        shiftPersonalRepository.getShiftPersonalStream(networkAvailableUseCase.isNetworkAvailable())
+            .map { shiftPersonalDto ->
             shiftPersonalDto.map {
                 Staff(
                     shift = shiftUseCases.stringToShift(it.shift),

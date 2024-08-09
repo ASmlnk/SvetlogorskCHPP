@@ -17,8 +17,8 @@ class ShiftPersonalRepositoryImpl @Inject constructor(
     private val shiftPersonalDao: CalendarNotesDao
 ): ShiftPersonalRepository {
 
-    override fun getShiftPersonalStream(): Flow<List<ShiftPersonalDto>> = flow {
-        dataFirebase.enableNetwork()
+    override fun getShiftPersonalStream(networkAvailable: Boolean): Flow<List<ShiftPersonalDto>> = flow {
+        if(networkAvailable) dataFirebase.enableNetwork() else dataFirebase.disableNetwork()
         val snapshot = dataFirebase
             .collection(RepositorySt.SHIFT_PERSONAL_COLLECTION_NAME.get)
             .document(RepositorySt.SHIFT_PERSONAL_DOCUMENT_NAME.get).get().await()
