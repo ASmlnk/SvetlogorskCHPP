@@ -16,5 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Svetlogorsk CHPP"
 include(":app")
 include(":visionzero")
-include(":daggerlessons")
 include(":mylibrary")
