@@ -38,7 +38,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_shift_a"
-                        style="@style/CustomChipStyle"
+                        style="@style/ShiftScheduleChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ru_hero"
@@ -53,7 +53,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_shift_b"
-                        style="@style/CustomChipStyle"
+                        style="@style/ShiftScheduleChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ru_hero"
@@ -68,7 +68,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_shift_c"
-                        style="@style/CustomChipStyle"
+                        style="@style/ShiftScheduleChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ru_hero"
@@ -83,7 +83,7 @@
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_shift_d"
-                        style="@style/CustomChipStyle"
+                        style="@style/ShiftScheduleChipStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ru_hero"
@@ -100,7 +100,7 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_calendar_view_1"
-                    style="@style/CustomChipStyle"
+                    style="@style/ShiftScheduleChipStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"

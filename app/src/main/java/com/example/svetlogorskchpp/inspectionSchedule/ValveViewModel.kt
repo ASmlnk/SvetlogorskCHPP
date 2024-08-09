@@ -1,7 +1,5 @@
 package com.example.svetlogorskchpp.inspectionSchedule
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
@@ -10,9 +8,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
+class ValveViewModel @Inject constructor() : ViewModel() {
 
-class ValveViewModel() /*: ViewModel()*/ {
-    /*@Inject lateinit var data: FirestoreRepository
+    @Inject lateinit var data: FirestoreRepository
 
     init {
         viewModelScope.launch {
@@ -23,5 +22,5 @@ class ValveViewModel() /*: ViewModel()*/ {
     override fun onCleared() {
         super.onCleared()
         data.clearListValue()
-    }*/
+    }
 }

@@ -198,7 +198,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_all"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -211,7 +211,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_voltage"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -224,7 +224,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_tg"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -237,7 +237,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ka"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -250,7 +250,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_rep"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -263,7 +263,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ktc_to"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -276,7 +276,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ktc_ko"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -289,7 +289,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ktc_ty"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -302,7 +302,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_hvo"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -315,7 +315,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ec"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -328,7 +328,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_kry_315"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -341,7 +341,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_kry_63"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -354,7 +354,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_rusn"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -397,7 +397,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_voltage_04"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -410,7 +410,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_voltage_315"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -423,7 +423,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_voltage_63"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -446,7 +446,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_all_tg"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -459,7 +459,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_tg1"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -472,7 +472,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_tg3"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -485,7 +485,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_tg4"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -498,7 +498,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_tg5"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -511,7 +511,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_tg6"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -534,7 +534,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_all_ka"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -547,7 +547,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_ka1"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -560,7 +560,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_ka6"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -573,7 +573,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_ka7"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -586,7 +586,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_ka8"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -599,7 +599,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_ka9"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -622,7 +622,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_all_ktc_to"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -635,7 +635,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_pen"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -648,7 +648,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_pn"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -661,7 +661,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_sn"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -674,7 +674,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_bnt"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -687,7 +687,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_coastal"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -700,7 +700,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_cooling_tower"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -723,7 +723,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_all_ktc_ko"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -736,7 +736,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_bug"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -759,7 +759,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_hvo_desalting"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -772,7 +772,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_hvo_pre_cleaning"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -785,7 +785,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_hvo_so"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -798,7 +798,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_hvo_other"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -811,7 +811,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_hvo_all"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -834,7 +834,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_1"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -847,7 +847,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_3"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -860,7 +860,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_4"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -873,7 +873,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_5"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -886,7 +886,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_6"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -899,7 +899,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_7"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -912,7 +912,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_8"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -925,7 +925,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_315_9"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -948,7 +948,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_63_1"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -961,7 +961,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_63_2"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -974,7 +974,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_kry_63_3"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -997,7 +997,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_1"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1010,7 +1010,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_2"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1023,7 +1023,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_3"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1036,7 +1036,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_4"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1049,7 +1049,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_5"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1062,7 +1062,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_6"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"
@@ -1075,7 +1075,7 @@
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chip_rusn_7"
-                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                style="@style/ElectricMotorChipStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/ru_hero"

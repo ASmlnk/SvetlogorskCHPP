@@ -7,20 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentChecklistInspectionBinding
-import com.example.svetlogorskchpp.databinding.FragmentInspectionScheduleCalendarBinding
-import com.example.svetlogorskchpp.electricalAssembly.ElectricalAssemblyFragmentDirections
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
+class ValveFragment : Fragment() {
 
-class ValveFragment /*: Fragment()*/ {
-/*
   private var _binding: FragmentChecklistInspectionBinding? = null
    private val binding get() = _binding!!
 
@@ -55,5 +51,5 @@ class ValveFragment /*: Fragment()*/ {
            }
        }
    }
-*/
+
 }

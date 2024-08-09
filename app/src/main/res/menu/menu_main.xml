@@ -27,6 +27,6 @@
         android:id="@+id/shiftScheduleFragment"
         android:title="Смена"
         android:enabled="true"
-        android:icon="@drawable/baseline_bolt_24"/>
+        android:icon="@drawable/baseline_supervisor_account_24"/>
 
 </menu>

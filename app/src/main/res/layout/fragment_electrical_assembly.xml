@@ -85,7 +85,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_all"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -98,7 +98,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_hc"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -111,7 +111,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ktc_to"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -124,7 +124,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ktc_ko"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -137,7 +137,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_bns"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -150,7 +150,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_cooling_tower"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -163,7 +163,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_ry"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -176,7 +176,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_panel_block"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
@@ -189,7 +189,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_kry"
-                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            style="@style/ElectricMotorChipStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ru_hero"
