@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="@color/text_recycle"
-                app:layout_scrollFlags="scroll|enterAlways|snap|snapMargins">
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap|snapMargins">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_edit_shift"
@@ -471,7 +471,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:paddingBottom="8dp">
 
                     <ProgressBar
@@ -644,6 +643,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
+                            android:fadeScrollbars="false"
                             android:layout_marginTop="8dp"
                             android:layout_marginRight="8dp"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
