@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.data.repository.shiftPersonnel
 
-import com.example.svetlogorskchpp.data.database.ShiftPersonalDao
+import com.example.svetlogorskchpp.data.database.CalendarNotesDao
 import com.example.svetlogorskchpp.data.model.ShiftPersonalDto
 import com.example.svetlogorskchpp.data.repository.RepositorySt
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class ShiftPersonalRepositoryImpl @Inject constructor(
     private val dataFirebase: FirebaseFirestore,
-    private val shiftPersonalDao: ShiftPersonalDao
+    private val shiftPersonalDao: CalendarNotesDao
 ): ShiftPersonalRepository {
 
     override fun getShiftPersonalStream(): Flow<List<ShiftPersonalDto>> = flow {

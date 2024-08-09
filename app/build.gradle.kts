@@ -103,5 +103,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation(kotlin("reflect"))
 
-    implementation ("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }

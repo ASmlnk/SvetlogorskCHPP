@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +19,7 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftSc
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -47,14 +50,14 @@ class ShiftScheduleStaffDialog: BottomSheetDialogFragment() {
         binding.apply {
             recycleView.adapter = adapter
             tvShiftPersonal.text = context?.getString(R.string.shift_personal, shift.nameApp) ?: ""
-
-
+            shimmerLayout.startShimmer()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.jobTitlePersonalStream.collect { list ->
                    adapter.submitList(list)
+                    if (list.isNotEmpty()) stopShimmer()
                 }
             }
         }
@@ -63,5 +66,15 @@ class ShiftScheduleStaffDialog: BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private suspend fun stopShimmer() {
+        binding.apply {
+            recycleView.isVisible = true
+            delay(50)
+            shimmerLayout.stopShimmer()
+            shimmerLayout.isVisible = false
+
+        }
     }
 }

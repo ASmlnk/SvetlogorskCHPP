@@ -5,8 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.svetlogorskchpp.data.database.ShiftPersonalDao
-import com.example.svetlogorskchpp.data.model.ShiftPersonalDto
+import com.example.svetlogorskchpp.data.database.CalendarNotesDao
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepositoryImpl
 import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
@@ -46,7 +45,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideShiftPersonalRepository(remoteDB: FirebaseFirestore, shiftPersonalDao: ShiftPersonalDao): ShiftPersonalRepository {
+    fun provideShiftPersonalRepository(remoteDB: FirebaseFirestore, shiftPersonalDao: CalendarNotesDao): ShiftPersonalRepository {
         return ShiftPersonalRepositoryImpl(remoteDB, shiftPersonalDao)
     }
 

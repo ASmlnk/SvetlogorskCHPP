@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,6 +17,7 @@ import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.
 import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.adapter.StaffListAdapter
 import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.viewModel.ShiftScheduleEditCompositionViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -49,6 +51,7 @@ class ShiftScheduleEditCompositionFragment : Fragment() {
 
         binding.apply {
             recyclerView.adapter = adapter
+            shimmerLayout.startShimmer()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -56,6 +59,7 @@ class ShiftScheduleEditCompositionFragment : Fragment() {
                 viewModel.jobTitlePersonalUi.collect { stateUi ->
                     if (stateUi.jobTitlePersonals.isNotEmpty()) {
                         adapter.submitList(stateUi.jobTitlePersonals)
+                        stopShimmer()
                     }
                     if (stateUi.staffs.isNotEmpty()) {
                         val newAdapterStaff = StaffListAdapter(requireContext(), stateUi.staffs)
@@ -76,5 +80,15 @@ class ShiftScheduleEditCompositionFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private suspend fun stopShimmer() {
+        binding.apply {
+            //recyclerView.isVisible = true
+            delay(50)
+            shimmerLayout.stopShimmer()
+            shimmerLayout.isVisible = false
+
+        }
     }
 }

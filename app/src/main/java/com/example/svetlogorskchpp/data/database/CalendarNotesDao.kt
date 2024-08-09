@@ -7,18 +7,18 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ShiftPersonalDao {
+interface CalendarNotesDao {
 
-    @Query("SELECT * FROM shift_personal")
-    fun getAll(): Flow<List<ShiftPersonalEntity>>
+    @Query("SELECT * FROM calendar_notes")
+    fun getAll(): Flow<List<CalendarNotesEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(data: List<ShiftPersonalEntity>)
+    suspend fun insertAll(data: List<CalendarNotesEntity>)
 
-    @Query("DELETE FROM shift_personal")
+    @Query("DELETE FROM calendar_notes")
     suspend fun clearAll()
 
-    @Query("SELECT COUNT(*) FROM shift_personal")
+    @Query("SELECT COUNT(*) FROM calendar_notes")
     suspend fun countShiftPersonalEntities(): Int
 
 }
