@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/shift_schedule_edit_composition_background"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="21.07.2024"
+        android:textColor="@color/calendar_background"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvShift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="00:00-08:00"
+        android:textColor="@color/calendar_background"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonShift1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonShift1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text=" Смена А"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintStart_toEndOf="@+id/tvShift"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+    <TextView
+        android:id="@+id/tvShift2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="08:00-20:00"
+        android:textColor="@color/calendar_background"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonShift2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonShift2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text=" Смена А"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintStart_toEndOf="@+id/tvShift2"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShift1" />
+
+    <TextView
+        android:id="@+id/tvShift3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:gravity="center"
+        android:text="20:00-00:00"
+        android:textColor="@color/calendar_background"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonShift3" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonShift3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text=" Смена А"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintStart_toEndOf="@+id/tvShift3"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShift2" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cbTechnical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ru_hero"
+        android:text="   Техническая учеба"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShift3" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbTechnical" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
