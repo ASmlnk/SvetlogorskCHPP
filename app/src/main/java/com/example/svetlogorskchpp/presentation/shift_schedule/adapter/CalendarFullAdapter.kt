@@ -13,7 +13,7 @@ import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 
-class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: CalendarFullDayModel, position: Int) -> Unit) :
+class CalendarFullAdapter(private val onClick: () -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list = ArrayList<CalendarFullDayModel>()
@@ -25,7 +25,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift) {
+        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift, onClick: () -> Unit) {
 
             binding.apply {
                 textPrevNightShift.text = shift(calendarDateModel.prevNightShift)
@@ -63,7 +63,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
                 itemView.setOnClickListener {
-                    //listener.invoke(calendarDateModel, adapterPosition)
+                    onClick()
                 }
             }
         }
@@ -81,7 +81,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift) {
+        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift, onClick: () -> Unit) {
             val shiftText = shift(calendarDateModel, shift)
 
             binding.apply {
@@ -112,7 +112,7 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
                 itemView.setOnClickListener {
-                    //listener.invoke(calendarDateModel, adapterPosition)
+                    onClick()
                 }
             }
         }
@@ -153,8 +153,8 @@ class CalendarFullAdapter(private val listener: (calendarFullDayDateModel: Calen
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CalendarMonthViewHolder -> holder.bind(list[position], stateUi.shift)
-            is CalendarMonthViewHolderV2 -> holder.bind(list[position], stateUi.shift)
+            is CalendarMonthViewHolder -> holder.bind(list[position], stateUi.shift, onClick)
+            is CalendarMonthViewHolderV2 -> holder.bind(list[position], stateUi.shift, onClick)
             is CalendarPrevMonthViewHolder -> holder.bind(list[position])
         }
     }

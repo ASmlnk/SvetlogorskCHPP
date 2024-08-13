@@ -90,11 +90,8 @@ class ShiftScheduleFragment : Fragment() {
     private fun setUpAdapter() {
         val list = emptyList<CalendarFullDayModel>()
         val itemDecoration = ItemOffsetDecoration(requireContext())
-        adapter = CalendarFullAdapter { calendarDateModel: CalendarFullDayModel, position: Int ->
-            list.forEachIndexed { index, calendarModel ->
-            }
-            //viewModel.selectDate(calendarList3.get(position).data.time)
-            // adapter.setData(list, Shift.NO_SHIFT)
+        adapter = CalendarFullAdapter {
+            findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleAddNotesFragment)
         }
 
         binding.apply {

@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleStaffDialog"
             app:destination="@id/shiftScheduleStaffDialog" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleAddNotesFragment"
+            app:destination="@id/shiftScheduleAddNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
@@ -67,6 +70,11 @@
             android:name="shift"
             app:argType="com.example.svetlogorskchpp.domain.en.Shift" />
     </dialog>
+    <fragment
+        android:id="@+id/shiftScheduleAddNotesFragment"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.ShiftScheduleAddNotesFragment"
+        tools:layout="@layout/fragment_shift_schedule_add_notes"
+        android:label="ShiftScheduleAddNotesFragment" />
 
 
 </navigation>

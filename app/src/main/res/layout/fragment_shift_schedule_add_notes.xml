@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/ru_hero"
+        android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="21.07.2024"
-        android:textColor="@color/calendar_background"
-        android:textSize="22sp"
+        android:textColor="@color/orange_zero_vision"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/ru_hero"
+        android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="00:00-08:00"
         android:textColor="@color/calendar_background"
@@ -44,12 +44,13 @@
         android:textColor="@color/calendar_background"
         app:layout_constraintStart_toEndOf="@+id/tvShift"
         app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
     <TextView
         android:id="@+id/tvShift2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/ru_hero"
+        android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="08:00-20:00"
         android:textColor="@color/calendar_background"
@@ -62,11 +63,10 @@
         android:id="@+id/buttonShift2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text=" Смена А"
         android:textColor="@color/calendar_background"
-        app:layout_constraintStart_toEndOf="@+id/tvShift2"
+        app:layout_constraintEnd_toEndOf="@+id/buttonShift1"
+        app:layout_constraintStart_toStartOf="@+id/buttonShift1"
         app:layout_constraintTop_toBottomOf="@+id/buttonShift1" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/ru_hero"
+        android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="20:00-00:00"
         android:textColor="@color/calendar_background"
@@ -87,36 +87,85 @@
         android:id="@+id/buttonShift3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text=" Смена А"
         android:textColor="@color/calendar_background"
-        app:layout_constraintStart_toEndOf="@+id/tvShift3"
+        app:layout_constraintEnd_toEndOf="@+id/buttonShift2"
+        app:layout_constraintStart_toStartOf="@+id/buttonShift2"
         app:layout_constraintTop_toBottomOf="@+id/buttonShift2" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/cbTechnical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/ru_hero"
+        android:fontFamily="@font/actor"
         android:text="   Техническая учеба"
+
         android:textColor="@color/name_devices_appbar"
         android:textSize="20sp"
+        android:theme="@style/ShiftScheduleTechicalCheckBoxStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonShift3" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etNotesText"
         android:layout_width="0dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
         android:background="@drawable/shift_schedule_compound_shift_edit_background"
+        android:gravity="top"
+        android:padding="6dp"
+        android:text="kdsjfj\nsdjfls\nskdlfs;k;lk\nskjdfsj"
+
+        android:textColor="@color/calendar_background"
+        android:textCursorDrawable="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivNotesAddTime"
+        app:layout_constraintTop_toBottomOf="@+id/cbTechnical" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivNotesAddTime"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/shift_schedule_notes_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etNotesText" />
+
+    <TextView
+        android:id="@+id/tvTimeNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/barkentina"
+        android:text="21:44"
+        android:textColor="@color/name_devices_appbar"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
+        app:layout_constraintEnd_toEndOf="@+id/ivNotesAddTime"
+        app:layout_constraintStart_toStartOf="@+id/ivNotesAddTime" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivSaveNotes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/shift_schedule_add_notes_2"
+        app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etNotesText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbTechnical" />
+        app:layout_constraintTop_toBottomOf="@+id/etNotesText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,5 +65,10 @@
         <item name="checkedIconTint">@color/floatingActionButton</item>
     </style>
 
+    <style name="ShiftScheduleTechicalCheckBoxStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/name_devices_appbar</item>
+        <item name="colorControlActivated">@color/name_devices_appbar</item>
+    </style>
+
 
 </resources>
