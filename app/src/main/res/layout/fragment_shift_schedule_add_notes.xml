@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/barkentina"
+        android:fontFamily="@font/ru_hero"
         android:gravity="center"
         android:text="21.07.2024"
         android:textColor="@color/orange_zero_vision"
@@ -118,8 +118,6 @@
         android:background="@drawable/shift_schedule_compound_shift_edit_background"
         android:gravity="top"
         android:padding="6dp"
-        android:text="kdsjfj\nsdjfls\nskdlfs;k;lk\nskjdfsj"
-
         android:textColor="@color/calendar_background"
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
