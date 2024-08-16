@@ -55,6 +55,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             cbTechnical.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     // repTagRepository.insertTag(CalendarNoteTagEntity())
+
                 }
             }
         }
