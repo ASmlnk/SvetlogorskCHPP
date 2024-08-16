@@ -3,13 +3,25 @@ package com.example.svetlogorskchpp.presentation.shift_schedule.viewModel
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
+import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.domain.usecases.CalendarTagUseCases
+import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.ShiftScheduleUiState
+import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.Staff
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -24,6 +36,8 @@ import javax.inject.Singleton
 @HiltViewModel
 class ShiftScheduleViewModel @Inject constructor(
     private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
+    private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
+    private val calendarTagUseCases: CalendarTagUseCases,
 ) : ViewModel() {
 
     private val cal = date().time
@@ -45,6 +59,30 @@ class ShiftScheduleViewModel @Inject constructor(
 
     private val _calendarAdapterStateFlow = MutableStateFlow(cal)
 
+    private val _calendarNoteTag: StateFlow<List<CalendarNoteTag>> =
+        calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())
+            .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+    private val _calendarFullDayShift = shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
+        .stateIn(viewModelScope, SharingStarted.Lazily, CalendarFullDayShiftModel())
+
+    private val _calendarShiftAndNoteTag = combine(
+        _calendarNoteTag, _calendarFullDayShift
+    ) { calendarNoteTags, calendarFullDayShift ->
+        CalendarFullDayShiftModel().copy(
+            calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
+                calendarFullDayModels = calendarFullDayShift.calendarFullDayModels,
+                calendarNoteTags = calendarNoteTags
+            ),
+            shiftSelect = calendarFullDayShift.shiftSelect,
+            calendarView = calendarFullDayShift.calendarView
+        )
+    }.stateIn(
+        scope = CoroutineScope(Dispatchers.Default),
+        started = SharingStarted.Lazily,
+        initialValue = CalendarFullDayShiftModel()
+    )
+
     init {
         viewModelScope.launch {
             delay(200)
@@ -59,7 +97,7 @@ class ShiftScheduleViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
+            _calendarShiftAndNoteTag
                 .collect { calendarFullDayShiftModel ->
                     _uiState.update { oldState ->
                         oldState.copy(
@@ -73,7 +111,7 @@ class ShiftScheduleViewModel @Inject constructor(
     }
 
     private fun setUpCalendar() {
-         generateDays()
+        generateDays()
         val calendar = adapterDate()
         val textDateMonth = sdf.format(calendar.time)
         // val monthCalendar = calendar.clone() as Calendar
@@ -120,10 +158,11 @@ class ShiftScheduleViewModel @Inject constructor(
         val monthCalendar = adapterDate()
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
         shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
+
     }
 
     suspend fun setSelectShiftSchedule(shift: String) {
-         shiftScheduleCalendarInteractor.setSelectShiftSchedule(shift)
+        shiftScheduleCalendarInteractor.setSelectShiftSchedule(shift)
     }
 
     suspend fun setSelectCalendarView(view: String) {

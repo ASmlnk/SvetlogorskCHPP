@@ -72,9 +72,13 @@
     </dialog>
     <fragment
         android:id="@+id/shiftScheduleAddNotesFragment"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.ShiftScheduleAddNotesFragment"
+        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
         tools:layout="@layout/fragment_shift_schedule_add_notes"
-        android:label="ShiftScheduleAddNotesFragment" />
+        android:label="ShiftScheduleAddNotesFragment" >
+        <argument
+            android:name="navigateAddNoteArgs"
+            app:argType="com.example.svetlogorskchpp.presentation.shift_schedule.model.NavigateAddNoteArgs" />
+    </fragment>
 
 
 </navigation>

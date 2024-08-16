@@ -20,11 +20,14 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.CalendarF
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.JobTitlePersonal
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.Calendar
+import java.util.Date
 
 @AndroidEntryPoint
 class ShiftScheduleFragment : Fragment() {
@@ -90,8 +93,16 @@ class ShiftScheduleFragment : Fragment() {
     private fun setUpAdapter() {
         val list = emptyList<CalendarFullDayModel>()
         val itemDecoration = ItemOffsetDecoration(requireContext())
-        adapter = CalendarFullAdapter {
-            findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleAddNotesFragment)
+        adapter = CalendarFullAdapter {calendarFullDateModel ->
+            val navigateAddNoteArgs = NavigateAddNoteArgs(
+                date = calendarFullDateModel.data.time.time,
+                prevNightShift = calendarFullDateModel.prevNightShift,
+                dayShift = calendarFullDateModel.dayShift,
+                nextNightShift = calendarFullDateModel.nextNightShift,
+                idNoteTag = calendarFullDateModel.calendarNoteTag?.id?:-1
+            )
+            val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(navigateAddNoteArgs)
+            findNavController().navigate(action)
         }
 
         binding.apply {

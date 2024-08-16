@@ -12,8 +12,11 @@ import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFul
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
+import java.util.Calendar
 
-class CalendarFullAdapter(private val onClick: () -> Unit) :
+class CalendarFullAdapter(
+    private val onClick: (calendarDateModel: CalendarFullDayModel) -> Unit,
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val list = ArrayList<CalendarFullDayModel>()
@@ -25,7 +28,11 @@ class CalendarFullAdapter(private val onClick: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift, onClick: () -> Unit) {
+        fun bind(
+            calendarDateModel: CalendarFullDayModel,
+            shift: Shift,
+            onClick: (calendarDateModel: CalendarFullDayModel) -> Unit,
+        ) {
 
             binding.apply {
                 textPrevNightShift.text = shift(calendarDateModel.prevNightShift)
@@ -63,7 +70,7 @@ class CalendarFullAdapter(private val onClick: () -> Unit) :
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
                 itemView.setOnClickListener {
-                    onClick()
+                    onClick(calendarDateModel)
                 }
             }
         }
@@ -81,7 +88,11 @@ class CalendarFullAdapter(private val onClick: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(calendarDateModel: CalendarFullDayModel, shift: Shift, onClick: () -> Unit) {
+        fun bind(
+            calendarDateModel: CalendarFullDayModel,
+            shift: Shift,
+            onClick: (calendarDateModel: CalendarFullDayModel) -> Unit,
+        ) {
             val shiftText = shift(calendarDateModel, shift)
 
             binding.apply {
@@ -112,7 +123,7 @@ class CalendarFullAdapter(private val onClick: () -> Unit) :
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
                 itemView.setOnClickListener {
-                    onClick()
+                    onClick(calendarDateModel)
                 }
             }
         }

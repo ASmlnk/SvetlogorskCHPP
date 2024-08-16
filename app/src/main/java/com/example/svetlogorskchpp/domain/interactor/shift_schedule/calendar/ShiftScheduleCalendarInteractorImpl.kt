@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar
 
+import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.domain.usecases.GenerateDaysFullCalendarUseCases
@@ -16,12 +17,13 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import java.util.Calendar
 import javax.inject.Inject
+import javax.inject.Named
 
 class ShiftScheduleCalendarInteractorImpl @Inject constructor(
     private val generateDaysFullCalendarUseCases: GenerateDaysFullCalendarUseCases,
     private val calendarAddShift: CalendarAddShiftUseCases,
     private val preferencesRepository: PreferencesRepository,
-    private val shiftUseCases: ShiftUseCases,
+    private val shiftUseCases: ShiftUseCases
 ) : ShiftScheduleCalendarInteractor {
 
     private val _selectShiftScheduleStream = preferencesRepository.selectShiftSchedule
@@ -58,6 +60,7 @@ class ShiftScheduleCalendarInteractorImpl @Inject constructor(
     override fun generateDaysFullCalendar(calendar: Calendar) {
         val list = generateDaysFullCalendarUseCases.generateDays(calendar)
         val listAddShift = calendarAddShift.addShiftOfCalendar(list)
+
         _getDaysFullCalendarFlow.update {
             listAddShift
         }
