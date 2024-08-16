@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.presentation.shift_schedule.model
 
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.domain.en.Shift
+import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
 import java.util.Calendar
 
 data class CalendarFullDayModel(
@@ -10,6 +11,7 @@ data class CalendarFullDayModel(
     val prevNightShift: Shift,
     val dayShift: Shift,
     val nextNightShift: Shift,
+    val calendarNoteTag: CalendarNoteTag? = null
 ) {
 
     val calendarDayWeekend: Boolean

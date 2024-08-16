@@ -3,7 +3,8 @@ package com.example.svetlogorskchpp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.svetlogorskchpp.data.database.AppDataBase
-import com.example.svetlogorskchpp.data.database.CalendarNotesDao
+import com.example.svetlogorskchpp.data.database.calendarNoteTag.CalendarNoteTagDao
+import com.example.svetlogorskchpp.data.database.note.NoteDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +27,14 @@ class LocaleModule {
     }
 
     @Provides
-    fun provideShiftPersonalLocaleDao(dataBase: AppDataBase): CalendarNotesDao {
-        return dataBase.calendarNotesLocaleDao()
+    fun provideCalendarNoteTagDao (dataBase: AppDataBase): CalendarNoteTagDao {
+        return dataBase.calendarNoteTagDao()
     }
+
+    @Provides
+    fun provideNoteDao (dataBase: AppDataBase): NoteDao {
+        return dataBase.noteDao()
+    }
+
+
 }

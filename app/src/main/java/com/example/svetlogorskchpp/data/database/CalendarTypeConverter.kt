@@ -3,7 +3,7 @@ package com.example.svetlogorskchpp.data.database
 import androidx.room.TypeConverter
 import java.util.Date
 
-class CalendarNotesTypeConverter {
+class CalendarTypeConverter {
     @TypeConverter
     fun fromDate(date: Date): Long {
         return date.time

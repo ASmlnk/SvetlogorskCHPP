@@ -5,7 +5,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.svetlogorskchpp.data.database.CalendarNotesDao
+import com.example.svetlogorskchpp.data.database.calendarNoteTag.CalendarNoteTagDao
+import com.example.svetlogorskchpp.data.database.note.NoteDao
+import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
+import com.example.svetlogorskchpp.data.repository.note.NoteRepository
+import com.example.svetlogorskchpp.data.repository.note.NoteRepositoryImpl
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepositoryImpl
 import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
@@ -45,8 +50,20 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideShiftPersonalRepository(remoteDB: FirebaseFirestore, shiftPersonalDao: CalendarNotesDao): ShiftPersonalRepository {
-        return ShiftPersonalRepositoryImpl(remoteDB, shiftPersonalDao)
+    fun provideShiftPersonalRepository(remoteDB: FirebaseFirestore): ShiftPersonalRepository {
+        return ShiftPersonalRepositoryImpl(remoteDB)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCalendarNoteTagRepository(calendarNoteTagDao: CalendarNoteTagDao): CalendarNoteTagRepository {
+        return CalendarNoteTagRepositoryImpl(calendarNoteTagDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNoteRepository(noteDao: NoteDao): NoteRepository {
+        return NoteRepositoryImpl(noteDao)
     }
 
 }

@@ -1,0 +1,34 @@
+package com.example.svetlogorskchpp.domain.usecases.calendarDate
+
+import android.annotation.SuppressLint
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import javax.inject.Inject
+
+class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
+
+    override fun calendarToDateYMD(calendar: Calendar) : Date {
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        val date = Calendar.getInstance()
+        date.set(year,month,day)
+        return date.time
+    }
+
+    override fun calendarToDateYM(calendar: Calendar) : Date {
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val date = Calendar.getInstance()
+        date.set(year,month, 0)
+        return date.time
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    override fun calendarToStringFormatDDMMMMYYYY(calendar: Calendar): String {
+        val sdf = SimpleDateFormat("dd MMMM yyyy")
+        return sdf.format(calendar.time)
+    }
+
+}

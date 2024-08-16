@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.data.repository.shiftPersonnel
 
-import com.example.svetlogorskchpp.data.database.CalendarNotesDao
+
 import com.example.svetlogorskchpp.data.model.ShiftPersonalDto
 import com.example.svetlogorskchpp.data.repository.RepositorySt
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 class ShiftPersonalRepositoryImpl @Inject constructor(
-    private val dataFirebase: FirebaseFirestore,
-    private val shiftPersonalDao: CalendarNotesDao
+    private val dataFirebase: FirebaseFirestore
 ): ShiftPersonalRepository {
 
     override fun getShiftPersonalStream(networkAvailable: Boolean): Flow<List<ShiftPersonalDto>> = flow {
