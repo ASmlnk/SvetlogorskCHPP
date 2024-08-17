@@ -13,25 +13,13 @@ class CalendarTagUseCases @Inject constructor() {
         calendarFullDayModels: List<CalendarFullDayModel>,
         calendarNoteTags: List<CalendarNoteTag>,
     ): List<CalendarFullDayModel> {
-        val result = mutableListOf<CalendarFullDayModel>()
-        val noteTags = calendarNoteTags.toMutableList().iterator()
+        val noteTagsMap = calendarNoteTags.associateBy { it.date } //преобразует в карту с ключом date
 
-        calendarFullDayModels.forEach { day ->
-            var isTag = false
-            for (tag in noteTags) {
-                if (day.data.time == tag.date) {
-                    val newDay = day.copy(
-                        calendarNoteTag = tag
-                    )
-                   // noteTags.remove(tag)
-                    result.add(newDay)
-                    isTag = true
-                    continue
-                }
-            }
-            if (!isTag) result.add(day)
+        return calendarFullDayModels.map { day ->
+            noteTagsMap[day.data.time]?.let { tag ->
+                day.copy(calendarNoteTag = tag)
+            } ?: day
         }
-        return result
     }
 }
 

@@ -67,8 +67,11 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideCalendarNotesUseCases(noteRepository: NoteRepository): CalendarNoteUseCases {
-        return CalendarNoteUseCasesImpl(noteRepository)
+    fun provideCalendarNotesUseCases(
+        noteRepository: NoteRepository,
+        calendarDateUseCases: CalendarDateUseCases
+    ): CalendarNoteUseCases {
+        return CalendarNoteUseCasesImpl(noteRepository,calendarDateUseCases)
     }
 
     @Provides

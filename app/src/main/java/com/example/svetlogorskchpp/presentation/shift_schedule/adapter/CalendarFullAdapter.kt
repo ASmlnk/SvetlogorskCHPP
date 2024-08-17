@@ -70,7 +70,10 @@ class CalendarFullAdapter(
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
                 if (calendarDateModel.calendarNoteTag?.isTechnical != null) {
-                    textDayShift.background = itemView.context.getDrawable(R.color.orange_zero_vision)
+                    textDayShift.apply {
+                        background = itemView.context.getDrawable(R.drawable.background_calendar_select_technical)
+                        alpha = 0.85F
+                    }
                 }
                 itemView.setOnClickListener {
                     onClick(calendarDateModel)
@@ -124,6 +127,13 @@ class CalendarFullAdapter(
                 }
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
+                }
+                if (calendarDateModel.calendarNoteTag?.isTechnical != null) {
+                    textShift.text = "ТУ"
+                    layoutShift.apply {
+                        background = itemView.context.getDrawable(R.drawable.background_calendar_select_technical)
+                        alpha = 0.85F
+                    }
                 }
                 itemView.setOnClickListener {
                     onClick(calendarDateModel)

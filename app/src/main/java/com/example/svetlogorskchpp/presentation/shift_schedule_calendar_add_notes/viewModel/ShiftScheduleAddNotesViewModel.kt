@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.domain.model.Note
 import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseCases
+import com.example.svetlogorskchpp.domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.model.NoteUiState
 import dagger.assisted.Assisted
@@ -12,8 +14,10 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -21,6 +25,7 @@ import java.util.Calendar
 class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     private val calendarDateUseCases: CalendarDateUseCases,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
+    private val calendarNoteUseCases: CalendarNoteUseCases,
     @Assisted private val date: Long,
 ) : ViewModel() {
 
@@ -32,6 +37,12 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         isTechnical = false
     )
 
+    private val calendarNote = Note(
+        tagDate = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
+        dateNotes = _dateStateFlow.value,
+        content = ""
+    )
+
     private val _calendarNoteTagState = MutableStateFlow(
         NoteUiState(
             calendarNoteTag = calendarNoteTag
@@ -39,6 +50,11 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     )
     val calendarNoteTagState: StateFlow<NoteUiState>
         get() = _calendarNoteTagState.asStateFlow()
+
+    val calendarNoteStream = calendarNoteUseCases.getNotesByTagId(tagDate = _dateStateFlow.value)
+        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+
 
     private val _calendarNoteTagStream =
         calendarNoteTagUseCases.getTagsByDate(_dateStateFlow.value)
@@ -54,6 +70,22 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
                     }
                 }
             }
+        }
+    }
+
+    fun insertNote(content: String, isTimeNote: Boolean) {
+        viewModelScope.launch (Dispatchers.IO) {
+            val note = calendarNote.copy(
+                isTimeNotes = isTimeNote,
+                content = content
+            )
+            calendarNoteUseCases.insertNote(note)
+        }
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch(Dispatchers.IO) {
+            calendarNoteUseCases.deleteNote(note)
         }
     }
 
@@ -88,7 +120,6 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
             @Assisted date: Long,
         ): ShiftScheduleAddNotesViewModel
     }
-
 
     @Suppress("UNCHECKED_CAST")
     companion object {
