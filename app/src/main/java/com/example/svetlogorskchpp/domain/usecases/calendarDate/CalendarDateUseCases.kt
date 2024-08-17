@@ -8,4 +8,5 @@ interface CalendarDateUseCases {
     fun calendarToDateYMD(calendar: Calendar) : Date
     fun calendarToDateYM(calendar: Calendar) : Date
     fun calendarToStringFormatDDMMMMYYYY(calendar: Calendar): String
+    fun dateToStringFormatDDMMMMYYYY(date: Date): String
 }

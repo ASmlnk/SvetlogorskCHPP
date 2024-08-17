@@ -3,15 +3,12 @@ package com.example.svetlogorskchpp.presentation.shift_schedule.viewModel
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
-import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
 import com.example.svetlogorskchpp.domain.usecases.CalendarTagUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.ShiftScheduleUiState
-import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.Staff
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +27,6 @@ import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 @HiltViewModel
@@ -169,6 +165,6 @@ class ShiftScheduleViewModel @Inject constructor(
         shiftScheduleCalendarInteractor.setSelectCalendarView(view)
     }
 
-    private fun date() = GregorianCalendar
+    private fun date() = Calendar
         .getInstance(TimeZone.getTimeZone("GMT+3")).apply { firstDayOfWeek = 2 }
 }

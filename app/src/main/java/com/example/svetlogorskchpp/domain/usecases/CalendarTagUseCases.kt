@@ -1,7 +1,10 @@
 package com.example.svetlogorskchpp.domain.usecases
 
 import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseCases
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
+import java.util.Calendar
+import java.util.Date
 import javax.inject.Inject
 
 class CalendarTagUseCases @Inject constructor() {
@@ -11,7 +14,7 @@ class CalendarTagUseCases @Inject constructor() {
         calendarNoteTags: List<CalendarNoteTag>,
     ): List<CalendarFullDayModel> {
         val result = mutableListOf<CalendarFullDayModel>()
-        val noteTags = calendarNoteTags.toMutableList()
+        val noteTags = calendarNoteTags.toMutableList().iterator()
 
         calendarFullDayModels.forEach { day ->
             var isTag = false
@@ -20,7 +23,7 @@ class CalendarTagUseCases @Inject constructor() {
                     val newDay = day.copy(
                         calendarNoteTag = tag
                     )
-                    noteTags.remove(tag)
+                   // noteTags.remove(tag)
                     result.add(newDay)
                     isTag = true
                     continue
@@ -31,3 +34,4 @@ class CalendarTagUseCases @Inject constructor() {
         return result
     }
 }
+

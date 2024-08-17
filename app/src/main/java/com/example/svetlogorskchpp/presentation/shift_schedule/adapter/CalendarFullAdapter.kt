@@ -69,6 +69,9 @@ class CalendarFullAdapter(
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
+                if (calendarDateModel.calendarNoteTag?.isTechnical != null) {
+                    textDayShift.background = itemView.context.getDrawable(R.color.orange_zero_vision)
+                }
                 itemView.setOnClickListener {
                     onClick(calendarDateModel)
                 }

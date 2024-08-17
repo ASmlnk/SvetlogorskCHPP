@@ -33,4 +33,10 @@ class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
         return sdf.format(calendar.time)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    override fun dateToStringFormatDDMMMMYYYY(date: Date): String {
+        val sdf = SimpleDateFormat("dd MMMM yyyy")
+        return sdf.format(date)
+    }
+
 }

@@ -24,6 +24,6 @@ interface CalendarNoteTagDao {
     @Query("SELECT * FROM calendar_note_tags WHERE date = :date LiMIT 1")
     fun getTagsByDate (date: Date): Flow<CalendarNoteTagEntity?>
 
-    @Query ("DELETE FROM calendar_note_tags WHERE date = :date")
-    suspend fun deleteCalendarTag(date: Date)
+    @Delete//@Query ("DELETE FROM calendar_note_tags WHERE date = :date")
+    suspend fun deleteCalendarTag(calendarNoteTagEntity: CalendarNoteTagEntity)
 }

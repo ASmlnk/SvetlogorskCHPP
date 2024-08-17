@@ -6,7 +6,6 @@ import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseC
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.Calendar
-import java.util.Date
 import javax.inject.Inject
 
 class CalendarNoteTagUseCasesImpl @Inject constructor(
@@ -32,6 +31,6 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
         ).map { calendarNoteTagEntity ->
             calendarNoteTagEntity?.toCalendarNoteTag()  }
 
-    override suspend fun deleteCalendarTag(date: Date) =
-        calendarNoteTagRepository.deleteCalendarTag(date)
+    override suspend fun deleteCalendarTag(calendarNoteTagEntity:CalendarNoteTag) =
+        calendarNoteTagRepository.deleteCalendarTag(calendarNoteTagEntity.toCalendarNoteTagEntity())
 }

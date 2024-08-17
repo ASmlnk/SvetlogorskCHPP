@@ -17,17 +17,13 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
 import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.CalendarFullAdapter
-import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.adapter.ItemOffsetDecoration
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.AdapterUiState
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
-import com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.model.JobTitlePersonal
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.Calendar
-import java.util.Date
 
 @AndroidEntryPoint
 class ShiftScheduleFragment : Fragment() {
@@ -91,7 +87,6 @@ class ShiftScheduleFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
-        val list = emptyList<CalendarFullDayModel>()
         val itemDecoration = ItemOffsetDecoration(requireContext())
         adapter = CalendarFullAdapter {calendarFullDateModel ->
             val navigateAddNoteArgs = NavigateAddNoteArgs(

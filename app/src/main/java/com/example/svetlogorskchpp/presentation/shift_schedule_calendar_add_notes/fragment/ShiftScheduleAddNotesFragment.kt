@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
@@ -13,6 +16,8 @@ import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBind
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -53,6 +58,15 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             buttonShift3.text = getString(R.string.shift,args.navigateAddNoteArgs.nextNightShift.nameApp)
             cbTechnical.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.insertIsTechnical(isChecked)
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.calendarNoteTagState.collect { noteUiState ->
+                    binding.apply {
+                        cbTechnical.isChecked = noteUiState.calendarNoteTag.isTechnical
+                    }
+                }
             }
         }
     }
