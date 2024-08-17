@@ -26,11 +26,11 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
     override suspend fun insertTag(tagCalendarNote: CalendarNoteTag) =
         calendarNoteTagRepository.insertTag(tagCalendarNote.toCalendarNoteTagEntity())
 
-    override fun getTagsByDate(date: Calendar): Flow<CalendarNoteTag> =
+    override fun getTagsByDate(date: Calendar): Flow<CalendarNoteTag?> =
         calendarNoteTagRepository.getTagsByDate(
             calendarDateUseCases.calendarToDateYMD(date)
         ).map { calendarNoteTagEntity ->
-            calendarNoteTagEntity.toCalendarNoteTag() }
+            calendarNoteTagEntity?.toCalendarNoteTag()  }
 
     override suspend fun deleteCalendarTag(date: Date) =
         calendarNoteTagRepository.deleteCalendarTag(date)

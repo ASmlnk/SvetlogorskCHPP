@@ -7,7 +7,7 @@ import java.util.Date
 
 interface CalendarNoteTagUseCases {
     fun calendarNoteTagStream(month: Calendar): Flow<List<CalendarNoteTag>>
-    fun getTagsByDate(date: Calendar): Flow<CalendarNoteTag>
+    fun getTagsByDate(date: Calendar): Flow<CalendarNoteTag?>
     suspend fun insertTag(tagCalendarNote: CalendarNoteTag)
     suspend fun deleteCalendarTag(date: Date)
 }

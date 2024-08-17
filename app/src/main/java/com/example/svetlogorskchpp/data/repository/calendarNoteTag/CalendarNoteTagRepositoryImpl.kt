@@ -12,7 +12,7 @@ class CalendarNoteTagRepositoryImpl @Inject constructor(private val calendarNote
     override suspend fun insertTag(tagCalendarNote: CalendarNoteTagEntity) =
         calendarNoteTagDao.insertTag(tagCalendarNote)
 
-    override fun getTagsByDate(date: Date): Flow<CalendarNoteTagEntity> =
+    override fun getTagsByDate(date: Date): Flow<CalendarNoteTagEntity?> =
         calendarNoteTagDao.getTagsByDate(date)
 
     override fun getTagsByMonth(month: Date): Flow<List<CalendarNoteTagEntity>> =

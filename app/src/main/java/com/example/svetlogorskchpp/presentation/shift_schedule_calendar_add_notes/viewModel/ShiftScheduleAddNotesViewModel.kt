@@ -32,25 +32,20 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     private val _dateStateFlow: MutableStateFlow<Calendar> = MutableStateFlow(toCalendar(date))
 
-    private val _calendarNoteTagState: MutableStateFlow<NoteUiState>  = MutableStateFlow(NoteUiState(calendarNoteTag = null))
+    private val _calendarNoteTagState  = MutableStateFlow(CalendarNoteTag(
+        date = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
+        month = calendarDateUseCases.calendarToDateYM(_dateStateFlow.value),
+        isTechnical = false
+    ))
 
-    private val _calendarNoteTagStream: StateFlow<CalendarNoteTag> =
+    private val _calendarNoteTagStream =
         calendarNoteTagUseCases.getTagsByDate(_dateStateFlow.value)
-            .stateIn(
-                viewModelScope, SharingStarted.Lazily, CalendarNoteTag(
-                    date = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
-                    month = calendarDateUseCases.calendarToDateYM(_dateStateFlow.value),
-                    isTechnical = false
-                )
-            )
+
     init {
         viewModelScope.launch {
             _calendarNoteTagStream.collect { calendarNoteTag ->
-                _calendarNoteTagState.update { old ->
-                    old.copy(
-                        calendarNoteTag = calendarNoteTag
-                    )
-                }
+                calendarNoteTag?.let {  _calendarNoteTagState.update { calendarNoteTag} }
+
             }
         }
 
@@ -60,14 +55,14 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     fun insertIsTechnical(isTechnical: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val tag = _calendarNoteTagStream.value.copy(isTechnical = isTechnical)
+            val tag = _calendarNoteTagState.value.copy(isTechnical = isTechnical)
             calendarNoteTagUseCases.insertTag(tag)
         }
     }
 
     fun deleteNoteTag() {
-        val value = _calendarNoteTagStream.value
-        if (!_calendarNoteTagStream.value.isNotes && !_calendarNoteTagStream.value.isTechnical) {
+        val value = _calendarNoteTagState.value
+        if (!_calendarNoteTagState.value.isNotes && !_calendarNoteTagState.value.isTechnical) {
             viewModelScope.launch(Dispatchers.IO) {
                 calendarNoteTagUseCases.deleteCalendarTag(value.date)
             }
