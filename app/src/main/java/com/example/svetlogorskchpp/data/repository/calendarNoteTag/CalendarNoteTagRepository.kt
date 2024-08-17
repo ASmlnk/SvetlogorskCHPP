@@ -7,5 +7,6 @@ import java.util.Date
 interface CalendarNoteTagRepository {
     suspend fun insertTag(tagCalendarNote: CalendarNoteTagEntity)
     fun getTagsByMonth(month: Date): Flow<List<CalendarNoteTagEntity>>
-    suspend fun deleteCalendarTag(tagCalendarNote: CalendarNoteTagEntity)
+    suspend fun deleteCalendarTag(date: Date)
+    fun getTagsByDate(date: Date): Flow<CalendarNoteTagEntity>
 }

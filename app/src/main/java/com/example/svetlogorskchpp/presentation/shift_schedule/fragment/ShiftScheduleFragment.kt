@@ -98,8 +98,7 @@ class ShiftScheduleFragment : Fragment() {
                 date = calendarFullDateModel.data.time.time,
                 prevNightShift = calendarFullDateModel.prevNightShift,
                 dayShift = calendarFullDateModel.dayShift,
-                nextNightShift = calendarFullDateModel.nextNightShift,
-                idNoteTag = calendarFullDateModel.calendarNoteTag?.id?:-1
+                nextNightShift = calendarFullDateModel.nextNightShift
             )
             val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(navigateAddNoteArgs)
             findNavController().navigate(action)

@@ -30,8 +30,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
     private val viewModel: ShiftScheduleAddNotesViewModel by viewModels {
         ShiftScheduleAddNotesViewModel.providesFactory(
             assistedFactory = viewModelFactory,
-            date = args.navigateAddNoteArgs.date,
-            idNote = args.navigateAddNoteArgs.idNoteTag
+            date = args.navigateAddNoteArgs.date
         )
     }
 
@@ -53,16 +52,14 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             buttonShift2.text = getString(R.string.shift,args.navigateAddNoteArgs.dayShift.nameApp)
             buttonShift3.text = getString(R.string.shift,args.navigateAddNoteArgs.nextNightShift.nameApp)
             cbTechnical.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    // repTagRepository.insertTag(CalendarNoteTagEntity())
-
-                }
+                viewModel.insertIsTechnical(isChecked)
             }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.deleteNoteTag()
         _binding = null
     }
 

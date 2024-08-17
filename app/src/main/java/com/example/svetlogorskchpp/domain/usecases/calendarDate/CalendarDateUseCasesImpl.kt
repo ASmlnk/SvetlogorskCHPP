@@ -13,7 +13,8 @@ class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val date = Calendar.getInstance()
-        date.set(year,month,day)
+        date.set(year,month,day, 0, 0, 0)
+        date.set(Calendar.MILLISECOND, 0)
         return date.time
     }
 
@@ -21,7 +22,8 @@ class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val date = Calendar.getInstance()
-        date.set(year,month, 0)
+        date.set(year,month, 1, 0, 0, 0)
+        date.set(Calendar.MILLISECOND, 0)
         return date.time
     }
 

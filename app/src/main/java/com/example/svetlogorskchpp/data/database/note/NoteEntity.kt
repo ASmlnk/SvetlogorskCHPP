@@ -10,8 +10,8 @@ import java.util.Date
     tableName = "notes",
     foreignKeys = [ForeignKey(
         entity = CalendarNoteTagEntity::class,
-        parentColumns = ["id"],
-        childColumns = ["tagId"],
+        parentColumns = ["date"],
+        childColumns = ["tagDate"],
         onDelete = ForeignKey.CASCADE
     )]
 )
@@ -19,7 +19,7 @@ import java.util.Date
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val tagId: Long,        //авязь с CalendarTag
+    val tagDate: Date,        //авязь с CalendarTag
     val dateNotes: Date,        //"YYYY-MM-DD HH:mm"
     val isTimeNotes: Boolean = false,
     val content: String,
