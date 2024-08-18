@@ -65,8 +65,8 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                 viewModel.insertIsTechnical(isChecked)
             }
             ivSaveNotes.setOnClickListener {
-                viewModel.insertNote(content = etNotesText.text.toString(), isTimeNote = false)
-                etNotesText
+                viewModel.insertNote(content = etNotesText.text.toString())
+                etNotesText.setText("")
             }
         }
         return binding.root

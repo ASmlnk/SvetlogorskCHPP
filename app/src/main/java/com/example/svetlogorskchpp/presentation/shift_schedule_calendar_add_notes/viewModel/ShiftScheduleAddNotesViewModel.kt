@@ -30,6 +30,8 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
     private val _dateStateFlow: MutableStateFlow<Calendar> = MutableStateFlow(toCalendar(date))
+    val dateStateFlow: StateFlow<Calendar>
+        get() = _dateStateFlow.asStateFlow()
 
     private val calendarNoteTag = CalendarNoteTag(
         date = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
@@ -74,13 +76,20 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         }
     }
 
-    fun insertNote(content: String, isTimeNote: Boolean) {
+    fun insertNote(content: String) {
         viewModelScope.launch (Dispatchers.IO) {
             val note = calendarNote.copy(
-                isTimeNotes = isTimeNote,
+                dateNotes = _calendarNoteUiState.value.timeNote?: _dateStateFlow.value,
+                isTimeNotes = _calendarNoteUiState.value.isTimeNote,
                 content = content
             )
             calendarNoteUseCases.insertNote(note)
+            _calendarNoteUiState.update { oldState ->
+                oldState.copy(
+                    isTimeNote = false,
+                    timeNote = null
+                )
+            }
         }
     }
 
@@ -110,7 +119,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     }
 
     fun calendarDateActual(): Calendar {
-        return _dateStateFlow.value
+        return dateStateFlow.value
     }
 
     fun viewTime(calendar: Calendar) {
