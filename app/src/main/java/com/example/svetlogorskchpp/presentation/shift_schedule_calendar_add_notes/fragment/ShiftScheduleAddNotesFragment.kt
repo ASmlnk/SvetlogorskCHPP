@@ -1,9 +1,12 @@
 package com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.fragment
 
+import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +21,9 @@ import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_note
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.sql.Time
+import java.text.SimpleDateFormat
+import java.util.Calendar
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -66,15 +72,40 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.apply {
+            ivNotesAddTime.setOnClickListener {
+                val cal = viewModel.calendarDateActual()
+                val timeSetListener =
+                    TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                        cal.set(Calendar.HOUR_OF_DAY, hour)
+                        cal.set(Calendar.MINUTE, minute)
+                        viewModel.viewTime(cal)
+                    }
+                TimePickerDialog(
+                    requireContext(),
+                    timeSetListener,
+                    cal.get(Calendar.HOUR_OF_DAY),
+                    cal.get(Calendar.MINUTE),
+                    true
+                ).show()
+            }
+        }
 
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.calendarNoteStream.collect {
-                    binding.tvTest.text = it.toString()
+                viewModel.calendarNoteUiState.collect { calendarNoteUi ->
+                    binding.apply {
+                        // tvTest.text = it.toString()
+                        calendarNoteUi.timeNote?.let {
+                            tvTimeNotes.text = SimpleDateFormat("HH:mm").format(it.time)
+                        }
+                        tvTimeNotes.isVisible = calendarNoteUi.isTimeNote
+                    }
                 }
             }
         }

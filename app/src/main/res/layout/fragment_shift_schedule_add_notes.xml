@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/barkentina"
-        android:text="21:44"
+        android:visibility="invisible"
         android:textColor="@color/name_devices_appbar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/etNotesText"

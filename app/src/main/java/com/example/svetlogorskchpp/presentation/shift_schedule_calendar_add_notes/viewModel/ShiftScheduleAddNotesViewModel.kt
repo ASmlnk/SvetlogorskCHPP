@@ -43,13 +43,14 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         content = ""
     )
 
-    private val _calendarNoteTagState = MutableStateFlow(
+    private val _calendarNoteUiState = MutableStateFlow(
         NoteUiState(
-            calendarNoteTag = calendarNoteTag
+            calendarNoteTag = calendarNoteTag,
+            isTimeNote = false
         )
     )
-    val calendarNoteTagState: StateFlow<NoteUiState>
-        get() = _calendarNoteTagState.asStateFlow()
+    val calendarNoteUiState: StateFlow<NoteUiState>
+        get() = _calendarNoteUiState.asStateFlow()
 
     val calendarNoteStream = calendarNoteUseCases.getNotesByTagId(tagDate = _dateStateFlow.value)
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
@@ -63,7 +64,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         viewModelScope.launch {
             _calendarNoteTagStream.collect { calendarNoteTag ->
                 calendarNoteTag?.let {
-                    _calendarNoteTagState.update { old ->
+                    _calendarNoteUiState.update { old ->
                         old.copy(
                             calendarNoteTag = it
                         )
@@ -91,21 +92,34 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     fun insertIsTechnical(isTechnical: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val tag = _calendarNoteTagState.value.calendarNoteTag.copy(isTechnical = isTechnical)
+            val tag = _calendarNoteUiState.value.calendarNoteTag.copy(isTechnical = isTechnical)
             calendarNoteTagUseCases.insertTag(tag)
         }
     }
 
     fun deleteNoteTag() {
-        if (!_calendarNoteTagState.value.calendarNoteTag.isNotes && !_calendarNoteTagState.value.calendarNoteTag.isTechnical) {
+        if (!_calendarNoteUiState.value.calendarNoteTag.isNotes && !_calendarNoteUiState.value.calendarNoteTag.isTechnical) {
             viewModelScope.launch {
-                calendarNoteTagUseCases.deleteCalendarTag(_calendarNoteTagState.value.calendarNoteTag)
+                calendarNoteTagUseCases.deleteCalendarTag(_calendarNoteUiState.value.calendarNoteTag)
             }
         }
     }
 
     fun calendarDate(): String {
         return calendarDateUseCases.calendarToStringFormatDDMMMMYYYY(_dateStateFlow.value)
+    }
+
+    fun calendarDateActual(): Calendar {
+        return _dateStateFlow.value
+    }
+
+    fun viewTime(calendar: Calendar) {
+        _calendarNoteUiState.update { oldState ->
+            oldState.copy(
+                timeNote = calendar,
+                isTimeNote = true
+            )
+        }
     }
 
     private fun toCalendar(millis: Long): Calendar {
