@@ -45,36 +45,31 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentShiftScheduleAddNotesBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            tvDate.text = viewModel.calendarDate()
+            buttonShift1.text =
+                getString(R.string.shift, args.navigateAddNoteArgs.prevNightShift.nameApp)
+            buttonShift2.text = getString(R.string.shift, args.navigateAddNoteArgs.dayShift.nameApp)
+            buttonShift3.text =
+                getString(R.string.shift, args.navigateAddNoteArgs.nextNightShift.nameApp)
+            cbTechnical.isChecked = args.navigateAddNoteArgs.isTechnical
+
+            cbTechnical.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.insertIsTechnical(isChecked)
+            }
+            ivSaveNotes.setOnClickListener {
+                viewModel.insertNote(content = etNotesText.text.toString(), isTimeNote = false)
+                etNotesText
+            }
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            tvDate.text = viewModel.calendarDate()
-            buttonShift1.text = getString(R.string.shift, args.navigateAddNoteArgs.prevNightShift.nameApp)
-            buttonShift2.text = getString(R.string.shift,args.navigateAddNoteArgs.dayShift.nameApp)
-            buttonShift3.text = getString(R.string.shift,args.navigateAddNoteArgs.nextNightShift.nameApp)
 
-            cbTechnical.setOnCheckedChangeListener { _, isChecked ->
-                viewModel.insertIsTechnical(isChecked)
-            }
-            ivSaveNotes.setOnClickListener {
-                viewModel.insertNote(content = etNotesText.text.toString(), isTimeNote = false )
-                etNotesText
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.calendarNoteTagState.collect { noteUiState ->
-                    binding.apply {
-                        cbTechnical.isChecked = noteUiState.calendarNoteTag.isTechnical
-                    }
-                }
-            }
-        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

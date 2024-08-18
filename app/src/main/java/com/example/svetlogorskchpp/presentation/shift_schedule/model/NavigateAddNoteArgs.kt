@@ -13,4 +13,5 @@ data class NavigateAddNoteArgs(
     val prevNightShift: Shift,
     val dayShift: Shift,
     val nextNightShift: Shift,
+    val isTechnical: Boolean
 ): Parcelable
