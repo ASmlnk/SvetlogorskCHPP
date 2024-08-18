@@ -17,6 +17,7 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBinding
 import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
+import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
 import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -37,6 +38,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ShiftScheduleAddNotesViewModel.ShiftShiftScheduleAddNotesViewModelFactory
+    @Inject lateinit var adapter: NoteAdapter
 
     private val viewModel: ShiftScheduleAddNotesViewModel by viewModels {
         ShiftScheduleAddNotesViewModel.providesFactory(
@@ -68,6 +70,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                 viewModel.insertNote(content = etNotesText.text.toString())
                 etNotesText.setText("")
             }
+            recyclerViewNotes.adapter = adapter
         }
         return binding.root
     }
@@ -80,7 +83,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             ivNotesAddTime.setOnClickListener {
                 val cal = viewModel.calendarDateActual()
                 val timeSetListener =
-                    TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+                    TimePickerDialog.OnTimeSetListener { _, hour, minute ->
                         cal.set(Calendar.HOUR_OF_DAY, hour)
                         cal.set(Calendar.MINUTE, minute)
                         viewModel.viewTime(cal)
@@ -100,7 +103,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.calendarNoteUiState.collect { calendarNoteUi ->
                     binding.apply {
-                        // tvTest.text = it.toString()
+                        adapter.submitList(calendarNoteUi.notes)
                         calendarNoteUi.timeNote?.let {
                             tvTimeNotes.text = SimpleDateFormat("HH:mm").format(it.time)
                         }
