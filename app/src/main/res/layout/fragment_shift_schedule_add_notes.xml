@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shift_schedule_edit_composition_background">
@@ -20,16 +21,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/free_icon_moon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvShift"
+        app:layout_constraintEnd_toStartOf="@+id/tvShift"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvShift" />
+
     <TextView
         android:id="@+id/tvShift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="00:00-08:00"
         android:textColor="@color/calendar_background"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonShift1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonShift1" />
@@ -39,22 +52,83 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text=" Смена А"
         android:textColor="@color/calendar_background"
         app:layout_constraintStart_toEndOf="@+id/tvShift"
         app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
+    <ImageView
+        android:id="@+id/ivShift1"
+        android:layout_width="64dp"
+        android:layout_height="36dp"
+        android:background="@drawable/shift_schedule_compound_shift_inspection"
+        android:padding="4dp"
+        android:src="@drawable/baseline_checklist_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonShift1"
+        app:layout_constraintTop_toTopOf="@+id/buttonShift1" />
+
+    <ImageView
+        android:id="@+id/ivShift2"
+        android:layout_width="64dp"
+        android:layout_height="36dp"
+        android:background="@drawable/shift_schedule_compound_shift_inspection"
+        android:padding="4dp"
+        android:src="@drawable/baseline_checklist_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonShift1"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShift1" />
+
+    <ImageView
+        android:id="@+id/ivShift3"
+        android:layout_width="64dp"
+        android:layout_height="36dp"
+        android:background="@drawable/shift_schedule_compound_shift_inspection"
+        android:padding="4dp"
+        android:src="@drawable/baseline_checklist_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonShift3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/buttonShift1"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShift2"
+        app:layout_constraintVertical_bias="0.388" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/free_icon_moon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvShift3"
+        app:layout_constraintEnd_toStartOf="@+id/tvShift3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvShift3" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/free_icon_sun"
+        app:layout_constraintBottom_toBottomOf="@+id/tvShift2"
+        app:layout_constraintEnd_toStartOf="@+id/tvShift2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvShift2" />
+
     <TextView
         android:id="@+id/tvShift2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="08:00-20:00"
         android:textColor="@color/calendar_background"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonShift2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonShift2" />
@@ -73,12 +147,12 @@
         android:id="@+id/tvShift3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/barkentina"
         android:gravity="center"
         android:text="20:00-00:00"
         android:textColor="@color/calendar_background"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonShift3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonShift3" />
@@ -101,79 +175,119 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/actor"
         android:text="   Техническая учеба"
-
         android:textColor="@color/name_devices_appbar"
         android:textSize="20sp"
         android:theme="@style/ShiftScheduleTechicalCheckBoxStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonShift3" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etNotesText"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/shift_schedule_compound_shift_edit_background"
-        android:gravity="top"
-        android:padding="6dp"
-        android:textColor="@color/calendar_background"
-        android:textCursorDrawable="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivNotesAddTime"
-        app:layout_constraintTop_toBottomOf="@+id/cbTechnical" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_edit_note"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbTechnical"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivNotesAddTime"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/shift_schedule_notes_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etNotesText" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNotesText"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="56dp"
+            android:background="@drawable/shift_schedule_compound_shift_edit_background"
+            android:gravity="top"
+            android:padding="6dp"
+            android:textColor="@color/calendar_background"
+            android:textCursorDrawable="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivNotesAddTime"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTimeNotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/barkentina"
-        android:visibility="invisible"
-        android:textColor="@color/name_devices_appbar"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
-        app:layout_constraintEnd_toEndOf="@+id/ivNotesAddTime"
-        app:layout_constraintStart_toStartOf="@+id/ivNotesAddTime" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivNotesAddTime"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/shift_schedule_notes_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etNotesText" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivSaveNotes"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/shift_schedule_add_notes_2"
-        app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etNotesText" />
+        <TextView
+            android:id="@+id/tvTimeNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/barkentina"
+            android:visibility="invisible"
+            android:textColor="@color/name_devices_appbar"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
+            app:layout_constraintEnd_toEndOf="@+id/ivNotesAddTime"
+            app:layout_constraintStart_toStartOf="@+id/ivNotesAddTime" />
 
-    <TextView
-        android:id="@+id/tvTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivSaveNotes" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivSaveNotes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/shift_schedule_add_notes_2"
+            app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etNotesText" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/etNotesText" />
+        app:layout_constraintTop_toBottomOf="@+id/constraint_edit_note" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingAddNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/fab_add_note_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:fabSize="normal"
+        app:borderWidth="4dp"
+        app:maxImageSize="32dp"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/shift_schedule_add_notes_2"
+        app:tint="@color/text_input_assembly" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingCloseEditNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/fab_add_note_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:fabSize="normal"
+        app:borderWidth="4dp"
+        app:maxImageSize="32dp"
+        android:visibility="invisible"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_close_24"
+        app:tint="@color/text_input_assembly" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

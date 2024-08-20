@@ -9,6 +9,8 @@ import com.example.svetlogorskchpp.domain.model.Note
 import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
+import com.example.svetlogorskchpp.domain.usecases.inspectionSchedule.InspectionUsesCases
+import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.model.NoteUiState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -23,11 +25,14 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import java.util.GregorianCalendar
+import java.util.TimeZone
 
 class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     private val calendarDateUseCases: CalendarDateUseCases,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
     private val calendarNoteUseCases: CalendarNoteUseCases,
+    private val firestoreRepository: FirestoreRepository,
     @Assisted private val date: Long,
 ) : ViewModel() {
 
@@ -56,15 +61,17 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     val calendarNoteUiState: StateFlow<NoteUiState>
         get() = _calendarNoteUiState.asStateFlow()
 
-    val calendarNoteStream = calendarNoteUseCases.getNotesByTagId(tagDate = _dateStateFlow.value)
+    private val calendarNoteStream = calendarNoteUseCases.getNotesByTagId(tagDate = _dateStateFlow.value)
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
-
 
 
     private val _calendarNoteTagStream =
         calendarNoteTagUseCases.getTagsByDate(_dateStateFlow.value)
 
     init {
+        viewModelScope.launch {
+            firestoreRepository.getAllInspection(date = date())
+        }
         viewModelScope.launch {
             _calendarNoteTagStream.collect { calendarNoteTag ->
                 calendarNoteTag?.let {
@@ -96,6 +103,12 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
             )
             calendarNoteUseCases.insertNote(note)
             insertIsNotes(isNotes = true)
+            resetTimeNote()
+        }
+    }
+
+    fun resetTimeNote() {
+        viewModelScope.launch {
             _calendarNoteUiState.update { oldState ->
                 oldState.copy(
                     isTimeNote = false,
@@ -157,6 +170,13 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         val cal = Calendar.getInstance()
         cal.timeInMillis = millis
         return cal
+    }
+
+    fun date(): String {
+        val calendar = GregorianCalendar
+            .getInstance(TimeZone.getTimeZone("GMT+3")).apply { firstDayOfWeek = 2 }
+
+        return calendar.timeInMillis.toString()
     }
 
     @AssistedFactory

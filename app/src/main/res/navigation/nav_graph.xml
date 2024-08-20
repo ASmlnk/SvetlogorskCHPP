@@ -78,7 +78,25 @@
         <argument
             android:name="navigateAddNoteArgs"
             app:argType="com.example.svetlogorskchpp.presentation.shift_schedule.model.NavigateAddNoteArgs" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleStaffDialog"
+            app:destination="@id/shiftScheduleStaffDialog" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_dialogCalendarDateFragment"
+            app:destination="@id/dialogCalendarDateFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/dialogCalendarDateFragment"
+        android:name="com.example.svetlogorskchpp.inspectionSchedule.DialogCalendarDateFragment"
+        android:label="DialogCalendarDateFragment"
+        tools:layout="@layout/dialog_inspection_schedule_calendar">
+    <argument
+        android:name="workingShift"
+        app:argType="string" />
+    <argument
+        android:name="date"
+        app:argType="java.util.Date" />
+    </dialog>
 
 
 </navigation>

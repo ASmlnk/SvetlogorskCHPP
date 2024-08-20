@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.model.firebase
 import android.content.Context
 import android.util.Log
 import com.example.svetlogorskchpp.SharedPreferencesManager
+import com.example.svetlogorskchpp.data.repository.inspection.InspectionRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.ChecklistInspection
 import com.example.svetlogorskchpp.model.ElectricalAssembly
 import com.example.svetlogorskchpp.model.ElectricalAssemblyFirebase
@@ -21,10 +22,12 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.GregorianCalendar
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FirestoreRepository @Inject constructor(
-     val remoteDB: FirebaseFirestore
-) {
+    val remoteDB: FirebaseFirestore
+) : InspectionRepository {
 
     //val remoteDB = FirebaseFirestore.getInstance()
     private val _listInspectionScheduleStateFlow = MutableStateFlow<List<Inspection>>(emptyList())
@@ -68,7 +71,7 @@ class FirestoreRepository @Inject constructor(
                     list.add(checklistInspection)
                 }
             }
-            when(nameCategory) {
+            when (nameCategory) {
                 InSc.INSPECTION.get -> _listChecklistInspectionStateFlow.value = list
                 InSc.VALVE.get -> _listValveStateFlow.value = list
             }
@@ -83,7 +86,7 @@ class FirestoreRepository @Inject constructor(
         _listValveStateFlow.value = emptyList()
     }
 
-    suspend fun getAllInspection(date: String) {
+    override suspend fun getAllInspection(date: String) {
         withContext(Dispatchers.IO) {
             val isUpdate = getUpdateDateInspectionSchedule()?.let {
                 GregorianCalendar()

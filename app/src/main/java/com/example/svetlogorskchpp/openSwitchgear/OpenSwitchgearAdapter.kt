@@ -62,7 +62,6 @@ class OpenSwitchgearAdapter():
                     textZemlia.text = item.earthProtection
                     textFaznai.text = item.phaseProtection
                 }
-
             }
         }
 

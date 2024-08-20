@@ -9,6 +9,7 @@ import com.example.svetlogorskchpp.data.database.calendarNoteTag.CalendarNoteTag
 import com.example.svetlogorskchpp.data.database.note.NoteDao
 import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
+import com.example.svetlogorskchpp.data.repository.inspection.InspectionRepository
 import com.example.svetlogorskchpp.data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.data.repository.note.NoteRepositoryImpl
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
@@ -65,5 +66,11 @@ class RepositoryModule {
     fun provideNoteRepository(noteDao: NoteDao): NoteRepository {
         return NoteRepositoryImpl(noteDao)
     }
+
+   // @Provides
+  //  @Singleton
+   // fun provideInspectionRepository(remoteDB: FirebaseFirestore): InspectionRepository {
+   //     return FirestoreRepository (remoteDB)
+   // }
 
 }

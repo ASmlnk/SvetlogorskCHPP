@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.di
 
 import com.example.svetlogorskchpp.data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.data.repository.inspection.InspectionRepository
 import com.example.svetlogorskchpp.data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.data.repository.shiftPersonnel.ShiftPersonalRepository
@@ -20,6 +21,8 @@ import com.example.svetlogorskchpp.domain.usecases.calendarNote.CalendarNoteUseC
 import com.example.svetlogorskchpp.domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
+import com.example.svetlogorskchpp.domain.usecases.inspectionSchedule.InspectionUsesCases
+import com.example.svetlogorskchpp.domain.usecases.inspectionSchedule.InspectionUsesCasesImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -88,6 +91,14 @@ class UseCaseModule {
     ): CalendarNoteTagUseCases {
         return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarDateUseCases)
     }
+
+   // @Provides
+   // @ViewModelScoped
+   // fun provideInspectionUseCases(
+   //     inspectionRepository: InspectionRepository
+   // ): InspectionUsesCases {
+  //      return InspectionUsesCasesImpl(inspectionRepository)
+   // }
 
 
 
