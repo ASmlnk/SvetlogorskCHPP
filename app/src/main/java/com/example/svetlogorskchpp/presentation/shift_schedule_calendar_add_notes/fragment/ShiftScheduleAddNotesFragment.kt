@@ -143,13 +143,13 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         binding.apply {
             ivSaveNotes.setOnClickListener {
                 viewEditNote()
-                etNotesText.setText("")
                 val imm =
                     requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
                 lifecycleScope.launch {
                     delay(500)
                     viewModel.insertNote(content = etNotesText.text.toString())
+                    etNotesText.setText("")
                 }
             }
 
