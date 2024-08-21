@@ -65,6 +65,7 @@ class ShiftScheduleFragment : Fragment() {
                     binding.apply {
                         isProgressBar(state.calendarList.isEmpty())
                         if (state.calendarList.isNotEmpty()) {
+
                             val adapterState = AdapterUiState(shift = state.selectShift, calendarView = state.calendarView)
                             adapter.setData(state.calendarList, adapterState)
                             binding.apply {
@@ -74,6 +75,7 @@ class ShiftScheduleFragment : Fragment() {
                             }
                             isCheckedChipShift(state.selectShift)
                             isCheckedChipCalendarView(state.calendarView)
+
                         }
                     }
                 }

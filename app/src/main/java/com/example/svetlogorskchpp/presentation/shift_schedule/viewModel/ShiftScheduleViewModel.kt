@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -55,9 +56,13 @@ class ShiftScheduleViewModel @Inject constructor(
 
     private val _calendarAdapterStateFlow = MutableStateFlow(cal)
 
-    private val _calendarNoteTag: StateFlow<List<CalendarNoteTag>> =
-        calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())
-            .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+    private val _calendarNoteTag: MutableStateFlow<List<CalendarNoteTag>> = MutableStateFlow(
+        emptyList()
+    )
+       // calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())            ///////////
+       //     .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+
 
     private val _calendarFullDayShift = shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
         .stateIn(viewModelScope, SharingStarted.Lazily, CalendarFullDayShiftModel())
@@ -79,7 +84,16 @@ class ShiftScheduleViewModel @Inject constructor(
         initialValue = CalendarFullDayShiftModel()
     )
 
+    fun updateTag(){
+        viewModelScope.launch {
+            calendarNoteTagUseCases.calendarNoteTagStream(adapterDate()).collect{ list ->
+                _calendarNoteTag.update { list }
+            }
+        }
+    }
+
     init {
+
         viewModelScope.launch {
             delay(200)
             setUpCalendar()
@@ -107,7 +121,9 @@ class ShiftScheduleViewModel @Inject constructor(
     }
 
     private fun setUpCalendar() {
+
         generateDays()
+
         val calendar = adapterDate()
         val textDateMonth = sdf.format(calendar.time)
         // val monthCalendar = calendar.clone() as Calendar
@@ -129,6 +145,7 @@ class ShiftScheduleViewModel @Inject constructor(
     fun selectDateStart() {
         _calendarAdapterStateFlow.value = cal
         setUpCalendar()
+        //updateTag()
     }
 
     fun selectDate(selectDate: Date) {
@@ -137,23 +154,27 @@ class ShiftScheduleViewModel @Inject constructor(
     }
 
     fun selectNext() {
-        val date = adapterDate()
+        val date = adapterDate().clone() as Calendar
         date.add(Calendar.MONTH, 1)
         _calendarAdapterStateFlow.value = date.time
         setUpCalendar()
+       // updateTag()
     }
 
     fun selectPrevs() {
-        val calendar = adapterDate()
+        val calendar = adapterDate().clone() as Calendar
         calendar.add(Calendar.MONTH, -1)
         _calendarAdapterStateFlow.value = calendar.time
         setUpCalendar()
+       // updateTag()
     }
 
     private fun generateDays() {
-        val monthCalendar = adapterDate()
+        updateTag()
+        val monthCalendar = adapterDate().clone() as Calendar
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
         shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
+
 
     }
 

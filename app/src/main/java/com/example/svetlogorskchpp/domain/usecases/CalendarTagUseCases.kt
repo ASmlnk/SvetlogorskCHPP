@@ -21,5 +21,26 @@ class CalendarTagUseCases @Inject constructor() {
             } ?: day
         }
     }
+       /* val result = mutableListOf<CalendarFullDayModel>()
+        val noteTags = calendarNoteTags.toMutableList()
+
+        calendarFullDayModels.forEach { day ->
+            var isTag = false
+            for (tag in noteTags) {
+                if (day.data.time == tag.date) {
+                    val newDay = day.copy(
+                        calendarNoteTag = tag
+                    )
+                    //noteTags.remove(tag)
+                    result.add(newDay)
+                    isTag = true
+                    continue
+                }
+            }
+            if (!isTag) result.add(day)
+        }
+        return result
+    }*/
+
 }
 
