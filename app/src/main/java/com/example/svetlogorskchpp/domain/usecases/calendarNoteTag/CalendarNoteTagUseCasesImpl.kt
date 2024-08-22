@@ -13,14 +13,12 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarDateUseCases: CalendarDateUseCases,
 ) : CalendarNoteTagUseCases {
 
-    override fun calendarNoteTagStream(month: Calendar) =
+    override suspend fun calendarNoteTagStream(month: Calendar) =
         calendarNoteTagRepository.getTagsByMonth(
             calendarDateUseCases.calendarToDateYM(month)
-        ).map { calendarNoteTagEntitys ->
-            calendarNoteTagEntitys.map {
+        ).map {
                 it.toCalendarNoteTag()
             }
-        }
 
     override suspend fun insertTag(tagCalendarNote: CalendarNoteTag) =
         calendarNoteTagRepository.insertTag(tagCalendarNote.toCalendarNoteTagEntity())

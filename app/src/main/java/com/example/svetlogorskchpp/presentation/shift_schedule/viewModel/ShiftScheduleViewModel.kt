@@ -85,14 +85,24 @@ class ShiftScheduleViewModel @Inject constructor(
     )
 
     fun updateTag(){
+      //  viewModelScope.launch {
+     //       calendarNoteTagUseCases.calendarNoteTagStream(adapterDate()).collect{ list ->
+      //          _calendarNoteTag.update { list }
+      //      }
+      //  }
+
         viewModelScope.launch {
-            calendarNoteTagUseCases.calendarNoteTagStream(adapterDate()).collect{ list ->
-                _calendarNoteTag.update { list }
+            _calendarAdapterStateFlow.collect{
+                val tagNotes= calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())
+                _calendarNoteTag.update { tagNotes }
             }
         }
     }
 
     init {
+
+
+
 
         viewModelScope.launch {
             delay(200)
@@ -170,7 +180,7 @@ class ShiftScheduleViewModel @Inject constructor(
     }
 
     private fun generateDays() {
-        updateTag()
+        //updateTag()
         val monthCalendar = adapterDate().clone() as Calendar
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
         shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)

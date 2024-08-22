@@ -65,6 +65,7 @@ class ShiftScheduleFragment : Fragment() {
                     binding.apply {
                         isProgressBar(state.calendarList.isEmpty())
                         if (state.calendarList.isNotEmpty()) {
+                            viewModel.updateTag()
 
                             val adapterState = AdapterUiState(shift = state.selectShift, calendarView = state.calendarView)
                             adapter.setData(state.calendarList, adapterState)

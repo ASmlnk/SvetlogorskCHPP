@@ -19,7 +19,7 @@ interface CalendarNoteTagDao {
     fun getAllTags(): Flow<List<CalendarNoteTagEntity>>
 
     @Query("SELECT * FROM calendar_note_tags WHERE month = :month")
-    fun getTagsByMonth(month: Date): Flow<List<CalendarNoteTagEntity>>
+    suspend fun getTagsByMonth(month: Date): List<CalendarNoteTagEntity>
 
     @Query("SELECT * FROM calendar_note_tags WHERE date = :date LiMIT 1")
     fun getTagsByDate (date: Date): Flow<CalendarNoteTagEntity?>
