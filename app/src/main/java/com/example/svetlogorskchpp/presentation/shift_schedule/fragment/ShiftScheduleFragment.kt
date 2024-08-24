@@ -53,6 +53,7 @@ class ShiftScheduleFragment : Fragment() {
 
         setUpAdapter()
         setUpClickListener()
+
         return binding.root
     }
 
