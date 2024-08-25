@@ -8,4 +8,10 @@
     <dimen name="single_calendar_margin">6dp</dimen>
     <dimen name="single_calendar_full_margin">1dp</dimen>
     <dimen name="calendar_item_margin">1dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">0dp</dimen>
 </resources>
