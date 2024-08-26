@@ -35,8 +35,7 @@ class MyRemoteViewService: RemoteViewsService() {
         return MyRemoteViewsFactory(this.applicationContext)
     }
 
-   inner class MyRemoteViewsFactory
-       constructor (private val context: Context): RemoteViewsService.RemoteViewsFactory {
+   inner class MyRemoteViewsFactory (private val context: Context): RemoteViewsService.RemoteViewsFactory {
        @Inject lateinit var shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor
 
         override fun onCreate() {

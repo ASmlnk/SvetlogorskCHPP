@@ -41,7 +41,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             val serviceIntent = Intent(context, MyRemoteViewService::class.java)
             serviceIntent.apply {
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                data = Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME))
+               // data = Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME))
             }
 
             val remoteViews = RemoteViews(context.packageName, R.layout.shift_schedule_widget)

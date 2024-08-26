@@ -30,7 +30,8 @@
         </receiver>
 
         <service android:name=".widget.MyRemoteViewService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
 
         <activity
             android:name=".widget.ShiftScheduleWidgetConfigureActivity"
