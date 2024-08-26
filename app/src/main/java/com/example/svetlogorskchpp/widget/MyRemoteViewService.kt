@@ -46,6 +46,7 @@ class MyRemoteViewService: RemoteViewsService() {
             CoroutineScope(Dispatchers.IO).launch {
                 calendarFullDayShift.collect{ list ->
                     updateList(list.calendarFullDayModels)
+                    AppWidgetManager.getInstance(context).notifyAppWidgetViewDataChanged(0, R.id.gridView)
                 }
             }
 
