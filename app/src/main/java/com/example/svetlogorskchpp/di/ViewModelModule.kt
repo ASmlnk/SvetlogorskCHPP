@@ -1,6 +1,9 @@
 package com.example.svetlogorskchpp.di
 
 import com.example.svetlogorskchpp.data.repository.inspection.InspectionRepository
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseCases
 import com.example.svetlogorskchpp.domain.usecases.calendarDate.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.domain.usecases.calendarNote.CalendarNoteUseCases
@@ -31,6 +34,7 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideFirestoryRepository( remoteDB: FirebaseFirestore): FirebaseFirestore
+
 
 
 

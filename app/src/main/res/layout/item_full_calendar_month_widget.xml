@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:layout_margin="1dp"
         android:id="@+id/item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,14 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="3dp"
+            android:layout_margin="2dp"
             android:text="1"
             android:gravity="center"
-            android:textStyle="bold"
             android:paddingTop="2dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="2dp"
             android:textColor="@color/calendar_background"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_height="12dp"
                 android:src="@drawable/arrow_right" />
 
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="A"
                 android:textColor="@color/chip_appbar"
-                android:textSize="10sp" />
+                android:textSize="8sp" />
         </LinearLayout>
 
         <TextView
@@ -63,13 +63,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
             android:alpha="0.5"
             android:gravity="center"
             android:text="B"
             android:textColor="@color/chip_appbar"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:id="@+id/image_nex_night_shift"
@@ -77,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="1dp"
             android:alpha="0.5"
             android:gravity="end"
             android:orientation="horizontal">
@@ -90,11 +88,11 @@
                 android:gravity="center"
                 android:text="C"
                 android:textColor="@color/chip_appbar"
-                android:textSize="10sp" />
+                android:textSize="8sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"
+                android:layout_height="12dp"
                 android:layout_gravity="end"
                 android:src="@drawable/arrow_right" />
         </LinearLayout>

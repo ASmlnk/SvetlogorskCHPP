@@ -28,13 +28,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ServiceScoped
 import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)
 class UseCaseModule {
 
     @Provides
+    @Named("ViewModel")
     @ViewModelScoped
     fun provideShiftScheduleCalendarInteractor(
         generateDaysFullCalendarUseCases: GenerateDaysFullCalendarUseCases,
@@ -49,6 +53,8 @@ class UseCaseModule {
             shiftUseCases
         )
     }
+
+
 
     @Provides
     @ViewModelScoped

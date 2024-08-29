@@ -14,9 +14,11 @@ import com.example.svetlogorskchpp.databinding.ShiftScheduleWidgetConfigureBindi
  * The configuration screen for the [ShiftScheduleWidget] AppWidget.
  */
 class ShiftScheduleWidgetConfigureActivity : Activity() {
-    private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
+  //  private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private lateinit var appWidgetText: EditText
-    private var onClickListener = View.OnClickListener {
+
+
+    /*private var onClickListener = View.OnClickListener {
         val context = this@ShiftScheduleWidgetConfigureActivity
 
         // When the button is clicked, store the string locally
@@ -32,24 +34,35 @@ class ShiftScheduleWidgetConfigureActivity : Activity() {
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         setResult(RESULT_OK, resultValue)
         finish()
-    }
+    }*/
     private lateinit var binding: ShiftScheduleWidgetConfigureBinding
 
     public override fun onCreate(icicle: Bundle?) {
         super.onCreate(icicle)
 
+        val appWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID) ?: run {
+            finish()
+            return
+        }
+
         // Set the result to CANCELED.  This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.
-        setResult(RESULT_CANCELED)
+      //  setResult(RESULT_CANCELED)
 
         binding = ShiftScheduleWidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         appWidgetText = binding.appwidgetText as EditText
-        binding.addButton.setOnClickListener(onClickListener)
+        binding.addButton.setOnClickListener{
+            val resultIntent = Intent().apply {
+                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            }
+            setResult(RESULT_OK, resultIntent)
+            finish()
+        }               //(onClickListener)
 
         // Find the widget id from the intent.
-        val intent = intent
+       /* val intent = intent
         val extras = intent.extras
         if (extras != null) {
             appWidgetId = extras.getInt(
@@ -63,7 +76,7 @@ class ShiftScheduleWidgetConfigureActivity : Activity() {
             return
         }
 
-        appWidgetText.setText(loadTitlePref(this@ShiftScheduleWidgetConfigureActivity, appWidgetId))
+        appWidgetText.setText(loadTitlePref(this@ShiftScheduleWidgetConfigureActivity, appWidgetId))*/
     }
 
 }

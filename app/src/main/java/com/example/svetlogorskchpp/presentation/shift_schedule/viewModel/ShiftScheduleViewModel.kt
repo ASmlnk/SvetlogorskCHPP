@@ -28,11 +28,12 @@ import java.util.Date
 import java.util.GregorianCalendar
 import java.util.TimeZone
 import javax.inject.Inject
+import javax.inject.Named
 
 
 @HiltViewModel
 class ShiftScheduleViewModel @Inject constructor(
-    private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
+    @Named("ViewModel") private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
     private val calendarTagUseCases: CalendarTagUseCases,
 ) : ViewModel() {
