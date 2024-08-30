@@ -78,8 +78,6 @@ class MyRemoteViewService : RemoteViewsService() {
             )
 
         override fun onCreate() {
-
-
             generateDays()
 
             scope.launch {
