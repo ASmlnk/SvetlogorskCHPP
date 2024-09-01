@@ -1,28 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_callendar_day_actual"
     android:padding="16dp">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/baseline_close_widget"/>
+        <TextView
+            android:fontFamily="@font/ru_hero"
+            android:textColor="@color/orange_zero_vision"
+            android:layout_width="match_parent"
+            android:text="Настройки виджета"
+
+            android:textStyle="bold"
+           android:gravity="center"
+            android:textSize="22sp"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:labelFor="@id/appwidget_text"
-        android:text="@string/configure" />
+        android:fontFamily="@font/ru_hero"
+        android:textColor="@color/calendar_background"
+        android:layout_width="wrap_content"
+        android:text="Выбор смены"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
 
-    <EditText
-        android:id="@+id/appwidget_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:textSize="22sp"
+        android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/add_button"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_shift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/add_widget" />
+        android:orientation="vertical"
+        app:selectionRequired="false"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_shift_a"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="А"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_shift_b"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="Б"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_shift_c"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="В"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_shift_d"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="Г"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:fontFamily="@font/ru_hero"
+        android:textColor="@color/calendar_background"
+        android:layout_width="wrap_content"
+        android:text="Вид виджета"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+
+        android:textSize="22sp"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_view_shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+
+        app:selectionRequired="false"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_view_all_shift"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="ВСЕ СМЕНЫ"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            android:layout_margin="4dp"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_view_one_shift"
+            style="@style/ShiftScheduleChipStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ru_hero"
+            android:text="ОДНА СМЕНА"
+            android:layout_margin="4dp"
+            android:textColor="@color/calendar_background"
+            android:textStyle="bold"
+            app:chipBackgroundColor="@color/chip_shif_schedule"
+            app:chipCornerRadius="8dp"
+            app:chipStrokeColor="@color/calendar_background"
+            app:chipStrokeWidth="2dp"
+            app:rippleColor="@color/text_recycle" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/ru_hero"
+        android:textStyle="bold"
+        android:textColor="@color/text_input_assembly"
+        app:backgroundTint="#CF770C"
+        android:layout_gravity="center"
+        android:text="Сохранить настройки виджета"/>
 
 </LinearLayout>

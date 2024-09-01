@@ -9,4 +9,7 @@ interface PreferencesRepository {
 
     val selectCalendarViewShiftSchedule: Flow<String>
     suspend fun setSelectCalendarViewShiftSchedule(view: String)
+
+    val selectShiftScheduleWidget: Flow<String>
+    suspend fun setSelectShiftScheduleWidget(shift: String)
 }

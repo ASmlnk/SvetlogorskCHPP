@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.presentation.shift_schedule.viewModel
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.di.App
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.domain.model.CalendarNoteTag
 import com.example.svetlogorskchpp.domain.usecases.CalendarTagUseCases
@@ -33,7 +34,7 @@ import javax.inject.Named
 
 @HiltViewModel
 class ShiftScheduleViewModel @Inject constructor(
-    @Named("ViewModel") private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
+    @App private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
     private val calendarTagUseCases: CalendarTagUseCases,
 ) : ViewModel() {

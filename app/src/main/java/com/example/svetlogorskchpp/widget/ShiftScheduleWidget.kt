@@ -10,69 +10,130 @@ import android.net.Uri
 import android.os.Build
 import android.widget.RemoteViews
 import com.example.svetlogorskchpp.R
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
+import com.example.svetlogorskchpp.di.Widget
+import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
+import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.TimeZone
+import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in [ShiftScheduleWidgetConfigureActivity]
  */
+@AndroidEntryPoint
 class ShiftScheduleWidget : AppWidgetProvider() {
 
-    private val calendar = Calendar
-        .getInstance(TimeZone.getTimeZone("GMT+3")).apply { firstDayOfWeek = 2 }
+    @Widget
+    @Inject
+    lateinit var shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor
 
-    private val state = MutableStateFlow(calendar)
+    private val APPWIDGET_CONFIGURE = "android.appwidget.action.APPWIDGET_CONFIGURE"
 
-    private val actionUpdate = "UPDATE_ITEM"
+    val calendar = Calendar
+        .getInstance(TimeZone.getTimeZone("GMT+3")).apply {
+            firstDayOfWeek = 2
+        }
+
+    private val scope = CoroutineScope(Dispatchers.Main + Job())
 
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray,
     ) {
-        println(appWidgetIds)
+        generateDays()
+
+        val calendarFullDayShift = shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
+            .stateIn(
+                CoroutineScope(Dispatchers.IO),
+                SharingStarted.Lazily,
+                CalendarFullDayShiftModel()
+            )
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
-
             val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 0 or PendingIntent.FLAG_MUTABLE
             } else {
                 0
             }
 
-            val addMonthIntent = Intent(context, ShiftScheduleWidget::class.java).apply {
-                action = "ACTION_ADD_MONTH"
+            val nextMonthIntent = Intent(context, ShiftScheduleWidget::class.java).apply {
+                action = "ACTION_NEXT_MONTH"
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             }
-            val addMonthPendingIntent = PendingIntent.getBroadcast(context, 0, addMonthIntent,  flag)
-
-            val addIntent = Intent(context, javaClass)
-            addIntent.action = actionUpdate
-
-
-
-            val addPendingIntent = PendingIntent.getBroadcast(context, 0, addIntent, flag)
-            val serviceIntent = Intent(context, MyRemoteViewService::class.java)
-            serviceIntent.apply {
+            val nextMonthPendingIntent =
+                PendingIntent.getBroadcast(context, 0, nextMonthIntent, flag)
+            val prevMonthIntent = Intent(context, ShiftScheduleWidget::class.java).apply {
+                action = "ACTION_PREV_MONTH"
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                putExtra("EXTRA_CURRENT_DATE", calendar.timeInMillis)
-                data = Uri.parse(this.toUri(Intent.URI_INTENT_SCHEME))
             }
+            val prevMonthPendingIntent =
+                PendingIntent.getBroadcast(context, 0, prevMonthIntent, flag)
 
-            val remoteViews = RemoteViews(context.packageName, R.layout.shift_schedule_widget)
+            val intent = Intent(context, ShiftScheduleWidgetConfigureActivity::class.java)
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
 
+            val pendingIntent = PendingIntent.getActivity(
+                context,
+                appWidgetId,
+                intent,
+                flag
+            )
+            val remoteViews =
+                RemoteViews(context.packageName, R.layout.shift_schedule_widget)
             remoteViews.apply {
-                setTextViewText(R.id.tv_date_month, textDateMonth(calendar) )
-                setRemoteAdapter( R.id.gridView, serviceIntent)
-                setOnClickPendingIntent(R.id.iv_calendar_next, addMonthPendingIntent)
+                setOnClickPendingIntent(
+                    R.id.iv_calendar_previous,
+                    prevMonthPendingIntent
+                )
+                setOnClickPendingIntent(
+                    R.id.button_setting,
+                    pendingIntent
+                )
+            }
+           // intent.setAction(APPWIDGET_CONFIGURE + appWidgetId)
+
+            scope.launch {
+                calendarFullDayShift.collect { calendarFullDayShiftModel ->
+                    println(appWidgetId)
+                    if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
+
+                        val gson = Gson()
+                        val json = gson.toJson(calendarFullDayShiftModel)
+
+                        val serviceIntent = Intent(context, MyRemoteViewService::class.java)
+                        serviceIntent.apply {
+                            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                            putExtra("EXTRA_CURRENT_DATE", calendar.timeInMillis)
+
+                            putExtra("CALENDAR_FULL_DAY_SHIFT", json)
+                            data = Uri.parse(this.toUri(Intent.URI_INTENT_SCHEME))
+                        }
+                        println(serviceIntent)
+
+                        remoteViews.apply {
+                            setTextViewText(R.id.tv_date_month, textDateMonth(calendar))
+                            setRemoteAdapter(R.id.gridView, serviceIntent)
+                            setOnClickPendingIntent(R.id.iv_calendar_next, nextMonthPendingIntent)
+
+                        }
+                        appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
+                    }
+                }
             }
 
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
         }
     }
 
@@ -83,37 +144,25 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             AppWidgetManager.INVALID_APPWIDGET_ID
         ) ?: return
 
-
-
-        if (intent.action == "ACTION_ADD_MONTH") {
-            updateDate(context, appWidgetId, 1)
+        if (intent.action == "ACTION_NEXT_MONTH") {
+            // updateDate(context, appWidgetId, 1)
+            monthOffset++
+            calendar.apply {
+                add(Calendar.MONTH, monthOffset)
+            }
+        } else if (intent.action == "ACTION_PREV_MONTH") {
+            monthOffset--
+            // generateDays()
+            calendar.apply {
+                add(Calendar.MONTH, monthOffset)
+            }
+        } else {
 
         }
-    }
-
-    private fun updateDate(contextRecive: Context, appWidgetId: Int, monthChange: Int) {
-        // Получаем текущую дату
-        val views = RemoteViews(contextRecive.packageName, R.layout.shift_schedule_widget)
-
-        val date = state.value
-        date.add(Calendar.MONTH, monthChange)
-        state.update { date }
-        val t = textDateMonth(date)
-println(t)
-
-        // Обновление GridView с новой датой
-
-        views.setRemoteAdapter(R.id.gridView, Intent(contextRecive, MyRemoteViewService::class.java).apply {
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            putExtra("EXTRA_CURRENT_DATE", date.timeInMillis)
-            data = Uri.parse(this.toUri(Intent.URI_INTENT_SCHEME))
-        })
-
-
-        val app = AppWidgetManager.getInstance(contextRecive.applicationContext)
-        app.updateAppWidget(appWidgetId, views)
-        notifyAppWidgetViewDataChanged(contextRecive)
-
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val thisWidget = ComponentName(context, ShiftScheduleWidget::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
+        onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
@@ -125,11 +174,12 @@ println(t)
 
     override fun onEnabled(context: Context) {
         // Enter relevant functionality for when the first widget is created
-        notifyAppWidgetViewDataChanged(context)
+        // notifyAppWidgetViewDataChanged(context)
     }
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+        scope.cancel()
     }
 
     private fun textDateMonth(calendar: Calendar): String {
@@ -137,19 +187,19 @@ println(t)
         return sdf.format(calendar.time)
     }
 
-    private fun notifyAppWidgetViewDataChanged(context: Context?) {
-        val widgetManager = AppWidgetManager.getInstance(context?.applicationContext)
-        widgetManager.notifyAppWidgetViewDataChanged(
-            widgetManager.getAppWidgetIds(
-                context?.applicationContext?.packageName?.let {
-                    ComponentName(
-                        it,
-                        ShiftScheduleWidget::class.java.name
-                    )
-                }
-            ),
-            R.id.gridView
-        )
+    private fun generateDays() {
+        //updateTag()
+        val monthCalendar = calendar.clone() as Calendar
+        monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
+        val sdf = SimpleDateFormat("MMMM yyyy")
+        val text = sdf.format(calendar.time)
+        println(text)
+
+        shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
+    }
+
+    companion object {
+        var monthOffset = 0
     }
 }
 
@@ -161,8 +211,9 @@ internal fun updateAppWidget(
     val widgetText = loadTitlePref(context, appWidgetId)
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.shift_schedule_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
+   // views.setTextViewText(R.id.appwidget_text, widgetText)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }
+

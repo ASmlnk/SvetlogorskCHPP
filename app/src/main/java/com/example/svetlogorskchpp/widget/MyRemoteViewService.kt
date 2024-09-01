@@ -5,22 +5,23 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.view.View
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
+import androidx.annotation.RequiresApi
+import androidx.compose.ui.graphics.Color
 
-import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.domain.en.Shift
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
-import com.example.svetlogorskchpp.presentation.shift_schedule.viewModel.ShiftScheduleViewModel
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
+import com.example.svetlogorskchpp.widget.model.CalendarFullDayModelParcel
+import com.example.svetlogorskchpp.widget.model.CalendarFullDayShiftModelParcel
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.EntryPointAccessors
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -35,71 +36,46 @@ import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MyRemoteViewService : RemoteViewsService() {
     private var calendarItemList = ArrayList<CalendarFullDayModel>()
 
-    @Named("Singleton")
-    @Inject
-    lateinit var shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor
-
-    private val scope = CoroutineScope(Dispatchers.IO + Job())
-
-
+    @SuppressLint("NewApi")
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
         val currentTimeInMillis = intent.getLongExtra("EXTRA_CURRENT_DATE", date().timeInMillis)
+        val calendarFullDayShiftJson = intent.getStringExtra("CALENDAR_FULL_DAY_SHIFT")
+
+        val calendarFullDayShift =
+            Gson().fromJson(calendarFullDayShiftJson, CalendarFullDayShiftModel::class.java)
 
         // Создание экземпляра Calendar
         val calendar = Calendar.getInstance().apply {
             timeInMillis = currentTimeInMillis
         }
-        val tt = SimpleDateFormat("MMMM yyyy").format(calendar.time)
-        println(tt)
-        return MyRemoteViewsFactory(this.applicationContext, shiftScheduleCalendarInteractor, calendar)
+        return MyRemoteViewsFactory(
+            this.applicationContext, /*shiftScheduleCalendarInteractor,*/
+            calendar,
+            calendarFullDayShift
+        )
     }
 
     private fun date() = Calendar
         .getInstance(TimeZone.getTimeZone("GMT+3")).apply { firstDayOfWeek = 2 }
 
-
-
-
     inner class MyRemoteViewsFactory(
         private val context: Context,
-        private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
-        private val calendar: Calendar
+        private val calendar: Calendar,
+        private val calendarFullDayShift: CalendarFullDayShiftModel,
     ) : RemoteViewsFactory {
 
-        val calendarFullDayShift = shiftScheduleCalendarInteractor.getDaysFullCalendarStream()
-            .stateIn(
-                CoroutineScope(Dispatchers.IO),
-                SharingStarted.Lazily,
-                CalendarFullDayShiftModel()
-            )
-
         override fun onCreate() {
-            generateDays()
-
-            scope.launch {
-                calendarFullDayShift.collect { list ->
-                    updateList(list.calendarFullDayModels)
-                    val appWidgetManager = AppWidgetManager.getInstance(context)
-                    val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                        ComponentName(context, ShiftScheduleWidget::class.java)
-                    )
-                    appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.gridView)
-                }
-            }
+            updateList(calendarFullDayShift.calendarFullDayModels)
         }
 
         override fun onDataSetChanged() {
-            if (calendarItemList.isNotEmpty()) {
-                getViewAt(0)
-            }
         }
 
         override fun onDestroy() {
-            scope.cancel()
         }
 
         override fun getCount(): Int {
@@ -136,11 +112,61 @@ class MyRemoteViewService : RemoteViewsService() {
                     )
                 }
             }
+            if (calendarItem.prevNightShift == calendarFullDayShift.shiftSelect) {
+                remoteView.apply {
+                    setInt(
+                        R.id.image_prev_night_shift,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_shift_day
+                    )
+                   // setInt(R.id.text_day_shift, "setColorFilter", 0x6FFFFFF.toInt())
+                }
+            }
+
+            if (calendarItem.dayShift == calendarFullDayShift.shiftSelect)
+                remoteView.apply {
+                    setInt(
+                        R.id.text_day_shift,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_shift_day
+                    )
+
+                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                }
+
+            if (calendarItem.nextNightShift == calendarFullDayShift.shiftSelect) {
+                remoteView.apply {
+                    setInt(
+                        R.id.image_nex_night_shift,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_shift_night
+                    )
+                   // setInt(R.id.text_day_shift, "setColorFilter", 0x6FFFFFF.toInt())
+
+                }
+            }
+
+            if (calendarItem.dateDay) {
+                remoteView.setInt(
+                    R.id.item_layout,
+                    "setBackgroundResource",
+                    R.drawable.background_callendar_day_actual
+                )
+            }
+
+            if (calendarItem.calendarDayWeekend) {
+                remoteView.setTextColor(
+                    R.id.tv_calendar_date,
+                    context.getColor(R.color.orange_zero_vision)
+                )
+            }
             return remoteView
         }
 
+        @SuppressLint("RemoteViewLayout")
         override fun getLoadingView(): RemoteViews? {
-            return null
+            // Установите ваше дефолтное представление
+            return RemoteViews(context.packageName, R.layout.item_full_calendar_prev_month_widget)
         }
 
         override fun getViewTypeCount(): Int {
@@ -156,24 +182,12 @@ class MyRemoteViewService : RemoteViewsService() {
         }
 
         private fun updateList(newList: List<CalendarFullDayModel>) {
-            calendarItemList.clear()
-            calendarItemList.addAll(newList)
-            onDataSetChanged()
+            if (newList.isNotEmpty()) {
+                calendarItemList.clear()
+                calendarItemList.addAll(newList)
+                onDataSetChanged()
+            }
         }
-
-        private fun generateDays() {
-            //updateTag()
-            val monthCalendar = calendar.clone() as Calendar
-            monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
-            val sdf = SimpleDateFormat("MMMM yyyy")
-            val text =  sdf.format(calendar.time)
-            println(text)
-
-
-            shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
-        }
-
-
     }
 
     fun shift(shift: Shift): String {

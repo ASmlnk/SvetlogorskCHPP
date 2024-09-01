@@ -35,11 +35,13 @@
 
         <activity
             android:name=".widget.ShiftScheduleWidgetConfigureActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

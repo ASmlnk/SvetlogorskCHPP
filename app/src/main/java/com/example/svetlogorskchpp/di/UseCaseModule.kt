@@ -31,6 +31,7 @@ import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ServiceScoped
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Named
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -38,7 +39,7 @@ import javax.inject.Singleton
 class UseCaseModule {
 
     @Provides
-    @Named("ViewModel")
+    @App
     @ViewModelScoped
     fun provideShiftScheduleCalendarInteractor(
         generateDaysFullCalendarUseCases: GenerateDaysFullCalendarUseCases,
@@ -53,8 +54,6 @@ class UseCaseModule {
             shiftUseCases
         )
     }
-
-
 
     @Provides
     @ViewModelScoped
@@ -106,7 +105,9 @@ class UseCaseModule {
   //      return InspectionUsesCasesImpl(inspectionRepository)
    // }
 
-
-
-
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class App
+

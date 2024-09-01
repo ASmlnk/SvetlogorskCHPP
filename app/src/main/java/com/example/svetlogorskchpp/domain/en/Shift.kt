@@ -1,6 +1,10 @@
 package com.example.svetlogorskchpp.domain.en
 
-enum class Shift(val nameBD: String, val nameApp: String) {
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+enum class Shift(val nameBD: String, val nameApp: String) : Parcelable{
     A_SHIFT("A", "А"),
     B_SHIFT("B", "Б"),
     C_SHIFT("C", "В"),
