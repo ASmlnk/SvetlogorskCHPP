@@ -14,12 +14,13 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/button_close"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/baseline_close_widget"/>
         <TextView
             android:fontFamily="@font/ru_hero"
-            android:textColor="@color/orange_zero_vision"
+            android:textColor="#D1A36B"
             android:layout_width="match_parent"
             android:text="Настройки виджета"
 
@@ -175,11 +176,11 @@
         android:id="@+id/save_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/ru_hero"
         android:textStyle="bold"
-        android:textColor="@color/text_input_assembly"
-        app:backgroundTint="#CF770C"
+        android:textColor="@color/backgroundItem"
+        app:backgroundTint="@color/red_schema"
         android:layout_gravity="center"
         android:text="Сохранить настройки виджета"/>
 

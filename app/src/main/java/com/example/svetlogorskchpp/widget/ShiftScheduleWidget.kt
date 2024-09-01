@@ -84,6 +84,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
             val intent = Intent(context, ShiftScheduleWidgetConfigureActivity::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
 
             val pendingIntent = PendingIntent.getActivity(
                 context,
@@ -107,7 +108,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
             scope.launch {
                 calendarFullDayShift.collect { calendarFullDayShiftModel ->
-                    println(appWidgetId)
+
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
 
                         val gson = Gson()
@@ -133,7 +134,6 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     }
                 }
             }
-
         }
     }
 
@@ -156,7 +156,8 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             calendar.apply {
                 add(Calendar.MONTH, monthOffset)
             }
-        } else {
+        } else if (intent.action == "ACTION_UPDATE_WIDGET") {
+            monthOffset = 0
 
         }
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -168,7 +169,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // When the user deletes the widget, delete the preference associated with it.
         for (appWidgetId in appWidgetIds) {
-            deleteTitlePref(context, appWidgetId)
+          //  deleteTitlePref(context, appWidgetId)
         }
     }
 
@@ -208,8 +209,10 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
 ) {
-    val widgetText = loadTitlePref(context, appWidgetId)
+   // val widgetText = loadTitlePref(context, appWidgetId)
     // Construct the RemoteViews object
+    val thisWidget = ComponentName(context, ShiftScheduleWidget::class.java)
+
     val views = RemoteViews(context.packageName, R.layout.shift_schedule_widget)
    // views.setTextViewText(R.id.appwidget_text, widgetText)
 

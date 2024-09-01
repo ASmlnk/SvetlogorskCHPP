@@ -35,7 +35,10 @@
 
         <activity
             android:name=".widget.ShiftScheduleWidgetConfigureActivity"
-            android:exported="true">
+            android:launchMode="singleInstance"
+            android:screenOrientation="fullSensor"
+            android:exported="true"
+            tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
 
