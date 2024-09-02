@@ -13,6 +13,8 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.di.Widget
 import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.widget.service.MyRemoteAllShiftViewService
+import com.example.svetlogorskchpp.widget.service.MyRemoteOneShiftViewService
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +28,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.TimeZone
 import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * Implementation of App Widget functionality.
@@ -114,7 +115,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         val gson = Gson()
                         val json = gson.toJson(calendarFullDayShiftModel)
 
-                        val serviceIntent = Intent(context, MyRemoteViewService::class.java)
+                        val serviceIntent = Intent(context, MyRemoteOneShiftViewService::class.java/*MyRemoteAllShiftViewService::class.java*/)
                         serviceIntent.apply {
                             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
                             putExtra("EXTRA_CURRENT_DATE", calendar.timeInMillis)

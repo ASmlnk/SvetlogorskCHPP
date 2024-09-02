@@ -29,7 +29,11 @@
                 android:resource="@xml/shift_schedule_widget_info" />
         </receiver>
 
-        <service android:name=".widget.MyRemoteViewService"
+        <service android:name=".widget.service.MyRemoteAllShiftViewService"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
+
+        <service android:name=".widget.service.MyRemoteOneShiftViewService"
             android:permission="android.permission.BIND_REMOTEVIEWS">
         </service>
 

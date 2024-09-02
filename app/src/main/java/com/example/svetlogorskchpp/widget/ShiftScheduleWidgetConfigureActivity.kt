@@ -29,7 +29,7 @@ class ShiftScheduleWidgetConfigureActivity : AppCompatActivity() {
     @Widget
     @Inject  lateinit var shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor
 
-    private var shift = Shift.NO_SHIFT
+  //  private var shift = Shift.NO_SHIFT
 
     private lateinit var binding: ShiftScheduleWidgetConfigureBinding
 
@@ -43,20 +43,20 @@ class ShiftScheduleWidgetConfigureActivity : AppCompatActivity() {
 
         binding.apply {
             chipShiftA.setOnCheckedChangeListener { _, b ->
-                if (b) shift = Shift.A_SHIFT
-                //selectChip(b, "A")
+               // if (b) shift = Shift.A_SHIFT
+                selectChip(b, "A")
             }
             chipShiftB.setOnCheckedChangeListener { _, b ->
-                if (b) shift = Shift.B_SHIFT
-                //selectChip(b, "B")
+               // if (b) shift = Shift.B_SHIFT
+                selectChip(b, "B")
             }
             chipShiftC.setOnCheckedChangeListener { _, b ->
-                if (b) shift = Shift.C_SHIFT
-               // selectChip(b, "C")
+              //  if (b) shift = Shift.C_SHIFT
+                selectChip(b, "C")
             }
             chipShiftD.setOnCheckedChangeListener { _, b ->
-                if (b) shift = Shift.D_SHIFT
-                //selectChip(b, "D")
+               // if (b) shift = Shift.D_SHIFT
+                selectChip(b, "D")
             }
 
             buttonClose.setOnClickListener {
@@ -66,7 +66,7 @@ class ShiftScheduleWidgetConfigureActivity : AppCompatActivity() {
 
             saveSetting.setOnClickListener {
                 lifecycleScope.launch {
-                    shiftScheduleCalendarInteractor.setSelectShiftSchedule(shift.nameBD)
+                 //   shiftScheduleCalendarInteractor.setSelectShiftSchedule(shift.nameBD)
                 }
                 val sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
                 val isFirstCreation = !sharedPreferences.contains(PREF_PREFIX_KEY + appWidgetId)

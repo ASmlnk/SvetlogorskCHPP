@@ -1,43 +1,21 @@
-package com.example.svetlogorskchpp.widget
+package com.example.svetlogorskchpp.widget.service
 
 import android.annotation.SuppressLint
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.view.View
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import androidx.annotation.RequiresApi
-import androidx.compose.ui.graphics.Color
-
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.domain.en.Shift
-import com.example.svetlogorskchpp.domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.domain.model.MonthCalendar
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.presentation.shift_schedule.model.CalendarFullDayShiftModel
-import com.example.svetlogorskchpp.widget.model.CalendarFullDayModelParcel
-import com.example.svetlogorskchpp.widget.model.CalendarFullDayShiftModelParcel
 import com.google.gson.Gson
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Calendar
 import java.util.TimeZone
-import javax.inject.Inject
-import javax.inject.Named
 
-//@AndroidEntryPoint
-class MyRemoteViewService : RemoteViewsService() {
+class MyRemoteAllShiftViewService : RemoteViewsService() {
     private var calendarItemList = ArrayList<CalendarFullDayModel>()
 
     @SuppressLint("NewApi")
@@ -119,7 +97,6 @@ class MyRemoteViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_shift_day
                     )
-                   // setInt(R.id.text_day_shift, "setColorFilter", 0x6FFFFFF.toInt())
                 }
             }
 
@@ -141,8 +118,6 @@ class MyRemoteViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_shift_night
                     )
-                   // setInt(R.id.text_day_shift, "setColorFilter", 0x6FFFFFF.toInt())
-
                 }
             }
 
