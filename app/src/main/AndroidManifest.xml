@@ -18,7 +18,7 @@
         android:theme="@style/Theme.SvetlogorskCHPP"
         tools:targetApi="31">
         <receiver
-            android:name=".widget.ShiftScheduleWidget"
+            android:name=".__widget.ShiftScheduleWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -29,16 +29,16 @@
                 android:resource="@xml/shift_schedule_widget_info" />
         </receiver>
 
-        <service android:name=".widget.service.MyRemoteAllShiftViewService"
+        <service android:name=".__widget.service.MyRemoteAllShiftViewService"
             android:permission="android.permission.BIND_REMOTEVIEWS">
         </service>
 
-        <service android:name=".widget.service.MyRemoteOneShiftViewService"
+        <service android:name=".__widget.service.MyRemoteOneShiftViewService"
             android:permission="android.permission.BIND_REMOTEVIEWS">
         </service>
 
         <activity
-            android:name=".widget.ShiftScheduleWidgetConfigureActivity"
+            android:name=".__widget.ShiftScheduleWidgetConfigureActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="fullSensor"
             android:exported="true"

@@ -1,9 +1,7 @@
 package com.example.svetlogorskchpp.model.firebase
 
-import android.content.Context
-import android.util.Log
 import com.example.svetlogorskchpp.SharedPreferencesManager
-import com.example.svetlogorskchpp.data.repository.inspection.InspectionRepository
+import com.example.svetlogorskchpp.__data.repository.inspection.InspectionRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.ChecklistInspection
 import com.example.svetlogorskchpp.model.ElectricalAssembly
 import com.example.svetlogorskchpp.model.ElectricalAssemblyFirebase

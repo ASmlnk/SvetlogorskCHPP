@@ -42,7 +42,7 @@
     <include app:graph="@navigation/inspection" />
     <fragment
         android:id="@+id/shiftScheduleFragment"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.fragment.ShiftScheduleFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule"
         android:label="ShiftScheduleFragment" >
         <action
@@ -57,27 +57,27 @@
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
         tools:layout="@layout/fragment_shift_schedule_edit_composition"
         android:label="ShiftScheduleEditCompositionFragment" />
     <dialog
         android:id="@+id/shiftScheduleStaffDialog"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule.dialog.ShiftScheduleStaffDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog"
         android:label="dialog_shift_schedule_personal"
         tools:layout="@layout/dialog_shift_schedule_personal" >
 
         <argument
             android:name="shift"
-            app:argType="com.example.svetlogorskchpp.domain.en.Shift" />
+            app:argType="com.example.svetlogorskchpp.__domain.en.Shift" />
     </dialog>
     <fragment
         android:id="@+id/shiftScheduleAddNotesFragment"
-        android:name="com.example.svetlogorskchpp.presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
         tools:layout="@layout/fragment_shift_schedule_add_notes"
         android:label="ShiftScheduleAddNotesFragment" >
         <argument
             android:name="navigateAddNoteArgs"
-            app:argType="com.example.svetlogorskchpp.presentation.shift_schedule.model.NavigateAddNoteArgs" />
+            app:argType="com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs" />
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleStaffDialog"
             app:destination="@id/shiftScheduleStaffDialog" />

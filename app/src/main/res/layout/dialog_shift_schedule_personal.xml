@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shift_schedule_dialog_personal_background"
-    tools:context=".presentation.shift_schedule.dialog.ShiftScheduleStaffDialog">
+    tools:context=".__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog">
 
     <LinearLayout
         android:id="@+id/layout"
