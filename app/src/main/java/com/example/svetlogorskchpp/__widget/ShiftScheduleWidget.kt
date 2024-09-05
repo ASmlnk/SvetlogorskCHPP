@@ -9,10 +9,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.widget.RemoteViews
+import androidx.navigation.NavDeepLinkBuilder
+import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__di.Widget
+import com.example.svetlogorskchpp.__domain.en.Shift
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentArgs
+import com.example.svetlogorskchpp.__widget.service.MyRemoteAllShiftViewService
 import com.example.svetlogorskchpp.__widget.service.MyRemoteOneShiftViewService
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -92,6 +98,24 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 intent,
                 flag
             )
+
+            val navigateAddNoteArgs = NavigateAddNoteArgs(
+                date =  calendar.timeInMillis, //calendarItem.data.time.time,
+                prevNightShift = Shift.NO_SHIFT,  //calendarItem.prevNightShift,
+                dayShift = Shift.A_SHIFT,  //calendarItem.dayShift,
+                nextNightShift = Shift.A_SHIFT,  //calendarItem.nextNightShift,
+                isTechnical =  false  //calendarItem.calendarNoteTag?.isTechnical ?: false
+            )
+            val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
+            val pendingIntent2 = NavDeepLinkBuilder(context)
+               // .setComponentName(MainActivity::class.java)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.shiftScheduleAddNotesFragment)
+                .setArguments(args.toBundle())
+                .createPendingIntent()
+
+
+
             val remoteViews =
                 RemoteViews(context.packageName, R.layout.shift_schedule_widget)
             remoteViews.apply {
@@ -101,7 +125,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 )
                 setOnClickPendingIntent(
                     R.id.button_setting,
-                    pendingIntent
+                    pendingIntent2
                 )
             }
            // intent.setAction(APPWIDGET_CONFIGURE + appWidgetId)
@@ -114,7 +138,12 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         val gson = Gson()
                         val json = gson.toJson(calendarFullDayShiftModel)
 
-                        val serviceIntent = Intent(context, MyRemoteOneShiftViewService::class.java/*MyRemoteAllShiftViewService::class.java*/)
+                        val serviceIntent = if(calendarFullDayShiftModel.calendarView == "1") {
+                            Intent(context, MyRemoteAllShiftViewService::class.java)
+                        } else {
+                            Intent(context, MyRemoteOneShiftViewService::class.java)
+                        }
+
                         serviceIntent.apply {
                             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
                             putExtra("EXTRA_CURRENT_DATE", calendar.timeInMillis)

@@ -58,6 +58,6 @@ class PreferencesRepositoryImpl @Inject constructor(
         private val SELECT_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_shift_schedule_widget")
 
         private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY = stringPreferencesKey("select_calendar_view")
-        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_calendar_view")
+        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_calendar_view_widget")
     }
 }

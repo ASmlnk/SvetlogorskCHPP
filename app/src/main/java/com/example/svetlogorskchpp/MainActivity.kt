@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,8 @@ private lateinit var appBarConfiguration: AppBarConfiguration
 
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
+
+
 
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)

@@ -1,13 +1,16 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,6 +36,13 @@ class ShiftScheduleFragment : Fragment() {
 
     private lateinit var adapter: CalendarFullAdapter
     private val viewModel: ShiftScheduleViewModel by viewModels()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parentFragmentManager.commit {
+            setPrimaryNavigationFragment(this@ShiftScheduleFragment)
+        }
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(

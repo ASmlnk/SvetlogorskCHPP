@@ -25,7 +25,7 @@ class ShiftScheduleCalendarInteractorWidgetImpl @Inject constructor(
 ) : ShiftScheduleCalendarInteractor {
 
     private val _selectShiftScheduleStream = preferencesRepository.selectShiftScheduleWidget
-    private val _selectCalendarViewShiftSchedule = preferencesRepository.selectCalendarViewShiftSchedule
+    private val _selectCalendarViewShiftSchedule = preferencesRepository.selectCalendarViewShiftScheduleWidget
     private val _getDaysFullCalendarFlow =
         MutableStateFlow<List<CalendarFullDayModel>>(emptyList())
 

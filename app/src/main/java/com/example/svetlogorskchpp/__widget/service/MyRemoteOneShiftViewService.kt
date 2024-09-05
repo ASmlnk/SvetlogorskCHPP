@@ -138,7 +138,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
         }
 
         override fun hasStableIds(): Boolean {
-            return true
+            return false
         }
 
         private fun updateList(newList: List<CalendarFullDayModel>) {
