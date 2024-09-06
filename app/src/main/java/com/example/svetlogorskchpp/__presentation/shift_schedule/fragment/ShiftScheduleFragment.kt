@@ -37,13 +37,6 @@ class ShiftScheduleFragment : Fragment() {
     private lateinit var adapter: CalendarFullAdapter
     private val viewModel: ShiftScheduleViewModel by viewModels()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        parentFragmentManager.commit {
-            setPrimaryNavigationFragment(this@ShiftScheduleFragment)
-        }
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,6 +62,13 @@ class ShiftScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish() // Закрывает приложение
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
