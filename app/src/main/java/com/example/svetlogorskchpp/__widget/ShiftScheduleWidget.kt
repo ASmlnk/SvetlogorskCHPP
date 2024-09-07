@@ -38,6 +38,7 @@ import javax.inject.Inject
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in [ShiftScheduleWidgetConfigureActivity]
  */
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class ShiftScheduleWidget : AppWidgetProvider() {
 
@@ -81,12 +82,19 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             }
             val nextMonthPendingIntent =
                 PendingIntent.getBroadcast(context, 0, nextMonthIntent, flag)
+
             val prevMonthIntent = Intent(context, ShiftScheduleWidget::class.java).apply {
                 action = "ACTION_PREV_MONTH"
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             }
             val prevMonthPendingIntent =
                 PendingIntent.getBroadcast(context, 0, prevMonthIntent, flag)
+
+
+
+
+
+
 
             val intent = Intent(context, ShiftScheduleWidgetConfigureActivity::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
@@ -99,23 +107,6 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 flag
             )
 
-            val navigateAddNoteArgs = NavigateAddNoteArgs(
-                date =  calendar.timeInMillis, //calendarItem.data.time.time,
-                prevNightShift = Shift.NO_SHIFT,  //calendarItem.prevNightShift,
-                dayShift = Shift.A_SHIFT,  //calendarItem.dayShift,
-                nextNightShift = Shift.A_SHIFT,  //calendarItem.nextNightShift,
-                isTechnical =  false  //calendarItem.calendarNoteTag?.isTechnical ?: false
-            )
-            val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
-            val pendingIntent2 = NavDeepLinkBuilder(context)
-               // .setComponentName(MainActivity::class.java)
-                .setGraph(R.navigation.nav_graph)
-                .setDestination(R.id.shiftScheduleAddNotesFragment)
-                .setArguments(args.toBundle())
-                .createPendingIntent()
-
-
-
             val remoteViews =
                 RemoteViews(context.packageName, R.layout.shift_schedule_widget)
             remoteViews.apply {
@@ -125,10 +116,10 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 )
                 setOnClickPendingIntent(
                     R.id.button_setting,
-                    pendingIntent2
+                    pendingIntent
                 )
             }
-           // intent.setAction(APPWIDGET_CONFIGURE + appWidgetId)
+            // intent.setAction(APPWIDGET_CONFIGURE + appWidgetId)
 
             scope.launch {
                 calendarFullDayShift.collect { calendarFullDayShiftModel ->
@@ -138,7 +129,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         val gson = Gson()
                         val json = gson.toJson(calendarFullDayShiftModel)
 
-                        val serviceIntent = if(calendarFullDayShiftModel.calendarView == "1") {
+                        val serviceIntent = if (calendarFullDayShiftModel.calendarView == "1") {
                             Intent(context, MyRemoteAllShiftViewService::class.java)
                         } else {
                             Intent(context, MyRemoteOneShiftViewService::class.java)
@@ -163,6 +154,11 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     }
                 }
             }
+
+            val clickIntent = Intent(context, ShiftScheduleWidget::class.java)
+            clickIntent.action = "ACTION_SELECT_DAY"
+            val clickPendingIntent = PendingIntent.getBroadcast(context, 0 ,clickIntent,flag)
+            remoteViews.setPendingIntentTemplate(R.id.gridView,clickPendingIntent)
         }
     }
 
@@ -173,22 +169,42 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             AppWidgetManager.INVALID_APPWIDGET_ID
         ) ?: return
 
-        if (intent.action == "ACTION_NEXT_MONTH") {
-            // updateDate(context, appWidgetId, 1)
-            monthOffset++
-            calendar.apply {
-                add(Calendar.MONTH, monthOffset)
+        when (intent.action) {
+            "ACTION_NEXT_MONTH" -> {
+                // updateDate(context, appWidgetId, 1)
+                monthOffset++
+                calendar.apply {
+                    add(Calendar.MONTH, monthOffset)
+                }
             }
-        } else if (intent.action == "ACTION_PREV_MONTH") {
-            monthOffset--
-            // generateDays()
-            calendar.apply {
-                add(Calendar.MONTH, monthOffset)
-            }
-        } else if (intent.action == "ACTION_UPDATE_WIDGET") {
-            monthOffset = 0
 
+            "ACTION_PREV_MONTH" -> {
+                monthOffset--
+                // generateDays()
+                calendar.apply {
+                    add(Calendar.MONTH, monthOffset)
+                }
+            }
+
+            "ACTION_UPDATE_WIDGET" -> {
+                monthOffset = 0
+            }
+
+            "ACTION_SELECT_DAY" -> {
+                val navigateAddNoteArgs = intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
+                navigateAddNoteArgs?.let {
+                    val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
+                    val pendingIntent2 = NavDeepLinkBuilder(context)
+                        .setGraph(R.navigation.nav_graph)
+                        .setDestination(R.id.shiftScheduleAddNotesFragment)
+                        .setArguments(args.toBundle())
+                        .createPendingIntent()
+
+                    pendingIntent2.send()
+                }
+            }
         }
+
         val appWidgetManager = AppWidgetManager.getInstance(context)
         val thisWidget = ComponentName(context, ShiftScheduleWidget::class.java)
         val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
@@ -238,12 +254,12 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
 ) {
-   // val widgetText = loadTitlePref(context, appWidgetId)
+    // val widgetText = loadTitlePref(context, appWidgetId)
     // Construct the RemoteViews object
     val thisWidget = ComponentName(context, ShiftScheduleWidget::class.java)
 
     val views = RemoteViews(context.packageName, R.layout.shift_schedule_widget)
-   // views.setTextViewText(R.id.appwidget_text, widgetText)
+    // views.setTextViewText(R.id.appwidget_text, widgetText)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)

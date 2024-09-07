@@ -4,20 +4,16 @@ import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import androidx.navigation.NavDeepLinkBuilder
 
-import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.Shift
 import com.example.svetlogorskchpp.__domain.model.MonthCalendar
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentArgs
+import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.gson.Gson
 import java.util.ArrayList
 import java.util.Calendar
@@ -73,7 +69,6 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
             return calendarItemList.size
         }
 
-        //  @SuppressLint("RemoteViewLayout")
         override fun getViewAt(position: Int): RemoteViews {
             val calendarItem = calendarItemList[position]
 
@@ -81,6 +76,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 if (calendarItem.month == MonthCalendar.ACTUAL_MONTH) R.layout.item_full_calendar_month_widget else R.layout.item_full_calendar_prev_month_widget
 
             val remoteView = RemoteViews(context.packageName, layoutId)
+
             val navigateAddNoteArgs = NavigateAddNoteArgs(
                 date = calendarItem.data.time.time,
                 prevNightShift = calendarItem.prevNightShift,
@@ -88,29 +84,16 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 nextNightShift = calendarItem.nextNightShift,
                 isTechnical = calendarItem.calendarNoteTag?.isTechnical ?: false
             )
-            val bundle = Bundle().apply {
-                putParcelable("navigateAddNoteArgs", navigateAddNoteArgs)
+
+            val intentSelectDay = Intent(
+                this@MyRemoteAllShiftViewService,
+                ShiftScheduleWidget::class.java
+            ).apply {
+                action = "ACTION_SELECT_DAY"
+                putExtra("NAVIGATION_ADD_NOTES_ARGS", navigateAddNoteArgs)
             }
 
-            /*val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
-            val pendingIntent = NavDeepLinkBuilder(applicationContext)
-                .setComponentName(MainActivity::class.java)
-                .setGraph(R.navigation.nav_graph)
-                .setDestination(R.id.shiftScheduleAddNotesFragment)
-                .setArguments(args.toBundle())
-                .createPendingIntent()*/
-
-            val intent = Intent(context, MainActivity::class.java).apply {
-                putExtra("openFragment", "yourFragmentTag")
-            }
-
-            val pendingIntent = PendingIntent.getActivity(
-                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-
-            remoteView.setOnClickPendingIntent(R.id.item_layout, pendingIntent)
-
-
+            remoteView.setOnClickFillInIntent(R.id.item_layout, intentSelectDay)
 
             when (calendarItem.month) {
                 MonthCalendar.ACTUAL_MONTH -> {
@@ -133,6 +116,58 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                     )
                 }
             }
+
+            calendarDayView(calendarItem, remoteView)
+            calendarShiftView(calendarItem, remoteView)
+
+            if (calendarItem.dateDay) {
+                remoteView.setInt(
+                    R.id.item_layout,
+                    "setBackgroundResource",
+                    R.drawable.background_callendar_day_actual
+                )
+            }
+
+            if (calendarItem.calendarDayWeekend) {
+                remoteView.setTextColor(
+                    R.id.tv_calendar_date,
+                    context.getColor(R.color.orange_zero_vision)
+                )
+            }
+
+            return remoteView
+        }
+
+        @SuppressLint("RemoteViewLayout")
+        override fun getLoadingView(): RemoteViews? {
+            // Установите ваше дефолтное представление
+            return RemoteViews(context.packageName, R.layout.item_full_calendar_prev_month_widget)
+        }
+
+        override fun getViewTypeCount(): Int {
+            return 2
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun hasStableIds(): Boolean {
+            return false
+        }
+
+        private fun updateList(newList: List<CalendarFullDayModel>) {
+            if (newList.isNotEmpty()) {
+                calendarItemList.clear()
+                calendarItemList.addAll(newList)
+                onDataSetChanged()
+            }
+        }
+
+        private fun calendarShiftView(
+            calendarItem: CalendarFullDayModel,
+            remoteView: RemoteViews,
+        ) {
             if (calendarItem.prevNightShift == calendarFullDayShift.shiftSelect) {
                 remoteView.apply {
                     setInt(
@@ -163,48 +198,15 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                     )
                 }
             }
-
-            if (calendarItem.dateDay) {
-                remoteView.setInt(
-                    R.id.item_layout,
-                    "setBackgroundResource",
-                    R.drawable.background_callendar_day_actual
-                )
-            }
-
-            if (calendarItem.calendarDayWeekend) {
-                remoteView.setTextColor(
-                    R.id.tv_calendar_date,
-                    context.getColor(R.color.orange_zero_vision)
-                )
-            }
-            return remoteView
         }
 
-        @SuppressLint("RemoteViewLayout")
-        override fun getLoadingView(): RemoteViews? {
-            // Установите ваше дефолтное представление
-            return RemoteViews(context.packageName, R.layout.item_full_calendar_prev_month_widget)
-        }
+        private fun calendarDayView(
+            calendarItem: CalendarFullDayModel,
+            remoteView: RemoteViews,
+        ) {
 
-        override fun getViewTypeCount(): Int {
-            return 2
-        }
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
 
-        override fun hasStableIds(): Boolean {
-            return false
-        }
-
-        private fun updateList(newList: List<CalendarFullDayModel>) {
-            if (newList.isNotEmpty()) {
-                calendarItemList.clear()
-                calendarItemList.addAll(newList)
-                onDataSetChanged()
-            }
         }
     }
 

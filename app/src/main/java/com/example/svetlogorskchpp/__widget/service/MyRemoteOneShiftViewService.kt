@@ -10,6 +10,8 @@ import com.example.svetlogorskchpp.__domain.en.Shift
 import com.example.svetlogorskchpp.__domain.model.MonthCalendar
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
+import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.gson.Gson
 import java.util.ArrayList
 import java.util.Calendar
@@ -70,6 +72,24 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
             val remoteView = RemoteViews(context.packageName, layoutId)
 
             val shiftText = shift(calendarItem, calendarFullDayShift.shiftSelect)
+
+            val navigateAddNoteArgs = NavigateAddNoteArgs(
+                date = calendarItem.data.time.time,
+                prevNightShift = calendarItem.prevNightShift,
+                dayShift = calendarItem.dayShift,
+                nextNightShift = calendarItem.nextNightShift,
+                isTechnical = calendarItem.calendarNoteTag?.isTechnical ?: false
+            )
+
+            val intentSelectDay = Intent(
+                this@MyRemoteOneShiftViewService,
+                ShiftScheduleWidget::class.java
+            ).apply {
+                action = "ACTION_SELECT_DAY"
+                putExtra("NAVIGATION_ADD_NOTES_ARGS", navigateAddNoteArgs)
+            }
+
+            remoteView.setOnClickFillInIntent(R.id.item_layout, intentSelectDay)
 
             when (calendarItem.month) {
                 MonthCalendar.ACTUAL_MONTH -> {
