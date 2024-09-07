@@ -20,6 +20,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUs
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -79,6 +81,12 @@ class UseCaseModule {
     @ViewModelScoped
     fun provideCalendarDateUseCases(): CalendarDateUseCases {
         return CalendarDateUseCasesImpl()
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideCalendarTagUseCases(): CalendarTagUseCases {
+        return CalendarTagUseCasesImpl()
     }
 
     @Provides

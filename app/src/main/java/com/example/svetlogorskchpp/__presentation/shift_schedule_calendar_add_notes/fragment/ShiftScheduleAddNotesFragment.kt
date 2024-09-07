@@ -46,7 +46,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ShiftScheduleAddNotesViewModel.ShiftShiftScheduleAddNotesViewModelFactory
-    private val adapter: NoteAdapter = NoteAdapter() { note: Note ->
+    private val adapter: NoteAdapter = NoteAdapter { note: Note ->
         viewModel.deleteNote(note)
     }
 
@@ -63,8 +63,11 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             true // default to enabled
         ) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(
-                    R.id.action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3)
+                val action = ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(args.navigateAddNoteArgs.date)
+
+                findNavController().navigate(action)
+                   // R.id.action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3)
+
 
                /* findNavController().navigate(R.id.action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3*//*,
                     null,

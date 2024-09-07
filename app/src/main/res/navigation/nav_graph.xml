@@ -54,6 +54,10 @@
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleAddNotesFragment"
             app:destination="@id/shiftScheduleAddNotesFragment" />
+        <argument
+            android:name="date"
+            app:argType="long"
+            android:defaultValue="0L" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"

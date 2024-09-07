@@ -1,12 +1,12 @@
-package com.example.svetlogorskchpp.__domain.usecases
+package com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases
 
 import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayModel
 import javax.inject.Inject
 
-class CalendarTagUseCases @Inject constructor() {
+class CalendarTagUseCasesImpl @Inject constructor(): CalendarTagUseCases {
 
-    fun addNoteTagToCalendar(
+    override fun addNoteTagToCalendar(
         calendarFullDayModels: List<CalendarFullDayModel>,
         calendarNoteTags: List<CalendarNoteTag>,
     ): List<CalendarFullDayModel> {

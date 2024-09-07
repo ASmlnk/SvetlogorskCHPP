@@ -1,11 +1,15 @@
 package com.example.svetlogorskchpp.__di
 
+import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
+import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
@@ -29,7 +33,9 @@ abstract class ViewModelModule {
     abstract fun provideFirestoryRepository( remoteDB: FirebaseFirestore): FirebaseFirestore
 
 
-
-
+    @Binds
+    abstract fun provideCalendarTagUseCases(calendarTagUseCasesImpl: CalendarTagUseCasesImpl) : CalendarTagUseCases
+    @Binds
+    abstract fun provideShiftScheduleCalendarInteractor (shiftScheduleCalendarInteractorImpl: ShiftScheduleCalendarInteractorImpl): ShiftScheduleCalendarInteractor
 
 }

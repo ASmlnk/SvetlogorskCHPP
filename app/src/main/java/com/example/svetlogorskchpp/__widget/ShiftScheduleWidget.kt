@@ -92,10 +92,6 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
 
 
-
-
-
-
             val intent = Intent(context, ShiftScheduleWidgetConfigureActivity::class.java)
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -190,6 +186,10 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 monthOffset = 0
             }
 
+            AppWidgetManager.ACTION_APPWIDGET_UPDATE -> {
+                monthOffset = 0
+            }
+
             "ACTION_SELECT_DAY" -> {
                 val navigateAddNoteArgs = intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
                 navigateAddNoteArgs?.let {
@@ -202,6 +202,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
                     pendingIntent2.send()
                 }
+                monthOffset = 0
             }
         }
 

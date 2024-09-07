@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
 import com.example.svetlogorskchpp.__domain.en.Shift
@@ -24,9 +25,11 @@ import com.example.svetlogorskchpp.__presentation.shift_schedule.adapter.ItemOff
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUiState
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule.viewModel.ShiftScheduleViewModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ShiftScheduleFragment : Fragment() {
@@ -34,8 +37,19 @@ class ShiftScheduleFragment : Fragment() {
     private var _binding: FragmentShiftScheduleBinding? = null
     private val binding get() = _binding!!
 
+    private val args: ShiftScheduleFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var viewModelFactory: ShiftScheduleViewModel.ShiftShiftScheduleViewModelFactory
+
     private lateinit var adapter: CalendarFullAdapter
-    private val viewModel: ShiftScheduleViewModel by viewModels()
+    //private val viewModel: ShiftScheduleViewModel by viewModels()
+    private val viewModel: ShiftScheduleViewModel by viewModels {
+        ShiftScheduleViewModel.providesFactory(
+            assistedFactory = viewModelFactory,
+            date = args.date
+        )
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
