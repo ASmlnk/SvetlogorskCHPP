@@ -128,7 +128,9 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
 
                        val tags = calendarNoteTagWidgetUseCases.calendarNoteTagStream(calendar)
-                        val calendarFullDayShiftModelTags =calendarTagUseCases.addNoteTagToCalendar(calendarFullDayShiftModel.calendarFullDayModels, tags)
+                        val calendarFullDayShiftModelTags = calendarFullDayShiftModel.copy(
+                            calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(calendarFullDayShiftModel.calendarFullDayModels, tags)
+                        )
 
                         val gson = Gson()
                         val json = gson.toJson(calendarFullDayShiftModelTags)

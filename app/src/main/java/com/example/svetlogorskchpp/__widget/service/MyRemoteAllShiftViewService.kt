@@ -135,6 +135,30 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 )
             }
 
+            if (calendarItem.calendarNoteTag?.isTechnical == true) {
+                remoteView.apply {
+                    setInt(
+                        R.id.text_day_shift,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_technical
+                    )
+
+                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                }
+            }
+
+            if (calendarItem.calendarNoteTag?.isNotes == true) {
+                remoteView.apply {
+                    setInt(
+                        R.id.tv_calendar_date,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_note
+                    )
+
+                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                }
+            }
+
             return remoteView
         }
 

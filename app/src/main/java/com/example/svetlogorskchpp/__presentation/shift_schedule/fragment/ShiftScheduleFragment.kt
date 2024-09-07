@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__presentation.shift_schedule.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUi
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
+import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -109,6 +111,18 @@ class ShiftScheduleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val updateIntent = Intent(
+            requireContext(),
+            ShiftScheduleWidget::class.java
+        ).apply {
+            action = "ACTION_UPDATE_WIDGET"
+        }
+
+        requireContext().sendBroadcast(updateIntent)
     }
 
     override fun onDestroy() {
