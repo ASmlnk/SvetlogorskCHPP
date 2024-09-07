@@ -1,14 +1,23 @@
 package com.example.svetlogorskchpp.__di
 
+import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorWidgetImpl
 import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
 import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagWidgetUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 
@@ -29,6 +38,26 @@ class WidgetModule {
             preferencesRepository,
             shiftUseCases
         )
+    }
+
+    @Provides
+    fun provideCalendarNoteTagUseCasesS(
+        calendarNoteTagRepository: CalendarNoteTagRepository,
+       @Widget calendarDateUseCases: CalendarDateUseCases,
+    ): CalendarNoteTagWidgetUseCases {
+        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarDateUseCases)
+    }
+
+    @Provides
+    @Widget
+    fun provideCalendarDateUseCasesS(): CalendarDateUseCases {
+        return CalendarDateUseCasesImpl()
+    }
+
+    @Provides
+    @Widget
+    fun provideCalendarTagUseCasesS(): CalendarTagUseCases {
+        return CalendarTagUseCasesImpl()
     }
 }
 

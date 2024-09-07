@@ -93,18 +93,20 @@ class ShiftScheduleViewModel @AssistedInject constructor(
         //      }
         //  }
 
+
+    }
+
+    init {
+
         viewModelScope.launch {
             _calendarAdapterStateFlow.collect {
                 val tagNotes = calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())
                 _calendarNoteTag.update { tagNotes }
             }
         }
-    }
-
-    init {
 
         viewModelScope.launch {
-            delay(200)
+            delay(150)
             setUpCalendar()
 
             val textTodayDate = patternTodayDate.format(cal.time)

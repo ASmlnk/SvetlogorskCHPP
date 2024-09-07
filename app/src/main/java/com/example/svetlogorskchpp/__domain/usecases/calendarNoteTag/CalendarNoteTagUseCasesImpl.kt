@@ -11,7 +11,7 @@ import javax.inject.Inject
 class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarNoteTagRepository: CalendarNoteTagRepository,
     private val calendarDateUseCases: CalendarDateUseCases,
-) : CalendarNoteTagUseCases {
+) : CalendarNoteTagUseCases, CalendarNoteTagWidgetUseCases{
 
     override suspend fun calendarNoteTagStream(month: Calendar) =
         calendarNoteTagRepository.getTagsByMonth(

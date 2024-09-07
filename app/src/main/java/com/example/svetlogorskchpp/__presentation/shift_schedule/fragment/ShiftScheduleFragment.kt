@@ -68,15 +68,6 @@ class ShiftScheduleFragment : Fragment() {
             }
         }
 
-        setUpAdapter()
-        setUpClickListener()
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().finish() // Закрывает приложение
@@ -107,6 +98,17 @@ class ShiftScheduleFragment : Fragment() {
                 }
             }
         }
+
+        setUpAdapter()
+        setUpClickListener()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
     override fun onDestroy() {
