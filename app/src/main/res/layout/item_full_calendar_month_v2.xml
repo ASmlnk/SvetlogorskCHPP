@@ -6,7 +6,7 @@
         android:id="@+id/item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_calendar_month"
+        android:background="@color/floatingActionButton"
         android:orientation="vertical">
 
         <TextView
@@ -17,11 +17,10 @@
             android:layout_gravity="top|center"
             android:layout_margin="3dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:paddingTop="2dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:textColor="@color/calendar_background"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginStart="1dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
             android:alpha="0.5"
             android:gravity="center"
             android:orientation="horizontal">

@@ -48,14 +48,16 @@ class ShiftScheduleWidget : AppWidgetProvider() {
     @Inject
     lateinit var shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor
 
-    @Inject lateinit var calendarNoteTagWidgetUseCases: CalendarNoteTagWidgetUseCases
+    @Inject
+    lateinit var calendarNoteTagWidgetUseCases: CalendarNoteTagWidgetUseCases
 
     @Widget
-    @Inject lateinit var calendarTagUseCases: CalendarTagUseCases
+    @Inject
+    lateinit var calendarTagUseCases: CalendarTagUseCases
 
     private val APPWIDGET_CONFIGURE = "android.appwidget.action.APPWIDGET_CONFIGURE"
 
-    val calendar = Calendar
+    private val calendar = Calendar
         .getInstance(TimeZone.getTimeZone("GMT+3")).apply {
             firstDayOfWeek = 2
         }
@@ -110,6 +112,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
             val remoteViews =
                 RemoteViews(context.packageName, R.layout.shift_schedule_widget)
+
             remoteViews.apply {
                 setOnClickPendingIntent(
                     R.id.iv_calendar_previous,
@@ -119,6 +122,10 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     R.id.button_setting,
                     pendingIntent
                 )
+                setFloat(
+                    R.id.widget_layout,"setAlpha", 0.95F
+                )
+
             }
             // intent.setAction(APPWIDGET_CONFIGURE + appWidgetId)
 
@@ -127,9 +134,12 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
 
-                       val tags = calendarNoteTagWidgetUseCases.calendarNoteTagStream(calendar)
+                        val tags = calendarNoteTagWidgetUseCases.calendarNoteTagStream(calendar)
                         val calendarFullDayShiftModelTags = calendarFullDayShiftModel.copy(
-                            calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(calendarFullDayShiftModel.calendarFullDayModels, tags)
+                            calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
+                                calendarFullDayShiftModel.calendarFullDayModels,
+                                tags
+                            )
                         )
 
                         val gson = Gson()
@@ -161,8 +171,8 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
             val clickIntent = Intent(context, ShiftScheduleWidget::class.java)
             clickIntent.action = "ACTION_SELECT_DAY"
-            val clickPendingIntent = PendingIntent.getBroadcast(context, 0 ,clickIntent,flag)
-            remoteViews.setPendingIntentTemplate(R.id.gridView,clickPendingIntent)
+            val clickPendingIntent = PendingIntent.getBroadcast(context, 0, clickIntent, flag)
+            remoteViews.setPendingIntentTemplate(R.id.gridView, clickPendingIntent)
         }
     }
 
@@ -199,7 +209,8 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             }
 
             "ACTION_SELECT_DAY" -> {
-                val navigateAddNoteArgs = intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
+                val navigateAddNoteArgs =
+                    intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
                 navigateAddNoteArgs?.let {
                     val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
                     val pendingIntent2 = NavDeepLinkBuilder(context)

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Градиентная обводка -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/teal_700"
+                android:endColor="@color/floatingActionButton"
+                android:angle="90"/>
+        </shape>
+    </item>
+    <!-- Внутренний фон -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/floatingActionButton" />
+        </shape>
+    </item>
+</layer-list>

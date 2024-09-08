@@ -61,10 +61,7 @@ class CalendarFullAdapter(
                         alpha = 0.6F
                     }
                 }
-                if (calendarDateModel.dateDay) {
-                    itemLayout.background =
-                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
-                }
+
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
@@ -80,6 +77,12 @@ class CalendarFullAdapter(
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_note)
                         alpha = 0.85F
                     }
+                    itemLayout.background = itemView.context.getDrawable(R.drawable.background_layout_calendar_select_note)
+                }
+
+                if (calendarDateModel.dateDay) {
+                    itemLayout.background =
+                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
                 }
 
                 itemView.setOnClickListener {
@@ -128,10 +131,7 @@ class CalendarFullAdapter(
                     }
                 }
 
-                if (calendarDateModel.dateDay) {
-                    itemLayout.background =
-                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
-                }
+
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
@@ -148,6 +148,12 @@ class CalendarFullAdapter(
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_note)
                         alpha = 0.85F
                     }
+                    itemLayout.background = itemView.context.getDrawable(R.drawable.background_layout_calendar_select_note)
+                }
+
+                if (calendarDateModel.dateDay) {
+                    itemLayout.background =
+                        itemView.context.getDrawable(R.drawable.background_callendar_day_actual)
                 }
                 itemView.setOnClickListener {
                     onClick(calendarDateModel)

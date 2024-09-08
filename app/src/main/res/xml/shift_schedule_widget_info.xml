@@ -6,11 +6,10 @@
     android:initialLayout="@layout/shift_schedule_widget"
     android:minWidth="250dp"
     android:minHeight="250dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/icon_widget_calendar"
     android:autoAdvanceViewId="@id/gridView"
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="5"
     android:targetCellHeight="5"
     android:updatePeriodMillis="360"
-
     android:widgetCategory="home_screen" />

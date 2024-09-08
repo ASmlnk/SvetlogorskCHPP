@@ -126,6 +126,43 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 }
             }
 
+            if (calendarItem.calendarDayWeekend) {
+                remoteView.setTextColor(
+                    R.id.tv_calendar_date,
+                    context.getColor(R.color.orange_zero_vision)
+                )
+            }
+
+            if (calendarItem.calendarNoteTag?.isTechnical == true) {
+                remoteView.apply {
+                    setTextViewText(R.id.text_shift, "ТУ")
+                    setInt(
+                        R.id.layout_shift,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_technical
+                    )
+
+                    setFloat(R.id.layout_shift, "setAlpha", 0.85f)
+                }
+            }
+
+            if (calendarItem.calendarNoteTag?.isNotes == true) {
+                remoteView.apply {
+                    setInt(
+                        R.id.tv_calendar_date,
+                        "setBackgroundResource",
+                        R.drawable.background_calendar_select_note
+                    )
+                    setInt(
+                        R.id.item_layout,
+                        "setBackgroundResource",
+                        R.drawable.background_layout_calendar_select_note_widget
+                    )
+                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+
+                }
+            }
+
             if (calendarItem.dateDay) {
                 remoteView.setInt(
                     R.id.item_layout,
@@ -134,12 +171,6 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 )
             }
 
-            if (calendarItem.calendarDayWeekend) {
-                remoteView.setTextColor(
-                    R.id.tv_calendar_date,
-                    context.getColor(R.color.orange_zero_vision)
-                )
-            }
             return remoteView
         }
 

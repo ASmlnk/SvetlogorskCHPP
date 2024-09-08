@@ -120,13 +120,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
             calendarDayView(calendarItem, remoteView)
             calendarShiftView(calendarItem, remoteView)
 
-            if (calendarItem.dateDay) {
-                remoteView.setInt(
-                    R.id.item_layout,
-                    "setBackgroundResource",
-                    R.drawable.background_callendar_day_actual
-                )
-            }
+
 
             if (calendarItem.calendarDayWeekend) {
                 remoteView.setTextColor(
@@ -154,9 +148,21 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_note
                     )
-
+                    setInt(
+                        R.id.item_layout,
+                        "setBackgroundResource",
+                        R.drawable.background_layout_calendar_select_note_widget
+                    )
                     setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+
                 }
+            }
+            if (calendarItem.dateDay) {
+                remoteView.setInt(
+                    R.id.item_layout,
+                    "setBackgroundResource",
+                    R.drawable.background_callendar_day_actual
+                )
             }
 
             return remoteView
