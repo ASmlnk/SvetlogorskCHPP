@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/calendar_fragment_kontur_revers"
     android:layout_height="match_parent"
+    android:alpha="0.95"
     android:theme="@style/Theme.SvetlogorskCHPP.AppWidgetContainer">
 
             <ImageView

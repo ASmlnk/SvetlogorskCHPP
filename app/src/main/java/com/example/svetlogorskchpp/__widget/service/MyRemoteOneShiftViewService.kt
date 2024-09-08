@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.__widget.service
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.example.svetlogorskchpp.R
@@ -111,7 +112,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                     setInt(
                         R.id.layout_shift,
                         "setBackgroundResource",
-                        R.drawable.background_calendar_select_shift_night
+                        R.drawable.background_calendar_select_shift_night_v2
                     )
                 }
             }
@@ -122,7 +123,10 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_shift_day
                     )
-                    setFloat(R.id.layout_shift, "setAlpha", 0.85f)
+                    setTextColor(R.id.text_shift, context.getColor(R.color.chip_appbar))
+                   // setFloat(R.id.layout_shift, "setImageAlpha", 0.85f)
+                  // setInt(R.id.layout_shift, "setBackgroundColor", Color.parseColor("#85ff0000"))
+                   // setFloat(R.id.layout_shift, "setAlpha", 0.85f)
                 }
             }
 
@@ -141,8 +145,9 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_technical
                     )
+                    setTextColor(R.id.text_shift, context.getColor(R.color.chip_appbar))
 
-                    setFloat(R.id.layout_shift, "setAlpha", 0.85f)
+                   // setFloat(R.id.layout_shift, "setAlpha", 0.85f)
                 }
             }
 
@@ -158,7 +163,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_layout_calendar_select_note_widget
                     )
-                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                   // setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
 
                 }
             }

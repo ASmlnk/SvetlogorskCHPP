@@ -136,8 +136,9 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_technical
                     )
+                    setTextColor(R.id.text_day_shift, context.getColor(R.color.chip_appbar))
 
-                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                 //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
                 }
             }
 
@@ -153,7 +154,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_layout_calendar_select_note_widget
                     )
-                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                  //  setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
 
                 }
             }
@@ -215,8 +216,9 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_calendar_select_shift_day
                     )
+                    setTextColor(R.id.text_day_shift, context.getColor(R.color.chip_appbar))
 
-                    setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                 //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
                 }
 
             if (calendarItem.nextNightShift == calendarFullDayShift.shiftSelect) {
