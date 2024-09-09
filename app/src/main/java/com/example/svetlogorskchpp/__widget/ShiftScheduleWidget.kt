@@ -18,6 +18,7 @@ import com.example.svetlogorskchpp.__domain.en.Shift
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagWidgetUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
+import com.example.svetlogorskchpp.__domain.usecases.manager.SchedulerUpdateWidgetUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentArgs
@@ -56,6 +57,10 @@ class ShiftScheduleWidget : AppWidgetProvider() {
     @Inject
     lateinit var calendarTagUseCases: CalendarTagUseCases
 
+    @Widget
+    @Inject
+    lateinit var schedulerUpdateWidgetUseCases: SchedulerUpdateWidgetUseCases
+
     private val APPWIDGET_CONFIGURE = "android.appwidget.action.APPWIDGET_CONFIGURE"
 
     private val calendar = Calendar
@@ -78,17 +83,13 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 SharingStarted.Lazily,
                 CalendarFullDayShiftModel()
             )
-        // There may be multiple widgets active, so update all of them
+
         for (appWidgetId in appWidgetIds) {
             val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 0 or PendingIntent.FLAG_MUTABLE
             } else {
                 0
             }
-
-
-
-            //val flag = PendingIntent.FLAG_UPDATE_CURRENT
 
             val nextMonthIntent = Intent(context, ShiftScheduleWidget::class.java).apply {
                 setAction("ACTION_NEXT_MONTH")
@@ -117,7 +118,6 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
             val remoteViews =
                 RemoteViews(context.packageName, R.layout.shift_schedule_widget)
-            Log.d("0000000000", "remote")
 
             remoteViews.apply {
                 setOnClickPendingIntent(
@@ -140,8 +140,6 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
 
-                        Log.d("0000000000", "calendarFullDayShiftModel  $calendarFullDayShiftModel")
-
                         val tags = calendarNoteTagWidgetUseCases.calendarNoteTagStream(calendar)
                         val calendarFullDayShiftModelTags = calendarFullDayShiftModel.copy(
                             calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
@@ -150,12 +148,8 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                             )
                         )
 
-                        Log.d("0000000000", "calendarFullDayShiftModelTags $calendarFullDayShiftModelTags")
-
                         val gson = Gson()
                         val json = gson.toJson(calendarFullDayShiftModelTags)
-
-                        Log.d("0000000000", "json $json")
 
                         val serviceIntent = if (calendarFullDayShiftModel.calendarView == "1") {
                             Intent(context, MyRemoteAllShiftViewService::class.java)
@@ -181,12 +175,15 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 }
             }
 
-           // appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
-
             val clickIntent = Intent(context, ShiftScheduleWidget::class.java)
             clickIntent.action = "ACTION_SELECT_DAY"
             val clickPendingIntent = PendingIntent.getBroadcast(context, 0, clickIntent, flag)
             remoteViews.setPendingIntentTemplate(R.id.gridView, clickPendingIntent)
+            val intentUpdate = Intent(context, ShiftScheduleWidget::class.java).apply {
+                action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            }
+            schedulerUpdateWidgetUseCases.updateWidgetMidnight(intentUpdate)
+            Log.d("uuuuuuuuuuuuu", appWidgetId.toString())
         }
     }
 
@@ -197,21 +194,26 @@ class ShiftScheduleWidget : AppWidgetProvider() {
             AppWidgetManager.INVALID_APPWIDGET_ID
         ) ?: return
 
+        val intentUpdate = Intent(context, ShiftScheduleWidget::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        }
+
         when (intent.action) {
             "ACTION_NEXT_MONTH" -> {
-                // updateDate(context, appWidgetId, 1)
                 monthOffset++
                 calendar.apply {
                     add(Calendar.MONTH, monthOffset)
                 }
+                schedulerUpdateWidgetUseCases.updateWidgetLastAction(intent = intentUpdate, timeUpdateMinute = 30)
+
             }
 
             "ACTION_PREV_MONTH" -> {
                 monthOffset--
-                // generateDays()
                 calendar.apply {
                     add(Calendar.MONTH, monthOffset)
                 }
+                schedulerUpdateWidgetUseCases.updateWidgetLastAction(intent = intentUpdate, timeUpdateMinute = 30)
             }
 
             "ACTION_UPDATE_WIDGET" -> {
@@ -248,6 +250,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // When the user deletes the widget, delete the preference associated with it.
         for (appWidgetId in appWidgetIds) {
+            scope.cancel()
             deleteTitlePref(context, appWidgetId)
         }
     }
