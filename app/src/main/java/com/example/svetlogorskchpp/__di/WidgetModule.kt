@@ -29,6 +29,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class WidgetModule {
+
     @Provides
     @Widget
     fun provideShiftScheduleCalendarInteractorS(

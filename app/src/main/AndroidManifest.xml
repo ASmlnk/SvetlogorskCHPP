@@ -6,6 +6,8 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"

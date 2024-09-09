@@ -107,4 +107,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.hilt:hilt-work:1.2.0")
 }
