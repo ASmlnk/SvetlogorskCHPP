@@ -19,7 +19,7 @@ class CalendarNoteTagRepositoryImpl @Inject constructor(private val calendarNote
         calendarNoteTagDao.getTagsByMonth(month)
 
     override fun getTagsByDay(date: Date): List<CalendarNoteTagEntity> =
-        calendarNoteTagDao.getTagsByDay(date)
+        calendarNoteTagDao.getTagsByDay(date) ?: emptyList()
 
     override suspend fun deleteCalendarTag(calendarNoteTagEntity:CalendarNoteTagEntity) =
         calendarNoteTagDao.deleteCalendarTag(calendarNoteTagEntity)

@@ -4,8 +4,15 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
+import java.util.Calendar
 import javax.inject.Inject
 
 const val CHANNEL_ID = "calendar_notes"
@@ -16,11 +23,18 @@ class MyApplication: Application() {
     @Inject
     lateinit var notificationManager: NotificationManager
 
+    @Inject
+    lateinit var ss:CalendarNoteNotificationUseCases
+
     override fun onCreate() {
         super.onCreate()
         SharedPreferencesManager.init(this)
 
         createNotificationChannel()
+        CoroutineScope(Dispatchers.IO).launch {
+            val ii = ss.calendarNoteTechnicalNotification(Calendar.getInstance())
+        }
+
     }
 
     private fun createNotificationChannel() {

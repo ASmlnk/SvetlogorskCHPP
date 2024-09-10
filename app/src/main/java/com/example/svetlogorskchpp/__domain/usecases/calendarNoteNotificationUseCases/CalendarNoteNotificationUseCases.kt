@@ -4,5 +4,5 @@ import com.example.svetlogorskchpp.__domain.model.NoteTechnicalNotification
 import java.util.Calendar
 
 interface CalendarNoteNotificationUseCases {
-    fun calendarNoteTechnicalNotification(calendar: Calendar): NoteTechnicalNotification
+    suspend fun calendarNoteTechnicalNotification(calendar: Calendar): NoteTechnicalNotification
 }

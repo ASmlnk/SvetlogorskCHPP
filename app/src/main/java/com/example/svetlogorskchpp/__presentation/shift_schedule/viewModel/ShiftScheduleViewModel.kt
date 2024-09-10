@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__di.App
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
@@ -97,6 +98,8 @@ class ShiftScheduleViewModel @AssistedInject constructor(
     }
 
     init {
+
+
 
         viewModelScope.launch {
             _calendarAdapterStateFlow.collect {

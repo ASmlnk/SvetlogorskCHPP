@@ -10,6 +10,6 @@ class NoteRepositoryImpl @Inject constructor (private val noteDao: NoteDao): Not
 
     override suspend fun insertNote(note: NoteEntity) = noteDao.insertNote(note)
     override fun getNotesByTagIdStream(tagDate: Date): Flow<List<NoteEntity>> = noteDao.getNotesByTagIdStream(tagDate)
-    override fun getNotesByTagId(tagDate: Date): List<NoteEntity> = noteDao.getNotesByTagId(tagDate)
+    override fun getNotesByTagId(tagDate: Date): List<NoteEntity> = noteDao.getNotesByTagId(tagDate) ?: emptyList()
     override suspend fun deleteNote(note: NoteEntity) = noteDao.deleteNote(note)
 }

@@ -108,7 +108,5 @@ class UseCaseModule {
 
 }
 
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class App
+
 
