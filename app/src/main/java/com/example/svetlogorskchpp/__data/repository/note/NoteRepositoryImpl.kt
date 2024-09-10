@@ -9,6 +9,7 @@ import javax.inject.Inject
 class NoteRepositoryImpl @Inject constructor (private val noteDao: NoteDao): NoteRepository {
 
     override suspend fun insertNote(note: NoteEntity) = noteDao.insertNote(note)
-    override fun getNotesByTagId(tagDate: Date): Flow<List<NoteEntity>> = noteDao.getNotesByTagId(tagDate)
+    override fun getNotesByTagIdStream(tagDate: Date): Flow<List<NoteEntity>> = noteDao.getNotesByTagIdStream(tagDate)
+    override fun getNotesByTagId(tagDate: Date): List<NoteEntity> = noteDao.getNotesByTagId(tagDate)
     override suspend fun deleteNote(note: NoteEntity) = noteDao.deleteNote(note)
 }

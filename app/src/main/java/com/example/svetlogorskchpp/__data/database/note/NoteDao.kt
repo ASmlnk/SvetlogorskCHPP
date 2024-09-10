@@ -14,7 +14,10 @@ interface NoteDao {
     suspend fun insertNote(note: NoteEntity)
 
     @Query("SELECT * FROM notes WHERE tagDate =:tagDate")
-    fun getNotesByTagId(tagDate: Date): Flow<List<NoteEntity>>
+    fun getNotesByTagIdStream(tagDate: Date): Flow<List<NoteEntity>>
+
+    @Query("SELECT * FROM notes WHERE tagDate =:tagDate")
+    fun getNotesByTagId(tagDate: Date): List<NoteEntity>
 
     @Delete
     suspend fun deleteNote(note: NoteEntity)

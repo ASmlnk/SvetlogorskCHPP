@@ -6,6 +6,7 @@ import java.util.Date
 
 interface NoteRepository {
     suspend fun insertNote(note: NoteEntity)
-    fun getNotesByTagId(tagDate: Date): Flow<List<NoteEntity>>
+    fun getNotesByTagIdStream(tagDate: Date): Flow<List<NoteEntity>>
     suspend fun deleteNote(note: NoteEntity)
+    fun getNotesByTagId(tagDate: Date): List<NoteEntity>
 }

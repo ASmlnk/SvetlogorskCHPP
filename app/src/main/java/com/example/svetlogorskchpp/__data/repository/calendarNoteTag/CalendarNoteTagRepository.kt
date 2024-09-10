@@ -8,5 +8,6 @@ interface CalendarNoteTagRepository {
     suspend fun insertTag(tagCalendarNote: CalendarNoteTagEntity)
     suspend fun getTagsByMonth(month: Date): List<CalendarNoteTagEntity>
     suspend fun deleteCalendarTag(calendarNoteTagEntity:CalendarNoteTagEntity)
-    fun getTagsByDate(date: Date): Flow<CalendarNoteTagEntity?>
+    fun getTagsByDateStream(date: Date): Flow<CalendarNoteTagEntity?>
+    fun getTagsByDay(date: Date): List<CalendarNoteTagEntity>
 }

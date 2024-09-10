@@ -17,7 +17,7 @@ class CalendarNoteUseCasesImpl @Inject constructor(
     }
 
     override fun getNotesByTagId(tagDate: Calendar): Flow<List<Note>> =
-        noteRepository.getNotesByTagId(calendarDateUseCases.calendarToDateYMD(tagDate)).map { notes ->
+        noteRepository.getNotesByTagIdStream(calendarDateUseCases.calendarToDateYMD(tagDate)).map { notes ->
             notes.map { it.toNote() }
         }
 
