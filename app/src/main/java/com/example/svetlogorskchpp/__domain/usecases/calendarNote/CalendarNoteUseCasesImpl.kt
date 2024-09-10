@@ -2,7 +2,7 @@ package com.example.svetlogorskchpp.__domain.usecases.calendarNote
 
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__domain.model.Note
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.Calendar

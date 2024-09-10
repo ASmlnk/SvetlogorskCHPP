@@ -14,8 +14,8 @@ import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUse
 import com.example.svetlogorskchpp.__domain.usecases.JobTitleUseCases
 import com.example.svetlogorskchpp.__domain.usecases.NetworkAvailableUseCase
 import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases

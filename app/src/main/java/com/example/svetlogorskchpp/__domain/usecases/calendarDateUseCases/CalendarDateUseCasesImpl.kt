@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.__domain.usecases.calendarDate
+package com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat

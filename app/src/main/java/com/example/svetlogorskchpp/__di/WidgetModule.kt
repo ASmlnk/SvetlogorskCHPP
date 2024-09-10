@@ -8,9 +8,8 @@ import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.S
 import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
 import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCasesImpl
-import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagWidgetUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
@@ -21,7 +20,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Qualifier
 import javax.inject.Singleton

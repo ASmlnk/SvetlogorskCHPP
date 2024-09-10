@@ -3,8 +3,8 @@ package com.example.svetlogorskchpp.__di
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarDate.CalendarDateUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases

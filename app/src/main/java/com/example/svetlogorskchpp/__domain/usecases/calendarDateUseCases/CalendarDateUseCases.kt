@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.__domain.usecases.calendarDate
+package com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases
 
 import java.util.Calendar
 import java.util.Date
