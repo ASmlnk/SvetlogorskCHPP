@@ -18,9 +18,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
 import com.example.svetlogorskchpp.__domain.en.Shift
+import com.example.svetlogorskchpp.__frameworks.CalendarNotesWorker
 import com.example.svetlogorskchpp.__presentation.shift_schedule.adapter.CalendarFullAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule.adapter.ItemOffsetDecoration
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUiState
@@ -31,6 +35,8 @@ import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.sql.Time
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -50,6 +56,16 @@ class ShiftScheduleFragment : Fragment() {
         ShiftScheduleViewModel.providesFactory(
             assistedFactory = viewModelFactory,
             date = args.date
+        )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val per = PeriodicWorkRequestBuilder<CalendarNotesWorker>(15, TimeUnit.MINUTES).build()
+        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+            "POLL_WORK",
+            ExistingPeriodicWorkPolicy.KEEP,
+            per
         )
     }
 

@@ -18,23 +18,16 @@ import javax.inject.Inject
 const val CHANNEL_ID = "calendar_notes"
 
 @HiltAndroidApp
-class MyApplication: Application() {
+class MyApplication : Application() {
 
     @Inject
     lateinit var notificationManager: NotificationManager
-
-    @Inject
-    lateinit var ss:CalendarNoteNotificationUseCases
 
     override fun onCreate() {
         super.onCreate()
         SharedPreferencesManager.init(this)
 
         createNotificationChannel()
-        CoroutineScope(Dispatchers.IO).launch {
-            val ii = ss.calendarNoteTechnicalNotification(Calendar.getInstance())
-        }
-
     }
 
     private fun createNotificationChannel() {

@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 
@@ -59,4 +60,9 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         return navController.navigateUp(appBarConfiguration)
     }*/
 
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 }
