@@ -39,8 +39,6 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
 
-
-
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)
         )*/

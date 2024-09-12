@@ -38,5 +38,4 @@ class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
         val sdf = SimpleDateFormat("dd MMMM yyyy")
         return sdf.format(date)
     }
-
 }

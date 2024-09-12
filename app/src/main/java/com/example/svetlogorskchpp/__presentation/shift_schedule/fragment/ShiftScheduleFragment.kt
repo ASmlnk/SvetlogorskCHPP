@@ -1,42 +1,37 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleBinding
 import com.example.svetlogorskchpp.__domain.en.Shift
-import com.example.svetlogorskchpp.__frameworks.CalendarNotesWorker
 import com.example.svetlogorskchpp.__presentation.shift_schedule.adapter.CalendarFullAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule.adapter.ItemOffsetDecoration
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUiState
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule.viewModel.ShiftScheduleViewModel
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.sql.Time
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,21 +46,12 @@ class ShiftScheduleFragment : Fragment() {
     lateinit var viewModelFactory: ShiftScheduleViewModel.ShiftShiftScheduleViewModelFactory
 
     private lateinit var adapter: CalendarFullAdapter
+
     //private val viewModel: ShiftScheduleViewModel by viewModels()
     private val viewModel: ShiftScheduleViewModel by viewModels {
         ShiftScheduleViewModel.providesFactory(
             assistedFactory = viewModelFactory,
             date = args.date
-        )
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val per = PeriodicWorkRequestBuilder<CalendarNotesWorker>(15, TimeUnit.MINUTES).build()
-        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
-            "POLL_WORK",
-            ExistingPeriodicWorkPolicy.KEEP,
-            per
         )
     }
 
@@ -101,7 +87,10 @@ class ShiftScheduleFragment : Fragment() {
                         if (state.calendarList.isNotEmpty()) {
                             viewModel.updateTag()
 
-                            val adapterState = AdapterUiState(shift = state.selectShift, calendarView = state.calendarView)
+                            val adapterState = AdapterUiState(
+                                shift = state.selectShift,
+                                calendarView = state.calendarView
+                            )
                             adapter.setData(state.calendarList, adapterState)
                             binding.apply {
                                 recyclerView.adapter = adapter
@@ -110,7 +99,7 @@ class ShiftScheduleFragment : Fragment() {
                             }
                             isCheckedChipShift(state.selectShift)
                             isCheckedChipCalendarView(state.calendarView)
-
+                            setUpNotificationImageView(state.isNotificationNoteTechnical, state.isSnackbarShow)
                         }
                     }
                 }
@@ -125,8 +114,8 @@ class ShiftScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        // val per = OneTimeWorkRequestBuilder<CalendarNotesWorker>().build()
+        //WorkManager.getInstance(requireContext()).enqueue(per)
     }
 
     override fun onStop() {
@@ -139,6 +128,7 @@ class ShiftScheduleFragment : Fragment() {
         }
 
         requireContext().sendBroadcast(updateIntent)
+        viewModel.isSnackbarShowOff()
     }
 
     override fun onDestroy() {
@@ -148,15 +138,18 @@ class ShiftScheduleFragment : Fragment() {
 
     private fun setUpAdapter() {
         val itemDecoration = ItemOffsetDecoration(requireContext())
-        adapter = CalendarFullAdapter {calendarFullDateModel ->
+        adapter = CalendarFullAdapter { calendarFullDateModel ->
             val navigateAddNoteArgs = NavigateAddNoteArgs(
                 date = calendarFullDateModel.data.time.time,
                 prevNightShift = calendarFullDateModel.prevNightShift,
                 dayShift = calendarFullDateModel.dayShift,
                 nextNightShift = calendarFullDateModel.nextNightShift,
-                isTechnical = calendarFullDateModel.calendarNoteTag?.isTechnical?: false
+                isTechnical = calendarFullDateModel.calendarNoteTag?.isTechnical ?: false
             )
-            val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(navigateAddNoteArgs)
+            val action =
+                ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(
+                    navigateAddNoteArgs
+                )
             findNavController().navigate(action)
         }
 
@@ -169,6 +162,10 @@ class ShiftScheduleFragment : Fragment() {
     private fun setUpClickListener() {
 
         binding.apply {
+            ivNotification.setOnClickListener {
+                viewModel.selectNotification()
+            }
+
             ivCalendarNext.setOnClickListener {
                 viewModel.selectNext()
             }
@@ -189,7 +186,9 @@ class ShiftScheduleFragment : Fragment() {
             }
             chipCalendarView1.setOnCheckedChangeListener { _, b ->
                 lifecycleScope.launch {
-                    if (b) viewModel.setSelectCalendarView("1") else viewModel.setSelectCalendarView("2")
+                    if (b) viewModel.setSelectCalendarView("1") else viewModel.setSelectCalendarView(
+                        "2"
+                    )
                 }
             }
 
@@ -198,23 +197,38 @@ class ShiftScheduleFragment : Fragment() {
             }
 
             dialogStaffA.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.A_SHIFT)
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(
+                        Shift.A_SHIFT
+                    )
                 findNavController().navigate(action)
             }
             dialogStaffB.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.B_SHIFT)
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(
+                        Shift.B_SHIFT
+                    )
                 findNavController().navigate(action)
             }
             dialogStaffC.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.C_SHIFT)
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(
+                        Shift.C_SHIFT
+                    )
                 findNavController().navigate(action)
             }
             dialogStaffD.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.D_SHIFT)
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(
+                        Shift.D_SHIFT
+                    )
                 findNavController().navigate(action)
             }
             dialogStaffE.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(Shift.E_SHIFT)
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleStaffDialog(
+                        Shift.E_SHIFT
+                    )
                 findNavController().navigate(action)
             }
         }
@@ -232,9 +246,12 @@ class ShiftScheduleFragment : Fragment() {
     }
 
     private fun selectChip(isChecked: Boolean, shift: String) {
-        val isAnyChipChecked = binding.chipGroup.children.filterIsInstance<Chip>().any { it.isChecked }
+        val isAnyChipChecked =
+            binding.chipGroup.children.filterIsInstance<Chip>().any { it.isChecked }
         lifecycleScope.launch {
-            if (isChecked) viewModel.setSelectShiftSchedule( shift ) else if (!isAnyChipChecked) viewModel.setSelectShiftSchedule( "" )
+            if (isChecked) viewModel.setSelectShiftSchedule(shift) else if (!isAnyChipChecked) viewModel.setSelectShiftSchedule(
+                ""
+            )
         }
     }
 
@@ -254,5 +271,62 @@ class ShiftScheduleFragment : Fragment() {
             "1" -> binding.chipCalendarView1.isChecked = true
             else -> binding.chipCalendarView1.isChecked = false
         }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setUpNotificationImageView(isNotification: Boolean, isSnackbarShow: Boolean) {
+        binding.apply {
+
+                if (isNotification) {
+                    val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_24)
+                    ivNotification.setImageDrawable(idRes)
+                    if (isSnackbarShow) showCustomSnackbar(binding.root, true)
+                } else {
+                    val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_off_24)
+                    ivNotification.setImageDrawable(idRes)
+                    if (isSnackbarShow) showCustomSnackbar(binding.root, false)
+                }
+
+        }
+    }
+
+    private fun showCustomSnackbar(view: View, isNotification: Boolean) {
+        val textSnackbar =
+            if (isNotification) {
+                resources.getString(R.string.notification_on)
+            } else {
+                resources.getString(R.string.notification_off)
+            }
+
+        val snackbar = Snackbar.make(view, textSnackbar, Snackbar.LENGTH_LONG)
+        /*        snackbar.setAction("UNDO") {
+                    // Действие на нажатие UNDO
+                }*/
+
+        // Установка Drawable как фона
+        val snackbarView = snackbar.view
+        val background: Drawable? = ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.shift_schedule_snackbar_background
+        )
+        snackbarView.background = background
+
+        val params = snackbarView.layoutParams as ViewGroup.MarginLayoutParams
+        params.setMargins(0, 0, 0, 0)
+        snackbarView.layoutParams = params
+
+        val textView =
+            snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+        textView.apply {
+            setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.calendar_background
+                )
+            )  // Цвет текста
+            textSize = 20f
+        }
+
+        snackbar.show()
     }
 }

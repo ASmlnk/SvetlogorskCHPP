@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__data.database.note
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.svetlogorskchpp.__domain.model.Note
@@ -23,6 +24,7 @@ data class NoteEntity(
     val dateNotes: Date,        //"YYYY-MM-DD HH:mm"
     val isTimeNotes: Boolean = false,
     val content: String,
+    @ColumnInfo(name = "is_request_work") val isRequestsWork: Boolean = false
 ) {
     fun toNote(): Note {
         return Note(
@@ -30,7 +32,9 @@ data class NoteEntity(
             tagDate = this.tagDate,
             dateNotes = dateToCalendar(this.dateNotes),
             isTimeNotes = this.isTimeNotes,
-            content = this.content
+            content = this.content,
+            isRequestsWork = this.isRequestsWork
+
         )
     }
 

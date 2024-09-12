@@ -213,6 +213,13 @@
     <string name="app_widget_description">This is an app widget description</string>
     <string name="channel_name_calendar_notes">Заметки календаря</string>
     <string name="channel_name_description_calendar">График смен</string>
-
+    <string name="notification_technical_today">Сегодня %s состоится техническая учеба</string>
+    <string name="notification_technical_tomorrow">Завтра %s" запланирована техническая учеба</string>
+    <string name="notification_title_technical">Техническая учеба</string>
+    <string name="notification_title_notes">События календаря</string>
+    <string name="notification_note_today">Сегодня %1$s запланировано:\n%2$s</string>
+    <string name="notification_note_tomorrow">Завтра %1$s запланировано:\n%2$s</string>
+    <string name="notification_on">Уведомления включены!</string>
+    <string name="notification_off">Уведомления отключены!</string>
 
 </resources>

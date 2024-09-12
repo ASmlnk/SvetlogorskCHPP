@@ -7,6 +7,8 @@ data class ShiftScheduleUiState(
     val textDateMonth: String = "",
     val selectShift: Shift = Shift.NO_SHIFT,
     val calendarView: String = "1",
-    val textTodayDate: String = ""
+    val textTodayDate: String = "",
+    val isNotificationNoteTechnical: Boolean = true,
+    val isSnackbarShow: Boolean = false
 ) {
 }

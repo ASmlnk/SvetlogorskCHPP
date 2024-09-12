@@ -10,6 +10,7 @@ data class Note(
     val dateNotes: Calendar,        //"YYYY-MM-DD HH:mm"
     val isTimeNotes: Boolean = false,
     val content: String,
+    val isRequestsWork: Boolean = false,
 ) {
 
     fun toNoteEntity(): NoteEntity {
@@ -18,7 +19,8 @@ data class Note(
             tagDate = this.tagDate,
             dateNotes = this.dateNotes.time,
             isTimeNotes = this.isTimeNotes,
-            content = this.content
+            content = this.content,
+            isRequestsWork = this.isRequestsWork
         )
     }
 }

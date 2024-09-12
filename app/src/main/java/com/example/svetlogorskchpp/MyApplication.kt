@@ -4,24 +4,20 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
-import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
-import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
-import java.util.Calendar
 import javax.inject.Inject
 
 const val CHANNEL_ID = "calendar_notes"
 
 @HiltAndroidApp
-class MyApplication : Application() {
+class MyApplication : Application(), Configuration.Provider {
 
     @Inject
     lateinit var notificationManager: NotificationManager
+
+    @Inject lateinit var workerFactory : HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -42,4 +38,11 @@ class MyApplication : Application() {
             notificationManager.createNotificationChannel(channel)
         }
     }
+
+
+
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
 }

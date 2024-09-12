@@ -81,10 +81,6 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -166,10 +162,6 @@ class ShiftScheduleAddNotesFragment : Fragment() {
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-        //viewEditNote(false)
 
         binding.apply {
             ivSaveNotes.setOnClickListener {

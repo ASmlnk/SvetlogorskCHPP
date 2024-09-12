@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.__di
 import android.content.Context
 import androidx.room.Room
 import com.example.svetlogorskchpp.__data.database.AppDataBase
+import com.example.svetlogorskchpp.__data.database.MIGRATION_1_2
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import dagger.Module
@@ -23,7 +24,9 @@ class LocaleModule {
             appContext,
             AppDataBase::class.java,
             "app_database"
-        ).build()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .build()
     }
 
     @Provides

@@ -26,6 +26,7 @@ class ShiftScheduleCalendarInteractorImpl @Inject constructor(
 
     private val _selectShiftScheduleStream = preferencesRepository.selectShiftSchedule
     private val _selectCalendarViewShiftSchedule = preferencesRepository.selectCalendarViewShiftSchedule
+    private val _notificationNoteTechnical = preferencesRepository.isNotificationNoteTechnical
     private val _getDaysFullCalendarFlow =
         MutableStateFlow<List<CalendarFullDayModel>>(emptyList())
 
@@ -33,12 +34,14 @@ class ShiftScheduleCalendarInteractorImpl @Inject constructor(
         return combine(
             _selectShiftScheduleStream,
             _getDaysFullCalendarFlow,
+            _notificationNoteTechnical,
             _selectCalendarViewShiftSchedule
-        ) { preferencesRepositoryFlow, getDaysFullCalendarFlow, getSelectCalendarView ->
+        ) { preferencesRepositoryFlow, getDaysFullCalendarFlow, notificationNoteTechnical, getSelectCalendarView ->
             CalendarFullDayShiftModel().copy(
                 calendarFullDayModels = getDaysFullCalendarFlow,
                 shiftSelect = shiftUseCases.stringToShift(preferencesRepositoryFlow),
-                calendarView = getSelectCalendarView
+                calendarView = getSelectCalendarView,
+                isNotificationNoteTechnical = notificationNoteTechnical
             )
         }.stateIn(
             scope = CoroutineScope(Dispatchers.Default),
@@ -53,6 +56,10 @@ class ShiftScheduleCalendarInteractorImpl @Inject constructor(
 
     override suspend fun setSelectCalendarView(view: String) {
         preferencesRepository.setSelectCalendarViewShiftSchedule(view)
+    }
+
+    override suspend fun setNotificationNoteTechnical(isNotification: Boolean) {
+        preferencesRepository.setNotificationNoteTechnical(isNotification)
     }
 
     override fun generateDaysFullCalendar(calendar: Calendar) {

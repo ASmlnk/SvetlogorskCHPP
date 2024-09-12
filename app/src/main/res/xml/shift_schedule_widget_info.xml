@@ -11,5 +11,6 @@
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="5"
     android:targetCellHeight="5"
+    android:updatePeriodMillis="3600000"
     android:widgetCategory="home_screen" />
-   <!--android:updatePeriodMillis="360"-->
+

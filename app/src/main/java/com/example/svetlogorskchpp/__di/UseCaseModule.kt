@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__di
 
+import android.content.Context
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
@@ -8,6 +9,8 @@ import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPerso
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractorImpl
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
+import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
+import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.__domain.usecases.FilterUseCases
 import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
@@ -26,6 +29,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Qualifier
 
@@ -96,6 +100,14 @@ class UseCaseModule {
         calendarDateUseCases: CalendarDateUseCases,
     ): CalendarNoteTagUseCases {
         return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarDateUseCases)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideTaskSchedulerNotificationWorker(
+        context: Context
+    ): TaskSchedulerNotificationWorker {
+        return TaskSchedulerNotificationWorkerImpl(context)
     }
 
    // @Provides

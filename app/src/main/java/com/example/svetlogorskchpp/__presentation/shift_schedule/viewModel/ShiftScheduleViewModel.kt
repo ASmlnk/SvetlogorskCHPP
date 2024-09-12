@@ -4,19 +4,16 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.__di.App
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
-import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
+import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.ShiftScheduleUiState
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -32,12 +29,12 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
-import javax.inject.Inject
 
 class ShiftScheduleViewModel @AssistedInject constructor(
     private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
     private val calendarTagUseCases: CalendarTagUseCases,
+    private val taskSchedulerNotificationWorker: TaskSchedulerNotificationWorker,
     @Assisted private val date: Long,
 ) : ViewModel() {
 
@@ -79,7 +76,8 @@ class ShiftScheduleViewModel @AssistedInject constructor(
                 calendarNoteTags = calendarNoteTags
             ),
             shiftSelect = calendarFullDayShift.shiftSelect,
-            calendarView = calendarFullDayShift.calendarView
+            calendarView = calendarFullDayShift.calendarView,
+            isNotificationNoteTechnical = calendarFullDayShift.isNotificationNoteTechnical
         )
     }.stateIn(
         scope = CoroutineScope(Dispatchers.Default),
@@ -99,7 +97,9 @@ class ShiftScheduleViewModel @AssistedInject constructor(
 
     init {
 
+        viewModelScope.launch {
 
+        }
 
         viewModelScope.launch {
             _calendarAdapterStateFlow.collect {
@@ -127,8 +127,14 @@ class ShiftScheduleViewModel @AssistedInject constructor(
                         oldState.copy(
                             calendarList = calendarFullDayShiftModel.calendarFullDayModels,
                             selectShift = calendarFullDayShiftModel.shiftSelect,
-                            calendarView = calendarFullDayShiftModel.calendarView
+                            calendarView = calendarFullDayShiftModel.calendarView,
+                            isNotificationNoteTechnical = calendarFullDayShiftModel.isNotificationNoteTechnical
                         )
+                    }
+                    if (calendarFullDayShiftModel.isNotificationNoteTechnical) {
+                        taskSchedulerNotificationWorker.scheduleDailyTaskAtSixAM()
+                    } else {
+                        taskSchedulerNotificationWorker.cancelScheduleTask()
                     }
                 }
         }
@@ -184,12 +190,34 @@ class ShiftScheduleViewModel @AssistedInject constructor(
         // updateTag()
     }
 
+    fun isSnackbarShowOff() {
+        _uiState.update {
+            it.copy(isSnackbarShow = false)
+        }
+    }
+
+    fun selectNotification() {
+        viewModelScope.launch {
+            if (uiState.value.isNotificationNoteTechnical) {
+                _uiState.update {
+                    it.copy(isSnackbarShow = true)
+                }
+                shiftScheduleCalendarInteractor.setNotificationNoteTechnical(false)
+            } else {
+                shiftScheduleCalendarInteractor.setNotificationNoteTechnical(true)
+                _uiState.update {
+                    it.copy(isSnackbarShow = true)
+                }
+            }
+        }
+
+    }
+
     private fun generateDays() {
         //updateTag()
         val monthCalendar = adapterDate().clone() as Calendar
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
         shiftScheduleCalendarInteractor.generateDaysFullCalendar(monthCalendar)
-
     }
 
     suspend fun setSelectShiftSchedule(shift: String) {

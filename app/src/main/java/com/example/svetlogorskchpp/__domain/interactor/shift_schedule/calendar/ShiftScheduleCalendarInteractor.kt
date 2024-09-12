@@ -9,4 +9,5 @@ interface ShiftScheduleCalendarInteractor {
     fun getDaysFullCalendarStream(): Flow<CalendarFullDayShiftModel>
     suspend fun setSelectShiftSchedule(shift: String)
     suspend fun setSelectCalendarView(view: String)
+    suspend fun setNotificationNoteTechnical(isNotification: Boolean)
 }

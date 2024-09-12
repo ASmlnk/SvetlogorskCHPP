@@ -1,10 +1,12 @@
 package com.example.svetlogorskchpp.__domain.model
 
 data class NoteTechnicalNotification (
-    val eventToday: List<Note>,
-    val eventTomorrow: List<Note>,
+    val eventToday: String,
+    val eventTomorrow: String,
     val isTechnicalToday: Boolean,
     val isTechnicalTomorrow: Boolean,
+    val isNoteToday: Boolean,
+    val isNoteTomorrow: Boolean,
     val dateToday: String,
     val dateTomorrow: String
 ) {

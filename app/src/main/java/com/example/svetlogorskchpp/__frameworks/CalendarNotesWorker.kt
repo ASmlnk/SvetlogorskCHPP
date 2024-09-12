@@ -1,21 +1,26 @@
 package com.example.svetlogorskchpp.__frameworks
 
 import android.annotation.SuppressLint
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.hilt.work.HiltWorker
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.svetlogorskchpp.CHANNEL_ID
 import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.__di.Widget
-import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.model.NoteTechnicalNotification
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
+import com.google.common.io.Resources
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.Calendar
@@ -23,9 +28,8 @@ import java.util.Calendar
 @HiltWorker
 class CalendarNotesWorker @AssistedInject constructor(
     @Assisted val context: Context,
-    @Assisted val workerParameters: WorkerParameters,
+    @Assisted workerParameters: WorkerParameters,
     private val calendarNoteNotificationUseCases: CalendarNoteNotificationUseCases,
-
 
     ) : CoroutineWorker(context, workerParameters) {
     override suspend fun doWork(): Result {
@@ -33,6 +37,7 @@ class CalendarNotesWorker @AssistedInject constructor(
             calendarNoteNotificationUseCases.calendarNoteTechnicalNotification(
                 Calendar.getInstance()
             )
+
         notifyUser(calendarNoteTechnicalNotification)
 
         return Result.success()
@@ -40,23 +45,88 @@ class CalendarNotesWorker @AssistedInject constructor(
 
     @SuppressLint("MissingPermission")
     private fun notifyUser(calendarNoteTechnicalNotification: NoteTechnicalNotification) {
-        val intent = MainActivity.newIntent(context)
-        val pendingIntent =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = NavDeepLinkBuilder(context)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.shiftScheduleFragment)
+            .createPendingIntent()
 
         val resources = context.resources
 
-        val notification = NotificationCompat
+        if (calendarNoteTechnicalNotification.isTechnicalToday) {
+            val contentText = resources.getString(
+                R.string.notification_technical_today,
+                "<i>${calendarNoteTechnicalNotification.dateToday}</i>"
+            )
+            val notification = notificationTechnical(contentText, pendingIntent)
+
+            NotificationManagerCompat.from(context).notify(0, notification)
+        }
+
+        if (calendarNoteTechnicalNotification.isTechnicalTomorrow) {
+            val contentText = resources.getString(
+                R.string.notification_technical_tomorrow,
+                "<i>${calendarNoteTechnicalNotification.dateTomorrow}</i>"
+            )
+            val notification = notificationTechnical(contentText, pendingIntent)
+
+            NotificationManagerCompat.from(context).notify(1, notification)
+        }
+
+        if (calendarNoteTechnicalNotification.isNoteToday) {
+            val contentText = calendarNoteTechnicalNotification.eventToday
+            val notification = notificationNotes(
+                context.getString(R.string.notification_note_today, calendarNoteTechnicalNotification.dateToday, contentText),
+                pendingIntent
+            )
+
+            NotificationManagerCompat.from(context).notify(2, notification)
+        }
+        if (calendarNoteTechnicalNotification.isNoteTomorrow) {
+            val contentText = calendarNoteTechnicalNotification.eventTomorrow
+            val notification = notificationNotes(
+                context.getString(R.string.notification_note_tomorrow, calendarNoteTechnicalNotification.dateTomorrow, contentText),
+                pendingIntent
+            )
+
+            NotificationManagerCompat.from(context).notify(3, notification)
+        }
+    }
+
+    private fun String.fromHtmlCompat(): Spanned = Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
+
+    private fun notificationTechnical(
+        contentText: String,
+        pendingIntent: PendingIntent,
+    ): Notification {
+        return NotificationCompat
             .Builder(context, CHANNEL_ID)
-            .setTicker("1")
+            .setTicker(context.resources.getString(R.string.channel_name_description_calendar))
             .setSmallIcon(R.drawable.klipartz_com3)
-            .setContentTitle("2")
-            .setContentText("3")
+            .setContentTitle(context.resources.getString(R.string.notification_title_technical))
+            .setContentText(contentText.fromHtmlCompat())
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
+    }
 
-        NotificationManagerCompat.from(context).notify(0, notification)
-
+    private fun notificationNotes(
+        contentText: String,
+        pendingIntent: PendingIntent
+    ): Notification {
+        return NotificationCompat
+            .Builder(context, CHANNEL_ID)
+            .setTicker(context.resources.getString(R.string.channel_name_description_calendar))
+            .setSmallIcon(R.drawable.klipartz_com3)
+            .setContentTitle(context.resources.getString(R.string.notification_title_notes))
+            .setContentText(contentText.fromHtmlCompat())
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText(contentText.fromHtmlCompat()
+                    )
+            )
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .build()
     }
 }

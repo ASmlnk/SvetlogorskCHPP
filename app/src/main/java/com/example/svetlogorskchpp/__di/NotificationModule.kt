@@ -45,7 +45,6 @@ object NotificationModule {
     fun provideCalendarDateUseCases(): CalendarDateUseCases {
         return CalendarDateUseCasesImpl()
     }
-
 }
 
 @Qualifier

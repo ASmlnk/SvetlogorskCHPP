@@ -55,6 +55,10 @@ class ShiftScheduleCalendarInteractorWidgetImpl @Inject constructor(
         preferencesRepository.setSelectCalendarViewShiftScheduleWidget(view)
     }
 
+    override suspend fun setNotificationNoteTechnical(isNotification: Boolean) {
+        preferencesRepository.setNotificationNoteTechnical(isNotification)
+    }
+
     override fun generateDaysFullCalendar(calendar: Calendar) {
         val list = generateDaysFullCalendarUseCases.generateDays(calendar)
         val listAddShift = calendarAddShift.addShiftOfCalendar(list)
