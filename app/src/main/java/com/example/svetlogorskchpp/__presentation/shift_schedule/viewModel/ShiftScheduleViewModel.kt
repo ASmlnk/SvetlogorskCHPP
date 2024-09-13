@@ -198,13 +198,13 @@ class ShiftScheduleViewModel @AssistedInject constructor(
 
     fun selectNotification() {
         viewModelScope.launch {
+
             if (uiState.value.isNotificationNoteTechnical) {
-                _uiState.update {
-                    it.copy(isSnackbarShow = true)
-                }
                 shiftScheduleCalendarInteractor.setNotificationNoteTechnical(false)
             } else {
                 shiftScheduleCalendarInteractor.setNotificationNoteTechnical(true)
+            }
+            if (!uiState.value.isNotificationNoteTechnical) {
                 _uiState.update {
                     it.copy(isSnackbarShow = true)
                 }

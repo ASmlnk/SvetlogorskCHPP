@@ -99,7 +99,10 @@ class ShiftScheduleFragment : Fragment() {
                             }
                             isCheckedChipShift(state.selectShift)
                             isCheckedChipCalendarView(state.calendarView)
-                            setUpNotificationImageView(state.isNotificationNoteTechnical, state.isSnackbarShow)
+                            setUpNotificationImageView(
+                                state.isNotificationNoteTechnical,
+                                state.isSnackbarShow
+                            )
                         }
                     }
                 }
@@ -110,12 +113,6 @@ class ShiftScheduleFragment : Fragment() {
         setUpClickListener()
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // val per = OneTimeWorkRequestBuilder<CalendarNotesWorker>().build()
-        //WorkManager.getInstance(requireContext()).enqueue(per)
     }
 
     override fun onStop() {
@@ -277,16 +274,15 @@ class ShiftScheduleFragment : Fragment() {
     private fun setUpNotificationImageView(isNotification: Boolean, isSnackbarShow: Boolean) {
         binding.apply {
 
-                if (isNotification) {
-                    val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_24)
-                    ivNotification.setImageDrawable(idRes)
-                    if (isSnackbarShow) showCustomSnackbar(binding.root, true)
-                } else {
-                    val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_off_24)
-                    ivNotification.setImageDrawable(idRes)
-                    if (isSnackbarShow) showCustomSnackbar(binding.root, false)
-                }
-
+            if (isNotification) {
+                val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_24)
+                ivNotification.setImageDrawable(idRes)
+                if (isSnackbarShow) showCustomSnackbar(binding.root, true)
+            } else {
+                val idRes = requireContext().getDrawable(R.drawable.baseline_notifications_off_24)
+                ivNotification.setImageDrawable(idRes)
+                if (isSnackbarShow) showCustomSnackbar(binding.root, false)
+            }
         }
     }
 

@@ -75,7 +75,7 @@ class CalendarNotesWorker @AssistedInject constructor(
         if (calendarNoteTechnicalNotification.isNoteToday) {
             val contentText = calendarNoteTechnicalNotification.eventToday
             val notification = notificationNotes(
-                context.getString(R.string.notification_note_today, calendarNoteTechnicalNotification.dateToday, contentText),
+                context.getString(R.string.notification_note_today, "<i>${calendarNoteTechnicalNotification.dateToday}</i>", contentText),
                 pendingIntent
             )
 
@@ -84,7 +84,7 @@ class CalendarNotesWorker @AssistedInject constructor(
         if (calendarNoteTechnicalNotification.isNoteTomorrow) {
             val contentText = calendarNoteTechnicalNotification.eventTomorrow
             val notification = notificationNotes(
-                context.getString(R.string.notification_note_tomorrow, calendarNoteTechnicalNotification.dateTomorrow, contentText),
+                context.getString(R.string.notification_note_tomorrow, "<i>${calendarNoteTechnicalNotification.dateTomorrow}</i>", contentText),
                 pendingIntent
             )
 
