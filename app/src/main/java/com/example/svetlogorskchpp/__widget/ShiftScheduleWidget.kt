@@ -14,7 +14,6 @@ import androidx.navigation.NavDeepLinkBuilder
 import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__di.Widget
-import com.example.svetlogorskchpp.__domain.en.Shift
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagWidgetUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
@@ -183,7 +182,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             }
             schedulerUpdateWidgetUseCases.updateWidgetMidnight(intentUpdate)
-            Log.d("uuuuuuuuuuuuu", appWidgetId.toString())
+
         }
     }
 
@@ -229,13 +228,15 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
                 navigateAddNoteArgs?.let {
                     val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
-                    val pendingIntent2 = NavDeepLinkBuilder(context)
+                    val taskStackBuilder = NavDeepLinkBuilder(context)
+                        .setComponentName(activityClass = MainActivity::class.java)
                         .setGraph(R.navigation.nav_graph)
                         .setDestination(R.id.shiftScheduleAddNotesFragment)
                         .setArguments(args.toBundle())
-                        .createPendingIntent()
+                        .createTaskStackBuilder()
+                        //.createPendingIntent()
 
-                    pendingIntent2.send()
+                    taskStackBuilder.startActivities()
                 }
                 monthOffset = 0
             }
