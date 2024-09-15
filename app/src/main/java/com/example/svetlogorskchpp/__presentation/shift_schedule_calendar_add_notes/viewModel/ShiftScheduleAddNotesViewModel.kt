@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -64,6 +65,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     private val _calendarNoteTagStream =
         calendarNoteTagUseCases.getTagsByDate(_dateStateFlow.value)
+            .stateIn(viewModelScope, SharingStarted.Lazily, calendarNoteTag)
 
     init {
         viewModelScope.launch {
@@ -71,6 +73,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         }
         viewModelScope.launch {
             _calendarNoteTagStream.collect { calendarNoteTag ->
+                Log.d("aa00000000", calendarNoteTag.toString())
                 calendarNoteTag?.let {
                     _calendarNoteUiState.update { old ->
                         old.copy(
@@ -139,6 +142,18 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     }
 
     fun deleteNoteTag() {
+        Log.d("aa00000000", "${calendarNoteUiState.value.calendarNoteTag.isNotes} ${calendarNoteUiState.value.calendarNoteTag.isTechnical}")
+
+        if (_calendarNoteUiState.value.notes.isNotEmpty()) {
+            val calendarNoteTagNew = _calendarNoteUiState.value.calendarNoteTag.copy(isNotes = true)
+            _calendarNoteUiState.update { oldState ->
+                oldState.copy(calendarNoteTag = calendarNoteTagNew)
+            }
+            viewModelScope.launch {
+                insertIsNotes(true)
+            }
+        }
+
         if (!_calendarNoteUiState.value.calendarNoteTag.isNotes && !_calendarNoteUiState.value.calendarNoteTag.isTechnical) {
             viewModelScope.launch {
                 calendarNoteTagUseCases.deleteCalendarTag(_calendarNoteUiState.value.calendarNoteTag)

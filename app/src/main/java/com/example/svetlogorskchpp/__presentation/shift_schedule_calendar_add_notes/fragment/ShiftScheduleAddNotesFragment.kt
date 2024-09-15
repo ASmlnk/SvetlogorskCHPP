@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,14 +65,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         ) {
             override fun handleOnBackPressed() {
                 val action = ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(args.navigateAddNoteArgs.date)
-
                 findNavController().navigate(action)
-                   // R.id.action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3)
-
-
-               /* findNavController().navigate(R.id.action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3*//*,
-                    null,
-                    NavOptions.Builder().setPopUpTo(R.id.shiftScheduleAddNotesFragment, true).build()*//* )*/
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -224,6 +218,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.d("aa00000000", "onDestroyView()")
         viewModel.deleteNoteTag()
         _binding = null
     }

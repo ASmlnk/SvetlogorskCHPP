@@ -15,7 +15,7 @@
         <!-- Customize your theme here. -->
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="windowActionBar">false</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">

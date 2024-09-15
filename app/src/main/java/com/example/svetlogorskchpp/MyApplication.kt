@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
@@ -21,6 +22,7 @@ class MyApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         SharedPreferencesManager.init(this)
 
         createNotificationChannel()
