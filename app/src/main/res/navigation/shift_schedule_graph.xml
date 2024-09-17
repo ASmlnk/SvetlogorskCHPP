@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shiftScheduleGraph"
+    app:startDestination="@id/shiftScheduleFragment">
+    <fragment
+        android:id="@+id/shiftScheduleFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment"
+        android:label="ShiftScheduleFragment"
+        tools:layout="@layout/fragment_shift_schedule">
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
+            app:destination="@id/shiftScheduleEditCompositionFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleStaffDialog"
+            app:destination="@id/shiftScheduleStaffDialog" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleAddNotesFragment"
+            app:destination="@id/shiftScheduleAddNotesFragment" />
+        <argument
+            android:name="date"
+            android:defaultValue="0L"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/shiftScheduleEditCompositionFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
+        android:label="ShiftScheduleEditCompositionFragment"
+        tools:layout="@layout/fragment_shift_schedule_edit_composition" />
+    <fragment
+        android:id="@+id/shiftScheduleAddNotesFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
+        android:label="ShiftScheduleAddNotesFragment"
+        tools:layout="@layout/fragment_shift_schedule_add_notes">
+
+        <argument
+            android:name="navigateAddNoteArgs"
+            app:argType="com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleStaffDialog"
+            app:destination="@id/shiftScheduleStaffDialog" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_dialogCalendarDateFragment"
+            app:destination="@id/dialogCalendarDateFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3"
+            app:destination="@id/shiftScheduleFragment"
+            app:popUpTo="@id/shiftScheduleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialogCalendarDateFragment"
+        android:name="com.example.svetlogorskchpp.inspectionSchedule.DialogCalendarDateFragment"
+        android:label="DialogCalendarDateFragment"
+        tools:layout="@layout/dialog_inspection_schedule_calendar">
+        <argument
+            android:name="workingShift"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="java.util.Date" />
+    </dialog>
+    <dialog
+        android:id="@+id/shiftScheduleStaffDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog"
+        android:label="dialog_shift_schedule_personal"
+        tools:layout="@layout/dialog_shift_schedule_personal">
+
+        <argument
+            android:name="shift"
+            app:argType="com.example.svetlogorskchpp.__domain.en.Shift" />
+    </dialog>
+</navigation>

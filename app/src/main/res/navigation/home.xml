@@ -9,7 +9,7 @@
         android:id="@+id/openSwitchgear"
         android:name="com.example.svetlogorskchpp.openSwitchgear.OpenSwitchgear"
         android:label="fragment_open_switchgear"
-        app:startDestination="@+id/openSwitchgear"
+        app:startDestination="@+id/homePageFragment"
         tools:layout="@layout/fragment_open_switchgear" >
 
     </fragment>

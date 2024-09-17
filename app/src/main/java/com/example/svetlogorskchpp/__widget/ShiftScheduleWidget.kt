@@ -229,13 +229,11 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 navigateAddNoteArgs?.let {
                     val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
                     val taskStackBuilder = NavDeepLinkBuilder(context)
-                        //.setComponentName(activityClass = MainActivity::class.java)
                         .setGraph(R.navigation.nav_graph)
+                        .setDestination(R.id.shiftScheduleFragment)
                         .setDestination(R.id.shiftScheduleAddNotesFragment)
                         .setArguments(args.toBundle())
                         .createTaskStackBuilder()
-                        //.createPendingIntent()
-                    Log.d("aa00000000", "ACTION_SELECT_DAY")
                     taskStackBuilder.startActivities()
                 }
                 monthOffset = 0

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -38,6 +39,7 @@ private lateinit var appBarConfiguration: AppBarConfiguration
 
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
+        Log.d("uuuuuuuuuuuuu", "onCreate")
 
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)
