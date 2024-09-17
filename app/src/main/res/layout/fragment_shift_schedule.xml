@@ -133,6 +133,7 @@
             android:id="@+id/appBarLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -140,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="@color/text_recycle"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap|snapMargins">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap|snapMargins">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_edit_shift"

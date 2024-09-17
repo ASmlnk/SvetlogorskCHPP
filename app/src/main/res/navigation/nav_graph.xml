@@ -92,8 +92,8 @@
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3"
             app:destination="@id/shiftScheduleFragment"
-            app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/shiftScheduleFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <dialog
         android:id="@+id/dialogCalendarDateFragment"

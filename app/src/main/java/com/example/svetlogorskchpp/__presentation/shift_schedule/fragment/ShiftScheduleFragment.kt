@@ -28,9 +28,11 @@ import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUi
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -64,6 +66,10 @@ class ShiftScheduleFragment : Fragment() {
         _binding = FragmentShiftScheduleBinding.inflate(inflater, container, false)
 
         binding.apply {
+
+
+
+
             swipeRefreshLayout.setOnRefreshListener {
                 swipeRefreshLayout.postDelayed({
                     swipeRefreshLayout.isRefreshing = false
@@ -239,6 +245,7 @@ class ShiftScheduleFragment : Fragment() {
             chipCalendarView1.isGone = isProgress
             constraintEditShift.isGone = isProgress
             progressBar.isGone = !isProgress
+            appBarLayout1.setExpanded(false, false)
         }
     }
 
