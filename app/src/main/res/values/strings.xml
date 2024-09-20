@@ -221,5 +221,16 @@
     <string name="notification_note_tomorrow">Завтра %1$s запланировано:\n%2$s</string>
     <string name="notification_on">Уведомления включены!</string>
     <string name="notification_off">Уведомления отключены!</string>
+    <string name="heading_shift_schedule_request_work">Добавление заявки</string>
+    <string name="number_request_work">Номер заявки</string>
+    <string name="number">№</string>
+    <string name="time_open_request_work">Время открытия заявки</string>
+    <string name="time_closed_request_work">Время закрытия заявки</string>
+    <string name="accession">Присоединение</string>
+    <string name="reason_request_work">Причина заявки</string>
+    <string name="additionally">Дополнение</string>
+    <string name="heading_shift_schedule_extend_request_work">Продление заявки</string>
+    <string name="save">Сохранить</string>
+    <string name="extend">Продлить</string>
 
 </resources>

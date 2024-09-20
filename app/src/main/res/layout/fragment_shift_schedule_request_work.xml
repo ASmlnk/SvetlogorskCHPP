@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shift_schedule_edit_composition_background"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView14"
+            style="@style/TextViewStyleHeading"
+            android:layout_marginTop="16dp"
+            android:text="@string/heading_shift_schedule_request_work"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_number_request"
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:text="@string/number_request_work"
+            app:layout_constraintBottom_toBottomOf="@+id/et_number_request"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_number_request" />
+
+        <EditText
+            android:id="@+id/et_number_request"
+            style="@style/EditTestStyleRequestWork"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/number"
+            app:layout_constraintStart_toEndOf="@+id/tv_number_request"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_time_open"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/time_open_request_work"
+            app:icon="@drawable/shift_schedule_notes_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_number_request" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_time_closed"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_marginTop="4dp"
+            android:text="@string/time_closed_request_work"
+            app:icon="@drawable/shift_schedule_notes_time"
+            app:layout_constraintStart_toStartOf="@+id/b_time_open"
+            app:layout_constraintTop_toBottomOf="@+id/b_time_open" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView6"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/free_icon_industry"
+            app:layout_constraintBottom_toTopOf="@+id/et_name_accession"
+            app:layout_constraintStart_toStartOf="@+id/et_name_accession" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_help_accession"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/free_icon_help"
+            app:layout_constraintBottom_toTopOf="@+id/et_name_accession"
+            app:layout_constraintEnd_toEndOf="@+id/et_name_accession" />
+
+        <TextView
+            android:id="@+id/tv_name_accession"
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/accession"
+            app:layout_constraintStart_toEndOf="@+id/shapeableImageView6"
+            app:layout_constraintTop_toBottomOf="@+id/b_time_closed" />
+
+        <AutoCompleteTextView
+            android:id="@+id/et_name_accession"
+            style="@style/EditTestStyleRequestWork"
+            android:layout_width="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/accession"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_accession" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView7"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/free_icon_repair"
+            app:layout_constraintBottom_toTopOf="@+id/et_reason"
+            app:layout_constraintStart_toStartOf="@+id/et_reason" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_help_reason"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/free_icon_help"
+            app:layout_constraintBottom_toTopOf="@+id/et_reason"
+            app:layout_constraintEnd_toEndOf="@+id/et_reason" />
+
+        <TextView
+            android:id="@+id/tv_reason"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="24dp"
+            android:text="@string/reason_request_work"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_accession"
+            app:layout_constraintTop_toBottomOf="@+id/et_name_accession" />
+
+        <AutoCompleteTextView
+            android:id="@+id/et_reason"
+            style="@style/EditTestStyleRequestWork"
+            android:layout_width="0dp"
+            android:layout_marginTop="4dp"
+            android:hint="@string/reason_request_work"
+            app:layout_constraintEnd_toEndOf="@+id/et_name_accession"
+            app:layout_constraintStart_toStartOf="@+id/et_name_accession"
+            app:layout_constraintTop_toBottomOf="@+id/tv_reason" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView8"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/free_icon_contract"
+            app:layout_constraintBottom_toTopOf="@+id/et_additionally"
+            app:layout_constraintStart_toStartOf="@+id/et_additionally" />
+
+        <TextView
+            android:id="@+id/tv_additionally"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="24dp"
+            android:text="@string/additionally"
+            app:layout_constraintStart_toStartOf="@+id/tv_reason"
+            app:layout_constraintTop_toBottomOf="@+id/et_reason" />
+
+        <EditText
+            android:id="@+id/et_additionally"
+            style="@style/EditTestStyleRequestWork"
+            android:layout_width="0dp"
+            android:layout_marginTop="4dp"
+            android:hint="@string/additionally"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/et_reason"
+            app:layout_constraintStart_toStartOf="@+id/et_reason"
+            app:layout_constraintTop_toBottomOf="@+id/tv_additionally" />
+
+        <LinearLayout
+            android:id="@+id/layout_extend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/valve_item"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_additionally">
+
+            <TextView
+                android:id="@+id/textView24"
+                style="@style/TextViewStyleHeading"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/heading_shift_schedule_extend_request_work"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextViewStyleContent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/number_request_work" />
+
+                <EditText
+                    android:id="@+id/et_number_request_extend"
+                    style="@style/EditTestStyleRequestWork"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/number" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_time_open_extend"
+                style="@style/ButtonStyleRequestWork"
+                android:layout_gravity="center"
+                android:text="@string/time_open_request_work"
+                app:icon="@drawable/shift_schedule_notes_time" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/b_time_closed_extend"
+                style="@style/ButtonStyleRequestWork"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/time_closed_request_work"
+                app:icon="@drawable/shift_schedule_notes_time" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_extend"
+            style="@style/ButtonStyleRequestWorkSave"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/extend"
+            app:icon="@drawable/baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/b_save"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_extend" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            style="@style/ButtonStyleRequestWorkSave"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/save"
+            app:icon="@drawable/baseline_save_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/b_extend"
+            app:layout_constraintTop_toBottomOf="@+id/layout_extend" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

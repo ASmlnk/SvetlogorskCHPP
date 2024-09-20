@@ -67,9 +67,6 @@ class ShiftScheduleFragment : Fragment() {
 
         binding.apply {
 
-
-
-
             swipeRefreshLayout.setOnRefreshListener {
                 swipeRefreshLayout.postDelayed({
                     swipeRefreshLayout.isRefreshing = false
@@ -233,6 +230,9 @@ class ShiftScheduleFragment : Fragment() {
                         Shift.E_SHIFT
                     )
                 findNavController().navigate(action)
+            }
+            ivAddRequestWork.setOnClickListener {
+                findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleRequestWorkFragment)
             }
         }
     }

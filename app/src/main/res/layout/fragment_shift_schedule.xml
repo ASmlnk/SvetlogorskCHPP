@@ -163,11 +163,26 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+
+                    <ImageView
+                        android:id="@+id/iv_add_request_work"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView3"
+                        app:layout_constraintStart_toStartOf="@+id/today_date_textView"
+                        app:layout_constraintTop_toBottomOf="@+id/today_date_textView"
+                        app:srcCompat="@drawable/baseline_post_add_24" />
+
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="36dp"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/shift_composition_editor">
 
                         <LinearLayout

@@ -22,6 +22,9 @@
             android:name="date"
             android:defaultValue="0L"
             app:argType="long" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleRequestWorkFragment"
+            app:destination="@id/shiftScheduleRequestWorkFragment" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
@@ -71,4 +74,9 @@
             android:name="shift"
             app:argType="com.example.svetlogorskchpp.__domain.en.Shift" />
     </dialog>
+    <fragment
+        tools:layout="@layout/fragment_shift_schedule_request_work"
+        android:id="@+id/shiftScheduleRequestWorkFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.fragment.ShiftScheduleRequestWorkFragment"
+        android:label="ShiftScheduleRequestWorkFragment" />
 </navigation>

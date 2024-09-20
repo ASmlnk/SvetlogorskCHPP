@@ -34,7 +34,6 @@ data class NoteEntity(
             isTimeNotes = this.isTimeNotes,
             content = this.content,
             isRequestsWork = this.isRequestsWork
-
         )
     }
 
