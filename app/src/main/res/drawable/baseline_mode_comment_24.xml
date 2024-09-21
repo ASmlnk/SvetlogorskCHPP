@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="75">
+
+    <!-- Основная часть сообщения -->
+
+    <group
+        android:rotation="180"
+        android:pivotX="49"
+        android:pivotY="40">
+    <path
+        android:fillColor="#244D6C"
+        android:pathData="M11,10 h80 a5,5 0 0 1 5,5 v50 a5,5 0 0 1 -5,5 h-69 l-14,8 v-8 a5,5 0 0 1 -5,-5 v-50 a5,5 0 0 1 5,-5 z"
+        android:strokeColor="@color/calendar_background"
+        android:strokeWidth="1" />
+    </group>
+</vector>

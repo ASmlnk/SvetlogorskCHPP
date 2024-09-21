@@ -232,5 +232,11 @@
     <string name="heading_shift_schedule_extend_request_work">Продление заявки</string>
     <string name="save">Сохранить</string>
     <string name="extend">Продлить</string>
+    <string name="help_request_work_accession">
+        Укажите наименование\nприсоединения.\nНапример: ВЛ-220кВ Мирадино,\n2СШ-220кВ
+    </string>
+    <string name="help_request_work_reason">
+        Например: Вывести в ремонт,\nперевести на консервацию,\nограничение нагрузки\nи тд
+    </string>
 
 </resources>

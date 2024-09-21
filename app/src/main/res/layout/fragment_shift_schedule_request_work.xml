@@ -42,7 +42,7 @@
             android:id="@+id/b_time_open"
             style="@style/ButtonStyleRequestWork"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="@string/time_open_request_work"
             app:icon="@drawable/shift_schedule_notes_time"
             app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +172,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/valve_item"
+
+            android:background="@drawable/shift_schedule_compound_shift_background"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -183,6 +184,7 @@
                 style="@style/TextViewStyleHeading"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:textSize="22sp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/heading_shift_schedule_extend_request_work"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -190,7 +192,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

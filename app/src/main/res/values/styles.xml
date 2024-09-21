@@ -32,6 +32,7 @@
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">14dp</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color_edit_text</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="android:textColor">@color/name_devices_appbar</item>
         <item name="android:textColorHint">@color/text_recycle_smile</item>
@@ -41,9 +42,10 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">8dp</item>
         <item name="elevation">4dp</item>
         <item name="strokeColor">@color/floatingActionButton</item>
-        <item name="strokeWidth">2dp</item>
+        <item name="strokeWidth">1dp</item>
         <item name="iconTint">@color/light_blue_200</item>
         <item name="android:textColor">@color/name_devices_appbar</item>
     </style>
@@ -53,8 +55,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="elevation">4dp</item>
+        <item name="cornerRadius">8dp</item>
         <item name="strokeColor">@color/calendar_background</item>
-        <item name="strokeWidth">2dp</item>
+        <item name="strokeWidth">1dp</item>
         <item name="backgroundTint">@color/red_danger</item>
         <item name="iconTint">@color/calendar_background</item>
         <item name="android:textColor">@color/calendar_background</item>
