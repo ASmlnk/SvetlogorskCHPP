@@ -32,7 +32,7 @@ class ShiftScheduleEditCompositionFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentShiftScheduleEditCompositionBinding.inflate(inflater, container, false)
         return binding.root
     }
