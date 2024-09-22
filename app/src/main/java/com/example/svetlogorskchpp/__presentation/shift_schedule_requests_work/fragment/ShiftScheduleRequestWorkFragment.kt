@@ -16,6 +16,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__data.HardData
+import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.adapter.StringAutoCompleteAdapter
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleRequestWorkBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -30,12 +32,18 @@ class ShiftScheduleRequestWorkFragment: Fragment() {
 
     private val calendar = Calendar.getInstance()
 
+    private lateinit var adapterAccessions: StringAutoCompleteAdapter
+    private lateinit var adapterReason: StringAutoCompleteAdapter
+    private val hardData = HardData()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentShiftScheduleRequestWorkBinding.inflate(inflater,container, false)
+        adapterAccessions = StringAutoCompleteAdapter(requireContext(), hardData.accessions)
+        adapterReason = StringAutoCompleteAdapter(requireContext(), hardData.reasons)
 
         binding.apply {
             ivHelpAccession.setOnClickListener {
@@ -56,39 +64,16 @@ class ShiftScheduleRequestWorkFragment: Fragment() {
             bTimeClosed.setOnClickListener {
                 dateTimePicker(binding.bTimeClosed)
             }
+            etNameAccession.setAdapter(adapterAccessions)
+            etReason.setAdapter(adapterReason)
+
+
         }
 
 
 
         setupUiHintEditText()
         return binding.root
-    }
-
-    private fun dateTimePicker(buttonTime: Button) {
-        DatePickerDialog(
-            requireContext(),
-            { _, year, month, dayOfMonth ->
-                calendar.set(year, month, dayOfMonth)
-
-                TimePickerDialog(
-                    requireContext(),
-                    { _, hourOfDay, minute ->
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        calendar.set(Calendar.MINUTE, minute)
-
-                        val date = SimpleDateFormat("dd MMMM yyyy HH:mm").format(calendar.time)
-                        buttonTime.text = date
-
-                    },
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    true
-                ).show()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
     }
 
     override fun onDestroyView() {
@@ -134,5 +119,31 @@ class ShiftScheduleRequestWorkFragment: Fragment() {
         popupWindow.update()
     }
 
+    private fun dateTimePicker(buttonTime: Button) {
+        DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+
+                TimePickerDialog(
+                    requireContext(),
+                    { _, hourOfDay, minute ->
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        calendar.set(Calendar.MINUTE, minute)
+
+                        val date = SimpleDateFormat("dd MMMM yyyy HH:mm").format(calendar.time)
+                        buttonTime.text = date
+
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    true
+                ).show()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
 
 }
