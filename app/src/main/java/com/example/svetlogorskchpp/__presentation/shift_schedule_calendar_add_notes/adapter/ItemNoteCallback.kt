@@ -5,7 +5,7 @@ import com.example.svetlogorskchpp.__domain.model.Note
 
 class ItemNoteCallback: DiffUtil.ItemCallback<Note>() {
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {

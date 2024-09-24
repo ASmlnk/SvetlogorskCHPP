@@ -27,7 +27,7 @@ data class NoteEntity(
     @ColumnInfo(name = "is_request_work") val isRequestsWork: Boolean = false
 ) {
     fun toNote(): Note {
-        return Note(
+        return Note.NoteMy(
             id = this.id,
             tagDate = this.tagDate,
             dateNotes = dateToCalendar(this.dateNotes),

@@ -8,6 +8,6 @@ data class NoteUiState(
     val calendarNoteTag: CalendarNoteTag,
     val timeNote: Calendar? = null,
     val isTimeNote: Boolean,
-    val notes: List<Note> = emptyList()
+    val noteMIES: List<Note> = emptyList()
 ) {
 }

@@ -12,8 +12,11 @@ class CalendarNoteUseCasesImpl @Inject constructor(
     private val noteRepository: NoteRepository,
     private val calendarDateUseCases: CalendarDateUseCases,
 ) : CalendarNoteUseCases {
-    override suspend fun insertNote(note: Note) {
-        noteRepository.insertNote(note.toNoteEntity())
+
+    override suspend fun <T> insertNote(note: T) {
+        when(note) {
+            is Note.NoteMy -> noteRepository.insertNote((note).toNoteEntity() )
+        }
     }
 
     override fun getNotesByTagId(tagDate: Calendar): Flow<List<Note>> =
@@ -21,8 +24,10 @@ class CalendarNoteUseCasesImpl @Inject constructor(
             notes.map { it.toNote() }
         }
 
-    override suspend fun deleteNote(note: Note) {
-        noteRepository.deleteNote(note.toNoteEntity())
+    override suspend fun <T> deleteNote(note: T) {
+        when(note) {
+            is Note.NoteMy -> noteRepository.deleteNote(note.toNoteEntity())
+        }
     }
 }
 

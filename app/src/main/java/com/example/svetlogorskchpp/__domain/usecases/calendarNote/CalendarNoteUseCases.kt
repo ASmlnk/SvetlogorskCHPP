@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 
 interface CalendarNoteUseCases {
-    suspend fun insertNote(note: Note)
+    suspend fun <T> insertNote(note: T)
     fun getNotesByTagId(tagDate: Calendar): Flow<List<Note>>
-    suspend fun deleteNote(note: Note)
+    suspend fun <T> deleteNote(note: T)
 }

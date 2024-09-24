@@ -19,13 +19,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBinding
 import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBinding
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
@@ -64,7 +62,10 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             true // default to enabled
         ) {
             override fun handleOnBackPressed() {
-                val action = ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(args.navigateAddNoteArgs.date)
+                val action =
+                    ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(
+                        args.navigateAddNoteArgs.date
+                    )
                 findNavController().navigate(action)
             }
         }
@@ -206,8 +207,17 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                             tvTimeNotes.text = SimpleDateFormat("HH:mm").format(it.time)
                         }
                         tvTimeNotes.isGone = !calendarNoteUi.isTimeNote
-                        adapter.submitList(calendarNoteUi.notes.sortedBy { it.dateNotes }
-                            .sortedBy { !it.isTimeNotes }) {
+                        adapter.submitList(calendarNoteUi.noteMIES.sortedBy {
+                            when (it) {
+                                is Note.NoteMy -> it.dateNotes
+                                is Note.NoteRequestWork -> it.dateOpen
+                            }
+                        }.sortedBy {
+                            when (it) {
+                                is Note.NoteMy -> !it.isTimeNotes
+                                is Note.NoteRequestWork -> false
+                            }
+                        }) {
                             recyclerViewNotes.scrollToPosition(0)
                         }
                     }
@@ -218,7 +228,6 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("aa00000000", "onDestroyView()")
         viewModel.deleteNoteTag()
         _binding = null
     }

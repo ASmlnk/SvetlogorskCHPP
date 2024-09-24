@@ -29,12 +29,12 @@ class CalendarNoteNotificationUseCasesImpl @Inject constructor(
         val eventTodays: List<Note> =
             if (eventTodayEntity.isEmpty()) emptyList() else eventTodayEntity.map { it.toNote() }
 
-        val eventToday = contentTextNotification(eventTodays)
+        val eventToday = contentTextNotification(eventTodays as List<Note.NoteMy>)
 
         val eventTomorrowEntity = noteRepository.getNotesByTagId(dateTomorrowQuery)
         val eventTomorrows: List<Note> =
             if (eventTomorrowEntity.isEmpty()) emptyList() else eventTomorrowEntity.map { it.toNote() }
-        val eventTomorrow = contentTextNotification(eventTomorrows)
+        val eventTomorrow = contentTextNotification(eventTomorrows as List<Note.NoteMy>)
 
         val isTechnicalToday =
             calendarNoteTagRepository.getTagsByDay(dateTodayQuery).firstOrNull()?.isTechnical
@@ -63,7 +63,7 @@ class CalendarNoteNotificationUseCasesImpl @Inject constructor(
         return noteTechnicalNotification
     }
 
-    private fun contentTextNotification(eventList: List<Note>): String {
+    private fun contentTextNotification(eventList: List<Note.NoteMy>): String {
         var eventToday = "<br>"
         for (note in eventList) {
             if (note.isTimeNotes) {

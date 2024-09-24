@@ -44,7 +44,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         isTechnical = false
     )
 
-    private val calendarNote = Note(
+    private val calendarNoteMy = Note.NoteMy(
         tagDate = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
         dateNotes = _dateStateFlow.value,
         content = ""
@@ -73,7 +73,6 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         }
         viewModelScope.launch {
             _calendarNoteTagStream.collect { calendarNoteTag ->
-                Log.d("aa00000000", calendarNoteTag.toString())
                 calendarNoteTag?.let {
                     _calendarNoteUiState.update { old ->
                         old.copy(
@@ -87,7 +86,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
             calendarNoteStream.collect { notes ->
                 _calendarNoteUiState.update { oldState ->
                     oldState.copy(
-                        notes = notes
+                        noteMIES = notes
                     )
                 }
             }
@@ -96,7 +95,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     fun insertNote(content: String) {
         viewModelScope.launch (Dispatchers.IO) {
-            val note = calendarNote.copy(
+            val note = calendarNoteMy.copy(
                 dateNotes = _calendarNoteUiState.value.timeNote?: _dateStateFlow.value,
                 isTimeNotes = _calendarNoteUiState.value.isTimeNote,
                 content = content
@@ -118,10 +117,10 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
         }
     }
 
-    fun deleteNote(note: Note) {
+    fun deleteNote(noteMy: Note) {
         viewModelScope.launch(Dispatchers.IO) {
-            calendarNoteUseCases.deleteNote(note)
-            if (calendarNoteUiState.value.notes.size == 1) {
+            calendarNoteUseCases.deleteNote(noteMy)
+            if (calendarNoteUiState.value.noteMIES.size == 1) {
                 insertIsNotes(false)
             }
         }
@@ -144,7 +143,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     fun deleteNoteTag() {
         Log.d("aa00000000", "${calendarNoteUiState.value.calendarNoteTag.isNotes} ${calendarNoteUiState.value.calendarNoteTag.isTechnical}")
 
-        if (_calendarNoteUiState.value.notes.isNotEmpty()) {
+        if (_calendarNoteUiState.value.noteMIES.isNotEmpty()) {
             val calendarNoteTagNew = _calendarNoteUiState.value.calendarNoteTag.copy(isNotes = true)
             _calendarNoteUiState.update { oldState ->
                 oldState.copy(calendarNoteTag = calendarNoteTagNew)
