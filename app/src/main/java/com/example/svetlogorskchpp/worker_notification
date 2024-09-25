@@ -116,39 +116,8 @@ val list2 = listOf(
 	"Заменить В на ОВ",
 )
 
-val calendar = Calendar.getInstance()
+val gson = Gson()
+val json = gson.toJson(calendarFullDayShiftModelTags)
 
-// Кнопка для выбора даты и времени
-val button: Button = findViewById(R.id.button)
-
-button.setOnClickListener {
-    // Вызов DatePickerDialog
-    DatePickerDialog(
-        this,
-        { _, year, month, dayOfMonth ->
-            // Установка выбранной даты в календарь
-            calendar.set(year, month, dayOfMonth)
-
-            // Вызов TimePickerDialog после выбора даты
-            TimePickerDialog(
-                this,
-                { _, hourOfDay, minute ->
-                    // Установка выбранного времени в календарь
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    calendar.set(Calendar.MINUTE, minute)
-
-                    // Обработка выбранной даты и времени
-                    val selectedDateTime = calendar.time
-                    // Например, вывод в лог
-                    Log.d("SelectedDateTime", selectedDateTime.toString())
-                },
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
-            ).show()
-        },
-        calendar.get(Calendar.YEAR),
-        calendar.get(Calendar.MONTH),
-        calendar.get(Calendar.DAY_OF_MONTH)
-    ).show()
-}
+val calendarFullDayShift =
+            Gson().fromJson(calendarFullDayShiftJson, CalendarFullDayShiftModel::class.java)

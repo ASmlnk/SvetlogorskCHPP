@@ -6,6 +6,7 @@ import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
+@SuppressLint("SimpleDateFormat")
 class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
 
     override fun calendarToDateYMD(calendar: Calendar) : Date {
@@ -27,13 +28,18 @@ class CalendarDateUseCasesImpl @Inject constructor(): CalendarDateUseCases {
         return date.time
     }
 
-    @SuppressLint("SimpleDateFormat")
+
     override fun calendarToStringFormatDDMMMMYYYY(calendar: Calendar): String {
         val sdf = SimpleDateFormat("dd MMMM yyyy")
         return sdf.format(calendar.time)
     }
 
-    @SuppressLint("SimpleDateFormat")
+    override fun calendarToStringFormatDDMMMMYYYYHHmm(calendar: Calendar): String {
+        val sdf = SimpleDateFormat("dd MMMM yyyy HH:mm")
+        return sdf.format(calendar.time)
+    }
+
+
     override fun dateToStringFormatDDMMMMYYYY(date: Date): String {
         val sdf = SimpleDateFormat("dd MMMM yyyy")
         return sdf.format(date)

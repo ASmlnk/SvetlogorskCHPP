@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_number_request"
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:text="11"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_request_work"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/tv_date_request_work" />
+
+    <TextView
+        android:id="@+id/tv_date_request_work"
+        style="@style/TextViewStyleContent"
+        android:layout_marginEnd="8dp"
+        android:text="24 ноября 2024 11:48\n24 ноября 2024 11:48"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/shift_schedule_note_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_accession"
+             style="@style/TextViewStyleContent"
+            android:padding="6dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="ВЛ-220кВ Мирадино"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_reason"
+            style="@style/TextViewStyleContent"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/name_devices_appbar"
+            android:text="Вывести в ремонт В"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_extend"
+            style="@style/TextViewStyleContent"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/orange_zero_vision"
+            android:text="Продление заявки №25"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+

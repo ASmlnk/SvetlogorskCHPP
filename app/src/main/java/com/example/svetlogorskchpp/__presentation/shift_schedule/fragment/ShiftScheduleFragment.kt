@@ -232,7 +232,8 @@ class ShiftScheduleFragment : Fragment() {
                 findNavController().navigate(action)
             }
             ivAddRequestWork.setOnClickListener {
-                findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleRequestWorkFragment)
+                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleRequestWorkFragment("")
+                findNavController().navigate(action)
             }
         }
     }
@@ -302,11 +303,7 @@ class ShiftScheduleFragment : Fragment() {
             }
 
         val snackbar = Snackbar.make(view, textSnackbar, Snackbar.LENGTH_LONG)
-        /*        snackbar.setAction("UNDO") {
-                    // Действие на нажатие UNDO
-                }*/
 
-        // Установка Drawable как фона
         val snackbarView = snackbar.view
         val background: Drawable? = ContextCompat.getDrawable(
             requireContext(),

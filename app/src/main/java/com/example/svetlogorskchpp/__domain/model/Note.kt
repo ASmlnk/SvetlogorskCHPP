@@ -28,8 +28,9 @@ sealed class Note {
     }
 
     data class NoteRequestWork(
-        val id: Long = 0,
-        val tagDate: Date,
+        val id: String ,
+        val tagDateClose: Date,
+        val tagDateOpen: Date,
         val numberRequestWork: String,
         val dateOpen: Calendar,
         val dateClose: Calendar,

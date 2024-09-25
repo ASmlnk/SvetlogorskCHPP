@@ -78,5 +78,10 @@
         tools:layout="@layout/fragment_shift_schedule_request_work"
         android:id="@+id/shiftScheduleRequestWorkFragment"
         android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.fragment.ShiftScheduleRequestWorkFragment"
-        android:label="ShiftScheduleRequestWorkFragment" />
+        android:label="ShiftScheduleRequestWorkFragment" >
+        <argument
+            android:name="noteRequestWork"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 </navigation>
