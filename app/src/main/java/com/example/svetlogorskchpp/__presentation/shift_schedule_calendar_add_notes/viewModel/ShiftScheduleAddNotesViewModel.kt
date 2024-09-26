@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
@@ -38,7 +38,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     private val dateStateFlow: StateFlow<Calendar>
         get() = _dateStateFlow.asStateFlow()
 
-    private val calendarNoteTag = CalendarNoteTag(
+    private val calendarMyNoteTag = CalendarMyNoteTag(
         date = calendarDateUseCases.calendarToDateYMD(_dateStateFlow.value),
         month = calendarDateUseCases.calendarToDateYM(_dateStateFlow.value),
         isTechnical = false
@@ -52,7 +52,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     private val _calendarNoteUiState = MutableStateFlow(
         NoteUiState(
-            calendarNoteTag = calendarNoteTag,
+            calendarMyNoteTag = calendarMyNoteTag,
             isTimeNote = false
         )
     )
@@ -65,7 +65,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     private val _calendarNoteTagStream =
         calendarNoteTagUseCases.getTagsByDate(_dateStateFlow.value)
-            .stateIn(viewModelScope, SharingStarted.Lazily, calendarNoteTag)
+            .stateIn(viewModelScope, SharingStarted.Lazily, calendarMyNoteTag)
 
     init {
         viewModelScope.launch {
@@ -76,7 +76,7 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
                 calendarNoteTag?.let {
                     _calendarNoteUiState.update { old ->
                         old.copy(
-                            calendarNoteTag = it
+                            calendarMyNoteTag = it
                         )
                     }
                 }
@@ -128,34 +128,34 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
 
     fun insertIsTechnical(isTechnical: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val tag = _calendarNoteUiState.value.calendarNoteTag.copy(isTechnical = isTechnical)
+            val tag = _calendarNoteUiState.value.calendarMyNoteTag.copy(isTechnical = isTechnical)
             calendarNoteTagUseCases.insertTag(tag)
         }
     }
 
     private fun insertIsNotes(isNotes: Boolean) {
         viewModelScope.launch (Dispatchers.IO) {
-            val tag = _calendarNoteUiState.value.calendarNoteTag.copy(isNotes = isNotes)
+            val tag = _calendarNoteUiState.value.calendarMyNoteTag.copy(isNotes = isNotes)
             calendarNoteTagUseCases.insertTag(tag)
         }
     }
 
     fun deleteNoteTag() {
-        Log.d("aa00000000", "${calendarNoteUiState.value.calendarNoteTag.isNotes} ${calendarNoteUiState.value.calendarNoteTag.isTechnical}")
+        Log.d("aa00000000", "${calendarNoteUiState.value.calendarMyNoteTag.isNotes} ${calendarNoteUiState.value.calendarMyNoteTag.isTechnical}")
 
         if (_calendarNoteUiState.value.noteMIES.isNotEmpty()) {
-            val calendarNoteTagNew = _calendarNoteUiState.value.calendarNoteTag.copy(isNotes = true)
+            val calendarNoteTagNew = _calendarNoteUiState.value.calendarMyNoteTag.copy(isNotes = true)
             _calendarNoteUiState.update { oldState ->
-                oldState.copy(calendarNoteTag = calendarNoteTagNew)
+                oldState.copy(calendarMyNoteTag = calendarNoteTagNew)
             }
             viewModelScope.launch {
                 insertIsNotes(true)
             }
         }
 
-        if (!_calendarNoteUiState.value.calendarNoteTag.isNotes && !_calendarNoteUiState.value.calendarNoteTag.isTechnical) {
+        if (!_calendarNoteUiState.value.calendarMyNoteTag.isNotes && !_calendarNoteUiState.value.calendarMyNoteTag.isTechnical) {
             viewModelScope.launch {
-                calendarNoteTagUseCases.deleteCalendarTag(_calendarNoteUiState.value.calendarNoteTag)
+                calendarNoteTagUseCases.deleteCalendarTag(_calendarNoteUiState.value.calendarMyNoteTag)
             }
         }
     }

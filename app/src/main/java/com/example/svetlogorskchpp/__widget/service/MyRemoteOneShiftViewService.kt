@@ -3,7 +3,6 @@ package com.example.svetlogorskchpp.__widget.service
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.example.svetlogorskchpp.R
@@ -79,7 +78,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 prevNightShift = calendarItem.prevNightShift,
                 dayShift = calendarItem.dayShift,
                 nextNightShift = calendarItem.nextNightShift,
-                isTechnical = calendarItem.calendarNoteTag?.isTechnical ?: false
+                isTechnical = calendarItem.calendarMyNoteTag?.isTechnical ?: false
             )
 
             val intentSelectDay = Intent(
@@ -137,7 +136,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 )
             }
 
-            if (calendarItem.calendarNoteTag?.isTechnical == true) {
+            if (calendarItem.calendarMyNoteTag?.isTechnical == true) {
                 remoteView.apply {
                     setTextViewText(R.id.text_shift, "ТУ")
                     setInt(
@@ -151,7 +150,7 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 }
             }
 
-            if (calendarItem.calendarNoteTag?.isNotes == true) {
+            if (calendarItem.calendarMyNoteTag?.isNotes == true) {
                 remoteView.apply {
                     setInt(
                         R.id.tv_calendar_date,

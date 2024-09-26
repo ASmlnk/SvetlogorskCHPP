@@ -65,14 +65,14 @@ class CalendarFullAdapter(
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
-                if (calendarDateModel.calendarNoteTag?.isTechnical == true) {
+                if (calendarDateModel.calendarMyNoteTag?.isTechnical == true) {
                     textDayShift.apply {
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_technical)
                         alpha = 0.85F
                     }
                 }
 
-                if (calendarDateModel.calendarNoteTag?.isNotes == true) {
+                if (calendarDateModel.calendarMyNoteTag?.isNotes == true) {
                     tvCalendarDate.apply {
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_note)
                         alpha = 0.85F
@@ -135,7 +135,7 @@ class CalendarFullAdapter(
                 if (calendarDateModel.calendarDayWeekend) {
                     tvCalendarDate.setTextColor(itemView.context.getColor(R.color.orange_zero_vision))
                 }
-                if (calendarDateModel.calendarNoteTag?.isTechnical == true) {
+                if (calendarDateModel.calendarMyNoteTag?.isTechnical == true) {
                     textShift.text = "ТУ"
                     layoutShift.apply {
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_technical)
@@ -143,7 +143,7 @@ class CalendarFullAdapter(
                     }
                 }
 
-                if (calendarDateModel.calendarNoteTag?.isNotes == true) {
+                if (calendarDateModel.calendarMyNoteTag?.isNotes == true) {
                     tvCalendarDate.apply {
                         background = itemView.context.getDrawable(R.drawable.background_calendar_select_note)
                         alpha = 0.85F

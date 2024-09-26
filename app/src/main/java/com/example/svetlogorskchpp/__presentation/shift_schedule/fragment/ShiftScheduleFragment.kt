@@ -28,11 +28,9 @@ import com.example.svetlogorskchpp.__presentation.shift_schedule.model.AdapterUi
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__presentation.shift_schedule.viewModel.ShiftScheduleViewModel
 import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -144,7 +142,7 @@ class ShiftScheduleFragment : Fragment() {
                 prevNightShift = calendarFullDateModel.prevNightShift,
                 dayShift = calendarFullDateModel.dayShift,
                 nextNightShift = calendarFullDateModel.nextNightShift,
-                isTechnical = calendarFullDateModel.calendarNoteTag?.isTechnical ?: false
+                isTechnical = calendarFullDateModel.calendarMyNoteTag?.isTechnical ?: false
             )
             val action =
                 ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(

@@ -1,8 +1,7 @@
 package com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag
 
-import android.util.Log
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
-import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,29 +13,26 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarDateUseCases: CalendarDateUseCases,
 ) : CalendarNoteTagUseCases, CalendarNoteTagWidgetUseCases {
 
-    override suspend fun calendarNoteTagStream(month: Calendar) =
+    override suspend fun calendarMyNoteTag(month: Calendar) =
         calendarNoteTagRepository.getTagsByMonth(
             calendarDateUseCases.calendarToDateYM(month)
         ).map {
             it.toCalendarNoteTag()
         }
 
-    override suspend fun insertTag(tagCalendarNote: CalendarNoteTag) =
+    override suspend fun insertTag(tagCalendarNote: CalendarMyNoteTag) =
         calendarNoteTagRepository.insertTag(tagCalendarNote.toCalendarNoteTagEntity())
 
-    override fun getTagsByDate(date: Calendar): Flow<CalendarNoteTag?> {
-        val date = calendarDateUseCases.calendarToDateYMD(date)
-        Log.d("aa00000000", date.time.toString())
+    override fun getTagsByDate(dateToCalendar: Calendar): Flow<CalendarMyNoteTag?> {
+        val date = calendarDateUseCases.calendarToDateYMD(dateToCalendar)
 
         return calendarNoteTagRepository.getTagsByDateStream(
             date
         ).map { calendarNoteTagEntity ->
             calendarNoteTagEntity?.toCalendarNoteTag()
         }
-
     }
 
-
-    override suspend fun deleteCalendarTag(calendarNoteTagEntity: CalendarNoteTag) =
-        calendarNoteTagRepository.deleteCalendarTag(calendarNoteTagEntity.toCalendarNoteTagEntity())
+    override suspend fun deleteCalendarTag(calendarMyNoteTagEntity: CalendarMyNoteTag) =
+        calendarNoteTagRepository.deleteCalendarTag(calendarMyNoteTagEntity.toCalendarNoteTagEntity())
 }

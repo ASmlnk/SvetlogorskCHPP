@@ -1,7 +1,6 @@
 package com.example.svetlogorskchpp.__widget.service
 
 import android.annotation.SuppressLint
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
@@ -82,7 +81,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 prevNightShift = calendarItem.prevNightShift,
                 dayShift = calendarItem.dayShift,
                 nextNightShift = calendarItem.nextNightShift,
-                isTechnical = calendarItem.calendarNoteTag?.isTechnical ?: false
+                isTechnical = calendarItem.calendarMyNoteTag?.isTechnical ?: false
             )
 
             val intentSelectDay = Intent(
@@ -129,7 +128,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 )
             }
 
-            if (calendarItem.calendarNoteTag?.isTechnical == true) {
+            if (calendarItem.calendarMyNoteTag?.isTechnical == true) {
                 remoteView.apply {
                     setInt(
                         R.id.text_day_shift,
@@ -142,7 +141,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                 }
             }
 
-            if (calendarItem.calendarNoteTag?.isNotes == true) {
+            if (calendarItem.calendarMyNoteTag?.isNotes == true) {
                 remoteView.apply {
                     setInt(
                         R.id.tv_calendar_date,

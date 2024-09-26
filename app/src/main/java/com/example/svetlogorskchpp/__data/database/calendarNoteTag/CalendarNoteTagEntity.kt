@@ -2,7 +2,7 @@ package com.example.svetlogorskchpp.__data.database.calendarNoteTag
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.svetlogorskchpp.__domain.model.CalendarNoteTag
+import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
 import java.util.Date
 
 
@@ -15,8 +15,8 @@ data class CalendarNoteTagEntity(
     val isNotes: Boolean = false,
 ) {
 
-    fun toCalendarNoteTag(): CalendarNoteTag {
-        return CalendarNoteTag(
+    fun toCalendarNoteTag(): CalendarMyNoteTag {
+        return CalendarMyNoteTag(
             date = this.date,
             month = this.month,
             isTechnical = this.isTechnical,
