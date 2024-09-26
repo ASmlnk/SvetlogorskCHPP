@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Date
 import javax.inject.Inject
 
+
 class NoteRepositoryImpl @Inject constructor (private val noteDao: NoteDao): NoteRepository {
 
     override suspend fun insertNote(note: NoteEntity) = noteDao.insertNote(note)

@@ -6,9 +6,9 @@ import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
-class NoteRequestWorkMapper @Inject constructor() {
+class NoteRequestWorkUiToDomainMapper @Inject constructor() {
 
-    fun mapToDomain(noteRequestWorkUI: NoteRequestWorkUI): Note.NoteRequestWork {
+    fun map (noteRequestWorkUI: NoteRequestWorkUI): Note.NoteRequestWork {
         return with(noteRequestWorkUI) {
             Note.NoteRequestWork(
                 id = id,

@@ -5,9 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel.ShiftShiftScheduleAddNotesViewModelFactory
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
-import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.mapper.NoteRequestWorkMapper
+import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.mapper.NoteRequestWorkUiToDomainMapper
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.DateTimeUI
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.NoteRequestWorkStateUI
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.NoteRequestWorkUI
@@ -15,18 +14,17 @@ import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.m
 import com.google.gson.Gson
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
 
 class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
-    private val noteRequestWorkMapper: NoteRequestWorkMapper,
+    private val noteRequestWorkUiToDomainMapper: NoteRequestWorkUiToDomainMapper,
     private val calendarNoteUseCases: CalendarNoteUseCases,
     private val calendarDateUseCases: CalendarDateUseCases,
     @Assisted private val noteRequestWork: String,
@@ -41,6 +39,15 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 calendarInstance = calendar
             )
         )
+
+    init {
+        viewModelScope.launch {
+            calendarNoteUseCases.noteRequestWorkFlow.collect {
+
+            }
+        }
+
+    }
     val noteRequestWorkStateUI: StateFlow<NoteRequestWorkStateUI> = _noteRequestWorkStateUi
 
     fun insertNoteRequestWork(
@@ -59,7 +66,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
 
         if (toastCheckFilling == null) {
             viewModelScope.launch {
-                calendarNoteUseCases.insertNote(noteRequestWorkMapper.mapToDomain(noteRequestWorkUI))
+                calendarNoteUseCases.insertNote(noteRequestWorkUiToDomainMapper.map(noteRequestWorkUI))
             }
         } else {
             viewModelScope.launch {

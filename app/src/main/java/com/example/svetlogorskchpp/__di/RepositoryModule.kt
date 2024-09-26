@@ -7,10 +7,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
+import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
+import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
@@ -65,6 +69,16 @@ class RepositoryModule {
     fun provideNoteRepository(noteDao: NoteDao): NoteRepository {
         return NoteRepositoryImpl(noteDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideNoteRequestWorkRepository(
+        firebase: FirebaseFirestore
+    ): NoteRequestWorkRepository {
+        return NoteRequestWorkRepositoryImpl(firebase)
+    }
+
+
 
    // @Provides
   //  @Singleton

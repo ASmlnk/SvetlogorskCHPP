@@ -1,8 +1,11 @@
 package com.example.svetlogorskchpp.__di
 
 import android.content.Context
+import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
+import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
@@ -76,9 +79,18 @@ class UseCaseModule {
     @ViewModelScoped
     fun provideCalendarNotesUseCases(
         noteRepository: NoteRepository,
-        calendarDateUseCases: CalendarDateUseCases
+        calendarDateUseCases: CalendarDateUseCases,
+        noteRequestWorkDomainToEntityMapper: NoteRequestWorkDomainToEntityMapper,
+        noteRequestWorkEntityToDomainMapper: NoteRequestWorkEntityToDomainMapper,
+        noteRequestWorkRepository: NoteRequestWorkRepository
     ): CalendarNoteUseCases {
-        return CalendarNoteUseCasesImpl(noteRepository,calendarDateUseCases)
+        return CalendarNoteUseCasesImpl(
+            noteRepository,
+            calendarDateUseCases,
+            noteRequestWorkRepository,
+            noteRequestWorkDomainToEntityMapper,
+            noteRequestWorkEntityToDomainMapper
+        )
     }
 
     @Provides
@@ -105,18 +117,18 @@ class UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideTaskSchedulerNotificationWorker(
-        context: Context
+        context: Context,
     ): TaskSchedulerNotificationWorker {
         return TaskSchedulerNotificationWorkerImpl(context)
     }
 
-   // @Provides
-   // @ViewModelScoped
-   // fun provideInspectionUseCases(
-   //     inspectionRepository: InspectionRepository
-   // ): InspectionUsesCases {
-  //      return InspectionUsesCasesImpl(inspectionRepository)
-   // }
+    // @Provides
+    // @ViewModelScoped
+    // fun provideInspectionUseCases(
+    //     inspectionRepository: InspectionRepository
+    // ): InspectionUsesCases {
+    //      return InspectionUsesCasesImpl(inspectionRepository)
+    // }
 
 }
 
