@@ -15,12 +15,12 @@ class CalendarTagUseCasesImpl @Inject constructor(): CalendarTagUseCases {
         val myNoteTagsMap = calendarMyNoteTags.associateBy { it.date } //преобразует в карту с ключом date
         val requestWorkTagMap = calendarRequestWorkTag.associateBy { it.date }
 
-        calendarFullDayModels.map { day ->
+        val calendarAddMyNoteTags = calendarFullDayModels.map { day ->
             myNoteTagsMap[day.data.time]?.let { tag ->
                 day.copy(calendarMyNoteTag = tag)
             } ?: day
         }
-        return calendarFullDayModels.map { day ->
+        return calendarAddMyNoteTags.map { day ->
             requestWorkTagMap[day.data.time]?.let { tag ->
                 day.copy(calendarRequestWorkTag = tag)
             } ?: day

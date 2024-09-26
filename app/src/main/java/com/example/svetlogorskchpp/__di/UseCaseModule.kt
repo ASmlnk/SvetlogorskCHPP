@@ -110,8 +110,9 @@ class UseCaseModule {
     fun provideCalendarNoteTagUseCases(
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarDateUseCases: CalendarDateUseCases,
+        noteRequestWorkRepository: NoteRequestWorkRepository
     ): CalendarNoteTagUseCases {
-        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarDateUseCases)
+        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, noteRequestWorkRepository, calendarDateUseCases)
     }
 
     @Provides

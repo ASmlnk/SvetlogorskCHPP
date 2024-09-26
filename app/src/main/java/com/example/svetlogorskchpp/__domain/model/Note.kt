@@ -31,6 +31,8 @@ sealed class Note {
         val id: String ,
         val tagDateClose: Date,
         val tagDateOpen: Date,
+        val tagMonthOpen: Date,
+        val tagMonthClose: Date,
         val numberRequestWork: String,
         val dateOpen: Calendar,
         val dateClose: Calendar,

@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
 import java.util.Date
 
-
 @Entity(tableName = "calendar_note_tags")
-data class CalendarNoteTagEntity(
+data class CalendarMyNoteTagEntity(
     @PrimaryKey
     val date: Date,    //"YYYY-MM-DD"
     val month: Date,    //"YYYY-MM"

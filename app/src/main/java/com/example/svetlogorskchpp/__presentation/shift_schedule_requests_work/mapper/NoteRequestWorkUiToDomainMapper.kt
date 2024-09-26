@@ -21,7 +21,9 @@ class NoteRequestWorkUiToDomainMapper @Inject constructor() {
                 reason = reason,
                 additionally = additionally,
                 isExtend = isExtend,
-                contentExtend = contentExtend
+                contentExtend = contentExtend,
+                tagMonthOpen = tagMonthOpen ?: Date(),
+                tagMonthClose = tagMonthClose ?: Date()
             )
         }
     }

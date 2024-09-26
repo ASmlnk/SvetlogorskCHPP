@@ -14,6 +14,8 @@ class NoteRequestWorkEntityToDomainMapper @Inject constructor() {
                 id = id,
                 tagDateClose = dateToDate(tagDateClose),
                 tagDateOpen = dateToDate(tagDateOpen),
+                tagMonthOpen = dateToDate(tagMonthOpen),
+                tagMonthClose = dateToDate(tagMonthClose),
                 numberRequestWork = numberRequestWork,
                 dateOpen = dateToCalendar(dateOpen),
                 dateClose = dateToCalendar(dateClose),

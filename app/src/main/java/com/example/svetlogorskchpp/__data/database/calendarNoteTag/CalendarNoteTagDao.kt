@@ -13,20 +13,20 @@ import java.util.Date
 interface CalendarNoteTagDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTag(tag: CalendarNoteTagEntity)
+    suspend fun insertTag(tag: CalendarMyNoteTagEntity)
 
     @Query("SELECT * FROM calendar_note_tags")
-    fun getAllTagsStream(): Flow<List<CalendarNoteTagEntity>>
+    fun getAllTagsStream(): Flow<List<CalendarMyNoteTagEntity>>
 
     @Query("SELECT * FROM calendar_note_tags WHERE month = :month")
-    suspend fun getTagsByMonth(month: Date): List<CalendarNoteTagEntity>
+    suspend fun getTagsByMonth(month: Date): List<CalendarMyNoteTagEntity>
 
     @Query("SELECT * FROM calendar_note_tags WHERE date = :date")
-    fun getTagsByDay(date: Date): List<CalendarNoteTagEntity>?
+    fun getTagsByDay(date: Date): List<CalendarMyNoteTagEntity>?
 
     @Query("SELECT * FROM calendar_note_tags WHERE date = :date LiMIT 1")
-    fun getTagsByDateStream (date: Date): Flow<CalendarNoteTagEntity?>
+    fun getTagsByDateStream (date: Date): Flow<CalendarMyNoteTagEntity?>
 
     @Delete//@Query ("DELETE FROM calendar_note_tags WHERE date = :date")
-    suspend fun deleteCalendarTag(calendarNoteTagEntity: CalendarNoteTagEntity)
+    suspend fun deleteCalendarTag(calendarMyNoteTagEntity: CalendarMyNoteTagEntity)
 }

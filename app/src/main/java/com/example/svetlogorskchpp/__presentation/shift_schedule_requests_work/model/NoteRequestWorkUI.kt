@@ -8,6 +8,8 @@ data class NoteRequestWorkUI(
     val id: String = UUID.randomUUID().toString(),
     val tagDateOpen: Date? = null,
     val tagDateClose: Date? = null,
+    val tagMonthOpen: Date? = null,
+    val tagMonthClose: Date? = null,
     val numberRequestWork: String = "",
     val dateOpen: Calendar? = null,
     val dateClose: Calendar? = null,

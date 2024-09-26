@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
+import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
@@ -73,9 +74,10 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideNoteRequestWorkRepository(
-        firebase: FirebaseFirestore
+        firebase: FirebaseFirestore,
+        requestWorkTagDao: RequestWorkTagDao
     ): NoteRequestWorkRepository {
-        return NoteRequestWorkRepositoryImpl(firebase)
+        return NoteRequestWorkRepositoryImpl(firebase,requestWorkTagDao)
     }
 
 

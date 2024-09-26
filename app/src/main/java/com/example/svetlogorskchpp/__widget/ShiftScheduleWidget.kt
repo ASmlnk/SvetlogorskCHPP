@@ -8,10 +8,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.widget.RemoteViews
 import androidx.navigation.NavDeepLinkBuilder
-import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__di.Widget
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
@@ -139,11 +137,13 @@ class ShiftScheduleWidget : AppWidgetProvider() {
 
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
 
-                        val tags = calendarNoteTagWidgetUseCases.calendarNoteTagStream(calendar)
+                        val tagsMyNote = calendarNoteTagWidgetUseCases.calendarMyNoteTag(calendar)
+                        val tagsRequestWork = calendarNoteTagWidgetUseCases.calendarRequestWorkTag(calendar)
                         val calendarFullDayShiftModelTags = calendarFullDayShiftModel.copy(
                             calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
                                 calendarFullDayShiftModel.calendarFullDayModels,
-                                tags
+                                tagsMyNote,
+                                tagsRequestWork
                             )
                         )
 

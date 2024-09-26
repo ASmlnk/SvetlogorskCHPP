@@ -107,6 +107,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
             DateTimeUI.OPEN_TIME -> {
                 val noteRequestWorkUI = _noteRequestWorkStateUi.value.noteRequestWorkUI.copy(
                     tagDateOpen = calendarDateUseCases.calendarToDateYMD(calendarUI),
+                    tagMonthOpen = calendarDateUseCases.calendarToDateYM(calendarUI),
                     dateOpen = calendarUI
                 )
                 _noteRequestWorkStateUi.update { oldState ->
@@ -121,14 +122,15 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
 
             DateTimeUI.CLOSE_TIME -> {
                 val noteRequestWorkUI = _noteRequestWorkStateUi.value.noteRequestWorkUI.copy(
-                    tagDateClose = calendarDateUseCases.calendarToDateYMD(calendar),
-                    dateClose = calendar
+                    tagDateClose = calendarDateUseCases.calendarToDateYMD(calendarUI),
+                    tagMonthClose = calendarDateUseCases.calendarToDateYM(calendarUI),
+                    dateClose = calendarUI
                 )
                 _noteRequestWorkStateUi.update { oldState ->
                     oldState.copy(
                         noteRequestWorkUI = noteRequestWorkUI,
                         textDateClose = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
-                            calendar
+                            calendarUI
                         )
                     )
                 }

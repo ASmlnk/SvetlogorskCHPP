@@ -1,7 +1,10 @@
 package com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag
 
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepositoryImpl
 import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
+import com.example.svetlogorskchpp.__domain.model.CalendarRequestWorkTag
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -10,6 +13,7 @@ import javax.inject.Inject
 
 class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarNoteTagRepository: CalendarNoteTagRepository,
+    private val noteRequestWorkRepository: NoteRequestWorkRepository,
     private val calendarDateUseCases: CalendarDateUseCases,
 ) : CalendarNoteTagUseCases, CalendarNoteTagWidgetUseCases {
 
@@ -19,6 +23,14 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
         ).map {
             it.toCalendarNoteTag()
         }
+
+    override suspend fun calendarRequestWorkTag(month: Calendar): List<CalendarRequestWorkTag> {
+      return  noteRequestWorkRepository.getTagsByMonth(
+          calendarDateUseCases.calendarToDateYM(month)
+      ).map {
+          it.toCalendarRequestWorkTag()
+      }
+    }
 
     override suspend fun insertTag(tagCalendarNote: CalendarMyNoteTag) =
         calendarNoteTagRepository.insertTag(tagCalendarNote.toCalendarNoteTagEntity())

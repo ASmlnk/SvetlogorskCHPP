@@ -11,6 +11,7 @@ import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificat
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NoteTagsUI
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.ShiftScheduleUiState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -58,12 +59,10 @@ class ShiftScheduleViewModel @AssistedInject constructor(
 
     private val _calendarAdapterStateFlow = MutableStateFlow(cal)
 
-    private val _calendarMyNoteTag: MutableStateFlow<List<CalendarMyNoteTag>> = MutableStateFlow(
-        emptyList()
+    private val _calendarNoteTag: MutableStateFlow<NoteTagsUI> = MutableStateFlow(
+       NoteTagsUI(emptyList(), emptyList())
     )
-    private val _calendarRequestWorkTag: MutableStateFlow<List<CalendarRequestWorkTag>> = MutableStateFlow(
-        emptyList()
-    )
+
     // calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())            ///////////
     //     .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
@@ -72,13 +71,13 @@ class ShiftScheduleViewModel @AssistedInject constructor(
         .stateIn(viewModelScope, SharingStarted.Lazily, CalendarFullDayShiftModel())
 
     private val _calendarShiftAndNoteTag = combine(
-        _calendarMyNoteTag, _calendarRequestWorkTag, _calendarFullDayShift
-    ) { calendarMyNoteTags, calendarRequestWorkTag, calendarFullDayShift ->
+        _calendarNoteTag, _calendarFullDayShift
+    ) { calendarNoteTags, calendarFullDayShift ->
         CalendarFullDayShiftModel().copy(
             calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
                 calendarFullDayModels = calendarFullDayShift.calendarFullDayModels,
-                calendarMyNoteTags = calendarMyNoteTags,
-                calendarRequestWorkTag = calendarRequestWorkTag
+                calendarMyNoteTags = calendarNoteTags.myNoteTags,
+                calendarRequestWorkTag = calendarNoteTags.requestWorkTags
             ),
             shiftSelect = calendarFullDayShift.shiftSelect,
             calendarView = calendarFullDayShift.calendarView,
@@ -110,8 +109,10 @@ class ShiftScheduleViewModel @AssistedInject constructor(
             _calendarAdapterStateFlow.collect {
                 val tagMyNotes = calendarNoteTagUseCases.calendarMyNoteTag(adapterDate())
                 val tagRequestWork = calendarNoteTagUseCases.calendarRequestWorkTag(adapterDate())
-                _calendarMyNoteTag.update { tagMyNotes }
-                _calendarRequestWorkTag.update { tagRequestWork }
+                _calendarNoteTag.update {
+                    NoteTagsUI (myNoteTags = tagMyNotes, requestWorkTags = tagRequestWork)
+                }
+
             }
         }
 

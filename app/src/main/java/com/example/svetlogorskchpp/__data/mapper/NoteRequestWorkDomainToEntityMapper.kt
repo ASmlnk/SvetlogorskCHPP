@@ -2,8 +2,6 @@ package com.example.svetlogorskchpp.__data.mapper
 
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkEntity
 import com.example.svetlogorskchpp.__domain.model.Note
-import java.util.Calendar
-import java.util.Date
 import javax.inject.Inject
 
 class NoteRequestWorkDomainToEntityMapper @Inject constructor() {
@@ -21,7 +19,9 @@ class NoteRequestWorkDomainToEntityMapper @Inject constructor() {
                 reason = reason,
                 additionally = additionally,
                 isExtend = isExtend,
-                contentExtend = contentExtend
+                contentExtend = contentExtend,
+                tagMonthOpen = tagMonthOpen.time,
+                tagMonthClose = tagMonthClose.time
             )
         }
     }
