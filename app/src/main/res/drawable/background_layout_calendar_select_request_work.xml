@@ -4,7 +4,7 @@
     <item>
         <shape android:shape="rectangle">
             <gradient
-                android:startColor="@color/zero_vision_memo"
+                android:startColor="#3C953E"
                 android:endColor="@color/floatingActionButton"
                 android:angle="90"/>
         </shape>

@@ -137,7 +137,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                     )
                     setTextColor(R.id.text_day_shift, context.getColor(R.color.chip_appbar))
 
-                 //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                    //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
                 }
             }
 
@@ -153,8 +153,22 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                         "setBackgroundResource",
                         R.drawable.background_layout_calendar_select_note_widget
                     )
-                  //  setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                    //  setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
 
+                }
+            }
+            if (calendarItem.calendarRequestWorkTag != null) {
+                remoteView.apply {
+                    setTextColor(
+                        R.id.tv_calendar_date,
+                        context.getColor(R.color.color_request_work_calendar)
+                    )
+                    setInt(
+                        R.id.item_layout,
+                        "setBackgroundResource",
+                        R.drawable.background_layout_calendar_select_request_work
+                    )
+                    //  setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
                 }
             }
             if (calendarItem.dateDay) {
@@ -217,7 +231,7 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
                     )
                     setTextColor(R.id.text_day_shift, context.getColor(R.color.chip_appbar))
 
-                 //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                    //   setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
                 }
 
             if (calendarItem.nextNightShift == calendarFullDayShift.shiftSelect) {
@@ -235,7 +249,6 @@ class MyRemoteAllShiftViewService : RemoteViewsService() {
             calendarItem: CalendarFullDayModel,
             remoteView: RemoteViews,
         ) {
-
 
 
         }

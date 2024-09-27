@@ -8,5 +8,5 @@ import java.util.Date
 interface NoteRequestWorkRepository {
    val noteRequestWorkFlow: StateFlow<List<NoteRequestWorkEntity>>
    suspend fun setRequestWorkFirebase(noteRequestWorkEntity: NoteRequestWorkEntity)
-   suspend fun getTagsByMonth(month: Date): List<RequestWorkTagEntity>
+
 }

@@ -167,6 +167,21 @@ class MyRemoteOneShiftViewService : RemoteViewsService() {
                 }
             }
 
+            if (calendarItem.calendarRequestWorkTag != null) {
+                remoteView.apply {
+                    setTextColor(
+                        R.id.tv_calendar_date,
+                        context.getColor(R.color.color_request_work_calendar)
+                    )
+                    setInt(
+                        R.id.item_layout,
+                        "setBackgroundResource",
+                        R.drawable.background_layout_calendar_select_request_work
+                    )
+                    //  setFloat(R.id.text_day_shift, "setAlpha", 0.85f)
+                }
+            }
+
             if (calendarItem.dateDay) {
                 remoteView.setInt(
                     R.id.item_layout,

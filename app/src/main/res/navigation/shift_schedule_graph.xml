@@ -83,5 +83,10 @@
             android:name="noteRequestWork"
             app:argType="string"
             android:defaultValue='""' />
+        <action
+            app:popUpTo="@id/shiftScheduleFragment"
+            app:popUpToInclusive="false"
+            android:id="@+id/action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment"
+            app:destination="@id/shiftScheduleFragment" />
     </fragment>
 </navigation>

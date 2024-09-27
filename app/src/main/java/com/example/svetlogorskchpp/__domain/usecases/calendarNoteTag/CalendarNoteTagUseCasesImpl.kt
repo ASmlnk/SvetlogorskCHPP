@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag
 
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepositoryImpl
 import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarNoteTagRepository: CalendarNoteTagRepository,
-    private val noteRequestWorkRepository: NoteRequestWorkRepository,
+    private val calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
     private val calendarDateUseCases: CalendarDateUseCases,
 ) : CalendarNoteTagUseCases, CalendarNoteTagWidgetUseCases {
 
@@ -25,7 +26,7 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
         }
 
     override suspend fun calendarRequestWorkTag(month: Calendar): List<CalendarRequestWorkTag> {
-      return  noteRequestWorkRepository.getTagsByMonth(
+      return  calendarRequestWorkTagRepository.getTagsByMonth(
           calendarDateUseCases.calendarToDateYM(month)
       ).map {
           it.toCalendarRequestWorkTag()

@@ -8,10 +8,10 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
-import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
-import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
@@ -75,9 +75,17 @@ class RepositoryModule {
     @Singleton
     fun provideNoteRequestWorkRepository(
         firebase: FirebaseFirestore,
-        requestWorkTagDao: RequestWorkTagDao
+        calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository
     ): NoteRequestWorkRepository {
-        return NoteRequestWorkRepositoryImpl(firebase,requestWorkTagDao)
+        return NoteRequestWorkRepositoryImpl(firebase,calendarRequestWorkTagRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRequestWorkTagRepository(
+        requestWorkTagDao: RequestWorkTagDao
+    ): CalendarRequestWorkTagRepository {
+        return CalendarRequestWorkTagRepositoryImpl(requestWorkTagDao)
     }
 
 

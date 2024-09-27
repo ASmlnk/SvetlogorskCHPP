@@ -230,7 +230,10 @@ class ShiftScheduleFragment : Fragment() {
                 findNavController().navigate(action)
             }
             ivAddRequestWork.setOnClickListener {
-                val action = ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleRequestWorkFragment("")
+                val action =
+                    ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleRequestWorkFragment(
+                        ""
+                    )
                 findNavController().navigate(action)
             }
         }

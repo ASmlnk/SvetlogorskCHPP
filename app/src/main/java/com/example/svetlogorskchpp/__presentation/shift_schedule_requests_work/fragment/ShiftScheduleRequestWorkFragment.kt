@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Spannable
@@ -16,6 +17,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -27,9 +29,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavArgs
 import androidx.navigation.NavGraph
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__data.HardData
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentDirections
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.adapter.StringAutoCompleteAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
@@ -68,6 +72,23 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     private lateinit var adapterAccessions: StringAutoCompleteAdapter
     private lateinit var adapterReason: StringAutoCompleteAdapter
     private val hardData = HardData()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val callback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+
+                findNavController().navigate(R.id.action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, // LifecycleOwner
+            callback
+        )
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

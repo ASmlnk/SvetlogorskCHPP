@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
@@ -110,9 +111,9 @@ class UseCaseModule {
     fun provideCalendarNoteTagUseCases(
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarDateUseCases: CalendarDateUseCases,
-        noteRequestWorkRepository: NoteRequestWorkRepository
+        calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository
     ): CalendarNoteTagUseCases {
-        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, noteRequestWorkRepository, calendarDateUseCases)
+        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarRequestWorkTagRepository, calendarDateUseCases)
     }
 
     @Provides

@@ -1,11 +1,11 @@
 package com.example.svetlogorskchpp.__data.repository.noteRequestWork
 
-import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagEntity
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkEntity
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJSON
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJsonList
-import com.example.svetlogorskchpp.__domain.model.CalendarRequestWorkTag
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepositoryImpl
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.google.gson.Gson
@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 class NoteRequestWorkRepositoryImpl @Inject constructor(
     private val firebase: FirebaseFirestore,
-    private val requestWorkTagDao: RequestWorkTagDao
+    private val calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository
 ) : NoteRequestWorkRepository {
 
     private val _noteRequestWorkFlow = MutableStateFlow<List<NoteRequestWorkEntity>>(emptyList())
@@ -35,7 +35,6 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
         CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
             getRequestWorkFirebase()
         }
-
     }
 
     suspend fun getRequestWorkFirebase() {
@@ -55,8 +54,8 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
                 }
             _noteRequestWorkFlow.update { noteRequestWorkEntity }
             val tags = tagsRequestWork(noteRequestWorkEntity)
-            requestWorkTagDao.clearTable()
-            requestWorkTagDao.insertAll(tags)
+            calendarRequestWorkTagRepository.clearTable()
+            calendarRequestWorkTagRepository.insertAll(tags)
         }
     }
 
@@ -77,9 +76,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTagsByMonth(month: Date): List<RequestWorkTagEntity> {
-        return requestWorkTagDao.getTagsByMonth(month)
-    }
+
 
     private fun tagsRequestWork ( noteRequestWorkEntity: List<NoteRequestWorkEntity>) : List<RequestWorkTagEntity> {
         val setNoteRequestWork = mutableSetOf<RequestWorkTagEntity>()

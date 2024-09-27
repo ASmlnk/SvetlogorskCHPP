@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__di
 
 import android.content.Context
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
@@ -48,10 +49,10 @@ class WidgetModule {
     @Provides
     fun provideCalendarNoteTagUseCasesS(
         calendarNoteTagRepository: CalendarNoteTagRepository,
-        noteRequestWorkRepository: NoteRequestWorkRepository,
-       @Widget calendarDateUseCases: CalendarDateUseCases,
+        calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
+        @Widget calendarDateUseCases: CalendarDateUseCases,
     ): CalendarNoteTagWidgetUseCases {
-        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, noteRequestWorkRepository, calendarDateUseCases)
+        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarRequestWorkTagRepository, calendarDateUseCases)
     }
 
     @Provides

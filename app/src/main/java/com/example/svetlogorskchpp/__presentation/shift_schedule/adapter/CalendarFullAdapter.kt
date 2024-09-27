@@ -156,6 +156,11 @@ class CalendarFullAdapter(
                     itemLayout.background = itemView.context.getDrawable(R.drawable.background_layout_calendar_select_note)
                 }
 
+                if(calendarDateModel.calendarRequestWorkTag != null) {
+                    tvCalendarDate.setTextColor(itemView.context.getColor(R.color.color_request_work_calendar))
+                    itemLayout.background = itemView.context.getDrawable(R.drawable.background_layout_calendar_select_request_work)
+                }
+
                 if (calendarDateModel.dateDay) {
                     itemLayout.background =
                         itemView.context.getDrawable(R.drawable.background_callendar_day_actual)

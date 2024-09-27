@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -60,7 +61,7 @@ class ShiftScheduleViewModel @AssistedInject constructor(
     private val _calendarAdapterStateFlow = MutableStateFlow(cal)
 
     private val _calendarNoteTag: MutableStateFlow<NoteTagsUI> = MutableStateFlow(
-       NoteTagsUI(emptyList(), emptyList())
+        NoteTagsUI(emptyList(), emptyList())
     )
 
     // calendarNoteTagUseCases.calendarNoteTagStream(adapterDate())            ///////////
@@ -107,12 +108,13 @@ class ShiftScheduleViewModel @AssistedInject constructor(
 
         viewModelScope.launch {
             _calendarAdapterStateFlow.collect {
-                val tagMyNotes = calendarNoteTagUseCases.calendarMyNoteTag(adapterDate())
-                val tagRequestWork = calendarNoteTagUseCases.calendarRequestWorkTag(adapterDate())
-                _calendarNoteTag.update {
-                    NoteTagsUI (myNoteTags = tagMyNotes, requestWorkTags = tagRequestWork)
+                withContext(Dispatchers.IO) {
+                    val tagMyNotes = calendarNoteTagUseCases.calendarMyNoteTag(adapterDate())
+                    val tagRequestWork = calendarNoteTagUseCases.calendarRequestWorkTag(adapterDate())
+                    _calendarNoteTag.update {
+                        NoteTagsUI(myNoteTags = tagMyNotes, requestWorkTags = tagRequestWork)
+                    }
                 }
-
             }
         }
 
