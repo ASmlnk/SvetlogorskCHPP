@@ -70,7 +70,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
-            this, // LifecycleOwner
+            requireActivity(), // LifecycleOwner
             callback
         )
 
@@ -82,6 +82,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentShiftScheduleAddNotesBinding.inflate(inflater, container, false)
+        //viewModel.deleteNoteTag()
 
         binding.apply {
 

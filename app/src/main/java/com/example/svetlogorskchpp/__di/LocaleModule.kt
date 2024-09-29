@@ -5,8 +5,10 @@ import androidx.room.Room
 import com.example.svetlogorskchpp.__data.database.AppDataBase
 import com.example.svetlogorskchpp.__data.database.MIGRATION_1_2
 import com.example.svetlogorskchpp.__data.database.MIGRATION_2_3
+import com.example.svetlogorskchpp.__data.database.MIGRATION_3_4
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
+import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,7 @@ class LocaleModule {
         )
             .addMigrations(MIGRATION_1_2)
             .addMigrations(MIGRATION_2_3)
+            .addMigrations(MIGRATION_3_4)
             .build()
     }
 
@@ -45,5 +48,10 @@ class LocaleModule {
     @Provides
     fun provideRequestWorkTagDao (dataBase: AppDataBase): RequestWorkTagDao {
         return dataBase.requestWorkTagDao()
+    }
+
+    @Provides
+    fun provideNoteRequestWorkDao (dataBase: AppDataBase): NoteRequestWorkDao {
+        return dataBase.requestWorkDao()
     }
 }

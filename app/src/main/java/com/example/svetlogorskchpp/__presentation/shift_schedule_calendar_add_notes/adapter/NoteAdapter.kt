@@ -8,20 +8,29 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
 import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.databinding.ItemCalendarNoteRequestWorkBinding
 import com.example.svetlogorskchpp.databinding.ItemSwipeCalendarNoteBinding
 import java.text.SimpleDateFormat
+import java.util.Calendar
 
-class NoteAdapter(private val onClickDelete: (noteMy: Note) -> Unit) : ListAdapter<Note, RecyclerView.ViewHolder>(ItemNoteCallback()) {
+class NoteAdapter(
+    private val onClickDelete: (noteMy: Note) -> Unit
+) :
+    ListAdapter<Note, RecyclerView.ViewHolder>(ItemNoteCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        NoteHolder.inflateFrom(parent, viewType)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            0 -> NoteHolder.inflateFrom(parent)
+            else -> NoteRequestWorkHolder.inflateFrom(parent)
+        }
+    }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
-            is Note.NoteMy ->  (holder as NoteHolder).bind(item, onClickDelete)
-            is Note.NoteRequestWork -> ""
+            is Note.NoteMy -> (holder as NoteHolder).bind(item, onClickDelete)
+            is Note.NoteRequestWork -> (holder as NoteRequestWorkHolder).bind(item,onClickDelete)
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -42,14 +51,23 @@ class NoteAdapter(private val onClickDelete: (noteMy: Note) -> Unit) : ListAdapt
                     addSwipeListener(object : SwipeLayout.SwipeListener {
                         override fun onStartOpen(layout: SwipeLayout?) {
                         }
+
                         override fun onOpen(layout: SwipeLayout?) {
                         }
+
                         override fun onStartClose(layout: SwipeLayout?) {
                         }
+
                         override fun onClose(layout: SwipeLayout?) {
                         }
-                        override fun onUpdate(layout: SwipeLayout?, leftOffset: Int, topOffset: Int) {
+
+                        override fun onUpdate(
+                            layout: SwipeLayout?,
+                            leftOffset: Int,
+                            topOffset: Int,
+                        ) {
                         }
+
                         override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {
                         }
                     })
@@ -64,17 +82,47 @@ class NoteAdapter(private val onClickDelete: (noteMy: Note) -> Unit) : ListAdapt
         }
 
         companion object {
-            fun inflateFrom(parentContext: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+            fun inflateFrom(parentContext: ViewGroup): RecyclerView.ViewHolder {
                 val layoutInflate = LayoutInflater.from(parentContext.context)
-                when (viewType) {
-                    0 -> {
-                        val binding =
-                            ItemSwipeCalendarNoteBinding.inflate(layoutInflate, parentContext, false)
-                        return NoteHolder(binding)
-                    }
-                    else -> throw IllegalArgumentException("Invalid view type")
-                }
+                val binding =
+                    ItemSwipeCalendarNoteBinding.inflate(
+                        layoutInflate,
+                        parentContext,
+                        false
+                    )
+                return NoteHolder(binding)
             }
         }
     }
+
+    class NoteRequestWorkHolder(val binding: ItemCalendarNoteRequestWorkBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: Note.NoteRequestWork, onClickDelete: (noteMy: Note.NoteMy) -> Unit) {
+            binding.apply {
+                tvNumberRequest.text = item.numberRequestWork
+                tvReason.text = item.reason
+                tvAccession.text = item.accession
+                tvDateRequestWork.text = calendarToString(item.dateOpen) + "\n" + calendarToString(item.dateClose)
+            }
+        }
+
+        fun calendarToString(calendar: Calendar): String {
+            val sdf = SimpleDateFormat("dd MMMM yyyy HH:mm")
+            return sdf.format(calendar.time)
+        }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): RecyclerView.ViewHolder {
+            val layoutInflate = LayoutInflater.from(parentContext.context)
+            val binding =
+                ItemCalendarNoteRequestWorkBinding.inflate(
+                    layoutInflate,
+                    parentContext,
+                    false
+                )
+            return NoteRequestWorkHolder(binding)
+        }
+    }
+}
 }

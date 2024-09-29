@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
@@ -42,8 +43,25 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
-            calendarNoteUseCases.noteRequestWorkFlow.collect {
+            calendarNoteUseCases.operationResultFirebaseFlow.collect {result->
+                when (result) {
+                    is OperationResult.Success -> {
+                        _noteRequestWorkStateUi.update { oldState ->
+                            oldState.copy(
+                                toastText = ToastRequestWork.SAVE
+                            )
+                        }
+                        delay(1000)
+                        _noteRequestWorkStateUi.update { oldState ->
+                            oldState.copy(
+                                toastText = null
+                            )
+                        }
+                    }
+                    is OperationResult.Error -> {
 
+                    }
+                }
             }
         }
 

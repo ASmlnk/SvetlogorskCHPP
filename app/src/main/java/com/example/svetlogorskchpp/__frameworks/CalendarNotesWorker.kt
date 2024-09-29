@@ -2,13 +2,10 @@ package com.example.svetlogorskchpp.__frameworks
 
 import android.annotation.SuppressLint
 import android.app.Notification
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
-import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.hilt.work.HiltWorker
@@ -16,11 +13,9 @@ import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.svetlogorskchpp.CHANNEL_ID
-import com.example.svetlogorskchpp.MainActivity
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.model.NoteTechnicalNotification
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
-import com.google.common.io.Resources
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.Calendar

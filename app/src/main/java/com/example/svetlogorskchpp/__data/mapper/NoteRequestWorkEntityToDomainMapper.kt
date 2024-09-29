@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.__data.mapper
 
-import com.example.svetlogorskchpp.__data.model.NoteRequestWorkEntity
+import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
 import com.example.svetlogorskchpp.__domain.model.Note
 import java.util.Calendar
 import java.util.Date

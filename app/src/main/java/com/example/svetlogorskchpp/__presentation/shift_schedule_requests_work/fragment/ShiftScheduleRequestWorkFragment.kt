@@ -212,10 +212,11 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                     { _, hourOfDay, minute ->
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                         calendar.set(Calendar.MINUTE, minute)
+                        val newCalendar = calendar.clone() as Calendar
 
                         when (buttonTime) {
-                            binding.bTimeOpen -> viewModel.dateOpen(calendar, DateTimeUI.OPEN_TIME)
-                            binding.bTimeClosed -> viewModel.dateOpen(calendar, DateTimeUI.CLOSE_TIME)
+                            binding.bTimeOpen -> viewModel.dateOpen(newCalendar, DateTimeUI.OPEN_TIME)
+                            binding.bTimeClosed -> viewModel.dateOpen(newCalendar, DateTimeUI.CLOSE_TIME)
                         }
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),

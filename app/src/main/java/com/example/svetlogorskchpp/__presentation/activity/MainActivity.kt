@@ -1,31 +1,35 @@
-package com.example.svetlogorskchpp
+package com.example.svetlogorskchpp.__presentation.activity
 
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment
+import com.example.svetlogorskchpp.R
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 private lateinit var navController: NavController
 private lateinit var appBarConfiguration: AppBarConfiguration
+
+private val viewModel:MainActivityViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,13 +43,18 @@ private lateinit var appBarConfiguration: AppBarConfiguration
 
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
-        Log.d("uuuuuuuuuuuuu", "onCreate")
+
+        lifecycleScope.launch {
+            viewModel.getRequestWorkFirebase()
+        }
+
 
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)
         )*/
        //setupActionBarWithNavController(navController,appBarConfiguration)
     }
+
 
     override fun attachBaseContext(newBase: Context?) {
 
