@@ -231,9 +231,10 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
                     val taskStackBuilder = NavDeepLinkBuilder(context)
                         .setGraph(R.navigation.nav_graph)
-                        .setDestination(R.id.shiftScheduleFragment)
+                        //.setDestination(R.id.shiftScheduleFragment)
                         .setDestination(R.id.shiftScheduleAddNotesFragment)
                         .setArguments(args.toBundle())
+                        .setComponentName(MainActivity::class.java)
                         .createTaskStackBuilder()
                     taskStackBuilder.startActivities()
                 }

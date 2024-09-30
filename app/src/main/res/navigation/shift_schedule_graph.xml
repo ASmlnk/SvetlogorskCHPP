@@ -88,5 +88,5 @@
             app:popUpToInclusive="false"
             android:id="@+id/action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment"
             app:destination="@id/shiftScheduleFragment" />
-    </fragment>
+    </fragment><action android:id="@+id/action_global_shiftScheduleAddNotesFragment" app:destination="@id/shiftScheduleAddNotesFragment"/>
 </navigation>
