@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragmentDirections
+import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +49,15 @@ private val viewModel:MainActivityViewModel by viewModels()
 
         lifecycleScope.launch {
             viewModel.getRequestWorkFirebase()
+        }
+
+        val navigateAdd: NavigateAddNoteArgs? = intent.getParcelableExtra("navigateAdd")
+        if (navigateAdd != null) {
+            val nav = findNavController(R.id.nav_host_fragment)
+            val bundle = Bundle().apply {
+                putParcelable("navigateAddNoteArgs", navigateAdd)
+            }
+            nav.navigate(R.id.shiftScheduleAddNotesFragment, bundle)
         }
 
 

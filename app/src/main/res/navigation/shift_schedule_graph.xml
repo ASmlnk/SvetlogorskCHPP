@@ -9,6 +9,7 @@
         android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment"
         android:label="ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule">
+
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
             app:destination="@id/shiftScheduleEditCompositionFragment" />
@@ -36,6 +37,9 @@
         android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
         android:label="ShiftScheduleAddNotesFragment"
         tools:layout="@layout/fragment_shift_schedule_add_notes">
+
+        <deepLink
+            app:uri="myApp://shiftScheduleFragment"/>
 
         <argument
             android:name="navigateAddNoteArgs"

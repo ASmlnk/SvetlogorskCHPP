@@ -9,6 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.widget.RemoteViews
+import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkBuilder
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__di.Widget
@@ -228,7 +229,23 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 val navigateAddNoteArgs =
                     intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
                 navigateAddNoteArgs?.let {
-                    val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
+
+                    val deepLinkUri = "myApp://shiftScheduleFragment".toUri()
+                    val deepLinkIntent = Intent(Intent.ACTION_VIEW, deepLinkUri, context, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra("navigateApp", navigateAddNoteArgs)
+                    }
+
+                    val pendingIntent = PendingIntent.getActivity(context, 0, deepLinkIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+                    try {
+                        pendingIntent.send()
+                    } catch (e: PendingIntent.CanceledException) {
+                        e.printStackTrace()
+                    }
+
+
+
+                    /*val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
                     val taskStackBuilder = NavDeepLinkBuilder(context)
                         .setGraph(R.navigation.nav_graph)
                         //.setDestination(R.id.shiftScheduleFragment)
@@ -236,7 +253,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         .setArguments(args.toBundle())
                         .setComponentName(MainActivity::class.java)
                         .createTaskStackBuilder()
-                    taskStackBuilder.startActivities()
+                    taskStackBuilder.startActivities()*/
                 }
                 monthOffset = 0
             }
