@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shiftScheduleGraph"
     app:startDestination="@id/shiftScheduleFragment">
     <fragment
@@ -9,6 +9,8 @@
         android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment"
         android:label="ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule">
+
+        <deepLink app:uri="myApp://shiftScheduleFragment" />
 
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
@@ -38,8 +40,7 @@
         android:label="ShiftScheduleAddNotesFragment"
         tools:layout="@layout/fragment_shift_schedule_add_notes">
 
-        <deepLink
-            app:uri="myApp://shiftScheduleFragment"/>
+
 
         <argument
             android:name="navigateAddNoteArgs"
@@ -50,6 +51,9 @@
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_dialogCalendarDateFragment"
             app:destination="@id/dialogCalendarDateFragment" />
+        <action
+            android:id="@+id/action_global_shiftScheduleAddNotesFragment"
+            app:destination="@id/shiftScheduleAddNotesFragment" />
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3"
             app:destination="@id/shiftScheduleFragment"
@@ -79,18 +83,19 @@
             app:argType="com.example.svetlogorskchpp.__domain.en.Shift" />
     </dialog>
     <fragment
-        tools:layout="@layout/fragment_shift_schedule_request_work"
         android:id="@+id/shiftScheduleRequestWorkFragment"
         android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.fragment.ShiftScheduleRequestWorkFragment"
-        android:label="ShiftScheduleRequestWorkFragment" >
+        android:label="ShiftScheduleRequestWorkFragment"
+        tools:layout="@layout/fragment_shift_schedule_request_work">
         <argument
             android:name="noteRequestWork"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
         <action
-            app:popUpTo="@id/shiftScheduleFragment"
-            app:popUpToInclusive="false"
             android:id="@+id/action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment"
-            app:destination="@id/shiftScheduleFragment" />
-    </fragment><action android:id="@+id/action_global_shiftScheduleAddNotesFragment" app:destination="@id/shiftScheduleAddNotesFragment"/>
+            app:destination="@id/shiftScheduleFragment"
+            app:popUpTo="@id/shiftScheduleFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
 </navigation>

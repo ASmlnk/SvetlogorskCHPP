@@ -20,6 +20,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragmentDirections
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentArgs
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentDirections
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,10 +56,8 @@ private val viewModel:MainActivityViewModel by viewModels()
         val navigateAdd: NavigateAddNoteArgs? = intent.getParcelableExtra("navigateAdd")
         if (navigateAdd != null) {
             val nav = findNavController(R.id.nav_host_fragment)
-            val bundle = Bundle().apply {
-                putParcelable("navigateAddNoteArgs", navigateAdd)
-            }
-            nav.navigate(R.id.shiftScheduleAddNotesFragment, bundle)
+            val action =ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(navigateAdd)
+            navController.navigate(action)
         }
 
 

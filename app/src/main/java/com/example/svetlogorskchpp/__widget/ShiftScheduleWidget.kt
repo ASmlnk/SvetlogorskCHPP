@@ -236,6 +236,11 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         putExtra("navigateApp", navigateAddNoteArgs)
                     }
 
+                    val deepLinkIntent1 = Intent(context, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        putExtra("navigateApp", navigateAddNoteArgs)
+                    }
+
                     val pendingIntent = PendingIntent.getActivity(context, 0, deepLinkIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
                     try {
                         pendingIntent.send()
