@@ -41,7 +41,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     override val operationResultFirebaseFlow: Flow<OperationResult<Unit>> =
         _operationResultFirebaseFlow
 
-    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val gson = Gson()
 
@@ -73,7 +73,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
 
     override suspend fun setRequestWorkFirebase(noteRequestWorkEntity: NoteRequestWorkEntity) {
         Log.d("11111111", "41111111"+NoteRequestWorkRepositoryImpl.toString())
-        withContext(Dispatchers.IO) {
+
             val noteRequestWorks = _noteRequestWorkFlow.value.toMutableList()
             noteRequestWorks.add(noteRequestWorkEntity)
             val json = gson.toJson(
@@ -92,9 +92,9 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
                     }
 
                 }.addOnFailureListener { e ->
-
+                    Log.d("11111111", "e1111111"+NoteRequestWorkRepositoryImpl.toString())
                 }
-        }
+
     }
 
     override fun cleanJob() {

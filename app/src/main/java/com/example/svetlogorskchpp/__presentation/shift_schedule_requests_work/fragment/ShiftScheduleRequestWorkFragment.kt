@@ -73,20 +73,8 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     private lateinit var adapterReason: StringAutoCompleteAdapter
     private val hardData = HardData()
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback = object : OnBackPressedCallback(
-            true // default to enabled
-        ) {
-            override fun handleOnBackPressed() {
-
-                findNavController().navigate(R.id.action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment)
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this, // LifecycleOwner
-            callback
-        )
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
     }
 
@@ -98,6 +86,16 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         _binding = FragmentShiftScheduleRequestWorkBinding.inflate(inflater, container, false)
         adapterAccessions = StringAutoCompleteAdapter(requireContext(), hardData.accessions)
         adapterReason = StringAutoCompleteAdapter(requireContext(), hardData.reasons)
+
+        val callback = object : OnBackPressedCallback(true ) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, // LifecycleOwner
+            callback
+        )
 
         binding.apply {
             ivHelpAccession.setOnClickListener {

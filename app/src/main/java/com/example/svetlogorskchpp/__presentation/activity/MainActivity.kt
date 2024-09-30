@@ -55,9 +55,7 @@ private val viewModel:MainActivityViewModel by viewModels()
 
         val navigateAdd: NavigateAddNoteArgs? = intent.getParcelableExtra("navigateAdd")
         if (navigateAdd != null) {
-            val nav = findNavController(R.id.nav_host_fragment)
-            val action =ShiftScheduleFragmentDirections.actionShiftScheduleFragmentToShiftScheduleAddNotesFragment(navigateAdd)
-            navController.navigate(action)
+
         }
 
 

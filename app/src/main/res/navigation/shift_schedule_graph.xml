@@ -10,8 +10,6 @@
         android:label="ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule">
 
-        <deepLink app:uri="myApp://shiftScheduleFragment" />
-
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleEditCompositionFragment"
             app:destination="@id/shiftScheduleEditCompositionFragment" />
@@ -51,9 +49,6 @@
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_dialogCalendarDateFragment"
             app:destination="@id/dialogCalendarDateFragment" />
-        <action
-            android:id="@+id/action_global_shiftScheduleAddNotesFragment"
-            app:destination="@id/shiftScheduleAddNotesFragment" />
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleFragment3"
             app:destination="@id/shiftScheduleFragment"

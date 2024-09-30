@@ -56,23 +56,8 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         )
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val callback = object : OnBackPressedCallback(
-            true // default to enabled
-        ) {
-            override fun handleOnBackPressed() {
-                val action =
-                    ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(
-                        args.navigateAddNoteArgs.date
-                    )
-                findNavController().navigate(action)
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            requireActivity(), // LifecycleOwner
-            callback
-        )
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
     }
 
@@ -83,6 +68,20 @@ class ShiftScheduleAddNotesFragment : Fragment() {
     ): View {
         _binding = FragmentShiftScheduleAddNotesBinding.inflate(inflater, container, false)
         //viewModel.deleteNoteTag()
+
+        val callback = object : OnBackPressedCallback(true ) {
+            override fun handleOnBackPressed() {
+                val action =
+                    ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(
+                        args.navigateAddNoteArgs.date
+                    )
+                findNavController().navigate(action)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner, // LifecycleOwner
+            callback
+        )
 
         binding.apply {
 
