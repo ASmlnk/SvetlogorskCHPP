@@ -60,7 +60,7 @@ class CalendarNoteUseCasesImpl @Inject constructor(
     }
 
     override fun cleanJob() {
-        noteRequestWorkRepository.cleanJob()
+       // noteRequestWorkRepository.cleanJob()
     }
 
     override val noteRequestWorkFlow = noteRequestWorkRepository.noteRequestWorkFlow

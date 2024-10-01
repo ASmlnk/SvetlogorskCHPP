@@ -79,23 +79,32 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
             val json = gson.toJson(
                 NoteRequestWorkJsonList(listRequestWork = noteRequestWorks)
             )
-            firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
-                .update(mapOf("json" to json))
+            val docRef = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
+                val updateJson =  mapOf("json" to json)
 
 
-                .addOnSuccessListener {
-                    Log.d("11111111", "31111111"+NoteRequestWorkRepositoryImpl.toString())
-                    coroutineScope.launch {
-                        Log.d("11111111", "21111111"+NoteRequestWorkRepositoryImpl.toString())
-                        getRequestWorkFirebase()
-                        _operationResultFirebaseFlow.emit(OperationResult.Success(Unit))
-                    }
+        try {
+            docRef.update(updateJson).await()
+            Log.d("11111111", "31111111")
+            coroutineScope.launch {
+                Log.d("11111111", "21111111")
+                getRequestWorkFirebase()
+                _operationResultFirebaseFlow.emit(OperationResult.Success(Unit))
+            }
 
-                }.addOnFailureListener { e ->
+        } catch (e: Exception) {
+            println("Error updating document: ${e.message}")
+        }
+
+
+
+
+
+                }/*.addOnFailureListener { e ->
                     Log.d("11111111", "e1111111"+NoteRequestWorkRepositoryImpl.toString())
-                }
+                }*/
 
-    }
+
 
     override fun cleanJob() {
         coroutineScope.cancel()
