@@ -41,7 +41,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     override val operationResultFirebaseFlow: Flow<OperationResult<Unit>> =
         _operationResultFirebaseFlow
 
-    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private val gson = Gson()
 
@@ -64,7 +64,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
             val tags = tagsRequestWork(noteRequestWorkEntity)
             calendarRequestWorkTagRepository.clearTable()
             calendarRequestWorkTagRepository.insertAll(tags)
-            Log.d("11111111", "11111111"+NoteRequestWorkRepositoryImpl.toString())
+            Log.d("11111111", "11111111" + NoteRequestWorkRepositoryImpl.toString())
             noteRequestWorkDao.clearTable()
             noteRequestWorkDao.insertAll(noteRequestWorkEntity)
             _noteRequestWorkFlow.update { noteRequestWorkEntity }
@@ -72,7 +72,9 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setRequestWorkFirebase(noteRequestWorkEntity: NoteRequestWorkEntity) {
-        Log.d("11111111", "41111111"+NoteRequestWorkRepositoryImpl.toString())
+        withContext(Dispatchers.IO) {
+
+            firebase.enableNetwork()
 
             val noteRequestWorks = _noteRequestWorkFlow.value.toMutableList()
             noteRequestWorks.add(noteRequestWorkEntity)
@@ -80,31 +82,19 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
                 NoteRequestWorkJsonList(listRequestWork = noteRequestWorks)
             )
             val docRef = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
-                val updateJson =  mapOf("json" to json)
+            val updateJson = mapOf("json" to json)
 
+            try {
+                docRef.update(updateJson).await()
 
-        try {
-            docRef.update(updateJson).await()
-            Log.d("11111111", "31111111")
-            coroutineScope.launch {
-                Log.d("11111111", "21111111")
                 getRequestWorkFirebase()
                 _operationResultFirebaseFlow.emit(OperationResult.Success(Unit))
+
+            } catch (e: Exception) {
+                println("Error updating document: ${e.message}")
             }
-
-        } catch (e: Exception) {
-            println("Error updating document: ${e.message}")
         }
-
-
-
-
-
-                }/*.addOnFailureListener { e ->
-                    Log.d("11111111", "e1111111"+NoteRequestWorkRepositoryImpl.toString())
-                }*/
-
-
+    }
 
     override fun cleanJob() {
         coroutineScope.cancel()
@@ -113,7 +103,6 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     override fun getByTagDates(tagDate: Date): Flow<List<NoteRequestWorkEntity>> {
         return noteRequestWorkDao.getByTagDates(tagDate.time)
     }
-
 
     private fun tagsRequestWork(noteRequestWorkEntity: List<NoteRequestWorkEntity>): List<RequestWorkTagEntity> {
         val setNoteRequestWork = mutableSetOf<RequestWorkTagEntity>()

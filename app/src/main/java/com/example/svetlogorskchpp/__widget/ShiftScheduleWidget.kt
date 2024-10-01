@@ -230,7 +230,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                     intent.getParcelableExtra<NavigateAddNoteArgs>("NAVIGATION_ADD_NOTES_ARGS")
                 navigateAddNoteArgs?.let {
 
-                    val deepLinkUri = "myApp://shiftScheduleFragment".toUri()
+                    /*val deepLinkUri = "myApp://shiftScheduleFragment".toUri()
                     val deepLinkIntent = Intent(Intent.ACTION_VIEW, deepLinkUri, context, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         putExtra("navigateApp", navigateAddNoteArgs)
@@ -246,11 +246,9 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         pendingIntent.send()
                     } catch (e: PendingIntent.CanceledException) {
                         e.printStackTrace()
-                    }
+                    }*/
 
-
-
-                    /*val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
+                    val args = ShiftScheduleAddNotesFragmentArgs(navigateAddNoteArgs)
                     val taskStackBuilder = NavDeepLinkBuilder(context)
                         .setGraph(R.navigation.nav_graph)
                         //.setDestination(R.id.shiftScheduleFragment)
@@ -258,7 +256,7 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                         .setArguments(args.toBundle())
                         .setComponentName(MainActivity::class.java)
                         .createTaskStackBuilder()
-                    taskStackBuilder.startActivities()*/
+                    taskStackBuilder.startActivities()
                 }
                 monthOffset = 0
             }

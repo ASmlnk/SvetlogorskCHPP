@@ -53,11 +53,6 @@ private val viewModel:MainActivityViewModel by viewModels()
             viewModel.getRequestWorkFirebase()
         }
 
-        val navigateAdd: NavigateAddNoteArgs? = intent.getParcelableExtra("navigateAdd")
-        if (navigateAdd != null) {
-
-        }
-
 
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)
