@@ -330,7 +330,6 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             etNameAccession.setText(noteRequestWorkUI.accession)
             etAdditionally.setText(noteRequestWorkUI.additionally)
         }
-
     }
 
     private fun showCustomSnackbar(view: View, toast: Toast) {
