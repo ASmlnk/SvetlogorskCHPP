@@ -6,11 +6,25 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/tv_permission"
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_request_work_text_permission_d"
+        android:paddingHorizontal="4dp"
+        android:text="диспетчер"
+        android:textColor="@color/text_recycle"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tv_number_request"
+        app:layout_constraintTop_toTopOf="@+id/tv_number_request" />
+
+    <TextView
         android:id="@+id/tv_number_request"
         style="@style/TextViewStyleContent"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="11"
-        android:textSize="30sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_date_request_work"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/tv_date_request_work" />
@@ -18,7 +32,10 @@
     <TextView
         android:id="@+id/tv_date_request_work"
         style="@style/TextViewStyleContent"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/text_recycle_smile"
+        android:layout_marginBottom="4dp"
         android:text="24 ноября 2024 11:48\n24 ноября 2024 11:48"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -62,7 +79,6 @@
             style="@style/TextViewStyleContent"
             android:layout_marginHorizontal="8dp"
             android:textColor="@color/orange_zero_vision"
-            android:text="Продление заявки №25"
             android:layout_marginTop="4dp"
             android:layout_gravity="end"
             android:layout_marginBottom="8dp"

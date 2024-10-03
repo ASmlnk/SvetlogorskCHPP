@@ -7,6 +7,8 @@ import androidx.core.view.isGone
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
+import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.databinding.ItemCalendarNoteRequestWorkBinding
 import com.example.svetlogorskchpp.databinding.ItemSwipeCalendarNoteBinding
@@ -91,9 +93,23 @@ class NoteAdapter(
         fun bind(item: Note.NoteRequestWork, onClickDelete: (noteMy: Note.NoteMy) -> Unit) {
             binding.apply {
                 tvNumberRequest.text = item.numberRequestWork
-                tvReason.text = item.reason
+                tvReason.text = item.reason+ "\n" + item.additionally
                 tvAccession.text = item.accession
                 tvDateRequestWork.text = calendarToString(item.dateOpen) + "\n" + calendarToString(item.dateClose)
+                tvExtend.text = item.contentExtend
+                tvExtend.isGone = !item.isExtend
+                tvPermission.text = item.permission.entity
+                when(item.permission) {
+                    PermissionRequestWork.OTHER -> tvPermission.isGone =true
+                    PermissionRequestWork.DISPATCHER -> {
+                        tvNumberRequest.setTextColor(itemView.resources.getColor(R.color.text_input_assembly))
+                        tvPermission.background = itemView.resources.getDrawable(R.drawable.background_request_work_text_permission_d)
+                    }
+                    PermissionRequestWork.CHIEF_ENGINEER -> {
+                        tvNumberRequest.setTextColor(itemView.resources.getColor(R.color.color_request_work_calendar))
+                        tvPermission.background = itemView.resources.getDrawable(R.drawable.background_request_work_text_permission_c)
+                    }
+                }
             }
         }
 
