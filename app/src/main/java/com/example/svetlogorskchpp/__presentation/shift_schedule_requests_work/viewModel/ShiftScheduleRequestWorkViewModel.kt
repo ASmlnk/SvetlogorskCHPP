@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult
 import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
@@ -32,14 +33,16 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
     private val noteRequestWorkUiToDomainMapper: NoteRequestWorkUiToDomainMapper,
     private val calendarNoteUseCases: CalendarNoteUseCases,
     private val calendarDateUseCases: CalendarDateUseCases,
+    @ApplicationContext private val context: Context,
     @Assisted private val noteRequestWork: String,
 ) : ViewModel() {
 
     private val calendar = Calendar.getInstance()
 
-    private val _noteRequestWorkExtendStateUI: MutableStateFlow<ExtendRequestWorkUI> = MutableStateFlow(
-        ExtendRequestWorkUI()
-    )
+    private val _noteRequestWorkExtendStateUI: MutableStateFlow<ExtendRequestWorkUI> =
+        MutableStateFlow(
+            ExtendRequestWorkUI()
+        )
 
     private val _noteRequestWorkStateUi: MutableStateFlow<NoteRequestWorkStateUI> =
         MutableStateFlow(
@@ -51,7 +54,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
 
     val noteRequestWorkStateUI: StateFlow<NoteRequestWorkStateUI> = _noteRequestWorkStateUi
 
-    fun insertNoteRequestWork(
+    fun saveEditTextUI(
         textAccession: String,
         textReason: String,
         textAdditionally: String,
@@ -63,6 +66,13 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
             reason = textReason,
             additionally = textAdditionally
         )
+        _noteRequestWorkStateUi.update { oldState ->
+            oldState.copy(noteRequestWorkUI = noteRequestWorkUI)
+        }
+    }
+
+    fun insertNoteRequestWork() {
+        val noteRequestWorkUI = _noteRequestWorkStateUi.value.noteRequestWorkUI
         val toastCheckFilling: Toast? = toastCheckFillingUI(noteRequestWorkUI)
 
         if (toastCheckFilling == null) {
@@ -84,19 +94,42 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
         val toastCheckFilling: Toast? = toastCheckFillingUI(extendRequestWorkUI)
 
         if (toastCheckFilling == null) {
-
-
-
-
-
-
-
+            val numberRequestWorkOld =
+                _noteRequestWorkStateUi.value.noteRequestWorkUI.numberRequestWork
+            val noteRequestWorkUI = with(extendRequestWorkUI) {
+                _noteRequestWorkStateUi.value.noteRequestWorkUI.copy(
+                    numberRequestWork = numberRequestWork,
+                    dateOpen = dateOpen,
+                    dateClose = dateClose,
+                    tagMonthOpen = tagMonthOpen,
+                    tagMonthClose = tagMonthClose,
+                    tagDateClose = tagDateClose,
+                    tagDateOpen = tagDateOpen,
+                    isExtend = true,
+                    contentExtend = context.resources.getString(
+                        R.string.extendContent,
+                        numberRequestWorkOld
+                    )
+                )
+            }
+            _noteRequestWorkStateUi.update { oldState ->
+                oldState.copy(
+                    noteRequestWorkUI = noteRequestWorkUI,
+                    isExtend = false,
+                    textDateOpen = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
+                        noteRequestWorkUI.dateOpen!!
+                    ),
+                    textDateClose = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
+                        noteRequestWorkUI.dateClose!!
+                    )
+                )
+            }
         } else {
             toastViewUI(toastCheckFilling)
         }
     }
 
-    fun isExtendView (isExtend: Boolean) {
+    fun isExtendView(isExtend: Boolean) {
         resetExtend()
         _noteRequestWorkStateUi.update { oldState ->
             oldState.copy(isExtend = isExtend)
@@ -119,12 +152,13 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 resetRequestWorkUI = ResetRequestWorkUI.RESET,
                 noteRequestWorkUI = NoteRequestWorkUI(),
                 textDateOpen = null,
-                textDateClose = null
+                textDateClose = null,
+
             )
         }
         delay(100)
         _noteRequestWorkStateUi.update { oldState ->
-            oldState.copy( resetRequestWorkUI = null)
+            oldState.copy(resetRequestWorkUI = null)
         }
     }
 
@@ -203,6 +237,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                     )
                 }
             }
+
             DateTimeUI.OPEN_EXTEND_TIME -> {
                 val extendRequestWorkUI = _noteRequestWorkExtendStateUI.value.copy(
                     tagDateOpen = calendarDateUseCases.calendarToDateYMD(calendarUI),
@@ -211,11 +246,14 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 )
                 _noteRequestWorkExtendStateUI.update { extendRequestWorkUI }
                 _noteRequestWorkStateUi.update { oldState ->
-                    oldState.copy(textDateOpenExtend = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
-                        calendarUI
-                    ))
+                    oldState.copy(
+                        textDateOpenExtend = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
+                            calendarUI
+                        )
+                    )
                 }
             }
+
             DateTimeUI.CLOSE_EXTEND_TIME -> {
                 val extendRequestWorkUI = _noteRequestWorkExtendStateUI.value.copy(
                     tagDateClose = calendarDateUseCases.calendarToDateYMD(calendarUI),
@@ -224,9 +262,11 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 )
                 _noteRequestWorkExtendStateUI.update { extendRequestWorkUI }
                 _noteRequestWorkStateUi.update { oldState ->
-                    oldState.copy(textDateCloseExtend = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
-                        calendarUI
-                    ))
+                    oldState.copy(
+                        textDateCloseExtend = calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(
+                            calendarUI
+                        )
+                    )
                 }
             }
         }
@@ -256,6 +296,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                         delay(200)
                         updateToast(Toast.INSERT_REQUEST_WORK)
                     }
+
                     SuccessResult.INSERT_NOTE -> updateToast(Toast.INSERT_NOTE)
                     SuccessResult.DELETE_REQUEST_WORK -> {
                         resetUI()

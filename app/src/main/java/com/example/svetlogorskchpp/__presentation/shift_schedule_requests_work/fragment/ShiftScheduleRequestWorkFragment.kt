@@ -96,44 +96,49 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 )
             }
             bTimeOpen.setOnClickListener {
+                saveEditText()
                 dateTimePicker(binding.bTimeOpen)
             }
             bTimeClosed.setOnClickListener {
+                saveEditText()
                 dateTimePicker(binding.bTimeClosed)
             }
             bSave.setOnClickListener {
-                viewModel.insertNoteRequestWork(
-                    textAccession = etNameAccession.text.toString(),
-                    textReason = etReason.text.toString(),
-                    textAdditionally = etAdditionally.text.toString(),
-                    textNumber = etNumberRequest.text.toString()
-                )
+                saveEditText()
+                viewModel.insertNoteRequestWork()
             }
             bExtend.setOnClickListener {
+                saveEditText()
                 viewModel.isExtendView(true)
             }
 
             bTimeOpenExtend.setOnClickListener {
+                saveEditText()
                 dateTimePicker(binding.bTimeOpenExtend)
             }
 
             bTimeClosedExtend.setOnClickListener {
+                saveEditText()
                 dateTimePicker(binding.bTimeClosedExtend)
             }
 
             bCloseExtend.setOnClickListener {
+                saveEditText()
                 viewModel.isExtendView(false)
             }
 
             bOkExtend.setOnClickListener {
+                saveEditText()
                 viewModel.insertExtendRequestWork(etNumberRequestExtend.text.toString())
             }
 
             chDispatcher.setOnCheckedChangeListener { _, isChecked ->
+                saveEditText()
                 viewModel.chipPermission(if (isChecked) PermissionRequestWork.DISPATCHER else PermissionRequestWork.OTHER)
             }
 
             chChiefEnginee.setOnCheckedChangeListener { _, isChecked ->
+                saveEditText()
                 viewModel.chipPermission(if (isChecked) PermissionRequestWork.CHIEF_ENGINEER else PermissionRequestWork.OTHER)
             }
 
@@ -144,14 +149,14 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.noteRequestWorkStateUI.collect { noteRequestWorkStateUI ->
                         visibleExtend(noteRequestWorkStateUI.isExtend)
-                        textToButtonTime(noteRequestWorkStateUI)
+                        textToUI(noteRequestWorkStateUI)
                         noteRequestWorkStateUI.apply {
                             toastText?.let {
                                 showCustomSnackbar(root, it)
                             }
-                            noteRequestWorkUI.permission?.let {
-                                setupChipUI(it)
-                            }
+
+                            setupChipUI(noteRequestWorkUI.permission ?: PermissionRequestWork.OTHER)
+
                             resetRequestWorkUI?.let {
                                 resetText()
                             }
@@ -172,6 +177,15 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         _binding = null
     }
 
+    private fun FragmentShiftScheduleRequestWorkBinding.saveEditText() {
+        viewModel.saveEditTextUI(
+            textAccession = etNameAccession.text.toString(),
+            textReason = etReason.text.toString(),
+            textAdditionally = etAdditionally.text.toString(),
+            textNumber = etNumberRequest.text.toString()
+        )
+    }
+
     private fun FragmentShiftScheduleRequestWorkBinding.visibleExtend(isVisible: Boolean) {
         layoutExtend.isGone = !isVisible
         bSave.isGone = isVisible
@@ -180,7 +194,7 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     }
 
     private fun FragmentShiftScheduleRequestWorkBinding.resetExtend(isReset: Boolean) {
-        if(isReset) {
+        if (isReset) {
             etNumberRequestExtend.setText(RESET_EDIT_TEXT)
             bTimeOpenExtend.text = resources.getString(R.string.time_open_request_work)
             bTimeClosedExtend.text = resources.getString(R.string.time_closed_request_work)
@@ -268,14 +282,17 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                                 newCalendar,
                                 DateTimeUI.OPEN_TIME
                             )
+
                             binding.bTimeClosed -> viewModel.dateOpen(
                                 newCalendar,
                                 DateTimeUI.CLOSE_TIME
                             )
+
                             binding.bTimeOpenExtend -> viewModel.dateOpen(
                                 newCalendar,
                                 DateTimeUI.OPEN_EXTEND_TIME
                             )
+
                             binding.bTimeClosedExtend -> viewModel.dateOpen(
                                 newCalendar,
                                 DateTimeUI.CLOSE_EXTEND_TIME
@@ -293,7 +310,7 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         ).show()
     }
 
-    private fun FragmentShiftScheduleRequestWorkBinding.textToButtonTime(
+    private fun FragmentShiftScheduleRequestWorkBinding.textToUI(
         noteRequestWorkStateUI: NoteRequestWorkStateUI,
     ) {
         noteRequestWorkStateUI.apply {
@@ -309,6 +326,7 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             textDateCloseExtend?.let {
                 bTimeClosedExtend.text = it
             }
+            etNumberRequest.setText(noteRequestWorkUI.numberRequestWork)
         }
 
     }

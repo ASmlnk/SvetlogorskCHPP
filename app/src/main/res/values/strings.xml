@@ -238,5 +238,6 @@
     <string name="help_request_work_reason">
         Например: Вывести в ремонт,\nперевести на консервацию,\nограничение нагрузки\nи тд
     </string>
+    <string name="extendContent">Продление заявки %s</string>
 
 </resources>
