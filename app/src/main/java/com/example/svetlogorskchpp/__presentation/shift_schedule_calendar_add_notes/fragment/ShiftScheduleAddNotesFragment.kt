@@ -23,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.ItemNoteAdapterDecoration
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBinding
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
@@ -150,6 +151,9 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                 viewModel.insertIsTechnical(isChecked)
             }
             recyclerViewNotes.adapter = adapter
+            recyclerViewNotes.addItemDecoration(ItemNoteAdapterDecoration(
+                resources.getDimensionPixelOffset(R.dimen.bottom_offset)
+            ))
         }
         return binding.root
     }
@@ -212,12 +216,12 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                                 is Note.NoteMy -> it.dateNotes
                                 is Note.NoteRequestWork -> it.dateOpen
                             }
-                        }.sortedBy {
-                            when (it) {
+                        }.sortedBy { it::class.simpleName}
+                            /*when (it) {
                                 is Note.NoteMy -> !it.isTimeNotes
                                 is Note.NoteRequestWork -> false
                             }
-                        }) {
+                        }*/) {
                             recyclerViewNotes.scrollToPosition(0)
                         }
                     }
