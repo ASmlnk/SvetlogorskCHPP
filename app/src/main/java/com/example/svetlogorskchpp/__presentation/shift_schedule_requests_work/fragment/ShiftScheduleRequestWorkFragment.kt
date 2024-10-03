@@ -166,7 +166,6 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             }
         }
 
-
         setupUiHintEditText()
         return binding.root
     }
@@ -327,6 +326,9 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 bTimeClosedExtend.text = it
             }
             etNumberRequest.setText(noteRequestWorkUI.numberRequestWork)
+            etReason.setText(noteRequestWorkUI.reason)
+            etNameAccession.setText(noteRequestWorkUI.accession)
+            etAdditionally.setText(noteRequestWorkUI.additionally)
         }
 
     }

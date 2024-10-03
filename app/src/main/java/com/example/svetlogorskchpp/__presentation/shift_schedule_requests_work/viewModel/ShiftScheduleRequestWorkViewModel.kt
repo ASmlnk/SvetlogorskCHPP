@@ -34,10 +34,11 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
     private val calendarNoteUseCases: CalendarNoteUseCases,
     private val calendarDateUseCases: CalendarDateUseCases,
     @ApplicationContext private val context: Context,
-    @Assisted private val noteRequestWork: String,
+    @Assisted private val noteRequestWorkJson: String,
 ) : ViewModel() {
 
     private val calendar = Calendar.getInstance()
+    private val noteRequestWorkUI = initNoteRequestWork(noteRequestWorkJson)
 
     private val _noteRequestWorkExtendStateUI: MutableStateFlow<ExtendRequestWorkUI> =
         MutableStateFlow(
@@ -47,8 +48,14 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
     private val _noteRequestWorkStateUi: MutableStateFlow<NoteRequestWorkStateUI> =
         MutableStateFlow(
             NoteRequestWorkStateUI(
-                noteRequestWorkUI = initNoteRequestWork(noteRequestWork),
-                calendarInstance = calendar
+                noteRequestWorkUI = noteRequestWorkUI,
+                calendarInstance = calendar,
+                textDateOpen = noteRequestWorkUI.dateOpen?.let {
+                    calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(it)
+                },
+                textDateClose = noteRequestWorkUI.dateClose?.let {
+                    calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(it)
+                }
             )
         )
 
@@ -154,7 +161,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 textDateOpen = null,
                 textDateClose = null,
 
-            )
+                )
         }
         delay(100)
         _noteRequestWorkStateUi.update { oldState ->
@@ -162,7 +169,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
         }
     }
 
-    fun resetExtend() {
+    private fun resetExtend() {
         _noteRequestWorkExtendStateUI.update { ExtendRequestWorkUI() }
         _noteRequestWorkStateUi.update { oldState ->
             oldState.copy(
