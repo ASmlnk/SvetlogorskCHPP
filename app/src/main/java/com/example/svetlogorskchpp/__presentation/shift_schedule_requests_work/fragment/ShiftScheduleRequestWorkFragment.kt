@@ -125,6 +125,10 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 viewModel.isExtendView(false)
             }
 
+            bOkExtend.setOnClickListener {
+                viewModel.insertExtendRequestWork(etNumberRequestExtend.text.toString())
+            }
+
             chDispatcher.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.chipPermission(if (isChecked) PermissionRequestWork.DISPATCHER else PermissionRequestWork.OTHER)
             }

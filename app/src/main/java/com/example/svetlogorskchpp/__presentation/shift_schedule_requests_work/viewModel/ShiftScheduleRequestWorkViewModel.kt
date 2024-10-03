@@ -73,11 +73,26 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 operationResult(result)
             }
         } else {
-            viewModelScope.launch {
-                updateToast(toastCheckFilling)
-                delay(100)
-                updateToast(null)
-            }
+            toastViewUI(toastCheckFilling)
+        }
+    }
+
+    fun insertExtendRequestWork(textExtendNumber: String) {
+        val extendRequestWorkUI = _noteRequestWorkExtendStateUI.value.copy(
+            numberRequestWork = textExtendNumber
+        )
+        val toastCheckFilling: Toast? = toastCheckFillingUI(extendRequestWorkUI)
+
+        if (toastCheckFilling == null) {
+
+
+
+
+
+
+
+        } else {
+            toastViewUI(toastCheckFilling)
         }
     }
 
@@ -136,6 +151,22 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
         } else {
             null
         }
+    }
+
+    private fun toastViewUI(toast: Toast) {
+        viewModelScope.launch {
+            updateToast(toast)
+            delay(100)
+            updateToast(null)
+        }
+    }
+
+    private fun toastCheckFillingUI(extendRequestWorkUI: ExtendRequestWorkUI): Toast? {
+        return if (extendRequestWorkUI.numberRequestWork.isEmpty()) {
+            Toast.NUMBER_EXTEND
+        } else if (extendRequestWorkUI.dateOpen == null || extendRequestWorkUI.dateClose == null) {
+            Toast.DATE_EXTEND
+        } else null
     }
 
     fun dateOpen(calendarUI: Calendar, dateTimeUI: DateTimeUI) {

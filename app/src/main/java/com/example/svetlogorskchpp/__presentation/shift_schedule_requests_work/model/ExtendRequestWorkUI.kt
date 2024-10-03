@@ -10,5 +10,5 @@ data class ExtendRequestWorkUI(
     val tagMonthClose: Date? = null,
     val dateOpen: Calendar? = null,
     val dateClose: Calendar? = null,
-) {
-}
+    val numberRequestWork: String = ""
+)
