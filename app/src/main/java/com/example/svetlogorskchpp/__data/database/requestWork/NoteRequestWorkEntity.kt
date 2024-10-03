@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__data.database.requestWork
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.model.Note
 import java.util.Calendar
 import java.util.Date
@@ -22,9 +23,10 @@ data class NoteRequestWorkEntity(
     val additionally: String,
     val isExtend: Boolean,
     val contentExtend: String,
+    val permission: String
 ) {
     fun toNote(): Note {
-        return Note.NoteRequestWork(
+        return Note.NoteRequestWork (
             id = this.id,
             tagDateOpen = longToDate(this.tagDateOpen),
             tagDateClose = longToDate(this.tagDateClose),
@@ -38,6 +40,8 @@ data class NoteRequestWorkEntity(
             additionally = this.additionally,
             isExtend = this.isExtend,
             contentExtend = this.contentExtend,
+            permission = toPermissionRequestWork(this.permission)
+
         )
     }
 
@@ -47,5 +51,13 @@ data class NoteRequestWorkEntity(
         val calendar = Calendar.getInstance()
         calendar.time =date
         return calendar
+    }
+
+    private fun toPermissionRequestWork(permission: String): PermissionRequestWork {
+        return when (permission) {
+            "диспетчер" -> PermissionRequestWork.DISPATCHER
+            "главный инженер" -> PermissionRequestWork.CHIEF_ENGINEER
+            else -> PermissionRequestWork.OTHER
+        }
     }
 }

@@ -24,6 +24,9 @@ interface NoteRequestWorkDao {
     @Query("SELECT * FROM request_work")
     suspend fun getAll(): List<NoteRequestWorkEntity>
 
+    @Query("SELECT * FROM request_work")
+    fun getAllFlow(): Flow<List<NoteRequestWorkEntity>>
+
     @Delete
     suspend fun deleteNote(note: NoteRequestWorkEntity)
 }

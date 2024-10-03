@@ -41,7 +41,7 @@
     <style name="ButtonStyleRequestWork" >
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="cornerRadius">8dp</item>
         <item name="elevation">4dp</item>
         <item name="strokeColor">@color/floatingActionButton</item>
@@ -61,6 +61,20 @@
         <item name="backgroundTint">@color/red_danger</item>
         <item name="iconTint">@color/calendar_background</item>
         <item name="android:textColor">@color/calendar_background</item>
+    </style>
+
+    <style name="ChipShiftSchedule" parent="ShiftScheduleChipStyle">
+        <item name="android:fontFamily">@font/ru_hero</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/calendar_background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="chipBackgroundColor">@color/chip_shif_schedule</item>
+        <item name="chipCornerRadius">8dp</item>
+        <item name="chipStrokeColor">@color/calendar_background</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="rippleColor">@color/text_recycle</item>
+
     </style>
 
 

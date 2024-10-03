@@ -8,6 +8,9 @@ data class NoteRequestWorkStateUI(
     val calendarInstance: Calendar,
     val textDateOpen: String? = null,
     val textDateClose: String? = null,
-    val toastText: ToastRequestWork? = null
+    val textDateOpenExtend: String? = null,
+    val textDateCloseExtend: String? = null,
+    val toastText: Toast? = null,
+    val resetRequestWorkUI: ResetRequestWorkUI? = null
 ) {
 }

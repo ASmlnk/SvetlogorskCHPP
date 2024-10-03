@@ -16,13 +16,4 @@ class MainActivityViewModel @Inject constructor(
         noteRequestWorkRepository.getRequestWorkFirebase()
     }
 
-    fun cleanJob() {
-        noteRequestWorkRepository.cleanJob()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        cleanJob()
-    }
-
 }

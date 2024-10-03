@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__data.mapper
 
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.model.Note
 import java.util.Calendar
 import java.util.Date
@@ -23,7 +24,8 @@ class NoteRequestWorkEntityToDomainMapper @Inject constructor() {
                 reason = reason,
                 additionally = additionally,
                 isExtend = isExtend,
-                contentExtend = contentExtend
+                contentExtend = contentExtend,
+                permission = toPermissionRequestWork(permission)
             )
         }
     }
@@ -39,4 +41,13 @@ class NoteRequestWorkEntityToDomainMapper @Inject constructor() {
         date.time = dateMils
         return date
     }
+
+    private fun toPermissionRequestWork(permission: String): PermissionRequestWork {
+        return when (permission) {
+            "диспетчер" -> PermissionRequestWork.DISPATCHER
+            "главный инженер" -> PermissionRequestWork.CHIEF_ENGINEER
+            else -> PermissionRequestWork.OTHER
+        }
+    }
+
 }

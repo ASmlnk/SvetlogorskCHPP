@@ -1,6 +1,5 @@
 package com.example.svetlogorskchpp.__data.repository.noteRequestWork
 
-import android.util.Log
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
@@ -8,21 +7,12 @@ import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJSON
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJsonList
 import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__domain.OperationResult
-import com.example.svetlogorskchpp.__presentation.activity.MainActivity
+import com.example.svetlogorskchpp.__domain.SuccessResult
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.Date
@@ -33,15 +23,6 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     private val calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
     private val noteRequestWorkDao: NoteRequestWorkDao,
 ) : NoteRequestWorkRepository {
-
-    private val _noteRequestWorkFlow = MutableStateFlow<List<NoteRequestWorkEntity>>(emptyList())
-    override val noteRequestWorkFlow: StateFlow<List<NoteRequestWorkEntity>> = _noteRequestWorkFlow
-
-    private val _operationResultFirebaseFlow = MutableSharedFlow<OperationResult<Unit>>()
-    override val operationResultFirebaseFlow: Flow<OperationResult<Unit>> =
-        _operationResultFirebaseFlow
-
-    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private val gson = Gson()
 
@@ -63,45 +44,58 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
 
             val tags = tagsRequestWork(noteRequestWorkEntity)
             calendarRequestWorkTagRepository.clearTable()
-            calendarRequestWorkTagRepository.insertAll(tags)
-            Log.d("11111111", "11111111" + NoteRequestWorkRepositoryImpl.toString())
+            if (tags.isNotEmpty()) calendarRequestWorkTagRepository.insertAll(tags)
+
             noteRequestWorkDao.clearTable()
-            noteRequestWorkDao.insertAll(noteRequestWorkEntity)
-            _noteRequestWorkFlow.update { noteRequestWorkEntity }
+            if (noteRequestWorkEntity.isNotEmpty()) noteRequestWorkDao.insertAll(
+                noteRequestWorkEntity
+            )
         }
     }
 
-    override suspend fun setRequestWorkFirebase(noteRequestWorkEntity: NoteRequestWorkEntity) {
+    override suspend fun insertRequestWork(noteRequestWorkEntity: NoteRequestWorkEntity): OperationResult<SuccessResult> =
         withContext(Dispatchers.IO) {
 
             firebase.enableNetwork()
-
-            val noteRequestWorks = _noteRequestWorkFlow.value.toMutableList()
+            val noteRequestWorks = noteRequestWorkDao.getAll().toMutableList()
             noteRequestWorks.add(noteRequestWorkEntity)
-            val json = gson.toJson(
-                NoteRequestWorkJsonList(listRequestWork = noteRequestWorks)
-            )
-            val docRef = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
-            val updateJson = mapOf("json" to json)
 
-            try {
-                docRef.update(updateJson).await()
-
-                getRequestWorkFirebase()
-                _operationResultFirebaseFlow.emit(OperationResult.Success(Unit))
-
-            } catch (e: Exception) {
-                println("Error updating document: ${e.message}")
-            }
+            return@withContext insertJsonFirebase(noteRequestWorks, SuccessResult.INSERT_REQUEST_WORK)
         }
+
+    override suspend fun deleteRequestWork(noteRequestWorkEntity: NoteRequestWorkEntity): OperationResult<SuccessResult> =
+        withContext(Dispatchers.IO) {
+
+            firebase.enableNetwork()
+            val noteRequestWorks = noteRequestWorkDao.getAll().toMutableList()
+            noteRequestWorks.remove(noteRequestWorkEntity)
+
+            return@withContext insertJsonFirebase(noteRequestWorks, SuccessResult.DELETE_REQUEST_WORK)
     }
 
-    override fun cleanJob() {
-        coroutineScope.cancel()
+    private suspend fun insertJsonFirebase(noteRequestWorks: List<NoteRequestWorkEntity>, success: SuccessResult): OperationResult<SuccessResult> {
+        val json = gson.toJson(
+            NoteRequestWorkJsonList(listRequestWork = noteRequestWorks)
+        )
+        val docRef = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
+        val updateJson = mapOf("json" to json)
+
+        try {
+            docRef.update(updateJson).await()
+            getRequestWorkFirebase()
+            return OperationResult.Success(success)
+
+        } catch (e: Exception) {
+            return OperationResult.Error(ERROR_FIREBASE)
+        }
     }
 
     override fun getByTagDates(tagDate: Date): Flow<List<NoteRequestWorkEntity>> {
         return noteRequestWorkDao.getByTagDates(tagDate.time)
+    }
+
+    override fun getAllFlow(): Flow<List<NoteRequestWorkEntity>> {
+        return noteRequestWorkDao.getAllFlow()
     }
 
     private fun tagsRequestWork(noteRequestWorkEntity: List<NoteRequestWorkEntity>): List<RequestWorkTagEntity> {
@@ -123,9 +117,9 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
         return setNoteRequestWork.toList()
     }
 
-
     companion object {
         private const val COLLECTION_FIREBASE = "Заявки"
         private const val DOCUMENT_FIREBASE = "requestWork"
+        private const val ERROR_FIREBASE = "Заяка не добавлена!"
     }
 }

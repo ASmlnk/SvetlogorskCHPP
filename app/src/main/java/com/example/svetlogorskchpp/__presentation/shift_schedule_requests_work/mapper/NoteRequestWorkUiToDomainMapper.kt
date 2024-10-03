@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.mapper
 
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.NoteRequestWorkUI
 import java.util.Calendar
@@ -23,7 +24,8 @@ class NoteRequestWorkUiToDomainMapper @Inject constructor() {
                 isExtend = isExtend,
                 contentExtend = contentExtend,
                 tagMonthOpen = tagMonthOpen ?: Date(),
-                tagMonthClose = tagMonthClose ?: Date()
+                tagMonthClose = tagMonthClose ?: Date(),
+                permission = permission ?: PermissionRequestWork.OTHER
             )
         }
     }

@@ -16,7 +16,7 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
 
 @Database(
     entities = [CalendarMyNoteTagEntity::class, NoteEntity::class, RequestWorkTagEntity::class, NoteRequestWorkEntity::class],
-    version = 4
+    version = 5
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -59,6 +59,12 @@ val MIGRATION_3_4 = object : Migration(3, 4) {
             )
             """.trimIndent()
         )
+    }
+}
+
+val MIGRATION_4_5 = object : Migration(4, 5) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE request_work ADD COLUMN permission TEXT NOT NULL")
     }
 }
 

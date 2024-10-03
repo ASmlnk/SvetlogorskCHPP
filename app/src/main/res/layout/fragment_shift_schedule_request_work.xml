@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shift_schedule_edit_composition_background"
+    android:background="@drawable/shift_schedule_request_work_background"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,6 +57,32 @@
             app:layout_constraintStart_toStartOf="@+id/b_time_open"
             app:layout_constraintTop_toBottomOf="@+id/b_time_open" />
 
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/ch_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:chipSpacingHorizontal="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b_time_closed"
+            app:selectionRequired="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ch_dispatcher"
+                style="@style/ChipShiftSchedule"
+                android:text="Диспетчер" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ch_chief_enginee"
+                style="@style/ChipShiftSchedule"
+                android:text="Гл. инженер" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView6"
             android:layout_width="32dp"
@@ -81,10 +107,10 @@
             android:id="@+id/tv_name_accession"
             style="@style/TextViewStyleContent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:text="@string/accession"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView6"
-            app:layout_constraintTop_toBottomOf="@+id/b_time_closed" />
+            app:layout_constraintTop_toBottomOf="@+id/ch_group" />
 
         <AutoCompleteTextView
             android:id="@+id/et_name_accession"
@@ -172,8 +198,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/shift_schedule_compound_shift_background"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/b_extend"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_additionally">
@@ -181,14 +209,14 @@
 
             <TextView
                 android:id="@+id/textView24"
-                android:layout_gravity="center"
                 style="@style/TextViewStyleHeading"
-                android:layout_weight="0.5"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:textSize="22sp"
-                android:gravity="center"
                 android:layout_marginBottom="8dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
                 android:text="@string/heading_shift_schedule_extend_request_work"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -232,35 +260,37 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/b_close_extend"
                     style="@style/ButtonStyleRequestWork"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="сброс"
-                    app:strokeColor="@color/calendar_background"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
                     android:layout_marginBottom="16dp"
-                    app:icon="@drawable/baseline_close_24" />
+                    android:layout_weight="1"
+                    android:text="сбросить"
+                    android:textSize="12sp"
+                    app:icon="@drawable/baseline_close_24"
+                    app:strokeColor="@color/calendar_background" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/b_ok_extend"
                     style="@style/ButtonStyleRequestWork"
                     android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_weight="1"
-                    app:strokeColor="@color/calendar_background"
-                    android:text="добавить"
                     android:layout_marginBottom="16dp"
-                    app:icon="@drawable/baseline_check_24" />
+                    android:layout_weight="1"
+                    android:text="Применить"
+                    android:textSize="12sp"
+                    app:icon="@drawable/baseline_check_24"
+                    app:strokeColor="@color/calendar_background" />
 
             </LinearLayout>
 
@@ -269,15 +299,13 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/b_extend"
             style="@style/ButtonStyleRequestWorkSave"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
             android:text="@string/extend"
             app:icon="@drawable/baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/b_save"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_extend" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/b_save"

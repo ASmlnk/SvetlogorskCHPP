@@ -21,7 +21,8 @@ class NoteRequestWorkDomainToEntityMapper @Inject constructor() {
                 isExtend = isExtend,
                 contentExtend = contentExtend,
                 tagMonthOpen = tagMonthOpen.time,
-                tagMonthClose = tagMonthClose.time
+                tagMonthClose = tagMonthClose.time,
+                permission = permission.entity
             )
         }
     }

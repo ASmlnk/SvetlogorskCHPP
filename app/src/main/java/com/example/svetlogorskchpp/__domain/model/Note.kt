@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__domain.model
 
 import com.example.svetlogorskchpp.__data.database.note.NoteEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import java.util.Calendar
 import java.util.Date
 
@@ -42,6 +43,7 @@ sealed class Note {
         val additionally: String,
         val isExtend: Boolean,
         val contentExtend: String,
+        val permission: PermissionRequestWork
     ) : Note() {
 
         fun toNoteRequestWorkEntity(): NoteRequestWorkEntity {
@@ -59,6 +61,7 @@ sealed class Note {
                 additionally = this.additionally,
                 isExtend = this.isExtend,
                 contentExtend = this.contentExtend,
+                permission = this.permission.entity
             )
         }
     }

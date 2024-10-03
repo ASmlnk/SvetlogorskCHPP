@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model
 
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import java.util.Calendar
 import java.util.Date
 import java.util.UUID
@@ -18,5 +19,6 @@ data class NoteRequestWorkUI(
     val additionally: String = "",
     val isExtend: Boolean = false,
     val contentExtend: String = "",
+    val permission: PermissionRequestWork? = null
 ) {
 }

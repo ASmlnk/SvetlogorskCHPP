@@ -1,8 +1,8 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.fragment
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Spannable
@@ -18,8 +18,6 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
@@ -27,26 +25,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavArgs
-import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__data.HardData
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragmentDirections
-import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.adapter.StringAutoCompleteAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.DateTimeUI
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.NoteRequestWorkStateUI
-import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.ToastRequestWork
+import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.Toast
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.viewModel.ShiftScheduleRequestWorkViewModel
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleRequestWorkBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -73,29 +66,21 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     private lateinit var adapterReason: StringAutoCompleteAdapter
     private val hardData = HardData()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentShiftScheduleRequestWorkBinding.inflate(inflater, container, false)
         adapterAccessions = StringAutoCompleteAdapter(requireContext(), hardData.accessions)
         adapterReason = StringAutoCompleteAdapter(requireContext(), hardData.reasons)
 
-        val callback = object : OnBackPressedCallback(true ) {
+        val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.action_shiftScheduleRequestWorkFragment_to_shiftScheduleFragment)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner, // LifecycleOwner
-            callback
-        )
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         binding.apply {
             ivHelpAccession.setOnClickListener {
@@ -124,17 +109,48 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                     textNumber = etNumberRequest.text.toString()
                 )
             }
+            bExtend.setOnClickListener {
+                viewModel.isExtendView(true)
+            }
+
+            bTimeOpenExtend.setOnClickListener {
+                dateTimePicker(binding.bTimeOpenExtend)
+            }
+
+            bTimeClosedExtend.setOnClickListener {
+                dateTimePicker(binding.bTimeClosedExtend)
+            }
+
+            bCloseExtend.setOnClickListener {
+                viewModel.isExtendView(false)
+            }
+
+            chDispatcher.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.chipPermission(if (isChecked) PermissionRequestWork.DISPATCHER else PermissionRequestWork.OTHER)
+            }
+
+            chChiefEnginee.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.chipPermission(if (isChecked) PermissionRequestWork.CHIEF_ENGINEER else PermissionRequestWork.OTHER)
+            }
+
             etNameAccession.setAdapter(adapterAccessions)
             etReason.setAdapter(adapterReason)
-
 
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.noteRequestWorkStateUI.collect { noteRequestWorkStateUI ->
                         visibleExtend(noteRequestWorkStateUI.isExtend)
                         textToButtonTime(noteRequestWorkStateUI)
-                        noteRequestWorkStateUI.toastText?.let {
-                            showCustomSnackbar(root, it)
+                        noteRequestWorkStateUI.apply {
+                            toastText?.let {
+                                showCustomSnackbar(root, it)
+                            }
+                            noteRequestWorkUI.permission?.let {
+                                setupChipUI(it)
+                            }
+                            resetRequestWorkUI?.let {
+                                resetText()
+                            }
                         }
                     }
                 }
@@ -142,11 +158,9 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         }
 
 
-
         setupUiHintEditText()
         return binding.root
     }
-
 
 
     override fun onDestroyView() {
@@ -155,7 +169,39 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     }
 
     private fun FragmentShiftScheduleRequestWorkBinding.visibleExtend(isVisible: Boolean) {
-            layoutExtend.isGone = !isVisible
+        layoutExtend.isGone = !isVisible
+        bSave.isGone = isVisible
+        bExtend.isGone = isVisible
+        resetExtend(!isVisible)
+    }
+
+    private fun FragmentShiftScheduleRequestWorkBinding.resetExtend(isReset: Boolean) {
+        if(isReset) {
+            etNumberRequestExtend.setText(RESET_EDIT_TEXT)
+            bTimeOpenExtend.text = resources.getString(R.string.time_open_request_work)
+            bTimeClosedExtend.text = resources.getString(R.string.time_closed_request_work)
+        }
+    }
+
+    private fun FragmentShiftScheduleRequestWorkBinding.resetText() {
+        etNameAccession.setText(RESET_EDIT_TEXT)
+        etNumberRequestExtend.setText(RESET_EDIT_TEXT)
+        etAdditionally.setText(RESET_EDIT_TEXT)
+        etReason.setText(RESET_EDIT_TEXT)
+        etNumberRequest.setText(RESET_EDIT_TEXT)
+        bTimeOpen.text = resources.getString(R.string.time_open_request_work)
+        bTimeClosed.text = resources.getString(R.string.time_closed_request_work)
+    }
+
+    private fun FragmentShiftScheduleRequestWorkBinding.setupChipUI(permissionRequestWork: PermissionRequestWork) {
+        when (permissionRequestWork) {
+            PermissionRequestWork.DISPATCHER -> chDispatcher.isChecked = true
+            PermissionRequestWork.CHIEF_ENGINEER -> chChiefEnginee.isChecked = true
+            PermissionRequestWork.OTHER -> {
+                chDispatcher.isChecked = false
+                chChiefEnginee.isChecked = false
+            }
+        }
     }
 
     private fun setupUiHintEditText() {
@@ -184,6 +230,7 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         view.hint = spannableString
     }
 
+    @SuppressLint("InflateParams")
     private fun messageHelpView(textHelp: String, view: View) {
         val popupView = layoutInflater.inflate(R.layout.popup_layout_help_request_work, null)
         val popupWindow = PopupWindow(
@@ -213,8 +260,22 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                         val newCalendar = calendar.clone() as Calendar
 
                         when (buttonTime) {
-                            binding.bTimeOpen -> viewModel.dateOpen(newCalendar, DateTimeUI.OPEN_TIME)
-                            binding.bTimeClosed -> viewModel.dateOpen(newCalendar, DateTimeUI.CLOSE_TIME)
+                            binding.bTimeOpen -> viewModel.dateOpen(
+                                newCalendar,
+                                DateTimeUI.OPEN_TIME
+                            )
+                            binding.bTimeClosed -> viewModel.dateOpen(
+                                newCalendar,
+                                DateTimeUI.CLOSE_TIME
+                            )
+                            binding.bTimeOpenExtend -> viewModel.dateOpen(
+                                newCalendar,
+                                DateTimeUI.OPEN_EXTEND_TIME
+                            )
+                            binding.bTimeClosedExtend -> viewModel.dateOpen(
+                                newCalendar,
+                                DateTimeUI.CLOSE_EXTEND_TIME
+                            )
                         }
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
@@ -231,17 +292,26 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
     private fun FragmentShiftScheduleRequestWorkBinding.textToButtonTime(
         noteRequestWorkStateUI: NoteRequestWorkStateUI,
     ) {
-        noteRequestWorkStateUI.textDateOpen?.let {
-            bTimeOpen.text = it
+        noteRequestWorkStateUI.apply {
+            textDateOpen?.let {
+                bTimeOpen.text = it
+            }
+            textDateClose?.let {
+                bTimeClosed.text = it
+            }
+            textDateOpenExtend?.let {
+                bTimeOpenExtend.text = it
+            }
+            textDateCloseExtend?.let {
+                bTimeClosedExtend.text = it
+            }
         }
-        noteRequestWorkStateUI.textDateClose?.let {
-            bTimeClosed.text = it
-        }
+
     }
 
-    private fun showCustomSnackbar(view: View, toastRequestWork: ToastRequestWork) {
+    private fun showCustomSnackbar(view: View, toast: Toast) {
 
-        val snackbar = Snackbar.make(view, toastRequestWork.textToast, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(view, toast.textToast, Snackbar.LENGTH_LONG)
 
         val snackbarView = snackbar.view
         val background: Drawable? = ContextCompat.getDrawable(
@@ -267,6 +337,10 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             textSize = 18f
         }
         snackbar.show()
+    }
+
+    companion object {
+        private const val RESET_EDIT_TEXT = ""
     }
 
 }
