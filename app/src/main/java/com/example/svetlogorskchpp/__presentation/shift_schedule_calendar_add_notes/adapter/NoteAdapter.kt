@@ -114,7 +114,7 @@ class NoteAdapter(
         }
 
         fun calendarToString(calendar: Calendar): String {
-            val sdf = SimpleDateFormat("dd MMMM yyyy HH:mm")
+            val sdf = SimpleDateFormat("dd.MM.yyyy  HH:mm")
             return sdf.format(calendar.time)
         }
 
