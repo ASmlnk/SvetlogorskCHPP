@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.adapter
 
 import android.content.Context
+import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ class StringAutoCompleteAdapter(
     ArrayAdapter<String>(context, 0, suggestions) {
 
     private var filteredSuggestions: MutableList<String> = suggestions.toMutableList()
+
 
     override fun getCount(): Int = filteredSuggestions.size
 

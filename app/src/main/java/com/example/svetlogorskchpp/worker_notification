@@ -121,3 +121,178 @@ val json = gson.toJson(calendarFullDayShiftModelTags)
 
 val calendarFullDayShift =
             Gson().fromJson(calendarFullDayShiftJson, CalendarFullDayShiftModel::class.java)
+
+            class MyAdapter(private val items: List<MyItem>) :
+                RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+                private val expandedPositions = SparseBooleanArray()
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+                    val view = LayoutInflater.from(parent.context)
+                        .inflate(R.layout.item_layout, parent, false)
+                    return MyViewHolder(view)
+                }
+
+                override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+                    val isExpanded = expandedPositions[position, false]
+                    holder.expandablePanel.visibility = if (isExpanded) View.VISIBLE else View.GONE
+
+                    holder.itemView.setOnClickListener {
+                        val shouldExpand = !expandedPositions[position, false]
+                        if (shouldExpand) {
+                            expandedPositions.put(position, true)
+                            holder.expandablePanel.expand()
+                        } else {
+                            expandedPositions.delete(position)
+                            holder.expandablePanel.collapse()
+                        }
+                    }
+                }
+
+                override fun getItemCount() = items.size
+
+                inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+                    val expandablePanel: View = itemView.findViewById(R.id.expandablePanel)
+                }
+            }
+
+            fun View.expand() {
+                measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+                val targetHeight = measuredHeight
+
+                layoutParams.height = 0
+                visibility = View.VISIBLE
+
+                animate().setDuration(300).height(targetHeight).start()
+            }
+
+            fun View.collapse() {
+                val initialHeight = measuredHeight
+
+                animate().setDuration(300).height(0).withEndAction {
+                    visibility = View.GONE
+                }.start()
+            }
+
+            private fun ViewPropertyAnimator.height(toHeight: Int): ViewPropertyAnimator {
+                return this.setUpdateListener { animation ->
+                    layoutParams.height = (animation.animatedValue as Float).toInt()
+                    requestLayout()
+                }
+            }
+
+
+            Конечно, давайте перепишем код, используя SparseBooleanArray, переместим логику в ViewHolder и воспользуемся ViewBinding.
+
+            Пример кода
+            Разметка элемента (item_layout.xml):
+            xml
+
+            Copy
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Title" />
+
+                <LinearLayout
+                    android:id="@+id/expandablePanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <!-- Content of the expandable panel -->
+
+                </LinearLayout>
+            </LinearLayout>
+            Адаптер:
+            kotlin
+
+            Copy
+            class MyAdapter(private val items: List<MyItem>) :
+                RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+                private val expandedPositions = SparseBooleanArray()
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+                    val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    return MyViewHolder(binding)
+                }
+
+                override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+                    holder.bind(items[position], position)
+                }
+
+                override fun getItemCount() = items.size
+
+                inner class MyViewHolder(private val binding: ItemLayoutBinding) :
+                    RecyclerView.ViewHolder(binding.root) {
+
+                    fun bind(item: MyItem, position: Int) {
+                        binding.title.text = item.title
+
+                        val isExpanded = expandedPositions[position, false]
+                        binding.expandablePanel.visibility = if (isExpanded) View.VISIBLE else View.GONE
+
+                        binding.root.setOnClickListener {
+                            val shouldExpand = !expandedPositions[position, false]
+                            if (shouldExpand) {
+                                expandedPositions.put(position, true)
+                                binding.expandablePanel.expand()
+                            } else {
+                                expandedPositions.delete(position)
+                                binding.expandablePanel.collapse()
+                            }
+                            notifyItemChanged(position)
+                        }
+                    }
+                }
+            }
+            Методы для анимации:
+            kotlin
+
+            Copy
+            fun View.expand() {
+                measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+                val targetHeight = measuredHeight
+
+                layoutParams.height = 0
+                visibility = View.VISIBLE
+
+                val animator = ValueAnimator.ofInt(0, targetHeight).apply {
+                    addUpdateListener { valueAnimator ->
+                        layoutParams.height = valueAnimator.animatedValue as Int
+                        requestLayout()
+                    }
+                    duration = 300
+                }
+                animator.start()
+            }
+
+            fun View.collapse() {
+                val initialHeight = measuredHeight
+
+                val animator = ValueAnimator.ofInt(initialHeight, 0).apply {
+                    addUpdateListener { valueAnimator ->
+                        layoutParams.height = valueAnimator.animatedValue as Int
+                        requestLayout()
+                    }
+                    duration = 300
+                    addListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationEnd(animation: Animator) {
+                            visibility = View.GONE
+                        }
+                    })
+                }
+                animator.start()
+            }
+            Пояснение
+            SparseBooleanArray: Используется для отслеживания состояния раскрытия элементов.
+            ViewBinding: Упрощает доступ к видам, избегая findViewById.
+            Логика в ViewHolder: Обработка кликов и анимации теперь внутри ViewHolder.
