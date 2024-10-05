@@ -55,8 +55,8 @@ data class NoteRequestWorkEntity(
 
     private fun toPermissionRequestWork(permission: String): PermissionRequestWork {
         return when (permission) {
-            "диспетчер" -> PermissionRequestWork.DISPATCHER
-            "главный инженер" -> PermissionRequestWork.CHIEF_ENGINEER
+            "Диспетчер" -> PermissionRequestWork.DISPATCHER
+            "Гл. инженер" -> PermissionRequestWork.CHIEF_ENGINEER
             else -> PermissionRequestWork.OTHER
         }
     }

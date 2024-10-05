@@ -151,9 +151,9 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                 viewModel.insertIsTechnical(isChecked)
             }
             recyclerViewNotes.adapter = adapter
-            recyclerViewNotes.addItemDecoration(ItemNoteAdapterDecoration(
+            /*recyclerViewNotes.addItemDecoration(ItemNoteAdapterDecoration(
                 resources.getDimensionPixelOffset(R.dimen.bottom_offset)
-            ))
+            ))*/
         }
         return binding.root
     }

@@ -183,6 +183,9 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             textAdditionally = etAdditionally.text.toString(),
             textNumber = etNumberRequest.text.toString()
         )
+        etReason.clearFocus()
+        etNameAccession.clearFocus()
+
     }
 
     private fun FragmentShiftScheduleRequestWorkBinding.visibleExtend(isVisible: Boolean) {

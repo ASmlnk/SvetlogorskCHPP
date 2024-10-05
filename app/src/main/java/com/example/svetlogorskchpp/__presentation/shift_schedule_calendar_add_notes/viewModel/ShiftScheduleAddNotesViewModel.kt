@@ -124,9 +124,11 @@ class ShiftScheduleAddNotesViewModel @AssistedInject constructor(
     fun deleteNote(noteMy: Note) {
         viewModelScope.launch(Dispatchers.IO) {
             calendarNoteUseCases.deleteNote(noteMy)
-            val myNote = calendarNoteUiState.value.noteMIES.filterIsInstance<Note.NoteMy>()
-            if (myNote.size == 1) {
-                insertIsNotes(false)
+            if (noteMy is Note.NoteMy) {
+                val myNote = calendarNoteUiState.value.noteMIES.filterIsInstance<Note.NoteMy>()
+                if (myNote.size == 1) {
+                    insertIsNotes(false)
+                }
             }
         }
     }

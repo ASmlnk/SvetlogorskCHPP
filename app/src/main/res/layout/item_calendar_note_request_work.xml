@@ -88,8 +88,9 @@
     <LinearLayout
         android:id="@+id/layout_button"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:paddingBottom="16dp"
         android:visibility="gone"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +112,7 @@
             android:layout_weight="1" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_delete"
             style="@style/ButtonStyleRequestWorkSave"
             android:layout_marginEnd="24dp"
             android:text="Удалить"
