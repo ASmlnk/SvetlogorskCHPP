@@ -158,11 +158,13 @@ class NoteAdapter(
         }*/
 
         fun bind(item: Note.NoteRequestWork, onClickDelete: (noteMy: Note) -> Unit,expandedPositions:  SparseBooleanArray, adapter: NoteAdapter) {
-            val isExpanded = expandedPositions[absoluteAdapterPosition]
+            val isExpanded = expandedPositions[absoluteAdapterPosition, false]
 
             binding.apply {
 
-               layoutButton.visibility = if (isExpanded) View.VISIBLE else View.GONE
+             //  layoutButton.visibility = if (isExpanded) View.VISIBLE else View.GONE
+
+
                 /*layoutButton.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
                 val targetHeight = if (isExpanded) layoutButton.measuredHeight else 0
                 layoutButton.layoutParams.height = targetHeight
@@ -179,12 +181,21 @@ class NoteAdapter(
                 tvPermission.text = item.permission.entity
 
                 itemView.setOnClickListener {
+                    val shouldExpand = !expandedPositions[position, false]
+                    if(shouldExpand) {
 
-                    if (isExpanded) {
+                        expandedPositions.put(position, true)
+                        layoutButton.expand()
+                    } else {
+                        expandedPositions.delete(position)
+                        layoutButton.collapse()
+                    }
+
+                    /*if (isExpanded) {
                         expandedPositions.delete(position)
                     } else {
                         expandedPositions.put(position, true)
-                    }
+                    }*/
                     /*if (isExpanded) {
                         toggleHeight(layoutButton,layoutButton.height, 0)
                         layoutButton.visibility = View.GONE
@@ -207,6 +218,7 @@ class NoteAdapter(
 
                 bDelete.setOnClickListener {
                     onClickDelete(item)
+                    expandedPositions.delete(position)
                 }
 
 
@@ -309,6 +321,7 @@ class NoteAdapter(
     }
 }
 
+@SuppressLint("ObjectAnimatorBinding")
 fun View.expand() {
     measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     val targetHeight = measuredHeight
@@ -316,14 +329,23 @@ fun View.expand() {
     layoutParams.height = 0
     visibility = View.VISIBLE
 
-    val animator = ValueAnimator.ofInt(0, targetHeight).apply {
+    val animator = ObjectAnimator.ofInt(this,"heigh", 0, targetHeight)
+    val animatorSet = AnimatorSet()
+    animatorSet.play(animator).apply {
+        animator.duration = 300
+        animator.start()
+    }
+
+
+    /*val animator = ValueAnimator.ofInt(0, targetHeight).apply {
         addUpdateListener { valueAnimator ->
             layoutParams.height = valueAnimator.animatedValue as Int
             requestLayout()
         }
-        duration = 300
+        duration = 1300
     }
     animator.start()
+   visibility = View.VISIBLE*/
 }
 
 fun View.collapse() {
