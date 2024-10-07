@@ -64,6 +64,16 @@ class PreferencesRepositoryImpl @Inject constructor(
         }
     }
 
+    override val selectSortedRequestWork: Flow<String> = dataStore.data.map {
+        it[SORTED_REQUEST_WORK] ?: "dateOpen"
+    }.distinctUntilChanged()
+
+    override suspend fun setSelectSortedRequestWork(sorted: String) {
+        dataStore.edit {
+            it[SORTED_REQUEST_WORK] = sorted
+        }
+    }
+
 
 
     companion object {
@@ -74,5 +84,7 @@ class PreferencesRepositoryImpl @Inject constructor(
         private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_calendar_view_widget")
 
         private val PREF_IS_NOTIFICATION_NOTE = booleanPreferencesKey("isNotification_note")
+
+        private val SORTED_REQUEST_WORK = stringPreferencesKey("sorted_request_work")
     }
 }

@@ -13,8 +13,11 @@ interface PreferencesRepository {
     val selectShiftScheduleWidget: Flow<String>
     suspend fun setSelectShiftScheduleWidget(shift: String)
 
-    suspend fun setSelectCalendarViewShiftScheduleWidget(view: String)
     val selectCalendarViewShiftScheduleWidget: Flow<String>
+    suspend fun setSelectCalendarViewShiftScheduleWidget(view: String)
+
     val isNotificationNoteTechnical: Flow<Boolean>
     suspend fun setNotificationNoteTechnical(isNotification: Boolean)
+
+
 }

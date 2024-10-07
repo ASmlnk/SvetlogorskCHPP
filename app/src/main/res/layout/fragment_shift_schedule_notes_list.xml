@@ -10,13 +10,12 @@
         android:id="@+id/tvDate"
         style="@style/TextViewStyleHeading"
         android:layout_width="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:textStyle="bold"
         android:gravity="top"
-        android:alpha="0.8"
         android:text="21.07.2024"
         android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="24dp" />
@@ -38,18 +37,20 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_sorted"
         android:layout_width="40dp"
-        app:tint="@color/name_devices_appbar"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_sort_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:tint="@color/name_devices_appbar" />
 
     <TextView
         android:id="@+id/tv_sorted"
         style="@style/TextViewStyleContent"
         android:layout_marginStart="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/text_recycle_smile"
         android:text="sorted"
         app:layout_constraintBottom_toBottomOf="@+id/iv_sorted"
@@ -60,19 +61,21 @@
         android:id="@+id/iv_filter"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:tint="@color/name_devices_appbar"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/baseline_filter_list_alt_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        app:tint="@color/name_devices_appbar" />
 
     <TextView
         android:id="@+id/tv_filter"
         style="@style/TextViewStyleContent"
         android:layout_marginStart="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/text_recycle_smile"
-        android:text="filter"
+        android:text="@string/request_work_filter"
         app:layout_constraintBottom_toBottomOf="@+id/iv_filter"
         app:layout_constraintEnd_toStartOf="@+id/iv_filter"
         app:layout_constraintTop_toTopOf="@+id/iv_filter" />
@@ -90,7 +93,7 @@
         android:id="@+id/rv_notes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

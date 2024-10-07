@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="8dp"
+    android:paddingBottom="4dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -33,7 +33,7 @@
     <TextView
         android:id="@+id/tv_date_open_request_work"
         style="@style/TextViewStyleContent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="24 ноября 2024 11:48"
         android:textColor="@color/text_recycle_smile"
@@ -66,7 +66,6 @@
         android:id="@+id/tv_date_close_request_work"
         style="@style/TextViewStyleContent"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
         android:text="24 ноября 2024 11:48"
         android:textColor="@color/text_recycle_smile"
         android:textSize="18sp"

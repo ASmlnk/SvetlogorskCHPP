@@ -246,7 +246,8 @@
     <string name="filter_request_work">Фильтр заявок</string>
     <string name="request_work_filter_all">все заявки</string>
     <string name="requset_work_filter_other">остальные</string>
-    <string name="request_work_filter_chief_engineer">заявки на которые требуется разрешения главного инженера</string>
-    <string name="request_work_filter_dispatcher">заявки на которые требуется разрешения диспетчера</string>
+    <string name="request_work_filter_chief_engineer">заявки, на которые требуется разрешение главного инженера</string>
+    <string name="request_work_filter_dispatcher">заявки, на которые требуется разрешение диспетчера</string>
+    <string name="request_work_filter">Фильтр</string>
 
 </resources>
