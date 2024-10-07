@@ -11,11 +11,14 @@ import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteT
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
+import com.example.svetlogorskchpp.__data.hard.HardDataRepository
+import com.example.svetlogorskchpp.__data.hard.RequestWorkHardDataImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -56,4 +59,25 @@ class LocaleModule {
     fun provideNoteRequestWorkDao (dataBase: AppDataBase): NoteRequestWorkDao {
         return dataBase.requestWorkDao()
     }
+
+    @Provides
+    @RequestWorkReason
+    fun provideRequestWorkReasonHardData (): HardDataRepository<String> {
+        return RequestWorkHardDataImpl.Reason
+    }
+
+    @Provides
+    @RequestWorkAccession
+    fun provideRequestWorkAccessionHardData (): HardDataRepository<String> {
+        return RequestWorkHardDataImpl.Accession
+    }
+
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class RequestWorkReason
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class RequestWorkAccession

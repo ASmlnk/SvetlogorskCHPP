@@ -58,6 +58,8 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
 
             firebase.enableNetwork()
             val noteRequestWorks = noteRequestWorkDao.getAll().toMutableList()
+            val removeEntity = noteRequestWorks.filter { it.id == noteRequestWorkEntity.id}
+            if (removeEntity.isNotEmpty()) noteRequestWorks.removeAll(removeEntity)
             noteRequestWorks.add(noteRequestWorkEntity)
 
             return@withContext insertJsonFirebase(noteRequestWorks, SuccessResult.INSERT_REQUEST_WORK)

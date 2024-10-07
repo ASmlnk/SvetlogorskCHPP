@@ -12,6 +12,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUs
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
+import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
@@ -43,5 +45,8 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideTaskSchedulerNotificationWorker (taskSchedulerNotificationWorkerImpl: TaskSchedulerNotificationWorkerImpl): TaskSchedulerNotificationWorker
+
+    @Binds
+    abstract fun provideHardDataUseCases (requestWorkHardDataUseCasesImpl: RequestWorkHardDataUseCasesImpl): HardDataUseCases<String>
 
 }

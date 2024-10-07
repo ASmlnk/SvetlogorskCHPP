@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleRequestWorkFragment"
             app:destination="@id/shiftScheduleRequestWorkFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleNotesListFragment"
+            app:destination="@id/shiftScheduleNotesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
@@ -54,6 +57,9 @@
             app:destination="@id/shiftScheduleFragment"
             app:popUpTo="@id/shiftScheduleFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleRequestWorkFragment"
+            app:destination="@id/shiftScheduleRequestWorkFragment" />
     </fragment>
     <dialog
         android:id="@+id/dialogCalendarDateFragment"
@@ -91,6 +97,37 @@
             app:destination="@id/shiftScheduleFragment"
             app:popUpTo="@id/shiftScheduleFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_shiftScheduleRequestWorkFragment_to_shiftScheduleNotesListFragment"
+            app:destination="@id/shiftScheduleNotesListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/shiftScheduleNotesListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.fragment.ShiftScheduleNotesListFragment"
+        tools:layout="@layout/fragment_shift_schedule_notes_list"
+        android:label="ShiftScheduleNotesListFragment" >
+        <action
+            android:id="@+id/action_shiftScheduleNotesListFragment_to_shiftScheduleRequestWorkFragment"
+            app:destination="@id/shiftScheduleRequestWorkFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleNotesListFragment_to_shiftScheduleFragment"
+            app:destination="@id/shiftScheduleFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleNotesListFragment_to_requestWorkSortedDialog"
+            app:destination="@id/requestWorkSortedDialog" />
+        <action
+            android:id="@+id/action_shiftScheduleNotesListFragment_to_requestWorkFilterDialog"
+            app:destination="@id/requestWorkFilterDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/requestWorkSortedDialog"
+        tools:layout="@layout/dialog_request_work_sorted"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.RequestWorkSortedDialog"
+        android:label="RequestWorkSortedDialog" />
+    <dialog
+        android:id="@+id/requestWorkFilterDialog"
+        tools:layout="@layout/dialog_request_work_filter"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.RequestWorkFilterDialog"
+        android:label="RequestWorkFilterDialog" />
 
 </navigation>

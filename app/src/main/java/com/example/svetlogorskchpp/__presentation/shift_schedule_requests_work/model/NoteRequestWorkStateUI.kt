@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model
 
+import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import java.util.Calendar
 
 data class NoteRequestWorkStateUI(
@@ -11,6 +12,7 @@ data class NoteRequestWorkStateUI(
     val textDateOpenExtend: String? = null,
     val textDateCloseExtend: String? = null,
     val toastText: Toast? = null,
-    val resetRequestWorkUI: ResetRequestWorkUI? = null
+    val resetRequestWorkUI: ResetRequestWorkUI? = null,
+    val chipInit: PermissionRequestWork? = null
 ) {
 }

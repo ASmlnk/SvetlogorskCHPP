@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__di
 
 import android.content.Context
+import com.example.svetlogorskchpp.__data.hard.HardDataRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
@@ -29,6 +30,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNot
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
+import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -122,6 +125,15 @@ class UseCaseModule {
         context: Context,
     ): TaskSchedulerNotificationWorker {
         return TaskSchedulerNotificationWorkerImpl(context)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideRequestWorkHardData(
+        @RequestWorkReason reasonHardData: HardDataRepository<String>,
+        @RequestWorkAccession accessionHardData: HardDataRepository<String>
+    ): HardDataUseCases<String> {
+        return RequestWorkHardDataUseCasesImpl(reasonHardData, accessionHardData)
     }
 
     // @Provides

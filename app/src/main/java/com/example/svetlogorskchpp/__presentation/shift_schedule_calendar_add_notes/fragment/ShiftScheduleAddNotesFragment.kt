@@ -11,7 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -21,6 +23,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
+import com.daimajia.swipe.SwipeLayout
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.ItemNoteAdapterDecoration
@@ -28,6 +32,7 @@ import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleAddNotesBind
 import com.example.svetlogorskchpp.model.inspectionSchedule.InSc
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.viewModel.ShiftScheduleAddNotesViewModel
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,9 +51,8 @@ class ShiftScheduleAddNotesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ShiftScheduleAddNotesViewModel.ShiftShiftScheduleAddNotesViewModelFactory
-    private val adapter: NoteAdapter = NoteAdapter { note: Note ->
-        viewModel.deleteNote(note)
-    }
+    private lateinit var adapter: NoteAdapter
+
 
     private val viewModel: ShiftScheduleAddNotesViewModel by viewModels {
         ShiftScheduleAddNotesViewModel.providesFactory(
@@ -57,20 +61,26 @@ class ShiftScheduleAddNotesFragment : Fragment() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentShiftScheduleAddNotesBinding.inflate(inflater, container, false)
-        //viewModel.deleteNoteTag()
 
-        val callback = object : OnBackPressedCallback(true ) {
+        adapter = NoteAdapter(
+            args.navigateAddNoteArgs.date,
+            onClickDelete = { note: Note ->
+                viewModel.deleteNote(note)
+            },
+            onClickEdit = { note: Note ->
+                val noteJson = Gson().toJson(note)
+                val action = ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleRequestWorkFragment(noteJson)
+                findNavController().navigate(action)
+            }
+        )
+
+        val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val action =
                     ShiftScheduleAddNotesFragmentDirections.actionShiftScheduleAddNotesFragmentToShiftScheduleFragment3(
@@ -216,7 +226,7 @@ class ShiftScheduleAddNotesFragment : Fragment() {
                                 is Note.NoteMy -> it.dateNotes
                                 is Note.NoteRequestWork -> it.dateOpen
                             }
-                        }.sortedBy { it::class.simpleName}
+                        }.sortedBy { it::class.simpleName }
                             /*when (it) {
                                 is Note.NoteMy -> !it.isTimeNotes
                                 is Note.NoteRequestWork -> false

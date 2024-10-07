@@ -53,6 +53,12 @@ class CalendarNoteUseCasesImpl @Inject constructor(
         }
     }
 
+    override fun getAllNotes(): Flow<List<Note>> {
+       return noteRequestWorkRepository.getAllFlow() .map { requestWork ->
+           requestWork.map { it.toNote() }
+       }
+    }
+
     override suspend fun <T> deleteNote(note: T): OperationResult<SuccessResult> {
        return when(note) {
             is Note.NoteMy -> {

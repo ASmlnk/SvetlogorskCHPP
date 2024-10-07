@@ -28,7 +28,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.__data.HardData
+import com.example.svetlogorskchpp.__domain.en.HardData
 import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.adapter.StringAutoCompleteAdapter
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
@@ -64,7 +64,7 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
 
     private lateinit var adapterAccessions: StringAutoCompleteAdapter
     private lateinit var adapterReason: StringAutoCompleteAdapter
-    private val hardData = HardData()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,8 +72,8 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentShiftScheduleRequestWorkBinding.inflate(inflater, container, false)
-        adapterAccessions = StringAutoCompleteAdapter(requireContext(), hardData.accessions)
-        adapterReason = StringAutoCompleteAdapter(requireContext(), hardData.reasons)
+        adapterAccessions = StringAutoCompleteAdapter(requireContext(), viewModel.getClues(HardData.REQUEST_WORK_ACCESSION))
+        adapterReason = StringAutoCompleteAdapter(requireContext(), viewModel.getClues(HardData.REQUEST_WORK_REASON))
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -96,11 +96,9 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 )
             }
             bTimeOpen.setOnClickListener {
-                saveEditText()
                 dateTimePicker(binding.bTimeOpen)
             }
             bTimeClosed.setOnClickListener {
-                saveEditText()
                 dateTimePicker(binding.bTimeClosed)
             }
             bSave.setOnClickListener {
@@ -108,38 +106,37 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                 viewModel.insertNoteRequestWork()
             }
             bExtend.setOnClickListener {
-                saveEditText()
                 viewModel.isExtendView(true)
             }
 
             bTimeOpenExtend.setOnClickListener {
-                saveEditText()
                 dateTimePicker(binding.bTimeOpenExtend)
             }
 
             bTimeClosedExtend.setOnClickListener {
-                saveEditText()
                 dateTimePicker(binding.bTimeClosedExtend)
             }
 
             bCloseExtend.setOnClickListener {
-                saveEditText()
                 viewModel.isExtendView(false)
             }
 
             bOkExtend.setOnClickListener {
-                saveEditText()
                 viewModel.insertExtendRequestWork(etNumberRequestExtend.text.toString())
             }
 
             chDispatcher.setOnCheckedChangeListener { _, isChecked ->
-                saveEditText()
+                viewModel.chipInitToNull()
                 viewModel.chipPermission(if (isChecked) PermissionRequestWork.DISPATCHER else PermissionRequestWork.OTHER)
             }
 
             chChiefEnginee.setOnCheckedChangeListener { _, isChecked ->
-                saveEditText()
+                viewModel.chipInitToNull()
                 viewModel.chipPermission(if (isChecked) PermissionRequestWork.CHIEF_ENGINEER else PermissionRequestWork.OTHER)
+            }
+
+            ivListNote.setOnClickListener {
+                findNavController().navigate(R.id.action_shiftScheduleRequestWorkFragment_to_shiftScheduleNotesListFragment)
             }
 
             etNameAccession.setAdapter(adapterAccessions)
@@ -151,15 +148,9 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
                         visibleExtend(noteRequestWorkStateUI.isExtend)
                         textToUI(noteRequestWorkStateUI)
                         noteRequestWorkStateUI.apply {
-                            toastText?.let {
-                                showCustomSnackbar(root, it)
-                            }
-
-                            setupChipUI(noteRequestWorkUI.permission ?: PermissionRequestWork.OTHER)
-
-                            resetRequestWorkUI?.let {
-                                resetText()
-                            }
+                            toastText?.let { showCustomSnackbar(root, it) }
+                            chipInit?.let { setupChipUI(it) }
+                            resetRequestWorkUI?.let { resetText() }
                         }
                     }
                 }
@@ -328,10 +319,19 @@ class ShiftScheduleRequestWorkFragment : Fragment() {
             textDateCloseExtend?.let {
                 bTimeClosedExtend.text = it
             }
-            etNumberRequest.setText(noteRequestWorkUI.numberRequestWork)
-            etReason.setText(noteRequestWorkUI.reason)
-            etNameAccession.setText(noteRequestWorkUI.accession)
-            etAdditionally.setText(noteRequestWorkUI.additionally)
+
+            if (noteRequestWorkUI.numberRequestWork.isNotEmpty()) {
+                etNumberRequest.setText(noteRequestWorkUI.numberRequestWork)
+            }
+            if (noteRequestWorkUI.reason.isNotEmpty()) {
+                etReason.setText(noteRequestWorkUI.reason)
+            }
+            if (noteRequestWorkUI.accession.isNotEmpty()) {
+                etNameAccession.setText(noteRequestWorkUI.accession)
+            }
+            if (noteRequestWorkUI.additionally.isNotEmpty()) {
+                etAdditionally.setText(noteRequestWorkUI.additionally)
+            }
         }
     }
 

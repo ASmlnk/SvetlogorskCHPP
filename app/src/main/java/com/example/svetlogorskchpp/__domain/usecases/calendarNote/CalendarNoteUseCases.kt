@@ -9,5 +9,6 @@ import java.util.Calendar
 interface CalendarNoteUseCases {
     suspend fun <T> insertNote(note: T): OperationResult<SuccessResult>
     fun getNotesByTagId(tagDate: Calendar): Flow<List<Note>>
+    fun getAllNotes(): Flow<List<Note>>
     suspend fun <T> deleteNote(note: T): OperationResult<SuccessResult>
 }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shift_schedule_dialog_personal_background"
+    tools:context=".__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="100dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/calendar_fragment_kontur_revers"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView6"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/baseline_filter_list_alt_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text_input_assembly" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_exit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_close_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/text_recycle_smile" />
+
+    <TextView
+        android:id="@+id/tvNameDialog"
+        style="@style/TextViewStyleContent"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="@string/filter_request_work"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/iv_exit"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_select_dispatcher"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_dispatcher"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_dispatcher"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_dispatcher"
+        app:tint="@color/calendar_background" />
+
+    <TextView
+        android:id="@+id/tv_filter_dispatcher"
+        style="@style/TextViewStyleContent"
+        android:layout_width="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/request_work_filter_dispatcher"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameDialog" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_select_chief_engineer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_chief_engineer"
+        app:tint="@color/calendar_background" />
+
+    <TextView
+        android:id="@+id/tv_filter_chief_engineer"
+        style="@style/TextViewStyleContent"
+        android:layout_width="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/request_work_filter_chief_engineer"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_filter_dispatcher"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_dispatcher" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_select_other"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_other"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_other"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_other"
+        app:tint="@color/calendar_background" />
+
+    <TextView
+        android:id="@+id/tv_filter_other"
+        style="@style/TextViewStyleContent"
+        android:layout_width="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/requset_work_filter_other"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_chief_engineer" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/text_recycle_smile"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_other" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_select_all"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_all"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_all"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_all"
+        app:tint="@color/calendar_background" />
+
+    <TextView
+        android:id="@+id/tv_filter_all"
+        style="@style/TextViewStyleContent"
+        android:layout_width="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/request_work_filter_all"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+</androidx.constraintlayout.widget.ConstraintLayout>

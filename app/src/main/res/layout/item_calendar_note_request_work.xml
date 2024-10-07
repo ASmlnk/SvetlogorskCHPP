@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingBottom="8dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -25,22 +26,52 @@
         android:layout_marginStart="8dp"
         android:text="11"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_date_request_work"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_close_request_work"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/tv_date_request_work" />
+        app:layout_constraintTop_toTopOf="@+id/tv_date_open_request_work" />
 
     <TextView
-        android:id="@+id/tv_date_request_work"
+        android:id="@+id/tv_date_open_request_work"
         style="@style/TextViewStyleContent"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="24 ноября 2024 11:48"
         android:textColor="@color/text_recycle_smile"
-        android:layout_marginBottom="4dp"
-        android:text="24 ноября 2024 11:48\n24 ноября 2024 11:48"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/tv_date_close_request_work"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_open_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_check_green"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_open_request_work"
+        app:layout_constraintEnd_toStartOf="@+id/tv_date_open_request_work"
+        app:layout_constraintTop_toTopOf="@+id/tv_date_open_request_work" />
+
+    <ImageView
+        android:id="@+id/iv_close_date"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_close_widget"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_close_request_work"
+        app:layout_constraintEnd_toStartOf="@+id/tv_date_close_request_work"
+        app:layout_constraintTop_toTopOf="@+id/tv_date_close_request_work" />
+
+    <TextView
+        android:id="@+id/tv_date_close_request_work"
+        style="@style/TextViewStyleContent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="24 ноября 2024 11:48"
+        android:textColor="@color/text_recycle_smile"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -98,7 +129,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonStyleRequestWork"
+            android:id="@+id/b_edit"
+            style="@style/ButtonStyleRequestWorkEdit"
             android:layout_width="wrap_content"
             android:layout_marginStart="24dp"
             android:text="Редактировать"

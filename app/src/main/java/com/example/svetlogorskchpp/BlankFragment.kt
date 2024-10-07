@@ -12,11 +12,16 @@ import androidx.navigation.findNavController
 import com.example.svetlogorskchpp.databinding.FragmentBlankBinding
 
 class BlankFragment : BaseFragment<FragmentBlankBinding>() {
-    private val binding get() = _binding!!
+
 
     private val viewModel: BlankFragmentViewModel by viewModels()
 
-    override fun getViewId(): Int  = R.layout.fragment_blank
+    override fun inflateBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+    ): FragmentBlankBinding {
+        return FragmentBlankBinding.inflate(inflater, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

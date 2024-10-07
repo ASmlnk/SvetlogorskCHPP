@@ -82,8 +82,6 @@ class ShiftScheduleFragment : Fragment() {
             }
         }
 
-
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { state ->
@@ -239,6 +237,9 @@ class ShiftScheduleFragment : Fragment() {
                         ""
                     )
                 findNavController().navigate(action)
+            }
+            ivNoteAll.setOnClickListener {
+                findNavController().navigate(R.id.action_shiftScheduleFragment_to_shiftScheduleNotesListFragment)
             }
         }
     }

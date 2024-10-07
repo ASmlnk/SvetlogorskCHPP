@@ -2,8 +2,10 @@ package com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.
 
 import java.util.Calendar
 import java.util.Date
+import java.util.UUID
 
 data class ExtendRequestWorkUI(
+    val id: String = UUID.randomUUID().toString(),
     val tagDateOpen: Date? = null,
     val tagDateClose: Date? = null,
     val tagMonthOpen: Date? = null,

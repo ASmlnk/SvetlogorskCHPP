@@ -239,5 +239,14 @@
         Например: Вывести в ремонт,\nперевести на консервацию,\nограничение нагрузки\nи тд
     </string>
     <string name="extendContent">Продление заявки %s</string>
+    <string name="sorted_request_work">Сортировка заявок</string>
+    <string name="sorted_date_open">по дате открытия</string>
+    <string name="sorted_date_close">по дате закрытия</string>
+    <string name="sorted_number">по номеру</string>
+    <string name="filter_request_work">Фильтр заявок</string>
+    <string name="request_work_filter_all">все заявки</string>
+    <string name="requset_work_filter_other">остальные</string>
+    <string name="request_work_filter_chief_engineer">заявки на которые требуется разрешения главного инженера</string>
+    <string name="request_work_filter_dispatcher">заявки на которые требуется разрешения диспетчера</string>
 
 </resources>

@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult
+import com.example.svetlogorskchpp.__domain.en.HardData
 import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
+import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.factory.ShiftScheduleRequestWorkViewModelFactory
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.mapper.NoteRequestWorkUiToDomainMapper
 import com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.model.DateTimeUI
@@ -33,6 +35,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
     private val noteRequestWorkUiToDomainMapper: NoteRequestWorkUiToDomainMapper,
     private val calendarNoteUseCases: CalendarNoteUseCases,
     private val calendarDateUseCases: CalendarDateUseCases,
+    private val hardData: HardDataUseCases<String>,
     @ApplicationContext private val context: Context,
     @Assisted private val noteRequestWorkJson: String,
 ) : ViewModel() {
@@ -55,11 +58,20 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 },
                 textDateClose = noteRequestWorkUI.dateClose?.let {
                     calendarDateUseCases.calendarToStringFormatDDMMMMYYYYHHmm(it)
-                }
+                },
+                chipInit = noteRequestWorkUI.permission
             )
         )
 
     val noteRequestWorkStateUI: StateFlow<NoteRequestWorkStateUI> = _noteRequestWorkStateUi
+
+    fun getClues(hard: HardData): List<String> {
+       return when(hard) {
+           HardData.REQUEST_WORK_REASON -> hardData.data(HardData.REQUEST_WORK_REASON)
+           HardData.REQUEST_WORK_ACCESSION -> hardData.data(HardData.REQUEST_WORK_ACCESSION)
+           else -> emptyList()
+        }
+    }
 
     fun saveEditTextUI(
         textAccession: String,
@@ -105,6 +117,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 _noteRequestWorkStateUi.value.noteRequestWorkUI.numberRequestWork
             val noteRequestWorkUI = with(extendRequestWorkUI) {
                 _noteRequestWorkStateUi.value.noteRequestWorkUI.copy(
+                    id=id,
                     numberRequestWork = numberRequestWork,
                     dateOpen = dateOpen,
                     dateClose = dateClose,
@@ -143,6 +156,12 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
         }
     }
 
+    fun chipInitToNull() {
+        _noteRequestWorkStateUi.update { oldState ->
+            oldState.copy(chipInit = null)
+        }
+    }
+
     fun chipPermission(permissionRequestWork: PermissionRequestWork) {
         val noteRequestWorkUI = _noteRequestWorkStateUi.value.noteRequestWorkUI.copy(
             permission = permissionRequestWork
@@ -160,7 +179,7 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 noteRequestWorkUI = NoteRequestWorkUI(),
                 textDateOpen = null,
                 textDateClose = null,
-
+                chipInit = PermissionRequestWork.OTHER
                 )
         }
         delay(100)
@@ -300,14 +319,14 @@ class ShiftScheduleRequestWorkViewModel @AssistedInject constructor(
                 when (operationResult.data) {
                     SuccessResult.INSERT_REQUEST_WORK -> {
                         resetUI()
-                        delay(200)
+                        delay(100)
                         updateToast(Toast.INSERT_REQUEST_WORK)
                     }
 
                     SuccessResult.INSERT_NOTE -> updateToast(Toast.INSERT_NOTE)
                     SuccessResult.DELETE_REQUEST_WORK -> {
                         resetUI()
-                        delay(200)
+                        delay(100)
                         updateToast(Toast.DELETE_REQUEST_WORK)
                     }
                 }

@@ -14,9 +14,10 @@
         <TextView
             android:id="@+id/textView14"
             style="@style/TextViewStyleHeading"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/heading_shift_schedule_request_work"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_list_note"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_number_request"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_number_request" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_list_note"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0.9"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView14"
+            app:srcCompat="@drawable/baseline_list_alt_24"
+            app:tint="@color/text_input_assembly" />
 
         <EditText
             android:id="@+id/et_number_request"
@@ -119,6 +134,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
+            android:inputType="textMultiLine|textVisiblePassword"
             android:hint="@string/accession"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,6 +174,7 @@
             android:layout_width="0dp"
             android:layout_marginTop="4dp"
             android:hint="@string/reason_request_work"
+            android:inputType="textMultiLine|textVisiblePassword"
             app:layout_constraintEnd_toEndOf="@+id/et_name_accession"
             app:layout_constraintStart_toStartOf="@+id/et_name_accession"
             app:layout_constraintTop_toBottomOf="@+id/tv_reason" />
@@ -186,7 +203,7 @@
             android:layout_width="0dp"
             android:layout_marginTop="4dp"
             android:hint="@string/additionally"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="@+id/et_reason"
             app:layout_constraintStart_toStartOf="@+id/et_reason"
             app:layout_constraintTop_toBottomOf="@+id/tv_additionally" />
@@ -299,7 +316,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/b_extend"
             style="@style/ButtonStyleRequestWorkSave"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="332dp"
             android:text="@string/extend"
             app:icon="@drawable/baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -311,7 +328,7 @@
             android:id="@+id/b_save"
             style="@style/ButtonStyleRequestWorkSave"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="332dp"
             android:text="@string/save"
             app:icon="@drawable/baseline_save_24"
             app:layout_constraintBottom_toBottomOf="parent"

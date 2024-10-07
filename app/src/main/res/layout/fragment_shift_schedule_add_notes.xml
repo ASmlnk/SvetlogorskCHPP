@@ -5,7 +5,7 @@
     android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shift_schedule_edit_composition_background">
+    android:background="@drawable/shift_schedule_request_work_background">
 
     <TextView
         android:id="@+id/tvDate"
@@ -173,19 +173,22 @@
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/actor"
         android:text="   Техническая учеба"
         android:textColor="@color/name_devices_appbar"
         android:textSize="20sp"
         android:theme="@style/ShiftScheduleTechicalCheckBoxStyle"
+        app:layout_constraintBottom_toTopOf="@+id/constraint_edit_note"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonShift3" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_edit_note"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbTechnical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbTechnical">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etNotesText"
@@ -218,9 +221,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/barkentina"
-            android:visibility="invisible"
             android:textColor="@color/name_devices_appbar"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/etNotesText"
             app:layout_constraintEnd_toEndOf="@+id/ivNotesAddTime"
             app:layout_constraintStart_toStartOf="@+id/ivNotesAddTime" />
@@ -236,7 +239,6 @@
             app:layout_constraintStart_toEndOf="@+id/etNotesText" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -244,7 +246,7 @@
         android:id="@+id/recyclerViewNotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
 
         android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -258,18 +260,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/fab_add_note_background"
         android:clickable="true"
         android:focusable="true"
-        app:fabSize="normal"
         app:borderWidth="4dp"
-        app:maxImageSize="32dp"
         app:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/cbTechnical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cbTechnical"
+        app:layout_constraintVertical_bias="1.0"
+        app:maxImageSize="32dp"
         app:srcCompat="@drawable/shift_schedule_add_notes_2"
-        app:tint="@color/text_input_assembly" />
+        app:tint="#C62828" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingCloseEditNote"
@@ -288,7 +291,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_close_24"
-        app:tint="@color/text_input_assembly" />
+        app:tint="#C62828" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

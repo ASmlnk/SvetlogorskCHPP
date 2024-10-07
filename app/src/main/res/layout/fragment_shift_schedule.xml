@@ -158,7 +158,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/ru_hero"
                         android:hint="26.05.2014"
-                        android:textColor="@color/calendar_background"
+                        android:textColor="@color/text_recycle_smile"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -168,22 +168,33 @@
                         android:id="@+id/iv_add_request_work"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView3"
-                        app:layout_constraintStart_toStartOf="@+id/today_date_textView"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/today_date_textView"
                         app:srcCompat="@drawable/baseline_post_add_24" />
+
+                    <ImageView
+                        android:id="@+id/iv_note_all"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintStart_toEndOf="@+id/iv_add_request_work"
+                        app:layout_constraintTop_toBottomOf="@+id/today_date_textView"
+                        app:srcCompat="@drawable/baseline_list_alt_24" />
 
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="36dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/shift_composition_editor">
+                        app:layout_constraintTop_toBottomOf="@+id/iv_add_request_work">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -436,7 +447,7 @@
                                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="40dp"
                                     android:layout_height="wrap_content"
 
                                     android:layout_marginEnd="16dp"
@@ -458,27 +469,26 @@
 
                     <ImageView
                         android:id="@+id/shift_composition_editor"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="24dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_note_all"
+                        app:layout_constraintStart_toEndOf="@+id/iv_note_all"
                         app:srcCompat="@drawable/image_editor_shift_schedule_click" />
 
                     <ImageView
                         android:id="@+id/iv_notification"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toBottomOf="@+id/shift_composition_editor"
-                        app:layout_constraintEnd_toStartOf="@+id/shift_composition_editor"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_note_all"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/iv_note_all"
+                        app:layout_constraintVertical_bias="1.0"
                         app:srcCompat="@drawable/baseline_notifications_24" />
 
 

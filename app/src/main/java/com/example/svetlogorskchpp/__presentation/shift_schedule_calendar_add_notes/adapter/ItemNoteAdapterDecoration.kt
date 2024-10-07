@@ -14,8 +14,10 @@ class ItemNoteAdapterDecoration(
         state: RecyclerView.State
     ) {
         val position = parent.getChildAdapterPosition(view)
-        if (position == state.itemCount -1) {
+        if (position == parent.adapter?.itemCount?.minus(1)) {
             outRect.bottom = bottomOffset
+        } else {
+            outRect.bottom = 0
         }
     }
 }
