@@ -5,6 +5,7 @@ import java.util.Calendar
 
 data class NotesListStateUI(
     val notes: List<Note> = emptyList(),
-    val todayDate: String
+    val todayDate: String,
+    val sortedName: String = ""
 )
 

@@ -9,11 +9,14 @@ import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.Cale
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
+import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractorImpl
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
+import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractor
+import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractorImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
@@ -21,6 +24,7 @@ import com.example.svetlogorskchpp.__domain.usecases.FilterUseCases
 import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
 import com.example.svetlogorskchpp.__domain.usecases.JobTitleUseCases
 import com.example.svetlogorskchpp.__domain.usecases.NetworkAvailableUseCase
+import com.example.svetlogorskchpp.__domain.usecases.RequestWorkSortedUseCases
 import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
@@ -32,6 +36,7 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.Calenda
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.manager.RequestWorkFilterFactoryUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -86,7 +91,7 @@ class UseCaseModule {
         calendarDateUseCases: CalendarDateUseCases,
         noteRequestWorkDomainToEntityMapper: NoteRequestWorkDomainToEntityMapper,
         noteRequestWorkEntityToDomainMapper: NoteRequestWorkEntityToDomainMapper,
-        noteRequestWorkRepository: NoteRequestWorkRepository
+        noteRequestWorkRepository: NoteRequestWorkRepository,
     ): CalendarNoteUseCases {
         return CalendarNoteUseCasesImpl(
             noteRepository,
@@ -114,9 +119,13 @@ class UseCaseModule {
     fun provideCalendarNoteTagUseCases(
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarDateUseCases: CalendarDateUseCases,
-        calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository
+        calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
     ): CalendarNoteTagUseCases {
-        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarRequestWorkTagRepository, calendarDateUseCases)
+        return CalendarNoteTagUseCasesImpl(
+            calendarNoteTagRepository,
+            calendarRequestWorkTagRepository,
+            calendarDateUseCases
+        )
     }
 
     @Provides
@@ -131,18 +140,21 @@ class UseCaseModule {
     @ViewModelScoped
     fun provideRequestWorkHardData(
         @RequestWorkReason reasonHardData: HardDataRepository<String>,
-        @RequestWorkAccession accessionHardData: HardDataRepository<String>
+        @RequestWorkAccession accessionHardData: HardDataRepository<String>,
     ): HardDataUseCases<String> {
         return RequestWorkHardDataUseCasesImpl(reasonHardData, accessionHardData)
     }
 
-    // @Provides
-    // @ViewModelScoped
-    // fun provideInspectionUseCases(
-    //     inspectionRepository: InspectionRepository
-    // ): InspectionUsesCases {
-    //      return InspectionUsesCasesImpl(inspectionRepository)
-    // }
+    @Provides
+    @ViewModelScoped
+    fun provideShiftScheduleNoteList(
+        preferencesRepository: RequestWorkPreferencesRepository,
+        noteRequestWorkRepository: NoteRequestWorkRepository,
+        sortedUseCases: RequestWorkSortedUseCases,
+        filterUseCases: RequestWorkFilterFactoryUseCases,
+    ) : ShiftScheduleNoteListInteractor {
+        return ShiftScheduleNoteListInteractorImpl(preferencesRepository, noteRequestWorkRepository, sortedUseCases, filterUseCases)
+    }
 
 }
 

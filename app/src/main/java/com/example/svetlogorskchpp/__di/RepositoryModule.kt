@@ -19,6 +19,7 @@ import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequest
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepositoryImpl
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
@@ -45,6 +46,12 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun providePreferencesRepository(dataStore: DataStore<Preferences>): PreferencesRepository {
+        return PreferencesRepositoryImpl(dataStore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRequestWorkPreferencesRepository(dataStore: DataStore<Preferences>): RequestWorkPreferencesRepository {
         return PreferencesRepositoryImpl(dataStore)
     }
 

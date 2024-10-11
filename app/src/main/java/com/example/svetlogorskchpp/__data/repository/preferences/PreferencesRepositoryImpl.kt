@@ -5,14 +5,19 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
+import com.example.svetlogorskchpp.__domain.en.RequestWorkSorted
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class PreferencesRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
-) : PreferencesRepository {
+) : PreferencesRepository, RequestWorkPreferencesRepository {
 
    override val selectShiftSchedule: Flow<String> = dataStore.data.map {
         it[SELECT_SHIFT_SCHEDULE_KEY] ?: ""
@@ -64,16 +69,36 @@ class PreferencesRepositoryImpl @Inject constructor(
         }
     }
 
-    override val selectSortedRequestWork: Flow<String> = dataStore.data.map {
-        it[SORTED_REQUEST_WORK] ?: "dateOpen"
+    override val selectSortedRequestWork: Flow<RequestWorkSorted> = dataStore.data.map {
+        val requestWorkSortedString = it[SORTED_REQUEST_WORK] ?: RequestWorkSorted.DATE_OPEN.name
+        RequestWorkSorted.valueOf(requestWorkSortedString)
     }.distinctUntilChanged()
 
-    override suspend fun setSelectSortedRequestWork(sorted: String) {
+    override suspend fun setSelectSortedRequestWork(sorted: RequestWorkSorted) {
         dataStore.edit {
-            it[SORTED_REQUEST_WORK] = sorted
+            it[SORTED_REQUEST_WORK] = sorted.name
         }
     }
 
+    override val selectFilterRequestWork: Flow<Set<RequestWorkFilter>> = dataStore.data.map {
+        val jsonString = it[FILTER_REQUEST_WORK] ?: Json.encodeToString(setOf(RequestWorkFilter.ALL.name))
+        val jsonStringList = Json.decodeFromString<List<String>>(jsonString).toSet()
+        jsonStringList.mapNotNull { string ->
+            try {
+                RequestWorkFilter.valueOf(string)
+            } catch (e: IllegalArgumentException) {
+                null
+            }
+        }.toSet()
+    }.distinctUntilChanged()
+
+    override suspend fun setSelectFilterRequestWork(filter: Set<RequestWorkFilter>) {
+        val jsonStringSet = filter.map { it.name }
+        val jsonString = Json.encodeToString(jsonStringSet)
+        dataStore.edit {
+            it[FILTER_REQUEST_WORK] = jsonString
+        }
+    }
 
 
     companion object {
@@ -86,5 +111,6 @@ class PreferencesRepositoryImpl @Inject constructor(
         private val PREF_IS_NOTIFICATION_NOTE = booleanPreferencesKey("isNotification_note")
 
         private val SORTED_REQUEST_WORK = stringPreferencesKey("sorted_request_work")
+        private val FILTER_REQUEST_WORK = stringPreferencesKey("filter_request_work")
     }
 }

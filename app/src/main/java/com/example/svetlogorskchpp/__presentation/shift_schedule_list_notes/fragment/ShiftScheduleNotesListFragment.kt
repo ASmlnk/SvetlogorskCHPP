@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
@@ -66,21 +67,27 @@ class ShiftScheduleNotesListFragment: Fragment() {
             ivFilter.setOnClickListener {
                 findNavController().navigate(R.id.action_shiftScheduleNotesListFragment_to_requestWorkFilterDialog)
             }
+            rvNotes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (dy > 0) {
+                        // Прокрутка вниз
+                        ivAddNote.hide()
+                    } else if (dy < 0) {
+                        // Прокрутка вверх
+                        ivAddNote.show()
+                    }
+                }
+            })
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.notesListStateUI.collect { notesListStateUI ->
-                    if (notesListStateUI.notes.isNotEmpty()) adapter.submitList(
-                        notesListStateUI.notes.sortedByDescending {
-                            when (it) {
-                                is Note.NoteMy -> it.dateNotes
-                                is Note.NoteRequestWork -> it.dateOpen
-                            }
-                        }
-                    )
+                    if (notesListStateUI.notes.isNotEmpty()) adapter.submitList(notesListStateUI.notes)
                     binding.apply {
                         tvDate.text = notesListStateUI.todayDate
+                        tvSorted.text = notesListStateUI.sortedName
                     }
                 }
             }

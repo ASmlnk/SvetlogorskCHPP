@@ -10,72 +10,76 @@
         android:id="@+id/tvDate"
         style="@style/TextViewStyleHeading"
         android:layout_width="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="top"
         android:text="21.07.2024"
-        android:textSize="20sp"
+        android:textColor="@color/orange_zero_vision"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="24dp" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/iv_add_note"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:alpha="0.9"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/fab_add_note_background"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+        app:borderWidth="4dp"
+        app:elevation="4dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvDate"
+        app:maxImageSize="32dp"
         app:srcCompat="@drawable/baseline_post_add_24"
-        app:tint="@color/text_input_assembly" />
+        app:tint="@color/name_devices_appbar" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_sorted"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_sort_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
-        app:tint="@color/name_devices_appbar" />
+        app:tint="@color/text_recycle_smile" />
 
     <TextView
         android:id="@+id/tv_sorted"
         style="@style/TextViewStyleContent"
         android:layout_marginStart="4dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_recycle_smile"
         android:text="sorted"
+        android:textColor="@color/text_recycle_smile"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_sorted"
         app:layout_constraintStart_toEndOf="@+id/iv_sorted"
         app:layout_constraintTop_toTopOf="@+id/iv_sorted" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_filter"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/baseline_filter_list_alt_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate"
-        app:tint="@color/name_devices_appbar" />
+        app:layout_constraintTop_toTopOf="@+id/iv_sorted"
+        app:tint="@color/text_recycle_smile" />
 
     <TextView
         android:id="@+id/tv_filter"
         style="@style/TextViewStyleContent"
-        android:layout_marginStart="4dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_recycle_smile"
         android:text="@string/request_work_filter"
+        android:textColor="@color/text_recycle_smile"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_filter"
         app:layout_constraintEnd_toStartOf="@+id/iv_filter"
         app:layout_constraintTop_toTopOf="@+id/iv_filter" />
@@ -97,6 +101,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_sorted" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_sorted"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
