@@ -55,24 +55,16 @@ class ShiftScheduleNoteListInteractorImpl @Inject constructor(
             RequestWorkNotesListUI(requestWork = sortedRequestWork, sortedFlag = sorted)
         }
 
-    override suspend fun <T> deleteNote(note: T): OperationResult<SuccessResult> {
-        return when(note) {
-            is Note.NoteMy -> {
-                noteRepository.deleteNote(note.toNoteEntity())
-                OperationResult.Success(SuccessResult.DELETE_REQUEST_WORK)
-            }
-            is Note.NoteRequestWork -> {
-                noteRequestWorkRepository.deleteRequestWork(note.toNoteRequestWorkEntity())
-            }
-            else -> {
-                OperationResult.Error(ERROR_DELETE)}
-        }
+    override suspend fun deleteNote(note: Note.NoteRequestWork): OperationResult<SuccessResult> {
+
+        return noteRequestWorkRepository.deleteRequestWork(note.toNoteRequestWorkEntity())
     }
 
     setSortedFlag
     setFilterFlag
-    toast {
-        
+    toast
+    {
+
     }
 
     override fun getSortedFlag(): Flow<RequestWorkSorted> =
