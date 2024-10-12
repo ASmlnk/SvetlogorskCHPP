@@ -24,9 +24,9 @@
         android:id="@+id/imageView6"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/baseline_filter_list_alt_24"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/baseline_notifications_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/text_input_assembly" />
@@ -46,84 +46,63 @@
         android:id="@+id/tvNameDialog"
         style="@style/TextViewStyleContent"
         android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:text="@string/filter_request_work"
+        android:text="@string/dialog_name_notes_notification"
         android:textSize="22sp"
+        android:textColor="@color/text_input_assembly"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/iv_exit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_select_dispatcher"
+        android:id="@+id/iv_my_notes_notification"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/baseline_check_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_dispatcher"
-        app:layout_constraintEnd_toStartOf="@+id/tv_filter_dispatcher"
-        app:layout_constraintTop_toTopOf="@+id/tv_filter_dispatcher"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_my_notes_notification"
+        app:layout_constraintEnd_toStartOf="@+id/tv_my_notes_notification"
+        app:layout_constraintTop_toTopOf="@+id/tv_my_notes_notification"
         app:tint="@color/calendar_background" />
 
     <TextView
-        android:id="@+id/tv_filter_dispatcher"
+        android:id="@+id/tv_my_notes_notification"
         style="@style/TextViewStyleContent"
         android:layout_width="0dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/request_work_filter_dispatcher"
+        android:text="@string/my_notes_notification"
         android:textColor="@color/calendar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNameDialog" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_select_chief_engineer"
+        android:id="@+id/iv_request_work_notification"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/baseline_check_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_chief_engineer"
-        app:layout_constraintEnd_toStartOf="@+id/tv_filter_chief_engineer"
-        app:layout_constraintTop_toTopOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_request_work_notification"
+        app:layout_constraintEnd_toStartOf="@+id/tv_request_work_notification"
+        app:layout_constraintTop_toTopOf="@+id/tv_request_work_notification"
         app:tint="@color/calendar_background" />
 
     <TextView
-        android:id="@+id/tv_filter_chief_engineer"
+        android:id="@+id/tv_request_work_notification"
         style="@style/TextViewStyleContent"
         android:layout_width="0dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/request_work_filter_chief_engineer"
+        android:text="@string/request_work_notification"
         android:textColor="@color/calendar_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_filter_dispatcher"
-        app:layout_constraintTop_toBottomOf="@+id/tv_filter_dispatcher" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_select_other"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/baseline_check_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_other"
-        app:layout_constraintEnd_toStartOf="@+id/tv_filter_other"
-        app:layout_constraintTop_toTopOf="@+id/tv_filter_other"
-        app:tint="@color/calendar_background" />
-
-    <TextView
-        android:id="@+id/tv_filter_other"
-        style="@style/TextViewStyleContent"
-        android:layout_width="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/requset_work_filter_other"
-        android:textColor="@color/calendar_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_filter_chief_engineer"
-        app:layout_constraintTop_toBottomOf="@+id/tv_filter_chief_engineer" />
+        app:layout_constraintStart_toStartOf="@+id/tv_my_notes_notification"
+        app:layout_constraintTop_toBottomOf="@+id/tv_my_notes_notification" />
 
     <LinearLayout
         android:id="@+id/linear"
@@ -133,33 +112,32 @@
         android:background="@color/text_recycle_smile"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_filter_other" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_request_work_notification" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_select_all"
+        android:id="@+id/iv_view_request_work"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
-        android:visibility="gone"
         android:src="@drawable/baseline_check_24"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_all"
-        app:layout_constraintEnd_toStartOf="@+id/tv_filter_all"
-        app:layout_constraintTop_toTopOf="@+id/tv_filter_all"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_view_request_work"
+        app:layout_constraintEnd_toStartOf="@+id/tv_view_request_work"
+        app:layout_constraintTop_toTopOf="@+id/tv_view_request_work"
         app:tint="@color/calendar_background" />
 
     <TextView
-        android:id="@+id/tv_filter_all"
+        android:id="@+id/tv_view_request_work"
         style="@style/TextViewStyleContent"
         android:layout_width="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
-        android:text="@string/request_work_filter_all"
+        android:text="@string/request_work_view_calendar"
         android:textColor="@color/calendar_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_filter_chief_engineer"
+        app:layout_constraintStart_toStartOf="@+id/tv_request_work_notification"
         app:layout_constraintTop_toBottomOf="@+id/linear"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

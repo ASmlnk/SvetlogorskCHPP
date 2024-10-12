@@ -1,6 +1,5 @@
 package com.example.svetlogorskchpp.__presentation.dialog.request_work_filter.fragment
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

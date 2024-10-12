@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_shiftScheduleFragment_to_shiftScheduleNotesListFragment"
             app:destination="@id/shiftScheduleNotesListFragment" />
+        <action
+            android:id="@+id/action_shiftScheduleFragment_to_notesNotificationDialog"
+            app:destination="@id/notesNotificationDialog" />
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
@@ -129,5 +132,10 @@
         tools:layout="@layout/dialog_request_work_filter"
         android:name="com.example.svetlogorskchpp.__presentation.dialog.request_work_filter.fragment.RequestWorkFilterDialog"
         android:label="RequestWorkFilterDialog" />
+    <dialog
+        android:id="@+id/notesNotificationDialog"
+        tools:layout="@layout/dialog_notes_notification"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.notes_notification.fragment.NotesNotificationDialog"
+        android:label="NotesNotificationDialog" />
 
 </navigation>

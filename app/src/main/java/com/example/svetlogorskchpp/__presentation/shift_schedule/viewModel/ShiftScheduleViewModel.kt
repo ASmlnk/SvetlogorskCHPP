@@ -110,7 +110,7 @@ class ShiftScheduleViewModel @AssistedInject constructor(
             _calendarAdapterStateFlow.collect {
                 withContext(Dispatchers.IO) {
                     val tagMyNotes = calendarNoteTagUseCases.calendarMyNoteTag(adapterDate())
-                    val tagRequestWork = calendarNoteTagUseCases.calendarRequestWorkTag(adapterDate())
+                flag tag    val tagRequestWork = calendarNoteTagUseCases.calendarRequestWorkTag(adapterDate())
                     _calendarNoteTag.update {
                         NoteTagsUI(myNoteTags = tagMyNotes, requestWorkTags = tagRequestWork)
                     }

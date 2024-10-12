@@ -249,5 +249,9 @@
     <string name="request_work_filter_chief_engineer">заявки, на которые требуется разрешение главного инженера</string>
     <string name="request_work_filter_dispatcher">заявки, на которые требуется разрешение диспетчера</string>
     <string name="request_work_filter">Фильтр</string>
+    <string name="dialog_name_notes_notification">Уведомления календаря</string>
+    <string name="my_notes_notification">Уведомления заметок</string>
+    <string name="request_work_notification">Уведомления заявок</string>
+    <string name="request_work_view_calendar">Отображение заявок в календаре</string>
 
 </resources>

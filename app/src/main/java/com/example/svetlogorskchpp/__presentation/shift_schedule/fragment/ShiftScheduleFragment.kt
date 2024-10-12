@@ -163,7 +163,8 @@ class ShiftScheduleFragment : Fragment() {
 
         binding.apply {
             ivNotification.setOnClickListener {
-                viewModel.selectNotification()
+                findNavController().navigate(R.id.action_shiftScheduleFragment_to_notesNotificationDialog)
+                //viewModel.selectNotification()
             }
 
             ivCalendarNext.setOnClickListener {
