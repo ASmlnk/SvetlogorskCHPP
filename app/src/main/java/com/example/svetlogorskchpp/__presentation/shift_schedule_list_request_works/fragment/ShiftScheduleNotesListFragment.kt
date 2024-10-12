@@ -1,6 +1,5 @@
-package com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.fragment
+package com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.fragment
 
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.adapter.NoteAdapter
-import com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.viewModel.ShiftScheduleNotesListViewModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.viewModel.ShiftScheduleNotesListViewModel
 import com.example.svetlogorskchpp.databinding.FragmentShiftScheduleNotesListBinding
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,6 +60,9 @@ class ShiftScheduleNotesListFragment: Fragment() {
                 val action = ShiftScheduleNotesListFragmentDirections.actionShiftScheduleNotesListFragmentToShiftScheduleRequestWorkFragment("")
                 findNavController().navigate(action)
             }
+            ivUpListRecyclerView.setOnClickListener {
+                rvNotes.scrollToPosition(0)
+            }
             ivSorted.setOnClickListener {
                 findNavController().navigate(R.id.action_shiftScheduleNotesListFragment_to_requestWorkSortedDialog)
             }
@@ -73,9 +75,11 @@ class ShiftScheduleNotesListFragment: Fragment() {
                     if (dy > 0) {
                         // Прокрутка вниз
                         ivAddNote.hide()
+                        ivUpListRecyclerView.hide()
                     } else if (dy < 0) {
                         // Прокрутка вверх
                         ivAddNote.show()
+                        ivUpListRecyclerView.show()
                     }
                 }
             })

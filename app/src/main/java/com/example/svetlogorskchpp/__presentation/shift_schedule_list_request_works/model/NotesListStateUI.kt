@@ -1,7 +1,6 @@
-package com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.model
+package com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.model
 
 import com.example.svetlogorskchpp.__domain.model.Note
-import java.util.Calendar
 
 data class NotesListStateUI(
     val notes: List<Note> = emptyList(),

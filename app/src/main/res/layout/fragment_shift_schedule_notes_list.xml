@@ -21,17 +21,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="24dp" />
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/iv_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="48dp"
-        android:background="@drawable/fab_add_note_background"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@color/text_recycle"
         app:borderWidth="4dp"
         app:elevation="4dp"
         app:fabSize="normal"
@@ -39,6 +37,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="32dp"
         app:srcCompat="@drawable/baseline_post_add_24"
+        app:tint="@color/name_devices_appbar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/iv_up_list_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/fab_add_note_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:borderWidth="4dp"
+        app:elevation="4dp"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/iv_add_note"
+        app:layout_constraintEnd_toEndOf="@+id/iv_add_note"
+        app:layout_constraintStart_toStartOf="@+id/iv_add_note"
+        app:maxImageSize="32dp"
+        app:srcCompat="@drawable/baseline_keyboard_double_arrow_up_24"
         app:tint="@color/name_devices_appbar" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -49,7 +65,7 @@
         android:src="@drawable/baseline_sort_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDate"
-        app:tint="@color/text_recycle_smile" />
+        app:tint="@color/orange_zero_vision" />
 
     <TextView
         android:id="@+id/tv_sorted"
@@ -71,7 +87,7 @@
         android:src="@drawable/baseline_filter_list_alt_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_sorted"
-        app:tint="@color/text_recycle_smile" />
+        app:tint="@color/orange_zero_vision" />
 
     <TextView
         android:id="@+id/tv_filter"

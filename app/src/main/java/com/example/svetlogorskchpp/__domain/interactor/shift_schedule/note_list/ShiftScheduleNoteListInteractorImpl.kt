@@ -8,10 +8,9 @@ import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
 import com.example.svetlogorskchpp.__domain.en.RequestWorkSorted
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.RequestWorkSortedUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl.Companion.ERROR_DELETE
 import com.example.svetlogorskchpp.__domain.usecases.manager.RequestFilter
 import com.example.svetlogorskchpp.__domain.usecases.manager.RequestWorkFilterFactoryUseCases
-import com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.model.RequestWorkNotesListUI
+import com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.model.RequestWorkNotesListUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -56,15 +55,7 @@ class ShiftScheduleNoteListInteractorImpl @Inject constructor(
         }
 
     override suspend fun deleteNote(note: Note.NoteRequestWork): OperationResult<SuccessResult> {
-
         return noteRequestWorkRepository.deleteRequestWork(note.toNoteRequestWorkEntity())
-    }
-
-    setSortedFlag
-    setFilterFlag
-    toast
-    {
-
     }
 
     override fun getSortedFlag(): Flow<RequestWorkSorted> =

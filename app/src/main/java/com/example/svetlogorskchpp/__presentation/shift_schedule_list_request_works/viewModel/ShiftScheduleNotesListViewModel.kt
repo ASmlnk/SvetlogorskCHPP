@@ -1,12 +1,11 @@
-package com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.viewModel
+package com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractor
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
-import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCases
-import com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.model.NotesListStateUI
+import com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.model.NotesListStateUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShiftScheduleNotesListViewModel @Inject constructor(
-    private val calendarNoteUseCases: CalendarNoteUseCases,
     private val calendarDateUseCases: CalendarDateUseCases,
     private val shiftScheduleNoteListInteractor: ShiftScheduleNoteListInteractor,
 ) : ViewModel() {
@@ -49,10 +47,9 @@ class ShiftScheduleNotesListViewModel @Inject constructor(
         }
     }
 
-
-    fun deleteNote(note: Note) {
+    fun deleteNote(requestWork: Note) {
         viewModelScope.launch {
-            calendarNoteUseCases.deleteNote(note)
+            shiftScheduleNoteListInteractor.deleteNote(requestWork as Note.NoteRequestWork)
         }
     }
 

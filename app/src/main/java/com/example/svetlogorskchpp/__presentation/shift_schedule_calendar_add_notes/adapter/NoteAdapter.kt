@@ -143,16 +143,18 @@ class NoteAdapter(
                 tvExtend.text = item.contentExtend
                 tvExtend.isGone = !item.isExtend
                 tvPermission.text = item.permission.entity
-                if (equalityDate(item.dateOpen, date)) {
+                if (equalityDate(item.tagDateOpen, date)) {
                     ivOpenDate.visibility = View.VISIBLE
                     tvDateOpenRequestWork.setTextColor(itemView.resources.getColor(R.color.color_request_work_calendar))
                 } else {
                     ivOpenDate.visibility = View.GONE
                     tvDateOpenRequestWork.setTextColor(itemView.resources.getColor(R.color.text_recycle_smile))
                 }
-                if (equalityDate(item.dateClose, date)) {
+                if (equalityDate(item.tagDateClose, date)) {
                     ivCloseDate.visibility = View.VISIBLE
+                    ivOpenDate.visibility = View.GONE
                     tvDateCloseRequestWork.setTextColor(itemView.resources.getColor(R.color.red_schema))
+                    tvDateOpenRequestWork.setTextColor(itemView.resources.getColor(R.color.text_recycle_smile))
                 } else {
                     ivCloseDate.visibility = View.GONE
                     tvDateCloseRequestWork.setTextColor(itemView.resources.getColor(R.color.text_recycle_smile))
@@ -220,10 +222,10 @@ class NoteAdapter(
             return sdf.format(calendar.time)
         }
 
-        private fun equalityDate(dateTag: Calendar, date: Long): Boolean {
-            val calendarString = SimpleDateFormat("dd.MM.yyyy").format(dateTag.time)
-            val dateString = SimpleDateFormat("dd.MM.yyyy").format(date)
-            return calendarString == dateString
+        private fun equalityDate(dateTag: Date, date: Long): Boolean {
+           // val calendarString = SimpleDateFormat("dd.MM.yyyy").format(dateTag.time)
+           // val dateString = SimpleDateFormat("dd.MM.yyyy").format(date)
+            return dateTag.time <= date
         }
 
         companion object {

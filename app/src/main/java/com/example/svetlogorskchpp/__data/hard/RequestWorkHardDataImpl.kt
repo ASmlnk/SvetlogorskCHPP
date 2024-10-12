@@ -1,8 +1,5 @@
 package com.example.svetlogorskchpp.__data.hard
 
-import javax.inject.Inject
-
-
 sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
 
     data object Accession: RequestWorkHardDataImpl() {
@@ -116,7 +113,10 @@ sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
                 "7 секция РУСН-0,4кВ",
                 "1 секция КРУ-6,3кВ",
                 "2 секция КРУ-6,3кВ",
-                "3 секция КРУ-6,3кВ"
+                "3 секция КРУ-6,3кВ",
+                "Воздухосборник (ресивер) N2 №",
+                "Воздухосборник (ресивер) H2 №",
+                "Воздухосборник (ресивер) компрессорной ОРУ №"
             )
         }
     }
@@ -124,8 +124,12 @@ sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
     data object Reason: RequestWorkHardDataImpl() {
        override fun data(): List<String> {
             return listOf(
-                "Вывести в ремонт ВЛ",
-                "Вывести в ремонт В",
+                "Вывести в ремонт ВЛ-110",
+                "Вывести в ремонт ВЛ-220",
+                "Вывести в ремонт В-110",
+                "Вывести в ремонт В-220",
+                "Вывести в ремонт В-110 с переводом линии на ОВ-110",
+                "Вывести в ремонт В-220 с переводом линии на ОВ-220",
                 "Заменить В на ОВ",
                 "для безопасного проведения работ",
                 "для безопасного проведения работ",

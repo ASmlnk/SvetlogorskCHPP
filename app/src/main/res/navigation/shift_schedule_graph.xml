@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleNotesListFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_list_notes.fragment.ShiftScheduleNotesListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.fragment.ShiftScheduleNotesListFragment"
         tools:layout="@layout/fragment_shift_schedule_notes_list"
         android:label="ShiftScheduleNotesListFragment" >
         <action
@@ -122,12 +122,12 @@
     <dialog
         android:id="@+id/requestWorkSortedDialog"
         tools:layout="@layout/dialog_request_work_sorted"
-        android:name="com.example.svetlogorskchpp.__presentation.dialog.RequestWorkSortedDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.request_work_sorted.fragment.RequestWorkSortedDialog"
         android:label="RequestWorkSortedDialog" />
     <dialog
         android:id="@+id/requestWorkFilterDialog"
         tools:layout="@layout/dialog_request_work_filter"
-        android:name="com.example.svetlogorskchpp.__presentation.dialog.RequestWorkFilterDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.request_work_filter.fragment.RequestWorkFilterDialog"
         android:label="RequestWorkFilterDialog" />
 
 </navigation>

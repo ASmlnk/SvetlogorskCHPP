@@ -1,10 +1,11 @@
-package com.example.svetlogorskchpp.__presentation.dialog
+package com.example.svetlogorskchpp.__presentation.dialog.request_work_filter.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.databinding.DialogRequestWorkFilterBinding
 
 class RequestWorkFilterDialog: BaseBottomSheetDialog<DialogRequestWorkFilterBinding>() {
