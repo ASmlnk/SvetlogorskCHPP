@@ -8,8 +8,8 @@ import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
 import com.example.svetlogorskchpp.__domain.en.RequestWorkSorted
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.RequestWorkSortedUseCases
-import com.example.svetlogorskchpp.__domain.usecases.manager.RequestFilter
-import com.example.svetlogorskchpp.__domain.usecases.manager.RequestWorkFilterFactoryUseCases
+import com.example.svetlogorskchpp.__domain.usecases.RequestFilter
+import com.example.svetlogorskchpp.__domain.usecases.RequestWorkFilterFactoryUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.model.RequestWorkNotesListUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -41,6 +41,8 @@ class ShiftScheduleNoteListInteractorImpl @Inject constructor(
 
             val requestFilter = filterUseCases.getFilters(filter.toList())
             val filterRequestWork = if (requestFilter.isEmpty()) {
+                emptyList()
+            } else if(RequestWorkFilter.ALL in filter) {
                 requestWorks
             } else {
                 applyFilter(requestWorks, requestFilter)

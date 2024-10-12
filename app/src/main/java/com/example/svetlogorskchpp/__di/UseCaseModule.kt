@@ -36,14 +36,12 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.Calenda
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
-import com.example.svetlogorskchpp.__domain.usecases.manager.RequestWorkFilterFactoryUseCases
+import com.example.svetlogorskchpp.__domain.usecases.RequestWorkFilterFactoryUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ViewModelScoped
-import javax.inject.Qualifier
 
 @Module
 @InstallIn(ViewModelComponent::class)

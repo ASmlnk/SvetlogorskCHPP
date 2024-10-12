@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.__domain.usecases.manager
+package com.example.svetlogorskchpp.__domain.usecases
 
 import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
 import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
@@ -12,7 +12,14 @@ class RequestWorkFilterFactoryUseCases @Inject constructor() {
         if (RequestWorkFilter.DISPATCHER in flags) filters.add(RequestFilter.DispatcherFilter)
         if (RequestWorkFilter.CHIEF_ENGINEER in flags) filters.add(RequestFilter.ChiefEngineerFilter)
         if (RequestWorkFilter.OTHER in flags) filters.add(RequestFilter.OtherFilter)
-        if (RequestWorkFilter.ALL in flags) filters.clear()
+        if (RequestWorkFilter.ALL in flags) {
+            filters.clear()
+            filters.apply {
+                add(RequestFilter.OtherFilter)
+                add(RequestFilter.DispatcherFilter)
+                add(RequestFilter.ChiefEngineerFilter)
+            }
+        }
         return filters
     }
 }

@@ -88,7 +88,7 @@ class ShiftScheduleNotesListFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.notesListStateUI.collect { notesListStateUI ->
-                    if (notesListStateUI.notes.isNotEmpty()) adapter.submitList(notesListStateUI.notes)
+                    adapter.submitList(notesListStateUI.notes)
                     binding.apply {
                         tvDate.text = notesListStateUI.todayDate
                         tvSorted.text = notesListStateUI.sortedName
