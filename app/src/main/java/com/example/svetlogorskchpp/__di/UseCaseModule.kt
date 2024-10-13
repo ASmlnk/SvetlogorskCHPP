@@ -8,6 +8,7 @@ import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNot
 import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
@@ -37,6 +38,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.Calenda
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.RequestWorkFilterFactoryUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -132,6 +135,14 @@ class UseCaseModule {
         context: Context,
     ): TaskSchedulerNotificationWorker {
         return TaskSchedulerNotificationWorkerImpl(context)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideCalendarPreferencesNotification(
+        preferencesRepository: NotesNotificationPreferencesRepository
+    ): CalendarPreferencesNotificationUseCases {
+        return CalendarPreferencesNotificationUseCasesImpl(preferencesRepository)
     }
 
     @Provides

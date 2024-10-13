@@ -1,0 +1,4 @@
+package com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases
+
+interface CalendarPreferencesNotificationUseCases {
+}

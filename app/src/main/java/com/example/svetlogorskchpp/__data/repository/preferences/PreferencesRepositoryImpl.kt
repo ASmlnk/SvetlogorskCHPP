@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class PreferencesRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
-) : PreferencesRepository, RequestWorkPreferencesRepository {
+) : PreferencesRepository, RequestWorkPreferencesRepository, NotesNotificationPreferencesRepository  {
 
    override val selectShiftSchedule: Flow<String> = dataStore.data.map {
         it[SELECT_SHIFT_SCHEDULE_KEY] ?: ""
@@ -69,6 +69,26 @@ class PreferencesRepositoryImpl @Inject constructor(
         }
     }
 
+    override val isNotificationRequestWork: Flow<Boolean> = dataStore.data.map {
+        it[PREF_IS_NOTIFICATION_REQUEST_WORK] ?: true
+    }.distinctUntilChanged()
+
+    override suspend fun setNotificationRequestWork(isNotification: Boolean) {
+        dataStore.edit {
+            it[PREF_IS_NOTIFICATION_REQUEST_WORK] = isNotification
+        }
+    }
+
+    override val isRequestWorkViewCalendar: Flow<Boolean> = dataStore.data.map {
+        it[PREF_IS_REQUEST_WORK_VIEW_CALENDAR] ?: true
+    }.distinctUntilChanged()
+
+    override suspend fun setRequestWorkViewCalendar(isViewRequestWork: Boolean) {
+        dataStore.edit {
+            it[PREF_IS_REQUEST_WORK_VIEW_CALENDAR] = isViewRequestWork
+        }
+    }
+
     override val selectSortedRequestWork: Flow<RequestWorkSorted> = dataStore.data.map {
         val requestWorkSortedString = it[SORTED_REQUEST_WORK] ?: RequestWorkSorted.DATE_OPEN.name
         RequestWorkSorted.valueOf(requestWorkSortedString)
@@ -109,6 +129,8 @@ class PreferencesRepositoryImpl @Inject constructor(
         private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_calendar_view_widget")
 
         private val PREF_IS_NOTIFICATION_NOTE = booleanPreferencesKey("isNotification_note")
+        private val PREF_IS_NOTIFICATION_REQUEST_WORK = booleanPreferencesKey("is_notification_request_work")
+        private val PREF_IS_REQUEST_WORK_VIEW_CALENDAR = booleanPreferencesKey("is_request_work_view_calendar")
 
         private val SORTED_REQUEST_WORK = stringPreferencesKey("sorted_request_work")
         private val FILTER_REQUEST_WORK = stringPreferencesKey("filter_request_work")

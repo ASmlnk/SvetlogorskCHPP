@@ -17,6 +17,7 @@ import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
@@ -52,6 +53,12 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRequestWorkPreferencesRepository(dataStore: DataStore<Preferences>): RequestWorkPreferencesRepository {
+        return PreferencesRepositoryImpl(dataStore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNotesNotificationPreferencesRepository(dataStore: DataStore<Preferences>): NotesNotificationPreferencesRepository {
         return PreferencesRepositoryImpl(dataStore)
     }
 
@@ -96,13 +103,5 @@ class RepositoryModule {
     ): CalendarRequestWorkTagRepository {
         return CalendarRequestWorkTagRepositoryImpl(requestWorkTagDao)
     }
-
-
-
-   // @Provides
-  //  @Singleton
-   // fun provideInspectionRepository(remoteDB: FirebaseFirestore): InspectionRepository {
-   //     return FirestoreRepository (remoteDB)
-   // }
 
 }
