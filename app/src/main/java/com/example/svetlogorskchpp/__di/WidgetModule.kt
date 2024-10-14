@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorWidgetImpl
@@ -14,6 +15,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.Calend
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagWidgetUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.manager.SchedulerUpdateWidgetUseCases
@@ -50,9 +53,10 @@ class WidgetModule {
     fun provideCalendarNoteTagUseCasesS(
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
+        @Widget preferencesNotificationUseCases: CalendarPreferencesNotificationUseCases,
         @Widget calendarDateUseCases: CalendarDateUseCases,
     ): CalendarNoteTagWidgetUseCases {
-        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarRequestWorkTagRepository, calendarDateUseCases)
+        return CalendarNoteTagUseCasesImpl(calendarNoteTagRepository, calendarRequestWorkTagRepository, calendarDateUseCases,preferencesNotificationUseCases)
     }
 
     @Provides
@@ -73,6 +77,15 @@ class WidgetModule {
     fun provideUpdateWidgetUseCases(@ApplicationContext applicationContext: Context): SchedulerUpdateWidgetUseCases {
         return SchedulerUpdateWidgetUseCasesImpl(applicationContext)
     }
+
+    @Provides
+    @Widget
+    fun provideCalendarPreferencesNotificationWidget (
+        preferencesRepository: NotesNotificationPreferencesRepository
+    ): CalendarPreferencesNotificationUseCases {
+        return CalendarPreferencesNotificationUseCasesImpl(preferencesRepository)
+    }
+
 }
 
 @Qualifier

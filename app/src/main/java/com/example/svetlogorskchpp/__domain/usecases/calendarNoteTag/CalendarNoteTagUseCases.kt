@@ -11,4 +11,6 @@ interface CalendarNoteTagUseCases {
     fun getTagsByDate(date: Calendar): Flow<CalendarMyNoteTag?>
     suspend fun insertTag(tagCalendarNote: CalendarMyNoteTag)
     suspend fun deleteCalendarTag(calendarMyNoteTagEntity:CalendarMyNoteTag)
+
+    val preferencesRequestWorkViewCalendarFlow: Flow<Boolean>
 }

@@ -30,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -138,9 +139,15 @@ class ShiftScheduleWidget : AppWidgetProvider() {
                 calendarFullDayShift.collect { calendarFullDayShiftModel ->
 
                     if (calendarFullDayShiftModel.calendarFullDayModels.isNotEmpty()) {
+                        val isRequestWorkView = calendarNoteTagWidgetUseCases.getIsRequestWorkViewCalendar().first()
 
                         val tagsMyNote = calendarNoteTagWidgetUseCases.calendarMyNoteTag(calendar)
-                        val tagsRequestWork = calendarNoteTagWidgetUseCases.calendarRequestWorkTag(calendar)
+                        val tagsRequestWork = if(isRequestWorkView) {
+                            calendarNoteTagWidgetUseCases.calendarRequestWorkTag(calendar)
+                        } else {
+                            emptyList()
+                        }
+
                         val calendarFullDayShiftModelTags = calendarFullDayShiftModel.copy(
                             calendarFullDayModels = calendarTagUseCases.addNoteTagToCalendar(
                                 calendarFullDayShiftModel.calendarFullDayModels,

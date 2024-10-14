@@ -7,6 +7,7 @@ import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequest
 import com.example.svetlogorskchpp.__domain.model.CalendarMyNoteTag
 import com.example.svetlogorskchpp.__domain.model.CalendarRequestWorkTag
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.Calendar
@@ -16,6 +17,7 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
     private val calendarNoteTagRepository: CalendarNoteTagRepository,
     private val calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
     private val calendarDateUseCases: CalendarDateUseCases,
+    private val preferencesNotificationUseCases: CalendarPreferencesNotificationUseCases
 ) : CalendarNoteTagUseCases, CalendarNoteTagWidgetUseCases {
 
     override suspend fun calendarMyNoteTag(month: Calendar) =
@@ -48,4 +50,7 @@ class CalendarNoteTagUseCasesImpl @Inject constructor(
 
     override suspend fun deleteCalendarTag(calendarMyNoteTagEntity: CalendarMyNoteTag) =
         calendarNoteTagRepository.deleteCalendarTag(calendarMyNoteTagEntity.toCalendarNoteTagEntity())
+
+    override val preferencesRequestWorkViewCalendarFlow = preferencesNotificationUseCases.getPreferencesRequestWorkViewCalendar()
+    override fun getIsRequestWorkViewCalendar() = preferencesNotificationUseCases.getPreferencesRequestWorkViewCalendar()
 }

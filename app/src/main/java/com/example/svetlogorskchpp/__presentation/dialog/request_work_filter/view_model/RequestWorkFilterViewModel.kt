@@ -70,10 +70,9 @@ class RequestWorkFilterViewModel @Inject constructor(
                         isDispatcher = true,
                         isOther = true
                     )
-                }
             }
+        }
     }
-
 
     suspend fun saveFilterFlag() {
         val requestWorkFilterStateUI = requestWorkFilterStateUI.value
@@ -82,14 +81,11 @@ class RequestWorkFilterViewModel @Inject constructor(
                 RequestWorkFilter.ALL
             )
             else {
-                if (requestWorkFilterStateUI.isOther)  add(RequestWorkFilter.OTHER)
+                if (requestWorkFilterStateUI.isOther) add(RequestWorkFilter.OTHER)
                 if (requestWorkFilterStateUI.isDispatcher) add(RequestWorkFilter.DISPATCHER)
                 if (requestWorkFilterStateUI.isChiefEngineer) add(RequestWorkFilter.CHIEF_ENGINEER)
             }
         }
-
-
-            shiftScheduleNoteListInteractor.setFilterFlag(flagsFilter)
-
+        shiftScheduleNoteListInteractor.setFilterFlag(flagsFilter)
     }
 }

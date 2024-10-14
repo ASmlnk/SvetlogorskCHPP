@@ -4,13 +4,22 @@ import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMa
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -19,10 +28,12 @@ class CalendarNoteUseCasesImpl @Inject constructor(
     private val calendarDateUseCases: CalendarDateUseCases,
     private val noteRequestWorkRepository: NoteRequestWorkRepository,
     private val noteRequestWorkDomainToEntityMapper: NoteRequestWorkDomainToEntityMapper,
+    private val notesNotificationPreferencesRepository: NotesNotificationPreferencesRepository,
     private val noteRequestWorkEntityToDomainMapper: NoteRequestWorkEntityToDomainMapper
 ) : CalendarNoteUseCases {
 
     override suspend fun <T> insertNote(note: T): OperationResult<SuccessResult> {
+
         return when(note) {
             is Note.NoteMy -> {
                 noteRepository.insertNote((note).toNoteEntity())
@@ -36,14 +47,24 @@ class CalendarNoteUseCasesImpl @Inject constructor(
     }
 
     override fun getNotesByTagId(tagDate: Calendar): Flow<List<Note>> {
-        val myNoteFlow = noteRepository.getNotesByTagIdStream(calendarDateUseCases.calendarToDateYMD(tagDate))
+        val dateYMD = calendarDateUseCases.calendarToDateYMD(tagDate)
+        val isRequestWorkView = notesNotificationPreferencesRepository.isRequestWorkViewCalendar
+
+        val myNoteFlow = noteRepository.getNotesByTagIdStream(dateYMD)
             .map { notes ->
                 notes.map { it.toNote() }
             }
-        val requestWorkFlow = noteRequestWorkRepository.getByTagDates(calendarDateUseCases.calendarToDateYMD(tagDate))
-            .map { requestWork ->
-                requestWork.map { it.toNote() }
+        val requestWorkFlow = isRequestWorkView.flatMapLatest { flag ->
+            if (flag) {
+                noteRequestWorkRepository.getByTagDates(dateYMD)
+                    .map { requestWork ->
+                        requestWork.map { it.toNote() }
+                    }
+            } else {
+                flowOf(emptyList())
             }
+        }
+
 
         return combine (
             myNoteFlow,

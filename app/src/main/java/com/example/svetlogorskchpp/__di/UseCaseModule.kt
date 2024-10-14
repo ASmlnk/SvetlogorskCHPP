@@ -93,12 +93,14 @@ class UseCaseModule {
         noteRequestWorkDomainToEntityMapper: NoteRequestWorkDomainToEntityMapper,
         noteRequestWorkEntityToDomainMapper: NoteRequestWorkEntityToDomainMapper,
         noteRequestWorkRepository: NoteRequestWorkRepository,
+        notesNotificationPreferencesRepository: NotesNotificationPreferencesRepository,
     ): CalendarNoteUseCases {
         return CalendarNoteUseCasesImpl(
             noteRepository,
             calendarDateUseCases,
             noteRequestWorkRepository,
             noteRequestWorkDomainToEntityMapper,
+            notesNotificationPreferencesRepository,
             noteRequestWorkEntityToDomainMapper
         )
     }
@@ -121,11 +123,13 @@ class UseCaseModule {
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarDateUseCases: CalendarDateUseCases,
         calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
+        preferencesNotificationUseCases: CalendarPreferencesNotificationUseCases
     ): CalendarNoteTagUseCases {
         return CalendarNoteTagUseCasesImpl(
             calendarNoteTagRepository,
             calendarRequestWorkTagRepository,
-            calendarDateUseCases
+            calendarDateUseCases,
+            preferencesNotificationUseCases
         )
     }
 

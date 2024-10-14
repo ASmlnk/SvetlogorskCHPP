@@ -11,6 +11,8 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUs
 import com.example.svetlogorskchpp.__domain.usecases.calendarNote.CalendarNoteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
@@ -49,4 +51,6 @@ abstract class ViewModelModule {
     @Binds
     abstract fun provideHardDataUseCases (requestWorkHardDataUseCasesImpl: RequestWorkHardDataUseCasesImpl): HardDataUseCases<String>
 
+    @Binds
+    abstract fun provideCalendarPreferencesNotificationUseCases (calendarPreferencesNotificationUseCases: CalendarPreferencesNotificationUseCasesImpl): CalendarPreferencesNotificationUseCases
 }
