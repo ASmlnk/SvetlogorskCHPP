@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
-import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteTag.CalendarNoteTagUseCases
 import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
@@ -36,7 +35,7 @@ class ShiftScheduleViewModel @AssistedInject constructor(
     private val shiftScheduleCalendarInteractor: ShiftScheduleCalendarInteractor,
     private val calendarNoteTagUseCases: CalendarNoteTagUseCases,
     private val calendarTagUseCases: CalendarTagUseCases,
-    private val taskSchedulerNotificationWorker: TaskSchedulerNotificationWorker,
+
     @Assisted private val date: Long,
 ) : ViewModel() {
 
@@ -92,7 +91,6 @@ class ShiftScheduleViewModel @AssistedInject constructor(
             ),
             shiftSelect = calendarFullDayShift.shiftSelect,
             calendarView = calendarFullDayShift.calendarView,
-            isNotificationNoteTechnical = calendarFullDayShift.isNotificationNoteTechnical
         )
     }.stateIn(
         scope = CoroutineScope(Dispatchers.Default),
@@ -142,13 +140,7 @@ class ShiftScheduleViewModel @AssistedInject constructor(
                             calendarList = calendarFullDayShiftModel.calendarFullDayModels,
                             selectShift = calendarFullDayShiftModel.shiftSelect,
                             calendarView = calendarFullDayShiftModel.calendarView,
-                            isNotificationNoteTechnical = calendarFullDayShiftModel.isNotificationNoteTechnical
                         )
-                    }
-                    if (calendarFullDayShiftModel.isNotificationNoteTechnical) {
-                        taskSchedulerNotificationWorker.scheduleDailyTaskAtSixAM()
-                    } else {
-                        taskSchedulerNotificationWorker.cancelScheduleTask()
                     }
                 }
         }
@@ -202,22 +194,6 @@ class ShiftScheduleViewModel @AssistedInject constructor(
     fun isSnackbarShowOff() {
         _uiState.update {
             it.copy(isSnackbarShow = false)
-        }
-    }
-
-    fun selectNotification() {
-        viewModelScope.launch {
-
-            if (uiState.value.isNotificationNoteTechnical) {
-                shiftScheduleCalendarInteractor.setNotificationNoteTechnical(false)
-            } else {
-                shiftScheduleCalendarInteractor.setNotificationNoteTechnical(true)
-            }
-            if (!uiState.value.isNotificationNoteTechnical) {
-                _uiState.update {
-                    it.copy(isSnackbarShow = true)
-                }
-            }
         }
     }
 

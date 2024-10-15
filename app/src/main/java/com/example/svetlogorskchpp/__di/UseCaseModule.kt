@@ -18,8 +18,10 @@ import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.S
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractorImpl
-import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
-import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorkerImpl
+import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
+import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
+import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
+import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorkerImpl
 import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
 import com.example.svetlogorskchpp.__domain.usecases.FilterUseCases
 import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
@@ -139,6 +141,14 @@ class UseCaseModule {
         context: Context,
     ): TaskSchedulerNotificationWorker {
         return TaskSchedulerNotificationWorkerImpl(context)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideTaskSchedulerRequestWorkUpdateWorker(
+        context: Context,
+    ): TaskSchedulerUpdateRequestWorkBaseWorker {
+        return TaskSchedulerUpdateRequestWorkBaseWorkerImpl(context)
     }
 
     @Provides

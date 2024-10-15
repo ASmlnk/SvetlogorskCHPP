@@ -219,6 +219,9 @@
     <string name="notification_title_notes">События календаря</string>
     <string name="notification_note_today">Сегодня %1$s запланировано:\n%2$s</string>
     <string name="notification_note_tomorrow">Завтра %1$s запланировано:\n%2$s</string>
+    <string name="notification_request_work_open">%1$s открываются заявки:\n%2$s</string>
+    <string name="notification_request_work_close">%1$s закрываются заявки:\n%2$s</string>
+
     <string name="notification_on">Уведомления включены!</string>
     <string name="notification_off">Уведомления отключены!</string>
     <string name="heading_shift_schedule_request_work">Добавление заявки</string>
@@ -253,5 +256,6 @@
     <string name="my_notes_notification">Уведомления заметок</string>
     <string name="request_work_notification">Уведомления заявок</string>
     <string name="request_work_view_calendar">Отображение заявок в календаре</string>
+    <string name="notification_title_request_work">Заявки на оборудование</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__presentation.dialog.notes_notification.vie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.notes_notification.model.CalendarNotificationUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NotesNotificationViewModel @Inject constructor(
     private val preferencesNotification: CalendarPreferencesNotificationUseCases,
+    private val taskSchedulerNotificationWorker: TaskSchedulerNotificationWorker,
 ) : ViewModel() {
 
     val calendarNotesNotificationUIState = preferencesNotification.calendarNotificationUIFlow
@@ -22,6 +24,23 @@ class NotesNotificationViewModel @Inject constructor(
             started = SharingStarted.Lazily,
             initialValue = CalendarNotificationUI()
         )
+
+    init {
+        viewModelScope.launch {
+            calendarNotesNotificationUIState.collect {
+                if (it.isNotesNotification) {
+                    taskSchedulerNotificationWorker.scheduleDailyTaskMyNotesAtSixAM()
+                } else {
+                    taskSchedulerNotificationWorker.cancelScheduleTaskMyNotes()
+                }
+                if (it.isRequestWorkNotification) {
+                    taskSchedulerNotificationWorker.scheduleDailyTaskRequestWorkAtSixAM()
+                } else {
+                    taskSchedulerNotificationWorker.cancelScheduleTaskRequestWork()
+                }
+            }
+        }
+    }
 
     fun clickNotesNotification() {
         val isNotesNotification = calendarNotesNotificationUIState.value.isNotesNotification

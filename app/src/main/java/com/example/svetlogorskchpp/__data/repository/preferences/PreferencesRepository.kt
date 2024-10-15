@@ -19,5 +19,6 @@ interface PreferencesRepository {
     val isNotificationNoteTechnical: Flow<Boolean>
     suspend fun setNotificationNoteTechnical(isNotification: Boolean)
 
+    val isNotificationRequestWork: Flow<Boolean>
 
 }

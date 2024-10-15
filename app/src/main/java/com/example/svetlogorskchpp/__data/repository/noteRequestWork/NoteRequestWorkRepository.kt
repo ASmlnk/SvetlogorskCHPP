@@ -8,7 +8,8 @@ import java.util.Date
 
 interface NoteRequestWorkRepository {
    suspend fun insertRequestWork(noteRequestWorkEntity: NoteRequestWorkEntity): OperationResult<SuccessResult>
-   fun getByTagDates(tagDate: Date): Flow<List<NoteRequestWorkEntity>>
+   fun getByTagDatesFlow(tagDate: Date): Flow<List<NoteRequestWorkEntity>>
+   suspend fun getByTagDates(tagDate: Date): List<NoteRequestWorkEntity>
    suspend fun getRequestWorkFirebase()
    fun getAllFlow(): Flow<List<NoteRequestWorkEntity>>
    suspend fun deleteRequestWork(noteRequestWorkEntity: NoteRequestWorkEntity): OperationResult<SuccessResult>

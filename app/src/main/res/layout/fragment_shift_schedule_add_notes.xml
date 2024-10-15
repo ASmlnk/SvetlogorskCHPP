@@ -272,7 +272,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:maxImageSize="32dp"
         app:srcCompat="@drawable/shift_schedule_add_notes_2"
-        app:tint="#C62828" />
+        app:tint="@color/orange_zero_vision" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingCloseEditNote"
@@ -291,7 +291,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_close_24"
-        app:tint="#C62828" />
+        app:tint="@color/orange_zero_vision" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.svetlogorskchpp.__data.database.note.NoteEntity
 import kotlinx.coroutines.flow.Flow
-import java.util.Date
 
 @Dao
 interface NoteRequestWorkDao {
@@ -19,7 +17,10 @@ interface NoteRequestWorkDao {
     suspend fun clearTable()
 
     @Query("SELECT * FROM request_work WHERE tagDateOpen = :tagDate OR tagDateClose = :tagDate")
-    fun getByTagDates(tagDate: Long): Flow<List<NoteRequestWorkEntity>>
+    fun getByTagDatesFlow(tagDate: Long): Flow<List<NoteRequestWorkEntity>>
+
+    @Query("SELECT * FROM request_work WHERE tagDateOpen = :tagDate OR tagDateClose = :tagDate")
+    fun getByTagDates(tagDate: Long): List<NoteRequestWorkEntity>
 
     @Query("SELECT * FROM request_work")
     suspend fun getAll(): List<NoteRequestWorkEntity>

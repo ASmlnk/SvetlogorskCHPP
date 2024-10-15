@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.content.Context
 import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
+import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
@@ -31,11 +32,13 @@ object NotificationModule {
     fun provideCalendarNoteNotificationUseCases(
         calendarNoteTagRepository: CalendarNoteTagRepository,
         noteRepository: NoteRepository,
+        requestWorkRepository: NoteRequestWorkRepository,
         @App calendarDateUseCases: CalendarDateUseCases,
     ): CalendarNoteNotificationUseCases {
         return CalendarNoteNotificationUseCasesImpl(
             calendarNoteTagRepository,
             noteRepository,
+            requestWorkRepository,
             calendarDateUseCases
         )
     }

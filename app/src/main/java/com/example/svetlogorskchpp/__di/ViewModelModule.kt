@@ -2,8 +2,10 @@ package com.example.svetlogorskchpp.__di
 
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
-import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorker
-import com.example.svetlogorskchpp.__domain.task_schedule.TaskSchedulerNotificationWorkerImpl
+import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
+import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
+import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
+import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorkerImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCasesImpl
@@ -53,4 +55,10 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideCalendarPreferencesNotificationUseCases (calendarPreferencesNotificationUseCases: CalendarPreferencesNotificationUseCasesImpl): CalendarPreferencesNotificationUseCases
+
+    @Binds
+    abstract fun provideTaskSchedulerRequestWorkUpdateWorker (TaskSchedulerUpdateRequestWorkBaseWorkerImpl: TaskSchedulerUpdateRequestWorkBaseWorkerImpl): TaskSchedulerUpdateRequestWorkBaseWorker
+
+
+
 }

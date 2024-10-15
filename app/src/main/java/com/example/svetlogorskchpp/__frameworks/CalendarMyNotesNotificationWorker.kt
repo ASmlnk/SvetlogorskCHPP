@@ -21,11 +21,10 @@ import dagger.assisted.AssistedInject
 import java.util.Calendar
 
 @HiltWorker
-class CalendarNotesWorker @AssistedInject constructor(
+class CalendarMyNotesNotificationWorker @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted workerParameters: WorkerParameters,
     private val calendarNoteNotificationUseCases: CalendarNoteNotificationUseCases,
-
     ) : CoroutineWorker(context, workerParameters) {
     override suspend fun doWork(): Result {
         val calendarNoteTechnicalNotification =

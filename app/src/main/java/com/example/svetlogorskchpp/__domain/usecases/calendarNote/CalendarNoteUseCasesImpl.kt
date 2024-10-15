@@ -9,17 +9,11 @@ import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult
 import com.example.svetlogorskchpp.__domain.model.Note
 import com.example.svetlogorskchpp.__domain.usecases.calendarDateUseCases.CalendarDateUseCases
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.withContext
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -56,7 +50,7 @@ class CalendarNoteUseCasesImpl @Inject constructor(
             }
         val requestWorkFlow = isRequestWorkView.flatMapLatest { flag ->
             if (flag) {
-                noteRequestWorkRepository.getByTagDates(dateYMD)
+                noteRequestWorkRepository.getByTagDatesFlow(dateYMD)
                     .map { requestWork ->
                         requestWork.map { it.toNote() }
                     }

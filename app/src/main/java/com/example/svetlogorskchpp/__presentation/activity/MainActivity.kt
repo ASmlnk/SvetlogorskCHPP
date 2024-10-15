@@ -48,11 +48,11 @@ private val viewModel:MainActivityViewModel by viewModels()
 
         val bottomNavView=findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavView.setupWithNavController(navController)
-
         lifecycleScope.launch {
-            viewModel.getRequestWorkFirebase()
-        }
+            viewModel.stateFlow.collect{
 
+            }
+        }
 
          /*appBarConfiguration = AppBarConfiguration(
             setOf(R.id.openSwitchgear)

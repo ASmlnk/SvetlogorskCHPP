@@ -5,7 +5,6 @@ import com.example.svetlogorskchpp.__domain.en.Shift
 data class CalendarFullDayShiftModel(
     val calendarFullDayModels: List<CalendarFullDayModel> = emptyList(),
     val shiftSelect: Shift = Shift.NO_SHIFT,
-    val calendarView: String = "1",
-    val isNotificationNoteTechnical: Boolean = true
+    val calendarView: String = "1"
 ) {
 }

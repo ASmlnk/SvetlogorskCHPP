@@ -92,7 +92,11 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getByTagDates(tagDate: Date): Flow<List<NoteRequestWorkEntity>> {
+    override fun getByTagDatesFlow(tagDate: Date): Flow<List<NoteRequestWorkEntity>> {
+        return noteRequestWorkDao.getByTagDatesFlow(tagDate.time)
+    }
+
+    override suspend fun getByTagDates(tagDate: Date): List<NoteRequestWorkEntity> {
         return noteRequestWorkDao.getByTagDates(tagDate.time)
     }
 

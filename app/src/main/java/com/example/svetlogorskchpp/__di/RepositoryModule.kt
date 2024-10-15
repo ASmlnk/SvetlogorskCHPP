@@ -104,4 +104,9 @@ class RepositoryModule {
         return CalendarRequestWorkTagRepositoryImpl(requestWorkTagDao)
     }
 
+    @Provides
+    fun provideContext(@ApplicationContext context: Context): Context {
+        return context
+    }
+
 }
