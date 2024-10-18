@@ -4,5 +4,6 @@ enum class RequestWorkFilter {
     DISPATCHER,
     CHIEF_ENGINEER,
     OTHER,
+    CLOSED,
     ALL
 }

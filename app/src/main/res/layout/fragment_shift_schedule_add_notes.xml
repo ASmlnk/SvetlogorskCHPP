@@ -288,8 +288,9 @@
         app:maxImageSize="32dp"
         android:visibility="invisible"
         app:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/cbTechnical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cbTechnical"
         app:srcCompat="@drawable/baseline_close_24"
         app:tint="@color/orange_zero_vision" />
 

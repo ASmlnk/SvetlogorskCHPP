@@ -32,7 +32,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
             val noteRequestWorkJSON =
                 data.await().toObject<NoteRequestWorkJSON>() ?: NoteRequestWorkJSON(json = "")
 
-            val noteRequestWorkEntity: List<NoteRequestWorkEntity> =
+            val noteRequestWorkEntityFirestore: List<NoteRequestWorkEntity> =
                 if (noteRequestWorkJSON.json.isEmpty()) {
                     emptyList()
                 } else {
@@ -42,13 +42,16 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
                     ).listRequestWork
                 }
 
-            val tags = tagsRequestWork(noteRequestWorkEntity)
+             val noteRequestWorkEntity = noteRequestWorkDao.getAll()
+            if (noteRequestWorkEntityFirestore == noteRequestWorkEntity) return@withContext
+
+            val tags = tagsRequestWork(noteRequestWorkEntityFirestore)
             calendarRequestWorkTagRepository.clearTable()
             if (tags.isNotEmpty()) calendarRequestWorkTagRepository.insertAll(tags)
 
             noteRequestWorkDao.clearTable()
-            if (noteRequestWorkEntity.isNotEmpty()) noteRequestWorkDao.insertAll(
-                noteRequestWorkEntity
+            if (noteRequestWorkEntityFirestore.isNotEmpty()) noteRequestWorkDao.insertAll(
+                noteRequestWorkEntityFirestore
             )
         }
     }

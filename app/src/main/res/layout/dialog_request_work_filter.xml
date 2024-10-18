@@ -118,7 +118,7 @@
         style="@style/TextViewStyleContent"
         android:layout_width="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:paddingVertical="8dp"
         android:text="@string/requset_work_filter_other"
         android:textColor="@color/calendar_background"
@@ -126,6 +126,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_filter_chief_engineer"
         app:layout_constraintTop_toBottomOf="@+id/tv_filter_chief_engineer" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_select_closed"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_closed"
+        app:layout_constraintEnd_toStartOf="@+id/tv_filter_closed"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_closed"
+        app:tint="@color/calendar_background" />
+
+    <TextView
+        android:id="@+id/tv_filter_closed"
+        style="@style/TextViewStyleContent"
+        android:layout_width="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingVertical="8dp"
+        android:text="@string/requset_work_filter_closed"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_filter_other"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_other" />
 
     <LinearLayout
         android:id="@+id/linear"
@@ -135,7 +160,7 @@
         android:background="@color/text_recycle_smile"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_filter_other" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_closed" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_select_all"

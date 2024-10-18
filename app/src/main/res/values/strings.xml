@@ -248,7 +248,7 @@
     <string name="sorted_number">по номеру</string>
     <string name="filter_request_work">Фильтр заявок</string>
     <string name="request_work_filter_all">все заявки</string>
-    <string name="requset_work_filter_other">остальные</string>
+    <string name="requset_work_filter_other">остальные (ДС ПЭС)</string>
     <string name="request_work_filter_chief_engineer">заявки, на которые требуется разрешение главного инженера</string>
     <string name="request_work_filter_dispatcher">заявки, на которые требуется разрешение диспетчера</string>
     <string name="request_work_filter">Фильтр</string>
@@ -257,5 +257,6 @@
     <string name="request_work_notification">Уведомления заявок</string>
     <string name="request_work_view_calendar">Отображение заявок в календаре</string>
     <string name="notification_title_request_work">Заявки на оборудование</string>
+    <string name="requset_work_filter_closed">закрытые заявки</string>
 
 </resources>

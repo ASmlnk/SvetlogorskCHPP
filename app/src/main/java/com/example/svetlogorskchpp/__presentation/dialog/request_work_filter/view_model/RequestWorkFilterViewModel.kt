@@ -43,6 +43,7 @@ class RequestWorkFilterViewModel @Inject constructor(
                             isDispatcher = RequestWorkFilter.DISPATCHER in flagsFilter,
                             isChiefEngineer = RequestWorkFilter.CHIEF_ENGINEER in flagsFilter,
                             isOther = RequestWorkFilter.OTHER in flagsFilter,
+                            isClosed = RequestWorkFilter.CLOSED in flagsFilter
                         )
                     }
                 } else if (RequestWorkFilter.ALL in flagsFilter) {
@@ -50,7 +51,8 @@ class RequestWorkFilterViewModel @Inject constructor(
                         RequestWorkFilterUI(
                             isDispatcher = true,
                             isChiefEngineer = true,
-                            isOther = true
+                            isOther = true,
+                            isClosed = true
                         )
                     }
                 }
@@ -64,11 +66,13 @@ class RequestWorkFilterViewModel @Inject constructor(
                 RequestWorkFilter.OTHER -> old.copy(isOther = !old.isOther)
                 RequestWorkFilter.DISPATCHER -> old.copy(isDispatcher = !old.isDispatcher)
                 RequestWorkFilter.CHIEF_ENGINEER -> old.copy(isChiefEngineer = !old.isChiefEngineer)
+                RequestWorkFilter.CLOSED -> old.copy(isClosed = !old.isClosed)
                 RequestWorkFilter.ALL ->
                     old.copy(
                         isChiefEngineer = true,
                         isDispatcher = true,
-                        isOther = true
+                        isOther = true,
+                        isClosed = true
                     )
             }
         }
@@ -77,13 +81,14 @@ class RequestWorkFilterViewModel @Inject constructor(
     suspend fun saveFilterFlag() {
         val requestWorkFilterStateUI = requestWorkFilterStateUI.value
         val flagsFilter = mutableListOf<RequestWorkFilter>().apply {
-            if (requestWorkFilterStateUI.isOther && requestWorkFilterStateUI.isDispatcher && requestWorkFilterStateUI.isChiefEngineer) add(
+            if (requestWorkFilterStateUI.isOther && requestWorkFilterStateUI.isDispatcher && requestWorkFilterStateUI.isChiefEngineer && requestWorkFilterStateUI.isClosed) add(
                 RequestWorkFilter.ALL
             )
             else {
                 if (requestWorkFilterStateUI.isOther) add(RequestWorkFilter.OTHER)
                 if (requestWorkFilterStateUI.isDispatcher) add(RequestWorkFilter.DISPATCHER)
                 if (requestWorkFilterStateUI.isChiefEngineer) add(RequestWorkFilter.CHIEF_ENGINEER)
+                if (requestWorkFilterStateUI.isClosed) add(RequestWorkFilter.CLOSED)
             }
         }
         shiftScheduleNoteListInteractor.setFilterFlag(flagsFilter)

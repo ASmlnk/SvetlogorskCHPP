@@ -60,6 +60,9 @@ class RequestWorkFilterDialog : BaseBottomSheetDialog<DialogRequestWorkFilterBin
             tvFilterAll.setOnClickListener {
                 viewModel.selectFilter(RequestWorkFilter.ALL)
             }
+            tvFilterClosed.setOnClickListener {
+                viewModel.selectFilter(RequestWorkFilter.CLOSED)
+            }
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -92,6 +95,7 @@ class RequestWorkFilterDialog : BaseBottomSheetDialog<DialogRequestWorkFilterBin
             ivSelectOther.isGone = !stateFilterUI.isOther
             ivSelectDispatcher.isGone = !stateFilterUI.isDispatcher
             ivSelectChiefEngineer.isGone = !stateFilterUI.isChiefEngineer
+            ivSelectClosed.isGone = !stateFilterUI.isClosed
         }
     }
 }

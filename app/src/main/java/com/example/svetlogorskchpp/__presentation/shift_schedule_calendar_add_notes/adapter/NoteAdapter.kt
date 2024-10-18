@@ -179,7 +179,10 @@ class NoteAdapter(
                 }
 
                 when (item.permission) {
-                    PermissionRequestWork.OTHER -> tvPermission.isGone = true
+                    PermissionRequestWork.OTHER -> {
+                        tvPermission.isGone = true
+                        tvNumberRequest.setTextColor(itemView.resources.getColor(R.color.teal_700))
+                    }
                     PermissionRequestWork.DISPATCHER -> {
                         tvPermission.isGone = false
                         tvNumberRequest.setTextColor(itemView.resources.getColor(R.color.text_input_assembly))
