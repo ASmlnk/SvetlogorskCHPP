@@ -1,71 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/text_recycle"
-    tools:context=".electricalAssembly.ElectricalAssemblyFragment">
+    android:background="@drawable/background_home_page">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:background="@color/background_calendar_month_prev"
         android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/appBar1"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:contentScrim="@color/text_recycle"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+            android:layout_height="match_parent"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="16dp"
+            android:background="@color/background_calendar_month_prev"
+            app:layout_scrollFlags="">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_search_view"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:scrollbarAlwaysDrawVerticalTrack="false"
-                app:layout_collapseMode="parallax">
+                android:layout_height="match_parent"
+                android:background="@drawable/background_home_page_search"
+                android:paddingBottom="8dp">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/shapeableImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="0dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/img_20"
-                    app:strokeColor="@color/text_recycle_smile"
-                    app:strokeWidth="0dp" />
-
-                <TextView
-                    android:id="@+id/textTitleName"
+                    android:id="@+id/shapeableImageView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:background="#00214763"
-                    android:fontFamily="@font/ru_hero"
-                    android:text="Светлогорская ТЭЦ"
-                    android:textColor="@color/white"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/baseline_search_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/calendar_background" />
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="#00214763"
-                    android:src="@drawable/images1"
-                    app:layout_constraintBottom_toBottomOf="@+id/textTitleName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textTitleName" />
+                <TextView
+                    style="@style/TextViewStyleContent"
+                    android:layout_marginStart="16dp"
+                    android:text="Поиск"
+                    android:textStyle="bold"
+                    android:textColor="@color/calendar_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView9"
+                    app:layout_constraintStart_toEndOf="@+id/shapeableImageView9"
+                    app:layout_constraintTop_toTopOf="@+id/shapeableImageView9" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -73,172 +61,202 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <com.example.svetlogorskchpp.__presentation.shift_schedule.view.NestedScrollCoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layout_marginTop="-16dp"
-        android:background="#00214763"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout1"
             android:layout_width="match_parent"
-            android:background="#00214763"
-            android:layout_height="wrap_content">
+            android:layout_height="128dp"
+            android:background="@color/background_calendar_month_prev"
+            android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constrain_material_card"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/appBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bottom_sheet_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                app:contentScrim="@color/text_recycle"
+                android:background="@color/background_calendar_month_prev"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap|snapMargins">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardViewOry"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/chip_appbar"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeWidth="1dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_edit_shift"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_calendar_month_prev"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    app:layout_collapseMode="parallax">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <TextView
+                        android:id="@+id/textView15"
+                        style="@style/TextViewStyleHeading"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="@color/background_calendar_month_prev"
+                        android:fontFamily="@font/actor"
+                        android:text="@string/svetlogorsk_chpp"
+                        android:textColor="@color/backgroundItem"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/images1"
+                        android:background="@color/background_calendar_month_prev"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+                    <TextView
+                        style="@style/TextViewStyleContent"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/background_calendar_month_prev"
+                        android:text="155 Мвт\n541,5 ГКал"
+                        android:textColor="#6188A5"
+                        android:textSize="18sp"
+                        android:textStyle="italic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_home_page_base"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="8dp">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="#107761"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_old_home_page"
+                        style="@style/TextViewStyleContentHomePageSection"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="32dp"
+                        android:text="Старая домашняя страница"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_ory"
+                        style="@style/TextViewStyleContentHomePageSection"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginTop="64dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="ОРУ"
+                        app:layout_constraintEnd_toStartOf="@+id/shapeableImageView11"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shapeableImageView10"
+                        android:layout_width="40dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/vl_1"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_ory"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_ory"
+                        app:layout_constraintTop_toTopOf="@+id/tv_ory"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shapeableImageView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_info_outline_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_ory"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_ory"
+                        app:tint="@color/orange_zero_vision" />
+
+                    <include
+                        android:id="@+id/content_ory"
+                        layout="@layout/content_layout_ory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tv_ory"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_ory" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_tg"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:fontFamily="@font/ru_hero"
-                            android:text="@string/name_ory_discription"
-                            android:textColor="@color/floatingActionButton"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textTitle" />
-
-                        <TextView
-                            android:id="@+id/textTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="16dp"
-                            android:background="#00214763"
-                            android:fontFamily="@font/ru_hero"
-                            android:text="@string/ory_110_220"
-                            android:textColor="@color/floatingActionButton"
-                            android:textSize="26sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="56dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/background_home_page_content_tg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content_ory">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="0dp"
-                            android:layout_height="160dp"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="24dp"
-                            android:layout_marginBottom="16dp"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
                             android:scaleType="centerCrop"
+                            android:layout_margin="2dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView8"
-                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-                            app:srcCompat="@drawable/vl_1" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardViewTsn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="#F4F5F0"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialCardViewOry"
-                    app:strokeWidth="1dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+                            app:srcCompat="@drawable/photo_block"/>
 
                         <TextView
-                            android:id="@+id/textView8Tsn"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:fontFamily="@font/ru_hero"
-                            android:text="@string/name_tsn_discription"
-                            android:textColor="@color/floatingActionButton"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/shapeableImageView2"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textTitleTsn" />
-
-                        <TextView
-                            android:id="@+id/textTitleTsn"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:background="#00214763"
-                            android:fontFamily="@font/ru_hero"
-                            android:text="@string/name_tsn"
-                            android:textColor="@color/floatingActionButton"
-                            android:textSize="26sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            style="@style/TextViewStyleContent"
                             android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:textSize="18sp"
+                            android:text="Турбогенераторы"/>
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/shapeableImageView2"
-                            android:layout_width="160dp"
-                            android:layout_height="191dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:scaleType="centerCrop"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textTitleTsn"
-                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-                            app:srcCompat="@drawable/tsn" />
+                    </LinearLayout>
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.example.svetlogorskchpp.__presentation.shift_schedule.view.NestedScrollCoordinatorLayout>
 
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

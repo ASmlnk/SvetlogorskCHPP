@@ -26,6 +26,18 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TextViewStyleContentHomePageSection" parent="BaseTextViewStyle">
+        <item name="android:textColor">@color/text_recycle</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewStyleContentHomePageSubsection" parent="BaseTextViewStyle">
+        <item name="android:textColor">@color/floatingActionButton</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <style name="EditTestStyleRequestWork" parent="BaseTextViewStyle">
         <item name="android:background">@drawable/background_edit_text</item>
         <item name="android:textSize">18sp</item>
