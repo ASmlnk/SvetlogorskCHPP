@@ -253,6 +253,81 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/layout_zero_vision"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/background_home_page_content_zero_vision"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toStartOf="@+id/layout_valve"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_tg">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+                            app:srcCompat="@drawable/vision_zero_l" />
+
+                        <TextView
+                            style="@style/TextViewStyleContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="ZERO\nVISION"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_valve"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@drawable/background_home_page_content_valve"
+                        android:gravity="end"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/layout_zero_vision"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_tg">
+
+                        <TextView
+                            style="@style/TextViewStyleContent"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="Задвижки\nПЖТ"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="72dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+                            app:srcCompat="@drawable/zadvizhka2" />
+
+                    </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>
