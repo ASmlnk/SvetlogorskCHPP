@@ -17,7 +17,7 @@
     <string name="name_tsn">Трансформаторы собственных нужд</string>
     <string name="shr_1">1ШР</string>
     <string name="shr_2">2ШР</string>
-    <string name="lr">ЛР</string>
+    <string name="lr">ЛР (ТР)</string>
     <string name="or">ОР</string>
     <string name="zemlia">Земляная</string>
     <string name="faznai">Фазная</string>
@@ -248,7 +248,7 @@
     <string name="sorted_number">по номеру</string>
     <string name="filter_request_work">Фильтр заявок</string>
     <string name="request_work_filter_all">все заявки</string>
-    <string name="requset_work_filter_other">остальные (ДС ПЭС)</string>
+    <string name="request_work_filter_other">остальные (ДС ПЭС)</string>
     <string name="request_work_filter_chief_engineer">заявки, на которые требуется разрешение главного инженера</string>
     <string name="request_work_filter_dispatcher">заявки, на которые требуется разрешение диспетчера</string>
     <string name="request_work_filter">Фильтр</string>
@@ -257,6 +257,29 @@
     <string name="request_work_notification">Уведомления заявок</string>
     <string name="request_work_view_calendar">Отображение заявок в календаре</string>
     <string name="notification_title_request_work">Заявки на оборудование</string>
-    <string name="requset_work_filter_closed">закрытые заявки</string>
+    <string name="request_work_filter_closed">закрытые заявки</string>
+    <string name="name">Наименование</string>
+    <string name="panel">Панели ГЩУ</string>
+    <string name="name_electrical">Наименование электроустановки</string>
+    <string name="transformer_parameters">Параметры трансформатора</string>
+    <string name="transformer_type">Тип трансформатора</string>
+    <string name="transformer_p">P, МВт</string>
+    <string name="basic">Основной</string>
+    <string name="spare">Резервный</string>
+    <string name="ory_parameters">Параметры ОРУ</string>
+    <string name="tire_system_number">№ СШ</string>
+    <string name="cell_number">яч.</string>
+    <string name="voltage_edit_ory">U, кВ</string>
+    <string name="switch_ory_parameter">Выключатель</string>
+    <string name="instrument_transformer">Измерительный тр-тор</string>
+    <string name="rza">РЗиА</string>
+    <string name="automation">Автоматика</string>
+    <string name="phase_protection">Фазная защита</string>
+    <string name="earth_protection">Земляная защита</string>
+    <string name="parameters">Параметры</string>
+    <string name="decryption">Расшифровка</string>
+    <string name="edit_vl">Редактор ВЛ</string>
+    <string name="apply">Применить</string>
+    <string name="transit">Транзитная</string>
 
 </resources>

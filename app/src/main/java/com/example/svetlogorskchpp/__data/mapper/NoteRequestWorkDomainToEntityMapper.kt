@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__data.mapper
 
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
-import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.Note
 import javax.inject.Inject
 
 class NoteRequestWorkDomainToEntityMapper @Inject constructor() {

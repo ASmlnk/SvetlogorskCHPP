@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar
 
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.CalendarFullDayShiftModel
 import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 

@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal
 
-import com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.model.JobTitlePersonal
-import com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.model.Staff
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.model.JobTitlePersonal
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.model.Staff
 import kotlinx.coroutines.flow.Flow
 
 interface ShiftScheduleShiftPersonalInteractor {

@@ -1,11 +1,11 @@
 package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar
 
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
-import com.example.svetlogorskchpp.__domain.usecases.CalendarAddShiftUseCases
-import com.example.svetlogorskchpp.__domain.usecases.GenerateDaysFullCalendarUseCases
-import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayModel
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.CalendarAddShiftUseCases
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.GenerateDaysFullCalendarUseCases
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.ShiftUseCases
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.CalendarFullDayModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.CalendarFullDayShiftModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

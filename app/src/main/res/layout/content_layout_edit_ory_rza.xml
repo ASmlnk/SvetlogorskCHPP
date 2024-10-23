@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_content_parameter_ory"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:padding="8dp">
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:text="@string/rza"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_automation"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/automation"
+        android:inputType="textMultiLine|textVisiblePassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_apv"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/apv"
+        android:inputType="textMultiLine|textVisiblePassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginTop="16dp"
+        android:text="@string/phase_protection"
+        android:textColor="@color/calendar_background"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_weight="0.8"
+            android:id="@+id/et_phase_protection"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/phase_protection"
+            android:inputType="textMultiLine|textVisiblePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_phase_protection"
+            android:layout_weight="0.15"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_add_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_phase_protection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="2"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginTop="16dp"
+        android:text="@string/earth_protection"
+        android:textColor="@color/calendar_background"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_weight="0.8"
+            android:id="@+id/et_earth_protection"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/earth_protection"
+            android:inputType="textMultiLine|textVisiblePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_earth_protection"
+            android:layout_weight="0.15"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_add_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_earth_protection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:itemCount="2"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+</LinearLayout>

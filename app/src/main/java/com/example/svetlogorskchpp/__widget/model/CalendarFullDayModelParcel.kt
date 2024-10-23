@@ -1,14 +1,14 @@
 package com.example.svetlogorskchpp.__widget.model
 
 import android.os.Parcelable
-import com.example.svetlogorskchpp.__domain.en.Shift
-import com.example.svetlogorskchpp.__domain.model.MonthCalendar
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.MonthCalendar
 import kotlinx.parcelize.Parcelize
 import java.util.Calendar
 
 @Parcelize
 data class CalendarFullDayModelParcel(
-    val data: Long ,
+    val data: Long,
     val month: MonthCalendar,
     val prevNightShift: Shift,
     val dayShift: Shift,

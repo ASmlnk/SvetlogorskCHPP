@@ -4,7 +4,7 @@
     android:thickness="0dp">
     <stroke
         android:width="2dp"
-        android:color="@color/calendar_background" />
+        android:color="@color/home_page_gradient" />
     <corners
         android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"
@@ -14,5 +14,5 @@
         android:angle="135"
         android:centerColor="#19A688"
         android:endColor="@color/floatingActionButton"
-        android:startColor="#F1EA60" />
+        android:startColor="@color/home_page_gradient" />
 </shape>

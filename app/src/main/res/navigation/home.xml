@@ -13,30 +13,7 @@
         tools:layout="@layout/fragment_open_switchgear" >
 
     </fragment>
-    <fragment
-        android:id="@+id/homePageFragment"
-        android:name="com.example.svetlogorskchpp.HomePageFragment"
-        tools:layout="@layout/fragment_home_page"
-        android:label="HomePageFragment" >
-        <action
-            android:id="@+id/action_homePageFragment_to_openSwitchgear"
-            app:destination="@id/openSwitchgear" />
-        <action
-            android:id="@+id/action_homePageFragment_to_transformerOfOwnNeeds2"
-            app:destination="@id/transformerOfOwnNeeds2" />
-        <action
-            android:id="@+id/action_homePageFragment_to_blockGeneratorTransformer2"
-            app:destination="@id/blockGeneratorTransformer2" />
-        <action
-            android:id="@+id/action_homePageFragment_to_zeroVisionFragment"
-            app:destination="@id/zeroVisionFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_electricMotorSearchFragment"
-            app:destination="@id/electricMotorSearchFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_valveFragment"
-            app:destination="@id/valveFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/transformerOfOwnNeeds2"
         android:name="com.example.svetlogorskchpp.transformerOfOwnNeeds.TransformerOfOwnNeeds"
@@ -73,7 +50,40 @@
     <fragment
         android:id="@+id/valveFragment"
         android:name="com.example.svetlogorskchpp.inspectionSchedule.ValveFragment"
+        tools:layout="@layout/fragment_checklist_inspection"
         android:label="ValveFragment" />
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.home_page.fragment.HomePageFragment"
+        tools:layout="@layout/fragment_home_page"
+        android:label="HomePageFragment" >
 
+        <action
+            android:id="@+id/action_homePageFragment_to_valveFragment2"
+            app:destination="@id/valveFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_electricMotorSearchFragment2"
+            app:destination="@id/electricMotorSearchFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_zeroVisionFragment2"
+            app:destination="@id/zeroVisionFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_blockGeneratorTransformer22"
+            app:destination="@id/blockGeneratorTransformer2" />
+        <action
+            android:id="@+id/action_homePageFragment_to_transformerOfOwnNeeds2"
+            app:destination="@id/transformerOfOwnNeeds2" />
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgear"
+            app:destination="@id/openSwitchgear" />
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgearVlEditFragment"
+            app:destination="@id/openSwitchgearVlEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/openSwitchgearVlEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.open_switchgear.edit_vl.fragment.OpenSwitchgearVlEditFragment"
+        tools:layout="@layout/fragment_open_switchgear_vl_edit"
+        android:label="OpenSwitchgearVlEditFragment" />
 
 </navigation>

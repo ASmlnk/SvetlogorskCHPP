@@ -2,8 +2,8 @@ package com.example.svetlogorskchpp.__data.database.requestWork
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
-import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.PermissionRequestWork
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.Note
 import java.util.Calendar
 import java.util.Date
 

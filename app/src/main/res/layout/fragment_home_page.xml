@@ -61,7 +61,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.example.svetlogorskchpp.__presentation.shift_schedule.view.NestedScrollCoordinatorLayout
+    <com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.view.NestedScrollCoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -69,7 +69,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout1"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="160dp"
             android:background="@color/background_calendar_month_prev"
             android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
@@ -77,8 +77,8 @@
                 android:id="@+id/appBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="@color/text_recycle"
                 android:background="@color/background_calendar_month_prev"
+                app:contentScrim="@color/text_recycle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap|snapMargins">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,11 +93,11 @@
                         android:id="@+id/textView15"
                         style="@style/TextViewStyleHeading"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="20dp"
                         android:backgroundTint="@color/background_calendar_month_prev"
                         android:fontFamily="@font/actor"
                         android:text="@string/svetlogorsk_chpp"
-                        android:textColor="@color/backgroundItem"
+                        android:textColor="@color/calendar_background"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,11 +105,12 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/images1"
                         android:background="@color/background_calendar_month_prev"
+                        android:src="@drawable/images1"
                         app:layout_constraintBottom_toBottomOf="@+id/textView15"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+                        app:layout_constraintTop_toTopOf="@+id/textView15"
+                        app:tint="@color/text_recycle_smile" />
 
                     <TextView
                         style="@style/TextViewStyleContent"
@@ -163,25 +164,14 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_old_home_page"
-                        style="@style/TextViewStyleContentHomePageSection"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="32dp"
-                        android:text="Старая домашняя страница"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
                         android:id="@+id/tv_ory"
                         style="@style/TextViewStyleContentHomePageSection"
                         android:layout_width="0dp"
                         android:layout_marginStart="72dp"
-                        android:layout_marginTop="64dp"
+                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:text="ОРУ"
-                        app:layout_constraintEnd_toStartOf="@+id/shapeableImageView11"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_ory_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -189,7 +179,7 @@
                         android:id="@+id/shapeableImageView10"
                         android:layout_width="40dp"
                         android:layout_height="24dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/vl_1"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_ory"
@@ -198,7 +188,7 @@
                         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/shapeableImageView11"
+                        android:id="@+id/iv_ory_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -217,47 +207,84 @@
                         app:layout_constraintStart_toStartOf="@+id/tv_ory"
                         app:layout_constraintTop_toBottomOf="@+id/tv_ory" />
 
+                    <TextView
+                        android:id="@+id/tv_tsn"
+                        style="@style/TextViewStyleContentHomePageSection"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="ТСН"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_tsn_info"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content_ory" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shapeableImageViewTsn"
+                        android:layout_width="40dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/tsn"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_tsn"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_tsn"
+                        app:layout_constraintTop_toTopOf="@+id/tv_tsn"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_tsn_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_info_outline_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_tsn"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_tsn"
+                        app:tint="@color/orange_zero_vision" />
+
+
                     <LinearLayout
                         android:id="@+id/layout_tg"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="32dp"
-                        android:orientation="horizontal"
                         android:background="@drawable/background_home_page_content_tg"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/content_ory">
+                        app:layout_constraintTop_toBottomOf="@+id/tv_tsn">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
                             android:layout_margin="2dp"
+                            android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0"
                             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
-                            app:srcCompat="@drawable/photo_block"/>
+                            app:srcCompat="@drawable/photo_block" />
 
                         <TextView
+                            style="@style/TextViewStyleContent"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_horizontal|center_vertical"
-                            style="@style/TextViewStyleContent"
-                            android:textStyle="bold"
+                            android:text="Турбогенераторы"
+                            android:textColor="@color/calendar_background"
                             android:textSize="18sp"
-                            android:text="Турбогенераторы"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_zero_vision"
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
-                        android:layout_marginStart="24dp"
+                        android:layout_height="68dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/background_home_page_content_zero_vision"
@@ -275,7 +302,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0"
                             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
-                            app:srcCompat="@drawable/vision_zero_l" />
+                            app:srcCompat="@drawable/vision_zero" />
 
                         <TextView
                             style="@style/TextViewStyleContent"
@@ -283,6 +310,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center_horizontal|center_vertical"
                             android:text="ZERO\nVISION"
+                            android:textColor="@color/calendar_background"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -291,10 +319,10 @@
                     <LinearLayout
                         android:id="@+id/layout_valve"
                         android:layout_width="0dp"
-                        android:layout_height="64dp"
+                        android:layout_height="68dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="24dp"
+                        android:layout_marginEnd="16dp"
                         android:background="@drawable/background_home_page_content_valve"
                         android:gravity="end"
                         android:orientation="horizontal"
@@ -309,13 +337,14 @@
                             android:layout_weight="1"
                             android:gravity="center_horizontal|center_vertical"
                             android:text="Задвижки\nПЖТ"
+                            android:textColor="@color/calendar_background"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="72dp"
-
+                            android:alpha="0.85"
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:scaleType="centerCrop"
@@ -332,6 +361,6 @@
 
             </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </com.example.svetlogorskchpp.__presentation.shift_schedule.view.NestedScrollCoordinatorLayout>
+    </com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.view.NestedScrollCoordinatorLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

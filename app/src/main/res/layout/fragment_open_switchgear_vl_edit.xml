@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewStyleHeading"
+            android:text="@string/edit_vl"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <include
+            android:id="@+id/content_ory_name"
+            layout="@layout/content_layout_edit_ory_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_transit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ChipShiftSchedule"
+            android:layout_marginStart="16dp"
+            android:text="@string/transit"/>
+
+        <include
+            android:id="@+id/content_ory_parameter"
+            layout="@layout/content_layout_edit_ory_parameter" />
+
+        <include
+            android:id="@+id/content_rza"
+            layout="@layout/content_layout_edit_ory_rza" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apply"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="240dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__widget.model
 
 import android.os.Parcelable
-import com.example.svetlogorskchpp.__domain.en.Shift
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

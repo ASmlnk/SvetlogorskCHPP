@@ -5,7 +5,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
-import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.Calendar

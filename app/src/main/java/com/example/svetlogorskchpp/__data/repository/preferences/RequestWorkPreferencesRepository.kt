@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__data.repository.preferences
 
-import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
-import com.example.svetlogorskchpp.__domain.en.RequestWorkSorted
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.RequestWorkFilter
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.RequestWorkSorted
 import kotlinx.coroutines.flow.Flow
 
 interface RequestWorkPreferencesRepository {

@@ -6,7 +6,7 @@
     app:startDestination="@id/shiftScheduleFragment">
     <fragment
         android:id="@+id/shiftScheduleFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.fragment.ShiftScheduleFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.fragment.ShiftScheduleFragment"
         android:label="ShiftScheduleFragment"
         tools:layout="@layout/fragment_shift_schedule">
 
@@ -35,12 +35,12 @@
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleEditCompositionFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.fragment.ShiftScheduleEditCompositionFragment"
         android:label="ShiftScheduleEditCompositionFragment"
         tools:layout="@layout/fragment_shift_schedule_edit_composition" />
     <fragment
         android:id="@+id/shiftScheduleAddNotesFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar_add_notes.fragment.ShiftScheduleAddNotesFragment"
         android:label="ShiftScheduleAddNotesFragment"
         tools:layout="@layout/fragment_shift_schedule_add_notes">
 
@@ -48,7 +48,7 @@
 
         <argument
             android:name="navigateAddNoteArgs"
-            app:argType="com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs" />
+            app:argType="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.NavigateAddNoteArgs" />
         <action
             android:id="@+id/action_shiftScheduleAddNotesFragment_to_shiftScheduleStaffDialog"
             app:destination="@id/shiftScheduleStaffDialog" />
@@ -78,17 +78,17 @@
     </dialog>
     <dialog
         android:id="@+id/shiftScheduleStaffDialog"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.dialog.ShiftScheduleStaffDialog"
         android:label="dialog_shift_schedule_personal"
         tools:layout="@layout/dialog_shift_schedule_personal">
 
         <argument
             android:name="shift"
-            app:argType="com.example.svetlogorskchpp.__domain.en.Shift" />
+            app:argType="com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift" />
     </dialog>
     <fragment
         android:id="@+id/shiftScheduleRequestWorkFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_requests_work.fragment.ShiftScheduleRequestWorkFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_requests_work.fragment.ShiftScheduleRequestWorkFragment"
         android:label="ShiftScheduleRequestWorkFragment"
         tools:layout="@layout/fragment_shift_schedule_request_work">
         <argument
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/shiftScheduleNotesListFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule_list_request_works.fragment.ShiftScheduleNotesListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_list_request_works.fragment.ShiftScheduleNotesListFragment"
         tools:layout="@layout/fragment_shift_schedule_notes_list"
         android:label="ShiftScheduleNotesListFragment" >
         <action
@@ -125,17 +125,17 @@
     <dialog
         android:id="@+id/requestWorkSortedDialog"
         tools:layout="@layout/dialog_request_work_sorted"
-        android:name="com.example.svetlogorskchpp.__presentation.dialog.request_work_sorted.fragment.RequestWorkSortedDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.shift_schedule.request_work_sorted.fragment.RequestWorkSortedDialog"
         android:label="RequestWorkSortedDialog" />
     <dialog
         android:id="@+id/requestWorkFilterDialog"
         tools:layout="@layout/dialog_request_work_filter"
-        android:name="com.example.svetlogorskchpp.__presentation.dialog.request_work_filter.fragment.RequestWorkFilterDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.shift_schedule.request_work_filter.fragment.RequestWorkFilterDialog"
         android:label="RequestWorkFilterDialog" />
     <dialog
         android:id="@+id/notesNotificationDialog"
         tools:layout="@layout/dialog_notes_notification"
-        android:name="com.example.svetlogorskchpp.__presentation.dialog.notes_notification.fragment.NotesNotificationDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.shift_schedule.notes_notification.fragment.NotesNotificationDialog"
         android:label="NotesNotificationDialog" />
 
 </navigation>

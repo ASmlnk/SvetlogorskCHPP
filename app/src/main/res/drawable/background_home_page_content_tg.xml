@@ -3,7 +3,7 @@
     android:thickness="0dp"
     android:shape="rectangle">
     <stroke android:width="2dp"
-        android:color="@color/calendar_background"/>
+        android:color="@color/floatingActionButton"/>
     <corners
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shift_schedule_dialog_sorted_background"
-    tools:context=".__presentation.shift_schedule.dialog.ShiftScheduleStaffDialog">
+    tools:context=".__presentation.shift_schedule.shift_schedule_calendar.dialog.ShiftScheduleStaffDialog">
 
     <LinearLayout
         android:id="@+id/layout"
@@ -120,7 +120,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingVertical="8dp"
-        android:text="@string/requset_work_filter_other"
+        android:text="@string/request_work_filter_other"
         android:textColor="@color/calendar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -145,7 +145,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingVertical="8dp"
-        android:text="@string/requset_work_filter_closed"
+        android:text="@string/request_work_filter_closed"
         android:textColor="@color/calendar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

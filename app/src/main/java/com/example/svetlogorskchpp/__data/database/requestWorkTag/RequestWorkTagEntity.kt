@@ -2,7 +2,7 @@ package com.example.svetlogorskchpp.__data.database.requestWorkTag
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.svetlogorskchpp.__domain.model.CalendarRequestWorkTag
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.CalendarRequestWorkTag
 import java.util.Date
 
 @Entity(tableName = "request_work_tag")

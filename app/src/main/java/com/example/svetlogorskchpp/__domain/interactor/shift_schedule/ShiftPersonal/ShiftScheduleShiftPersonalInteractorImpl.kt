@@ -2,15 +2,15 @@ package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPers
 
 import com.example.svetlogorskchpp.__data.model.ShiftPersonalDto
 import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
-import com.example.svetlogorskchpp.__domain.en.JobTitle
-import com.example.svetlogorskchpp.__domain.en.Shift
-import com.example.svetlogorskchpp.__domain.usecases.FilterUseCases
-import com.example.svetlogorskchpp.__domain.usecases.JobTitleUseCases
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.JobTitle
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.FilterUseCases
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.JobTitleUseCases
 import com.example.svetlogorskchpp.__domain.usecases.NetworkAvailableUseCase
-import com.example.svetlogorskchpp.__domain.usecases.ShiftUseCases
-import com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.model.JobTitlePersonal
-import com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.model.ShiftPersonal
-import com.example.svetlogorskchpp.__presentation.shift_schedule_edit_composition.model.Staff
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.ShiftUseCases
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.model.JobTitlePersonal
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.model.ShiftPersonal
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_edit_composition.model.Staff
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

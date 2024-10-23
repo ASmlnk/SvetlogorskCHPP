@@ -43,9 +43,25 @@
         <item name="android:textSize">18sp</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:imeOptions">actionNone</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color_edit_text</item>
         <item name="android:paddingBottom">14dp</item>
+        <item name="android:textColor">@color/name_devices_appbar</item>
+        <item name="android:textColorHint">@color/text_recycle_smile</item>
+    </style>
+
+    <style name="EditTestStyleElectricalEquipment" parent="BaseTextViewStyle">
+        <item name="android:background">@drawable/background_edit_text</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:imeOptions">actionNone</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color_edit_text</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="android:textColor">@color/name_devices_appbar</item>
         <item name="android:textColorHint">@color/text_recycle_smile</item>
     </style>

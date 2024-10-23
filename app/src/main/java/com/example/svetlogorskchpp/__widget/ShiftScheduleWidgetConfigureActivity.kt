@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.ShiftScheduleWidgetConfigureBinding
 import com.example.svetlogorskchpp.__di.Widget
-import com.example.svetlogorskchpp.__domain.en.Shift
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint

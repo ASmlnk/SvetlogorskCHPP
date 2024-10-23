@@ -1,8 +1,8 @@
 package com.example.svetlogorskchpp.__data.mapper
 
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
-import com.example.svetlogorskchpp.__domain.en.PermissionRequestWork
-import com.example.svetlogorskchpp.__domain.model.Note
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.PermissionRequestWork
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.Note
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject

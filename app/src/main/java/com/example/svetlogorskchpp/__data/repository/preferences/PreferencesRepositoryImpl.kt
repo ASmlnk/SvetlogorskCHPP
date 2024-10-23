@@ -5,8 +5,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.example.svetlogorskchpp.__domain.en.RequestWorkFilter
-import com.example.svetlogorskchpp.__domain.en.RequestWorkSorted
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.RequestWorkFilter
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.RequestWorkSorted
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map

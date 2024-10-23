@@ -7,11 +7,11 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 
 import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.__domain.en.Shift
-import com.example.svetlogorskchpp.__domain.model.MonthCalendar
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayModel
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.CalendarFullDayShiftModel
-import com.example.svetlogorskchpp.__presentation.shift_schedule.model.NavigateAddNoteArgs
+import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.MonthCalendar
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.CalendarFullDayModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.CalendarFullDayShiftModel
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_calendar.model.NavigateAddNoteArgs
 import com.example.svetlogorskchpp.__widget.ShiftScheduleWidget
 import com.google.gson.Gson
 import java.util.ArrayList

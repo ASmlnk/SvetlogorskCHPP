@@ -14,8 +14,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.svetlogorskchpp.CHANNEL_ID
 import com.example.svetlogorskchpp.R
-import com.example.svetlogorskchpp.__domain.model.RequestWorkNotification
-import com.example.svetlogorskchpp.__domain.usecases.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
+import com.example.svetlogorskchpp.__domain.model.shift_schedule.RequestWorkNotification
+import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.Calendar
