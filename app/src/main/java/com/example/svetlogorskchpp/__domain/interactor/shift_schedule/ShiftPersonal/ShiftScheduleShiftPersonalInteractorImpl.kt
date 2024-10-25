@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal
 
 import com.example.svetlogorskchpp.__data.model.ShiftPersonalDto
-import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.shiftPersonnel.ShiftPersonalRepository
 import com.example.svetlogorskchpp.__domain.en.shift_schedule.JobTitle
 import com.example.svetlogorskchpp.__domain.en.shift_schedule.Shift
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.FilterUseCases

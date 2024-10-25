@@ -2,8 +2,8 @@ package com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNot
 
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
-import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
-import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.note.NoteRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult

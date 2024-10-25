@@ -10,7 +10,7 @@
         android:id="@+id/iv_ory_vl_220"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/baseline_subdirectory_arrow_right_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,42 +22,21 @@
         android:layout_width="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="ВЛ-220кВ"
+        android:text="@string/vl_name"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_ory_vl_220"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_ory_vl_220"
         app:layout_constraintTop_toTopOf="@+id/iv_ory_vl_220" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_ory_vl_110"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/baseline_subdirectory_arrow_right_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_ory_vl_220"
-        app:tint="@color/floatingActionButton" />
-
-    <TextView
-        android:id="@+id/tv_ory_vl_110"
-        style="@style/TextViewStyleContentHomePageSubsection"
-        android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="ВЛ-110кВ"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_ory_vl_110"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_ory_vl_110"
-        app:layout_constraintTop_toTopOf="@+id/iv_ory_vl_110" />
-
-    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_ory_transformer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/baseline_subdirectory_arrow_right_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_ory_vl_110"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ory_vl_220"
         app:tint="@color/floatingActionButton" />
 
     <TextView
@@ -67,6 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Силовые трансформаторы"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_ory_transformer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_ory_transformer"
@@ -76,7 +56,7 @@
         android:id="@+id/iv_ory_other"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/baseline_subdirectory_arrow_right_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_ory_transformer"
@@ -89,6 +69,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="ШСВ, ОВ, ТН"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_ory_other"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_ory_other"

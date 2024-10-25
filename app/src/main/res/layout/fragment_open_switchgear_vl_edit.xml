@@ -24,13 +24,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_transit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/ChipShiftSchedule"
-            android:layout_marginStart="16dp"
-            android:text="@string/transit"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_transit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ChipShiftSchedule"
+                android:layout_marginStart="24dp"
+                android:text="@string/transit"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_vl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ChipShiftSchedule"
+                android:layout_marginEnd="24dp"
+                android:text="@string/vl"/>
+
+        </LinearLayout>
 
         <include
             android:id="@+id/content_ory_parameter"

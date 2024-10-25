@@ -1,23 +1,28 @@
 package com.example.svetlogorskchpp.__di
 
 import android.content.Context
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.hard.HardDataRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
-import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
-import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
-import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
-import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.electrical_equipment.open_switchgear.OpenSwitchgearRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.note.NoteRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.NotesNotificationPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.PreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
-import com.example.svetlogorskchpp.__data.repository.shiftPersonnel.ShiftPersonalRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.shiftPersonnel.ShiftPersonalRepository
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.ShiftPersonal.ShiftScheduleShiftPersonalInteractorImpl
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list.ShiftScheduleNoteListInteractorImpl
+import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.ElectricalEquipmentMapper
+import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.open_switchgear.OpenSwitchgearVlMapper
+import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
@@ -42,6 +47,11 @@ import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDat
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.RequestWorkFilterFactoryUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.electircal_equipments.ElectricalEquipmentVlUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.electircal_equipments.ElectricalEquipmentsUseCases
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearUseCases
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearVLUseCasesImpl
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -125,7 +135,7 @@ class UseCaseModule {
         calendarNoteTagRepository: CalendarNoteTagRepository,
         calendarDateUseCases: CalendarDateUseCases,
         calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
-        preferencesNotificationUseCases: CalendarPreferencesNotificationUseCases
+        preferencesNotificationUseCases: CalendarPreferencesNotificationUseCases,
     ): CalendarNoteTagUseCases {
         return CalendarNoteTagUseCasesImpl(
             calendarNoteTagRepository,
@@ -154,7 +164,7 @@ class UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideCalendarPreferencesNotification(
-        preferencesRepository: NotesNotificationPreferencesRepository
+        preferencesRepository: NotesNotificationPreferencesRepository,
     ): CalendarPreferencesNotificationUseCases {
         return CalendarPreferencesNotificationUseCasesImpl(preferencesRepository)
     }
@@ -175,10 +185,35 @@ class UseCaseModule {
         noteRequestWorkRepository: NoteRequestWorkRepository,
         sortedUseCases: RequestWorkSortedUseCases,
         filterUseCases: RequestWorkFilterFactoryUseCases,
-    ) : ShiftScheduleNoteListInteractor {
-        return ShiftScheduleNoteListInteractorImpl(preferencesRepository, noteRequestWorkRepository, sortedUseCases, filterUseCases)
+    ): ShiftScheduleNoteListInteractor {
+        return ShiftScheduleNoteListInteractorImpl(
+            preferencesRepository,
+            noteRequestWorkRepository,
+            sortedUseCases,
+            filterUseCases
+        )
     }
 
+    @Provides
+    @ViewModelScoped
+    fun provideOpenSwitchgearVlUseCases(
+        openSwitchgearVlRepository: OpenSwitchgearRepository<OpenSwitchgearVlEntity>,
+        openSwitchgearVlMapper: OpenSwitchgearVlMapper
+    ): OpenSwitchgearUseCases<OpenSwitchgearVl> {
+        return OpenSwitchgearVLUseCasesImpl(
+            openSwitchgearVlRepository,
+            openSwitchgearVlMapper
+        )
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideElectricalEquipmentVlUseCases(
+        openSwitchgearVlRepository: OpenSwitchgearRepository<OpenSwitchgearVlEntity>,
+        electricalEquipmentMapper: ElectricalEquipmentMapper
+    ): ElectricalEquipmentsUseCases<ElectricalEquipment.Vl> {
+        return ElectricalEquipmentVlUseCasesImpl(openSwitchgearVlRepository,electricalEquipmentMapper)
+    }
 }
 
 

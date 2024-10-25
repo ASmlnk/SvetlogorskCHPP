@@ -2,9 +2,9 @@ package com.example.svetlogorskchpp.__di
 
 import android.app.NotificationManager
 import android.content.Context
-import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
-import com.example.svetlogorskchpp.__data.repository.note.NoteRepository
-import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.note.NoteRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarDateUseCases.CalendarDateUseCases
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarDateUseCases.CalendarDateUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNoteNotificationUseCases.CalendarNoteNotificationUseCases

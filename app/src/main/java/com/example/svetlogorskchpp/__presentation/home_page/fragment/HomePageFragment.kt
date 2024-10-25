@@ -50,8 +50,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
         }
         includeOryBinding.apply {
-            tvOryVl110.setOnClickListener {
+            tvOryTransformer.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
+            }
+            tvOryVl220.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlFragment)
             }
         }
     }

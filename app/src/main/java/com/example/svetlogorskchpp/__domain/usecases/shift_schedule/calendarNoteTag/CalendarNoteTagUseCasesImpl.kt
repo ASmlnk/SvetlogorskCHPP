@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNoteTag
 
-import com.example.svetlogorskchpp.__data.repository.calendarNoteTag.CalendarNoteTagRepository
-import com.example.svetlogorskchpp.__data.repository.calendarRequestWorkTag.CalendarRequestWorkTagRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__domain.model.shift_schedule.CalendarMyNoteTag
 import com.example.svetlogorskchpp.__domain.model.shift_schedule.CalendarRequestWorkTag
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarDateUseCases.CalendarDateUseCases

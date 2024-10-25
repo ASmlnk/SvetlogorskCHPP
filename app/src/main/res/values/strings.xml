@@ -281,5 +281,10 @@
     <string name="edit_vl">Редактор ВЛ</string>
     <string name="apply">Применить</string>
     <string name="transit">Транзитная</string>
+    <string name="vl">ВЛ</string>
+    <string name="vl_name">Воздушные линии</string>
+    <string name="ory_item">ОРУ-%s</string>
+    <string name="bys_system">%sСШ</string>
+    <string name="cell">яч. %s</string>
 
 </resources>

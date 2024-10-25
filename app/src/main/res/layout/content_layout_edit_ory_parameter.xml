@@ -97,6 +97,7 @@
             android:layout_width="0dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:text="@string/shr_1"
             android:textColor="@color/text_input_assembly"
             android:textSize="16sp" />
@@ -104,6 +105,7 @@
         <TextView
             style="@style/TextViewStyleContent"
             android:layout_width="0dp"
+            android:textStyle="bold"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:text="@string/shr_2"
@@ -151,6 +153,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:text="@string/lr"
+            android:textStyle="bold"
             android:textColor="@color/text_input_assembly"
             android:textSize="16sp" />
 
@@ -159,6 +162,7 @@
             android:layout_width="0dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:text="@string/or"
             android:textSize="16sp" />
 

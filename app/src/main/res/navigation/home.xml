@@ -79,11 +79,27 @@
         <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearVlEditFragment"
             app:destination="@id/openSwitchgearVlEditFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgearVlFragment"
+            app:destination="@id/openSwitchgearVlFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.open_switchgear.edit_vl.fragment.OpenSwitchgearVlEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_vl.fragment.OpenSwitchgearVlEditFragment"
         tools:layout="@layout/fragment_open_switchgear_vl_edit"
-        android:label="OpenSwitchgearVlEditFragment" />
+        android:label="OpenSwitchgearVlEditFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/openSwitchgearVlFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.fragment.OpenSwitchgearVlFragment"
+        tools:layout="@layout/fragment_open_switchgear_vl"
+        android:label="OpenSwitchgearVlFragment" >
+        <action
+            android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlEditFragment"
+            app:destination="@id/openSwitchgearVlEditFragment" />
+    </fragment>
 
 </navigation>

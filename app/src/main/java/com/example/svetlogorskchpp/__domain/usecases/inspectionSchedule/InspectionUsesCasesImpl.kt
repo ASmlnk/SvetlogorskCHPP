@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.__domain.usecases.inspectionSchedule
 
-import com.example.svetlogorskchpp.__data.repository.inspection.InspectionRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.inspection.InspectionRepository
 import javax.inject.Inject
 
 class InspectionUsesCasesImpl @Inject constructor(

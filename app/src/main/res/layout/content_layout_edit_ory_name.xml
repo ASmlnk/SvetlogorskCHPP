@@ -9,6 +9,7 @@
         style="@style/TextViewStyleContent"
         android:text="@string/name_electrical"
         android:textSize="14sp"
+        android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"/>
 
@@ -28,6 +29,7 @@
     <TextView
         style="@style/TextViewStyleContent"
         android:text="@string/panel"
+        android:textStyle="bold"
         android:textSize="14sp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"/>

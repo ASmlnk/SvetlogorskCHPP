@@ -171,14 +171,15 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:text="ОРУ"
+                        android:textSize="22sp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_ory_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageView10"
-                        android:layout_width="40dp"
-                        android:layout_height="24dp"
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/vl_1"
@@ -203,9 +204,10 @@
                         layout="@layout/content_layout_ory"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/tv_ory"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_ory" />
+                        app:layout_constraintStart_toStartOf="@+id/shapeableImageView10"
+                        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView10" />
 
                     <TextView
                         android:id="@+id/tv_tsn"
@@ -215,14 +217,15 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:text="ТСН"
+                        android:textSize="22sp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_tsn_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/content_ory" />
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageViewTsn"
-                        android:layout_width="40dp"
-                        android:layout_height="24dp"
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/tsn"

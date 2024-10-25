@@ -7,7 +7,9 @@ import com.example.svetlogorskchpp.__data.database.MIGRATION_1_2
 import com.example.svetlogorskchpp.__data.database.MIGRATION_2_3
 import com.example.svetlogorskchpp.__data.database.MIGRATION_3_4
 import com.example.svetlogorskchpp.__data.database.MIGRATION_4_5
+import com.example.svetlogorskchpp.__data.database.MIGRATION_5_6
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
@@ -37,6 +39,7 @@ class LocaleModule {
             .addMigrations(MIGRATION_2_3)
             .addMigrations(MIGRATION_3_4)
             .addMigrations(MIGRATION_4_5)
+            .addMigrations(MIGRATION_5_6)
             .build()
     }
 
@@ -64,6 +67,11 @@ class LocaleModule {
     @RequestWorkReason
     fun provideRequestWorkReasonHardData (): HardDataRepository<String> {
         return RequestWorkHardDataImpl.Reason
+    }
+
+    @Provides
+    fun provideOpenSwitchgearVlDao(dataBase: AppDataBase) : OpenSwitchgearVlDao {
+        return dataBase.openSwitchgearVlDao()
     }
 
     @Provides

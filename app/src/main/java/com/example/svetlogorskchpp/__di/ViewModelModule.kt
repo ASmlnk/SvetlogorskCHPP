@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__di
 
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractor
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
+import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
@@ -15,6 +16,8 @@ import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNote
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNoteTag.CalendarNoteTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearUseCases
+import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearVLUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
 import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
@@ -40,7 +43,6 @@ abstract class ViewModelModule {
     @Binds
     abstract fun provideFirestoryRepository( remoteDB: FirebaseFirestore): FirebaseFirestore
 
-
     @Binds
     abstract fun provideCalendarTagUseCases(calendarTagUseCasesImpl: CalendarTagUseCasesImpl) : CalendarTagUseCases
 
@@ -57,7 +59,12 @@ abstract class ViewModelModule {
     abstract fun provideCalendarPreferencesNotificationUseCases (calendarPreferencesNotificationUseCases: CalendarPreferencesNotificationUseCasesImpl): CalendarPreferencesNotificationUseCases
 
     @Binds
-    abstract fun provideTaskSchedulerRequestWorkUpdateWorker (TaskSchedulerUpdateRequestWorkBaseWorkerImpl: TaskSchedulerUpdateRequestWorkBaseWorkerImpl): TaskSchedulerUpdateRequestWorkBaseWorker
+    abstract fun provideTaskSchedulerRequestWorkUpdateWorker (taskSchedulerUpdateRequestWorkBaseWorkerImpl: TaskSchedulerUpdateRequestWorkBaseWorkerImpl): TaskSchedulerUpdateRequestWorkBaseWorker
+
+    @Binds
+    abstract fun provideOpenSwitchgearVlUseCases (openSwitchgearVLUseCasesImpl: OpenSwitchgearVLUseCasesImpl) : OpenSwitchgearUseCases<OpenSwitchgearVl>
+
+
 
 
 

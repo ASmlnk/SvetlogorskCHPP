@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.__domain.interactor.shift_schedule.note_list
 
-import com.example.svetlogorskchpp.__data.repository.noteRequestWork.NoteRequestWorkRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__data.repository.preferences.RequestWorkPreferencesRepository
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult

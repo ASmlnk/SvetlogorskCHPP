@@ -42,6 +42,7 @@
         style="@style/TextViewStyleContent"
         android:layout_marginTop="16dp"
         android:text="@string/phase_protection"
+        android:textStyle="bold"
         android:textColor="@color/calendar_background"
         android:textSize="14sp" />
 
@@ -74,13 +75,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_phase_protection"
         android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_edit_text"
         tools:itemCount="2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
         style="@style/TextViewStyleContent"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         android:text="@string/earth_protection"
         android:textColor="@color/calendar_background"
         android:textSize="14sp" />
@@ -114,6 +118,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_earth_protection"
         android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/background_edit_text"
         android:layout_height="wrap_content"
         tools:itemCount="2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

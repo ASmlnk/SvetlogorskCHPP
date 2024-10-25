@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.model.firebase
 
 import com.example.svetlogorskchpp.SharedPreferencesManager
-import com.example.svetlogorskchpp.__data.repository.inspection.InspectionRepository
+import com.example.svetlogorskchpp.__data.repository.shift_schedule.inspection.InspectionRepository
 import com.example.svetlogorskchpp.model.inspectionSchedule.ChecklistInspection
 import com.example.svetlogorskchpp.model.ElectricalAssembly
 import com.example.svetlogorskchpp.model.ElectricalAssemblyFirebase

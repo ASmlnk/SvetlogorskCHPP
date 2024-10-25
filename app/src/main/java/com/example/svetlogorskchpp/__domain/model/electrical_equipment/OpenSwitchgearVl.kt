@@ -11,6 +11,7 @@ data class OpenSwitchgearVl(
     val cell: String,
     val voltage: VoltageOry,
     val isTransit: Boolean,
+    val isVl: Boolean,
     val typeSwitch: String,
     val typeInsTr: String,
     val automation: String,
