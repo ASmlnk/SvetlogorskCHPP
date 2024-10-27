@@ -90,16 +90,33 @@
         android:label="OpenSwitchgearVlEditFragment" >
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlFragment"
-        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.fragment.OpenSwitchgearVlFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.fragment.OpenSwitchgearVlListFragment"
         tools:layout="@layout/fragment_open_switchgear_vl"
         android:label="OpenSwitchgearVlFragment" >
         <action
             android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlEditFragment"
             app:destination="@id/openSwitchgearVlEditFragment" />
+        <action
+            android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlDialog"
+            app:destination="@id/openSwitchgearVlDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/openSwitchgearVlDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.fragment.OpenSwitchgearVlDialog"
+        tools:layout="@layout/dialog_open_switchgear_vl"
+        android:label="OpenSwitchgearVlDialog" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_openSwitchgearVlDialog_to_openSwitchgearVlEditFragment"
+            app:destination="@id/openSwitchgearVlEditFragment" />
+    </dialog>
 
 </navigation>

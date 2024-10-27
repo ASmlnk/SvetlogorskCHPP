@@ -48,10 +48,13 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             tvTsn.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_transformerOfOwnNeeds2)
             }
+            addItem.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
+            }
         }
         includeOryBinding.apply {
             tvOryTransformer.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
+
             }
             tvOryVl220.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlFragment)

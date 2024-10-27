@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class OpenSwitchgearVlViewModel @Inject constructor(
+class OpenSwitchgearVlListViewModel @Inject constructor(
     private val useCases: ElectricalEquipmentsUseCases<ElectricalEquipment.Vl>
 ): ViewModel() {
 

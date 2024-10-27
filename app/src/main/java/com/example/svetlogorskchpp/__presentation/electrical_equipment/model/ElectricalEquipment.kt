@@ -13,5 +13,4 @@ sealed class ElectricalEquipment {
         val cell: Int,
     ): ElectricalEquipment()
 
-
 }

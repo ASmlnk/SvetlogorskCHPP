@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rza_content_dialog"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:id="@+id/tv_automation_title"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/automation"
+        android:textColor="#A0C0A1" />
+
+    <TextView
+        android:id="@+id/tv_automation_content"
+        style="@style/TextViewStyleContentHomePageSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="34, 52, 53"
+        android:textColor="@color/calendar_background"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/tv_apv_title"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/apv"
+        android:textColor="@color/text_content_rza" />
+
+    <TextView
+        android:id="@+id/tv_apv_content"
+        style="@style/TextViewStyleContentHomePageSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="1.5/20"
+        android:textColor="@color/calendar_background"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/tv_phase_protection_title"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/phase_protection"
+        android:textColor="@color/text_content_rza" />
+
+    <TextView
+        android:id="@+id/tv_phase_protection_content"
+        style="@style/TextViewStyleContentHomePageSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
+        android:textColor="@color/text_input_assembly"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/tv_earth_protection_title"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/earth_protection"
+        android:textColor="@color/text_content_rza" />
+
+    <TextView
+        android:id="@+id/tv_earth_protection_content"
+        style="@style/TextViewStyleContentHomePageSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
+        android:textColor="@color/text_input_assembly"
+        android:textStyle="normal" />
+
+</LinearLayout>

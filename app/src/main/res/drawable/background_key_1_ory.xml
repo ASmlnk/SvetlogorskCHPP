@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@color/background_calendar_month_prev"/>
+<item
+    android:drawable="@drawable/key_1_2"
+    android:tint="@color/ory_key_background"
+    android:top="12dp"
+    android:bottom="12dp"
+    android:left="12dp"
+    android:right="12dp"/>
+</layer-list>

@@ -30,4 +30,6 @@
     <color name="light_blue_900">#FF01579B</color>
     <color name="color_request_work_calendar">#66BB6A</color>
     <color name="home_page_gradient">#107761</color>
+    <color name="text_content_rza">#A0C0A1</color>
+
 </resources>
