@@ -1,7 +1,9 @@
 package com.example.svetlogorskchpp.__domain.task_schedule.update_request_work
 
 import android.content.Context
+import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.svetlogorskchpp.__frameworks.RequestWorkUpdateBaseWorker
@@ -15,11 +17,17 @@ class TaskSchedulerUpdateRequestWorkBaseWorkerImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ) : TaskSchedulerUpdateRequestWorkBaseWorker {
 
+    val constraints = Constraints.Builder()
+        .setRequiredNetworkType(NetworkType.CONNECTED)
+        .build()
+
     override fun scheduleDailyTask12hour() {
         val workRequest = PeriodicWorkRequestBuilder<RequestWorkUpdateBaseWorker>(
             12,
             TimeUnit.HOURS
-        ).build()
+        )
+            .setConstraints(constraints)
+            .build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             REQUEST_WORK_UPDATE,

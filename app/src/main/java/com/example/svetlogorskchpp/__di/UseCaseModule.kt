@@ -51,6 +51,8 @@ import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.electi
 import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.electircal_equipments.ElectricalEquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearUseCases
 import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearVLUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
+import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCasesImpl
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.Module
 import dagger.Provides
@@ -215,6 +217,15 @@ class UseCaseModule {
         electricalEquipmentMapper: ElectricalEquipmentMapper
     ): ElectricalEquipmentsUseCases<ElectricalEquipment.Vl> {
         return ElectricalEquipmentVlUseCasesImpl(openSwitchgearVlRepository,electricalEquipmentMapper)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideUpdateLocaleUseCases(
+        repositoryOpenSwitchgearVlRepository: OpenSwitchgearRepository<OpenSwitchgearVlEntity>,
+        noteRequestWorkRepository: NoteRequestWorkRepository,
+    ): UpdateLocaleBaseUseCases {
+        return UpdateLocaleBaseUseCasesImpl(repositoryOpenSwitchgearVlRepository, noteRequestWorkRepository)
     }
 }
 

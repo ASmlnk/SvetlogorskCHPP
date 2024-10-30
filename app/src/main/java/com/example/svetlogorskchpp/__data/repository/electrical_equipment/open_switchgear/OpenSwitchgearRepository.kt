@@ -8,5 +8,5 @@ interface OpenSwitchgearRepository <T> {
     suspend fun saveItemOpenSwitchgear(openSwitchgearVlEntity: T) : SuccessResultFirebase
     fun getAllItemOpenSwitchgear(): Flow<List<T>?>
     fun getItemOpenSwitchgear(id: String): Flow<T?>
-    suspend fun clearTable()
+    suspend fun updateLocaleData()
 }

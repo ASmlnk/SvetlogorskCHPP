@@ -5,7 +5,9 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class OpenSwitchgearVlRepositoryImpl @Inject constructor(
@@ -44,19 +46,28 @@ class OpenSwitchgearVlRepositoryImpl @Inject constructor(
     }
 
     override fun getAllItemOpenSwitchgear(): Flow<List<OpenSwitchgearVlEntity>?> {
-        return dao.getAllItemOpenSwitchgear()
+        return dao.getAllItemOpenSwitchgearStream()
     }
 
     override fun getItemOpenSwitchgear(id: String): Flow<OpenSwitchgearVlEntity?> {
         return dao.getItemOpenSwitchgear(id)
     }
 
-    override suspend fun clearTable() {
+    private suspend fun clearTable() {
         dao.clearTable()
     }
 
-     suspend fun updateLocaleData() {
-
+     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
+         val openSwitchgearVlsFirebase = repositoryFirebase.getDocument<OpenSwitchgearVlEntity>(
+             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+             FirebaseKey.DOCUMENT_ORY,
+             OpenSwitchgearVlEntity::class.java)
+         val openSwitchgearVlsLocale = dao.getAllItemOpenSwitchgear()
+         if (openSwitchgearVlsFirebase == openSwitchgearVlsLocale) {
+             return@withContext
+         } else {
+             clearTable()
+             dao.insertAll(openSwitchgearVlsFirebase)
+         }
     }
-
 }

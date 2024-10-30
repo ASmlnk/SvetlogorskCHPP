@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
-import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorkerImpl
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val noteRequestWorkRepository: NoteRequestWorkRepository,
+    private val updateLocaleBaseUseCases: UpdateLocaleBaseUseCases,
     private val preferencesNotification: CalendarPreferencesNotificationUseCases,
     private val taskSchedulerNotificationWorker: TaskSchedulerNotificationWorker,
     private val taskSchedulerUpdateRequestWorkBaseWorker: TaskSchedulerUpdateRequestWorkBaseWorker
@@ -32,11 +32,16 @@ class MainActivityViewModel @Inject constructor(
             getRequestWorkFirebase()
             updateRequestWorkWorker()
             initNotification()
+            updateOpenSwitchgearVl()
         }
     }
 
     suspend fun getRequestWorkFirebase() {
-        noteRequestWorkRepository.getRequestWorkFirebase()
+        updateLocaleBaseUseCases.updateRequestWork()
+    }
+
+    suspend fun updateOpenSwitchgearVl() {
+        updateLocaleBaseUseCases.updateOpenSwitchgearVl()
     }
 
     fun updateRequestWorkWorker() {
