@@ -3,6 +3,8 @@ package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_swi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
@@ -14,8 +16,11 @@ import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_swit
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.SpinnerEditState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -32,6 +37,9 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
 
     private val _protectionUIState = MutableStateFlow(ProtectionUIState())
     val protectionUIState: StateFlow<ProtectionUIState> = _protectionUIState
+
+    private val _toastResultFlow = MutableSharedFlow<String>()
+    val toastResultFlow: SharedFlow<String> = _toastResultFlow
 
     fun <T> spinnerSaveState(spinnerOryParameter: SpinnerOryParameter, selectSpinner: T) {
         when (spinnerOryParameter) {
@@ -144,9 +152,12 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
             earthProtection = protectionUIState.value.earthProtection,
         )
         viewModelScope.launch {
-            useCases.saveItemOpenSwitchgear(parameterVl)
+            val result = useCases.saveItemOpenSwitchgear(parameterVl)
+            when (result) {
+                is OperationResult.Error -> _toastResultFlow.emit(result.massage)
+                is OperationResult.Success -> _toastResultFlow.emit(result.data)
+            }
         }
-
     }
 
     companion object {

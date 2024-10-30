@@ -13,6 +13,7 @@ import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDa
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.repository.electrical_equipment.open_switchgear.OpenSwitchgearRepository
 import com.example.svetlogorskchpp.__data.repository.electrical_equipment.open_switchgear.OpenSwitchgearVlRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
@@ -29,6 +30,8 @@ import com.example.svetlogorskchpp.__data.repository.shift_schedule.shiftPersonn
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.shiftPersonnel.ShiftPersonalRepositoryImpl
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -114,11 +117,26 @@ class RepositoryModule {
     }
 
     @Provides
+    fun provideGson(): Gson {
+        return GsonBuilder().create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRepository(
+        firebase: FirebaseFirestore,
+        gson: Gson
+    ): FirebaseRepository {
+        return FirebaseRepository(firebase,gson)
+    }
+
+    @Provides
     @Singleton
     fun provideOpenSwitchgearVlRepository(
-        openSwitchgearVlDao: OpenSwitchgearVlDao
+        openSwitchgearVlDao: OpenSwitchgearVlDao,
+        repositoryFirebase: FirebaseRepository
     ): OpenSwitchgearRepository<OpenSwitchgearVlEntity> {
-        return OpenSwitchgearVlRepositoryImpl(openSwitchgearVlDao)
+        return OpenSwitchgearVlRepositoryImpl(openSwitchgearVlDao, repositoryFirebase)
     }
 
 }

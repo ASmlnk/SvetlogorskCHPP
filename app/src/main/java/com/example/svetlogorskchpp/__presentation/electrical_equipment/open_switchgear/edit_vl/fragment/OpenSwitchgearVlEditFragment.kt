@@ -1,16 +1,22 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_vl.fragment
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.BaseFragment
+import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.adapter.ProtectionEditAdapter
@@ -20,10 +26,12 @@ import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_swit
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.factory.OpenSwitchgearVlEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwVlEditUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.SpinnerOryParameter
+import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_requests_work.model.Toast
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryNameBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryParameterBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryRzaBinding
 import com.example.svetlogorskchpp.databinding.FragmentOpenSwitchgearVlEditBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -98,6 +106,14 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
                 viewModel.protectionUIState.collect { state ->
                     phaseProtectionAdapter.submitList(state.phaseProtection)
                     earthProtectionAdapter.submitList(state.earthProtection)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.toastResultFlow.collect {
+                    showCustomSnackbar(binding.root, it)
                 }
             }
         }
@@ -308,5 +324,35 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
                 }
             }
         }
+    }
+
+    private fun showCustomSnackbar(view: View, text: String) {
+
+        val snackbar = Snackbar.make(view, text, Snackbar.LENGTH_LONG)
+
+        val snackbarView = snackbar.view
+        val background: Drawable? = ContextCompat.getDrawable(
+            requireContext(),
+            R.drawable.background_snakbar
+        )
+        snackbarView.background = background
+
+        val params = snackbarView.layoutParams as FrameLayout.LayoutParams
+        params.setMargins(0, 100, 0, 0)
+        params.gravity = Gravity.TOP
+        snackbarView.layoutParams = params
+
+        val textView =
+            snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+        textView.apply {
+            setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.floatingActionButton
+                )
+            )  // Цвет текста
+            textSize = 18f
+        }
+        snackbar.show()
     }
 }

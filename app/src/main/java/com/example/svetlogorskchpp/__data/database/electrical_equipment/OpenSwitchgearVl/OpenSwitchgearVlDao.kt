@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.SuccessResult
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +14,9 @@ interface OpenSwitchgearVlDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveItemOpenSwitchgear (openSwitchgearVlEntity: OpenSwitchgearVlEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(entities: List<OpenSwitchgearVlEntity>)
 
     @Query("SELECT * FROM open_switchgear_vl")
     fun getAllItemOpenSwitchgear(): Flow<List<OpenSwitchgearVlEntity>?>

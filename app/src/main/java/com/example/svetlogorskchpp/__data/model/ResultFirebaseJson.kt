@@ -1,5 +1,5 @@
 package com.example.svetlogorskchpp.__data.model
 
-data class NoteRequestWorkJSON(
+data class ResultFirebaseJson(
     var json: String = ""
 )

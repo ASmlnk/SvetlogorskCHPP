@@ -198,11 +198,13 @@ class UseCaseModule {
     @ViewModelScoped
     fun provideOpenSwitchgearVlUseCases(
         openSwitchgearVlRepository: OpenSwitchgearRepository<OpenSwitchgearVlEntity>,
-        openSwitchgearVlMapper: OpenSwitchgearVlMapper
+        openSwitchgearVlMapper: OpenSwitchgearVlMapper,
+        networkAvailableUseCase: NetworkAvailableUseCase
     ): OpenSwitchgearUseCases<OpenSwitchgearVl> {
         return OpenSwitchgearVLUseCasesImpl(
             openSwitchgearVlRepository,
-            openSwitchgearVlMapper
+            openSwitchgearVlMapper,
+            networkAvailableUseCase
         )
     }
 

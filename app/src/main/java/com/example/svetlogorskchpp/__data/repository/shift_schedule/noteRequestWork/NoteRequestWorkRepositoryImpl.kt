@@ -3,7 +3,8 @@ package com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequest
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
-import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJSON
+import com.example.svetlogorskchpp.__data.model.FirebaseKey
+import com.example.svetlogorskchpp.__data.model.ResultFirebaseJson
 import com.example.svetlogorskchpp.__data.model.NoteRequestWorkJsonList
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__domain.OperationResult
@@ -28,9 +29,10 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
 
     override suspend fun getRequestWorkFirebase() {
         withContext(Dispatchers.IO) {
-            val data = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE).get()
+            val data = firebase.collection(FirebaseKey.COLLECTION_REQUEST_WORK.getString)
+                .document(FirebaseKey.DOCUMENT_REQUEST_WORK.getString).get()
             val noteRequestWorkJSON =
-                data.await().toObject<NoteRequestWorkJSON>() ?: NoteRequestWorkJSON(json = "")
+                data.await().toObject<ResultFirebaseJson>() ?: ResultFirebaseJson(json = "")
 
             val noteRequestWorkEntityFirestore: List<NoteRequestWorkEntity> =
                 if (noteRequestWorkJSON.json.isEmpty()) {
@@ -61,7 +63,7 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
 
             firebase.enableNetwork()
             val noteRequestWorks = noteRequestWorkDao.getAll().toMutableList()
-            val removeEntity = noteRequestWorks.filter { it.id == noteRequestWorkEntity.id}
+            val removeEntity = noteRequestWorks.filter { it.id == noteRequestWorkEntity.id }
             if (removeEntity.isNotEmpty()) noteRequestWorks.removeAll(removeEntity)
             noteRequestWorks.add(noteRequestWorkEntity)
 
@@ -82,7 +84,8 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
         val json = gson.toJson(
             NoteRequestWorkJsonList(listRequestWork = noteRequestWorks)
         )
-        val docRef = firebase.collection(COLLECTION_FIREBASE).document(DOCUMENT_FIREBASE)
+        val docRef = firebase.collection(FirebaseKey.COLLECTION_REQUEST_WORK.getString)
+            .document(FirebaseKey.DOCUMENT_REQUEST_WORK.getString)
         val updateJson = mapOf("json" to json)
 
         try {
@@ -127,8 +130,6 @@ class NoteRequestWorkRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private const val COLLECTION_FIREBASE = "Заявки"
-        private const val DOCUMENT_FIREBASE = "requestWork"
         private const val ERROR_FIREBASE = "Заяка не добавлена!"
     }
 }
