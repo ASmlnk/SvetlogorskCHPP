@@ -75,7 +75,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="2dp"
                 android:text="@string/bys_system"
-                android:textColor="#1A394F"
+                android:textColor="@color/text_content_rza"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />
@@ -104,7 +104,7 @@
                 android:paddingVertical="2dp"
 
                 android:text="@string/cell"
-                android:textColor="#1A394F"
+                android:textColor="@color/text_content_rza"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />
