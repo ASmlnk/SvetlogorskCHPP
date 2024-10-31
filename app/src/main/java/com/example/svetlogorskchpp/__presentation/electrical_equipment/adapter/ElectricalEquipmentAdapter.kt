@@ -43,7 +43,7 @@ class ElectricalEquipmentVlHolder(val binding: ItemOpenSwitchgearVlBinding) :
             tvNameEquipment.text = item.nameEquipment
             tvTransit.isGone = !item.isTransit
             tvCell.text = itemView.resources.getString(R.string.cell, item.cell.toString())
-            tvOry.text = itemView.resources.getString(R.string.ory_item, item.voltageOry.str)
+            tvOry.text = itemView.resources.getString(R.string.ory_item, item.voltage.str)
             tvBysSystem.text = itemView.resources.getString(R.string.bys_system, item.bysSystem)
             linearLayout.setOnClickListener {
                 onClick(item.id)

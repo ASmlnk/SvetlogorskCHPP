@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
@@ -12,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="72dp"
         android:background="@color/background_calendar_month_prev"
         android:theme="@style/Widget.MaterialComponents.BottomNavigationView.Colored">
 
@@ -20,9 +19,10 @@
             android:id="@+id/appBar1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingVertical="8dp"
-            android:paddingHorizontal="16dp"
+            android:layout_marginTop="24dp"
             android:background="@color/background_calendar_month_prev"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="8dp"
             app:layout_scrollFlags="">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +48,8 @@
                     style="@style/TextViewStyleContent"
                     android:layout_marginStart="16dp"
                     android:text="Поиск"
-                    android:textStyle="bold"
                     android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView9"
                     app:layout_constraintStart_toEndOf="@+id/shapeableImageView9"
                     app:layout_constraintTop_toTopOf="@+id/shapeableImageView9" />
@@ -112,6 +112,18 @@
                         android:tint="@color/text_input_assembly"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/add_item_tr"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/background_with_arc"
+                        android:src="@drawable/baseline_add_24"
+                        android:tint="@color/color_request_work_calendar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/add_item" />
 
                     <ImageView
                         android:layout_width="48dp"
@@ -359,9 +371,9 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="72dp"
-                            android:alpha="0.85"
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
+                            android:alpha="0.85"
                             android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

@@ -16,7 +16,7 @@ class ElectricalEquipmentVlUseCasesImpl @Inject constructor(
     override fun getElectricalEquipments(): Flow<List<ElectricalEquipment.Vl>> {
         return repository.getAllItemOpenSwitchgear().map { entities ->
             entities?./*filter { it.isVl }?.*/map { mapper.toElectricalEquipmentVl(it) }
-                ?.sortedBy { it.cell }?.sortedByDescending { it.voltageOry.int }
+                ?.sortedBy { it.cell }?.sortedByDescending { it.voltage.int }
                 ?: emptyList()
         }
     }

@@ -1,12 +1,7 @@
 package com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
 
 @Entity (tableName = "open_switchgear_vl")
 data class OpenSwitchgearVlEntity(

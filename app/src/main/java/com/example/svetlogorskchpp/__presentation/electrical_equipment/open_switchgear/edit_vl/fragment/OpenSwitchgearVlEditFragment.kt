@@ -18,7 +18,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.adapter.ProtectionEditAdapter
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_vl.adapter.CustomSpinnerAdapter
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_vl.adapter.CustomSpinnerVoltageAdapter
@@ -26,7 +26,6 @@ import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_swit
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.factory.OpenSwitchgearVlEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwVlEditUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.SpinnerOryParameter
-import com.example.svetlogorskchpp.__presentation.shift_schedule.shift_schedule_requests_work.model.Toast
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryNameBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryParameterBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryRzaBinding
@@ -56,7 +55,7 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
     private val listKeys =
         listOf(KeyOry.KEY_0, KeyOry.KEY_1, KeyOry.KEY_2, KeyOry.KEY_3, KeyOry.KEY_4)
     private val listVoltage =
-        listOf(VoltageOry.KV, VoltageOry.KV_220, VoltageOry.KV_110)
+        listOf(Voltage.KV, Voltage.KV_220, Voltage.KV_110)
 
 
     private var _includeOryParameterBinding: ContentLayoutEditOryParameterBinding? = null
@@ -95,7 +94,7 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
                         spinner2shr.setSelection(listKeys.indexOf(state.keyShr2))
                         spinnerLr.setSelection(listKeys.indexOf(state.keyLr))
                         spinnerOr.setSelection(listKeys.indexOf(state.keyOr))
-                        spinnerVoltage.setSelection(listVoltage.indexOf(state.voltageOry))
+                        spinnerVoltage.setSelection(listVoltage.indexOf(state.voltage))
                     }
                 }
             }
@@ -314,7 +313,7 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
                     position: Int,
                     id: Long,
                 ) {
-                    val selectedItem = parent.getItemAtPosition(position) as VoltageOry
+                    val selectedItem = parent.getItemAtPosition(position) as Voltage
                     viewModel.spinnerSaveState(
                         spinnerOryParameter = SpinnerOryParameter.VOLTAGE,
                         selectSpinner = selectedItem

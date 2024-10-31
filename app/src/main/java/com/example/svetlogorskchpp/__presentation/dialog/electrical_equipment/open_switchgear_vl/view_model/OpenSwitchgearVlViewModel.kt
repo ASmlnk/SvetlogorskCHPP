@@ -44,8 +44,8 @@ class OpenSwitchgearVlViewModel @AssistedInject constructor(
                             keyShr2 = openSwitchgearVl.keyShr2,
                             keyLr = openSwitchgearVl.keyLr,
                             keyOr = openSwitchgearVl.keyOr,
-                            phaseProtection = openSwitchgearVl.phaseProtection.joinToString(separator = "\n\n"),
-                            earthProtection = openSwitchgearVl.earthProtection.joinToString(separator = "\n\n")
+                            phaseProtection = openSwitchgearVl.phaseProtection.joinToString(separator = "\n"),
+                            earthProtection = openSwitchgearVl.earthProtection.joinToString(separator = "\n")
                         )
                     }
                 }

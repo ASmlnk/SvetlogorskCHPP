@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__domain.mapper.electrical_equipment
 
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class ElectricalEquipmentMapper @Inject constructor() {
                 nameEquipment = name,
                 isTransit = isTransit,
                 bysSystem = bysSystem,
-                voltageOry = voltage.let { VoltageOry.valueOf(it) },
+                voltage = voltage.let { Voltage.valueOf(it) },
                 cell = toInt(cell)
             )
         }

@@ -18,9 +18,10 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_delete"
         android:layout_width="48dp"
+        android:padding="12dp"
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
-        android:tint="@color/red_schema"
-        android:src="@drawable/baseline_horizontal_rule_24"/>
+        android:tint="#AE3B37"
+        android:src="@drawable/delete"/>
 
 </LinearLayout>

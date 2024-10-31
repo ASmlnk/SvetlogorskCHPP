@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewStyleHeading"
+            android:text="@string/edit_tr"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <include
+            android:id="@+id/content_ory_name"
+            layout="@layout/content_layout_edit_ory_name" />
+
+        <include
+            android:id="@+id/content_type_tr"
+            layout="@layout/content_layout_edit_type_tr"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_spare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ChipShiftSchedule"
+                android:layout_marginStart="16dp"
+                android:text="@string/spare"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_three_winding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ChipShiftSchedule"
+                android:layout_marginEnd="16dp"
+                android:text="@string/three_winding"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_marginBottom="-16dp"
+            android:textColor="@color/color_request_work_calendar"
+            android:text="@string/vn"/>
+
+        <include
+            android:id="@+id/content_ory_parameter_vn"
+            layout="@layout/content_layout_edit_ory_parameter" />
+
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_marginBottom="-16dp"
+            android:textColor="@color/color_request_work_calendar"
+            android:text="@string/srn"/>
+
+        <include
+            android:id="@+id/content_ory_parameter_srn"
+            layout="@layout/content_layout_edit_ory_parameter" />
+
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/color_request_work_calendar"
+            android:text="@string/nn"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/shift_schedule_note_background"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_add_tsn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/baseline_add_24"
+                    android:text="@string/add_tsn"
+                    android:gravity="start|center"
+                    style="@style/ButtonStyleRequestWork"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tsn"
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:background="@drawable/shift_schedule_note_background"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_add_tg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/baseline_add_24"
+                    android:text="@string/add_tg"
+                    android:gravity="start|center"
+                    style="@style/ButtonStyleRequestWork"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tg"
+                    android:layout_margin="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/content_rza"
+            layout="@layout/content_layout_edit_ory_rza"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apply"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="320dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

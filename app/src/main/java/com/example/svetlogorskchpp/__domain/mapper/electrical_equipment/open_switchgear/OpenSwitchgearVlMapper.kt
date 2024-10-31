@@ -2,7 +2,7 @@ package com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.open_sw
 
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -18,7 +18,7 @@ class OpenSwitchgearVlMapper @Inject constructor() {
                 panelMcp=panelMcp,
                 bysSystem=bysSystem,
                 cell=cell,
-                voltage = voltage.let { VoltageOry.valueOf(it) }?: VoltageOry.KV,
+                voltage = voltage.let { Voltage.valueOf(it) }?: Voltage.KV,
                 isTransit=isTransit,
                 isVl=isVl,
                 typeSwitch=typeSwitch,

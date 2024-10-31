@@ -1,14 +1,14 @@
 package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model
 
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 
 data class OpSwiVlDialogUIState(
     val name: String = "",
     val panelMcp: String= "",
     val bysSystem: String= "",
     val cell: String= "",
-    val voltage: VoltageOry= VoltageOry.KV,
+    val voltage: Voltage= Voltage.KV,
     val isTransit: Boolean= false,
     val typeSwitch: String= "",
     val typeInsTr: String= "",

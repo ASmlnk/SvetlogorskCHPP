@@ -4,13 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__presentation.home_page.view_model.HomePageViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryBinding
 import com.example.svetlogorskchpp.databinding.FragmentHomePageBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
+
+    private val viewModel: HomePageViewModel by viewModels()
 
     private var _includeOryBinding: ContentLayoutOryBinding? = null
     private val includeOryBinding get() = _includeOryBinding!!
@@ -27,9 +37,26 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         super.onViewCreated(view, savedInstanceState)
         _includeOryBinding = ContentLayoutOryBinding.bind(binding.contentOry.root)
 
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    binding.swipeRefreshLayout.isRefreshing = it
+                }
+            }
+        }
 
         binding.apply {
+
+            swipeRefreshLayout.setOnRefreshListener {
+                lifecycleScope.launch {
+                    viewModel.updateLocaleBase()
+                }
+            }
+
+            addItemTr.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrEditFragment)
+            }
+
             layoutSearchView.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
             }

@@ -1,6 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.model
 
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 
 sealed class ElectricalEquipment {
 
@@ -9,7 +9,7 @@ sealed class ElectricalEquipment {
         val nameEquipment: String,
         val isTransit: Boolean,
         val bysSystem: String,
-        val voltageOry: VoltageOry,
+        val voltage: Voltage,
         val cell: Int,
     ): ElectricalEquipment()
 

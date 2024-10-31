@@ -67,7 +67,7 @@
             android:text="@string/apply"
             style="@style/ButtonStyleRequestWork"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="240dp"/>
+            android:layout_marginBottom="320dp"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

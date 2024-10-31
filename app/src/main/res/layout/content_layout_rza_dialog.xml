@@ -11,7 +11,8 @@
         style="@style/TextViewStyleContentHomePageSubsection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/automation"
         android:textColor="#A0C0A1" />
@@ -33,9 +34,10 @@
         style="@style/TextViewStyleContentHomePageSubsection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/apv"
+        android:text="@string/apv_s"
         android:textColor="@color/text_content_rza" />
 
     <TextView
@@ -55,7 +57,8 @@
         style="@style/TextViewStyleContentHomePageSubsection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/phase_protection"
         android:textColor="@color/text_content_rza" />
@@ -77,7 +80,8 @@
         style="@style/TextViewStyleContentHomePageSubsection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
         android:text="@string/earth_protection"
         android:textColor="@color/text_content_rza" />

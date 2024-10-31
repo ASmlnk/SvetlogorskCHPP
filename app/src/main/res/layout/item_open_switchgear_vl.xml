@@ -75,7 +75,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="2dp"
                 android:text="@string/bys_system"
-                android:textColor="@color/floatingActionButton"
+                android:textColor="#1A394F"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />
@@ -102,8 +102,9 @@
                 android:background="@drawable/background_item_open_switchgear_parameter_right"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="2dp"
+
                 android:text="@string/cell"
-                android:textColor="@color/text_recycle"
+                android:textColor="#1A394F"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry" />

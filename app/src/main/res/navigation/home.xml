@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearVlFragment"
             app:destination="@id/openSwitchgearVlFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgearTrEditFragment"
+            app:destination="@id/openSwitchgearTrEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -118,5 +121,15 @@
             android:id="@+id/action_openSwitchgearVlDialog_to_openSwitchgearVlEditFragment"
             app:destination="@id/openSwitchgearVlEditFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/openSwitchgearTrEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_tr.fragment.OpenSwitchgearTrEditFragment"
+        tools:layout="@layout/fragment_open_switchgear_tr_edit"
+        android:label="OpenSwitchgearTrEditFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 
 </navigation>

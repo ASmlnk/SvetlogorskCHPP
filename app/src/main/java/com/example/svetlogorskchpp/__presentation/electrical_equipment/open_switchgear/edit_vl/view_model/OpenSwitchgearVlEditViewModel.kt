@@ -3,11 +3,10 @@ package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_swi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageOry
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.factory.OpenSwitchgearVlEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwVlEditUIState
@@ -20,7 +19,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -47,7 +45,7 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
             SpinnerOryParameter.SH_R_2 -> _spinnerUIState.update { it.copy(keyShr2 = selectSpinner as KeyOry) }
             SpinnerOryParameter.LR -> _spinnerUIState.update { it.copy(keyLr = selectSpinner as KeyOry) }
             SpinnerOryParameter.OR -> _spinnerUIState.update { it.copy(keyOr = selectSpinner as KeyOry) }
-            SpinnerOryParameter.VOLTAGE -> _spinnerUIState.update { it.copy(voltageOry = selectSpinner as VoltageOry) }
+            SpinnerOryParameter.VOLTAGE -> _spinnerUIState.update { it.copy(voltage = selectSpinner as Voltage) }
         }
     }
 
@@ -76,7 +74,7 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
                             keyShr2 = it.keyShr2,
                             keyLr = it.keyLr,
                             keyOr = it.keyOr,
-                            voltageOry = it.voltage
+                            voltage = it.voltage
                         )
                     }
                     _protectionUIState.update { old ->
@@ -137,7 +135,7 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
             panelMcp = opSwVlEditUIState.panelMcp,
             bysSystem = opSwVlEditUIState.bysSystem,
             cell = opSwVlEditUIState.cell,
-            voltage = spinnerUIState.value.voltageOry,
+            voltage = spinnerUIState.value.voltage,
             isTransit = opSwVlEditUIState.isTransit,
             isVl = opSwVlEditUIState.isVl,
             typeSwitch = opSwVlEditUIState.typeSwitch,

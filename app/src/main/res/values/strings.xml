@@ -22,6 +22,7 @@
     <string name="zemlia">Земляная</string>
     <string name="faznai">Фазная</string>
     <string name="apv">АПВ</string>
+    <string name="apv_s">АПВ, сек</string>
     <string name="text_gsy_apv">
         АПВ - %2$s
        \nГЩУ - %1$s
@@ -288,5 +289,17 @@
     <string name="cell">яч. %s</string>
     <string name="lr_tr">ЛР\n(ТР)</string>
     <string name="parameter_cell_ory">%1$sСШ яч.%2$s ОРУ-%3$s</string>
+    <string name="edit_tr">Редактор силовых трансформаторов</string>
+    <string name="vn">ВН</string>
+    <string name="name_type">Тип трансформатора</string>
+    <string name="name_type_smile">Тип тр-ра</string>
+    <string name="parameter_type_tr">Параметры трансформатора</string>
+    <string name="parameter_type_tr_smile">Параметры тр-ра</string>
+    <string name="srn">СН</string>
+    <string name="transcript_type">Расшифровка типа</string>
+    <string name="nn">НН</string>
+    <string name="add_tsn">ТСН</string>
+    <string name="add_tg">генератор</string>
+    <string name="three_winding">Трехобмоточный</string>
 
 </resources>

@@ -14,7 +14,7 @@
             android:id="@+id/tv_switch_title"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="24dp"
             android:textColor="@color/text_recycle_smile"
@@ -47,7 +47,8 @@
     <TextView
         android:id="@+id/tv_instr_title"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
         android:textColor="@color/text_recycle_smile"
         android:layout_height="wrap_content"
