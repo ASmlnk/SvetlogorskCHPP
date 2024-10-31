@@ -66,6 +66,42 @@ class OpenSwitchgearTrEditViewModel @AssistedInject constructor(
         }
     }
 
+    fun addEarthProtection(protection: String) {
+        val earthProtections = _protectionUIState.value.earthProtection.toMutableList().apply {
+            add(protection)
+        }
+        _protectionUIState.update {
+            it.copy(earthProtection = earthProtections)
+        }
+    }
+
+    fun deleteEarthProtection(protection: String) {
+        val earthProtections = _protectionUIState.value.earthProtection.toMutableList().apply {
+            remove(protection)
+        }
+        _protectionUIState.update {
+            it.copy(earthProtection = earthProtections)
+        }
+    }
+
+    fun addPhaseProtection(protection: String) {
+        val phaseProtections = _protectionUIState.value.phaseProtection.toMutableList().apply {
+            add(protection)
+        }
+        _protectionUIState.update {
+            it.copy(phaseProtection = phaseProtections)
+        }
+    }
+
+    fun deletePhaseProtection(protection: String) {
+        val phaseProtections = _protectionUIState.value.phaseProtection.toMutableList().apply {
+            remove(protection)
+        }
+        _protectionUIState.update {
+            it.copy(phaseProtection = phaseProtections)
+        }
+    }
+
 
 
 

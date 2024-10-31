@@ -81,6 +81,30 @@ class OpenSwitchgearTrEditFragment : BaseFragment<FragmentOpenSwitchgearTrEditBi
 
         setupSpinner(includeOryVnParameterBinding, VoltageSide.VN)
         setupSpinner(includeOrySnParameterBinding, VoltageSide.SN)
+        setupProtectionView()
+    }
+
+    private fun setupProtectionView() {
+        phaseProtectionAdapter = ProtectionEditAdapter {protection ->
+            viewModel.deletePhaseProtection(protection)
+        }
+        earthProtectionAdapter= ProtectionEditAdapter {protection ->
+            viewModel.deleteEarthProtection(protection)
+        }
+        includeOryRzaBinding.apply {
+            rvPhaseProtection.adapter = phaseProtectionAdapter
+            ivPhaseProtection.setOnClickListener {
+                val textProtection = etPhaseProtection.text.toString()
+                if(textProtection.isNotEmpty()) viewModel.addPhaseProtection(textProtection)
+                etPhaseProtection.setText("")
+            }
+            rvEarthProtection.adapter = earthProtectionAdapter
+            ivEarthProtection.setOnClickListener {
+                val textProtection = etEarthProtection.text.toString()
+                if(textProtection.isNotEmpty()) viewModel.addEarthProtection(textProtection)
+                etEarthProtection.setText("")
+            }
+        }
     }
 
     private fun setupSpinner(binding: ContentLayoutEditOryParameterBinding, voltageSide: VoltageSide) {
