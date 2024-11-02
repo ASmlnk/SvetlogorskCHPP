@@ -20,6 +20,7 @@ class FirebaseRepository @Inject constructor(
         documentId: FirebaseKey,
         clazz: Class<T>
     ): List<T> = withContext(Dispatchers.IO) {
+        firebase.enableNetwork()
         try {
             val documentSnapshot = firebase.collection(collectionPath.getString)
                 .document(documentId.getString).get().await()
@@ -46,6 +47,7 @@ class FirebaseRepository @Inject constructor(
         collectionPath: FirebaseKey,
         documentId: FirebaseKey
     ): SuccessResultFirebase = withContext(Dispatchers.IO){
+        firebase.enableNetwork()
         val jsonData = gson.toJson(dataList)
         val docRef = firebase.collection(collectionPath.getString)
             .document(documentId.getString)

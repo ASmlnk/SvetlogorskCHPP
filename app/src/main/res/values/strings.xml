@@ -287,7 +287,7 @@
     <string name="ory_item">ОРУ-%s</string>
     <string name="bys_system">%sСШ</string>
     <string name="cell">яч. %s</string>
-    <string name="lr_tr">ЛР\n(ТР)</string>
+    <string name="lr_tr">ЛР (ТР)</string>
     <string name="parameter_cell_ory">%1$sСШ яч.%2$s ОРУ-%3$s</string>
     <string name="edit_tr">Редактор силовых трансформаторов</string>
     <string name="vn">ВН</string>

@@ -120,14 +120,14 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
 
     fun setupViewKeyOry(state: OpSwiVlDialogUIState) {
         includeOryParameterBinding.apply {
-            layoutShr.isGone = state.keyShr1 == KeyOry.KEY_0 && state.keyShr2 == KeyOry.KEY_0
-            layoutLr.isGone = state.keyLr == KeyOry.KEY_0 && state.keyOr == KeyOry.KEY_0
+            layoutKey.isGone = state.keyShr1 == KeyOry.KEY_0 && state.keyShr2 == KeyOry.KEY_0 &&
+                    state.keyLr == KeyOry.KEY_0 && state.keyOr == KeyOry.KEY_0
 
             if (state.keyShr1 == KeyOry.KEY_0) {
                 tvShr1.visibility = View.INVISIBLE
                 ivShr1.visibility = View.INVISIBLE
             } else {
-                layoutShr.isGone = false
+                layoutKey.isGone = false
                 tvShr1.visibility = View.VISIBLE
                 ivShr1.visibility = View.VISIBLE
                 ivShr1.setImageResource(keyOrySrc(state.keyShr1))
@@ -137,7 +137,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
                 tvShr2.visibility = View.INVISIBLE
                 ivShr2.visibility = View.INVISIBLE
             } else {
-                layoutShr.isGone = false
+                layoutKey.isGone = false
                 tvShr2.visibility = View.VISIBLE
                 ivShr2.visibility = View.VISIBLE
                 ivShr2.setImageResource(keyOrySrc(state.keyShr2))
@@ -147,7 +147,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
                 tvLr.visibility = View.INVISIBLE
                 ivLr.visibility = View.INVISIBLE
             } else {
-                layoutLr.isGone = false
+                layoutKey.isGone = false
                 tvLr.visibility = View.VISIBLE
                 ivLr.visibility = View.VISIBLE
                 ivLr.setImageResource(keyOrySrc(state.keyLr))
@@ -157,7 +157,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
                 tvOr.visibility = View.INVISIBLE
                 ivOr.visibility = View.INVISIBLE
             } else {
-                layoutLr.isGone = false
+                layoutKey.isGone = false
                 tvOr.visibility = View.VISIBLE
                 ivOr.visibility = View.VISIBLE
                 ivOr.setImageResource(keyOrySrc(state.keyOr))

@@ -52,6 +52,13 @@
         android:textColor="@color/calendar_background"
         android:textStyle="normal" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_layout_line_gradient"
+        android:layout_height="3dp"/>
+
     <TextView
         android:id="@+id/tv_phase_protection_title"
         style="@style/TextViewStyleContentHomePageSubsection"
@@ -59,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/phase_protection"
         android:textColor="@color/text_content_rza" />
 
@@ -75,6 +82,13 @@
         android:textColor="@color/text_input_assembly"
         android:textStyle="normal" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_layout_line_gradient"
+        android:layout_height="3dp"/>
+
     <TextView
         android:id="@+id/tv_earth_protection_title"
         style="@style/TextViewStyleContentHomePageSubsection"
@@ -82,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/earth_protection"
         android:textColor="@color/text_content_rza" />
 
