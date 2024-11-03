@@ -299,7 +299,7 @@
     <string name="transcript_type">Расшифровка типа</string>
     <string name="nn">НН</string>
     <string name="add_tsn">ТСН</string>
-    <string name="add_tg">генератор</string>
+    <string name="add_tg">ТГ</string>
     <string name="three_winding">Трехобмоточный</string>
 
 </resources>

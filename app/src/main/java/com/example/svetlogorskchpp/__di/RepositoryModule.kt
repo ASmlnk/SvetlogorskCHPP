@@ -6,13 +6,16 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
-import com.example.svetlogorskchpp.__data.repository.electrical_equipment.open_switchgear.OpenSwitchgearRepository
-import com.example.svetlogorskchpp.__data.repository.electrical_equipment.open_switchgear.OpenSwitchgearVlRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearTrEquipmentRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearVlEquipmentRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepositoryImpl
@@ -135,8 +138,17 @@ class RepositoryModule {
     fun provideOpenSwitchgearVlRepository(
         openSwitchgearVlDao: OpenSwitchgearVlDao,
         repositoryFirebase: FirebaseRepository
-    ): OpenSwitchgearRepository<OpenSwitchgearVlEntity> {
-        return OpenSwitchgearVlRepositoryImpl(openSwitchgearVlDao, repositoryFirebase)
+    ): EquipmentRepository<OpenSwitchgearVlEntity> {
+        return OpenSwitchgearVlEquipmentRepositoryImpl(openSwitchgearVlDao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOpenSwitchgearTrRepository(
+        openSwitchgearTrDao: OpenSwitchgearTrDao,
+        repositoryFirebase: FirebaseRepository
+    ): EquipmentRepository<OpenSwitchgearTrEntity> {
+        return OpenSwitchgearTrEquipmentRepositoryImpl(openSwitchgearTrDao, repositoryFirebase)
     }
 
 }

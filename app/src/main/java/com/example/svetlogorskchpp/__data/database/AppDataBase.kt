@@ -7,6 +7,8 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarMyNoteTagEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
@@ -17,8 +19,14 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagEntity
 
 @Database(
-    entities = [CalendarMyNoteTagEntity::class, NoteEntity::class, RequestWorkTagEntity::class, NoteRequestWorkEntity::class, OpenSwitchgearVlEntity::class],
-    version = 6
+    entities = [
+        CalendarMyNoteTagEntity::class,
+        NoteEntity::class,
+        RequestWorkTagEntity::class,
+        NoteRequestWorkEntity::class,
+        OpenSwitchgearVlEntity::class,
+        OpenSwitchgearTrEntity::class],
+    version = 7
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -27,6 +35,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun requestWorkTagDao(): RequestWorkTagDao
     abstract fun requestWorkDao(): NoteRequestWorkDao
     abstract fun openSwitchgearVlDao(): OpenSwitchgearVlDao
+    abstract fun openSwitchgearTrDao(): OpenSwitchgearTrDao
 }
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -73,7 +82,8 @@ val MIGRATION_4_5 = object : Migration(4, 5) {
 
 val MIGRATION_5_6 = object : Migration(5, 6) {
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("""
+        database.execSQL(
+            """
             CREATE TABLE IF NOT EXISTS open_switchgear_vl (
                 id TEXT NOT NULL PRIMARY KEY,
                 name TEXT NOT NULL,
@@ -94,7 +104,53 @@ val MIGRATION_5_6 = object : Migration(5, 6) {
                 phaseProtection TEXT NOT NULL,
                 earthProtection TEXT NOT NULL
             )
-        """.trimIndent())
+        """.trimIndent()
+        )
+    }
+}
+
+val MIGRATION_6_7 = object : Migration(6, 7) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            """
+                    CREATE TABLE IF NOT EXISTS open_switchgear_tr (
+                        id TEXT PRIMARY KEY NOT NULL,
+                        name TEXT NOT NULL,
+                        panelMcp TEXT NOT NULL,
+                        type TEXT NOT NULL,
+                        parameterType TEXT NOT NULL,
+                        transcriptType TEXT NOT NULL,
+                        additionally TEXT NOT NULL,
+                        isSpare INTEGER NOT NULL DEFAULT 0,
+                        isThreeWinding INTEGER NOT NULL DEFAULT 0,
+
+                        bysSystemVn TEXT NOT NULL,
+                        cellVn TEXT NOT NULL,
+                        voltageVn TEXT NOT NULL,
+                        typeSwitchVn TEXT NOT NULL,
+                        typeInsTrVn TEXT NOT NULL,
+                        keyShr1Vn TEXT NOT NULL,
+                        keyShr2Vn TEXT NOT NULL,
+                        keyLrVn TEXT NOT NULL,
+                        keyOrVn TEXT NOT NULL,
+
+                        bysSystemSn TEXT NOT NULL,
+                        cellSn TEXT NOT NULL,
+                        voltageSn TEXT NOT NULL,
+                        typeSwitchSn TEXT NOT NULL,
+                        typeInsTrSn TEXT NOT NULL,
+                        keyShr1Sn TEXT NOT NULL,
+                        keyShr2Sn TEXT NOT NULL,
+                        keyLrSn TEXT NOT NULL,
+                        keyOrSn TEXT NOT NULL,
+
+                        automation TEXT NOT NULL,
+                        apv TEXT NOT NULL,
+                        phaseProtection TEXT NOT NULL,
+                        earthProtection TEXT NOT NULL
+                    )
+                """.trimIndent()
+        )
     }
 }
 

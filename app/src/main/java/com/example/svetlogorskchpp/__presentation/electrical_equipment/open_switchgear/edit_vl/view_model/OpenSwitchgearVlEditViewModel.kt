@@ -7,7 +7,7 @@ import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
-import com.example.svetlogorskchpp.__domain.usecases.electrical_equipment.open_switchgear.OpenSwitchgearUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.factory.OpenSwitchgearVlEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwVlEditUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.ProtectionUIState
@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
-    private val useCases: OpenSwitchgearUseCases<OpenSwitchgearVl>,
+    private val useCases: EquipmentsUseCases<OpenSwitchgearVl>,
     @Assisted private val id: String,
 ) : ViewModel() {
 
@@ -51,7 +51,7 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
-            useCases.getItemOpenSwitchgear(id).collect { vl ->
+            useCases.getItemEquipment(id).collect { vl ->
                 vl?.let {
                     _opSwVlEditUIState.update { old ->
                         old.copy(
@@ -150,10 +150,10 @@ class OpenSwitchgearVlEditViewModel @AssistedInject constructor(
             earthProtection = protectionUIState.value.earthProtection,
         )
         viewModelScope.launch {
-            val result = useCases.saveItemOpenSwitchgear(parameterVl)
-            when (result) {
-                is OperationResult.Error -> _toastResultFlow.emit(result.massage)
-                is OperationResult.Success -> _toastResultFlow.emit(result.data)
+            val resultToast = useCases.saveItemEquipment(parameterVl)
+            when (resultToast) {
+                is OperationResult.Error -> _toastResultFlow.emit(resultToast.massage)
+                is OperationResult.Success -> _toastResultFlow.emit(resultToast.data)
             }
         }
     }

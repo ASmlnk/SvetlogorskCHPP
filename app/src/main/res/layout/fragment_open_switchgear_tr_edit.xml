@@ -56,6 +56,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_vn"
             android:layout_width="match_parent"
             style="@style/TextViewStyleContent"
             android:layout_marginTop="16dp"
@@ -71,6 +72,7 @@
             layout="@layout/content_layout_edit_ory_parameter" />
 
         <TextView
+            android:id="@+id/tv_sn"
             android:layout_width="match_parent"
             style="@style/TextViewStyleContent"
             android:layout_marginTop="16dp"

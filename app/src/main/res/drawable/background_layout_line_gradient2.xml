@@ -4,7 +4,7 @@
     android:thickness="0dp">
     <gradient
         android:angle="180"
-        android:centerColor="@color/text_input_assembly"
+        android:centerColor="@color/floatingActionButton"
         android:endColor="@color/background_calendar_month_prev"
         android:startColor="@color/background_calendar_month_prev" />
 </shape>

@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__domain.model.electrical_equipment
 
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.VoltageTr
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 
 data class OpenSwitchgearTr(
     val id: String,
@@ -16,7 +16,7 @@ data class OpenSwitchgearTr(
 
     val bysSystemVn: String,
     val cellVn: String,
-    val voltageVn: VoltageTr,
+    val voltageVn: Voltage,
     val typeSwitchVn: String,
     val typeInsTrVn: String,
     val keyShr1Vn: KeyOry,
@@ -26,7 +26,7 @@ data class OpenSwitchgearTr(
 
     val bysSystemSn: String,
     val cellSn: String,
-    val voltageSn: VoltageTr,
+    val voltageSn: Voltage,
     val typeSwitchSn: String,
     val typeInsTrSn: String,
     val keyShr1Sn: KeyOry,

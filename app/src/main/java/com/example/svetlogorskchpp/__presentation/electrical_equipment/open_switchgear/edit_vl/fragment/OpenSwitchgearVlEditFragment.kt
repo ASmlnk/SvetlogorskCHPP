@@ -1,22 +1,16 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.edit_vl.fragment
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.FrameLayout
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.example.svetlogorskchpp.BaseFragment
-import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.BaseEditFragment
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.adapter.ProtectionEditAdapter
@@ -30,13 +24,12 @@ import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryNameBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryParameterBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryRzaBinding
 import com.example.svetlogorskchpp.databinding.FragmentOpenSwitchgearVlEditBinding
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBinding>() {
+class OpenSwitchgearVlEditFragment : BaseEditFragment<FragmentOpenSwitchgearVlEditBinding>() {
 
     private val args: OpenSwitchgearVlEditFragmentArgs by navArgs()
 
@@ -48,9 +41,6 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
             idVl = args.id
         )
     }
-
-    private lateinit var phaseProtectionAdapter: ProtectionEditAdapter
-    private lateinit var earthProtectionAdapter: ProtectionEditAdapter
 
     private val listKeys =
         listOf(KeyOry.KEY_0, KeyOry.KEY_1, KeyOry.KEY_2, KeyOry.KEY_3, KeyOry.KEY_4)
@@ -123,7 +113,14 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
         _includeOryRzaBinding = ContentLayoutEditOryRzaBinding.bind(binding.contentRza.root)
 
         setupSpinner()
-        setupProtectionView()
+
+        setupProtectionView(
+            binding = includeOryRzaBinding,
+            onClickPhaseProtection = viewModel::deletePhaseProtection,
+            onClickEarthProtection = viewModel::deleteEarthProtection,
+            addPhaseProtection = viewModel::addPhaseProtection,
+            addEarthProtection = viewModel::addEarthProtection
+        )
 
         binding.apply {
             chipTransit.setOnCheckedChangeListener { _, isChecked ->
@@ -204,29 +201,6 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
             apv = includeOryRzaBinding.etApv.text.toString()
         )
         viewModel.saveParameterVl(opSwVlEditUIState)
-    }
-
-    private fun setupProtectionView() {
-        phaseProtectionAdapter = ProtectionEditAdapter {protection ->
-            viewModel.deletePhaseProtection(protection)
-        }
-        earthProtectionAdapter= ProtectionEditAdapter {protection ->
-            viewModel.deleteEarthProtection(protection)
-        }
-        includeOryRzaBinding.apply {
-            rvPhaseProtection.adapter = phaseProtectionAdapter
-            ivPhaseProtection.setOnClickListener {
-                val textProtection = etPhaseProtection.text.toString()
-                if(textProtection.isNotEmpty()) viewModel.addPhaseProtection(textProtection)
-                etPhaseProtection.setText("")
-            }
-            rvEarthProtection.adapter = earthProtectionAdapter
-                ivEarthProtection.setOnClickListener {
-                val textProtection = etEarthProtection.text.toString()
-                if(textProtection.isNotEmpty()) viewModel.addEarthProtection(textProtection)
-                    etEarthProtection.setText("")
-            }
-        }
     }
 
     private fun setupSpinner() {
@@ -323,35 +297,5 @@ class OpenSwitchgearVlEditFragment : BaseFragment<FragmentOpenSwitchgearVlEditBi
                 }
             }
         }
-    }
-
-    private fun showCustomSnackbar(view: View, text: String) {
-
-        val snackbar = Snackbar.make(view, text, Snackbar.LENGTH_LONG)
-
-        val snackbarView = snackbar.view
-        val background: Drawable? = ContextCompat.getDrawable(
-            requireContext(),
-            R.drawable.background_snakbar
-        )
-        snackbarView.background = background
-
-        val params = snackbarView.layoutParams as FrameLayout.LayoutParams
-        params.setMargins(0, 100, 0, 0)
-        params.gravity = Gravity.TOP
-        snackbarView.layoutParams = params
-
-        val textView =
-            snackbarView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-        textView.apply {
-            setTextColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.floatingActionButton
-                )
-            )  // Цвет текста
-            textSize = 18f
-        }
-        snackbar.show()
     }
 }
