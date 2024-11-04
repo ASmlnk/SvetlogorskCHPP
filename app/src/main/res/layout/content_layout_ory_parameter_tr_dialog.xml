@@ -5,33 +5,28 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_voltage"
+        style="@style/TextViewStyleContentHomePageSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="24dp"
 
-        <TextView
-            android:id="@+id/tv_switch_title"
-            style="@style/TextViewStyleContentHomePageSubsection"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="@string/switch_ory_parameter"
-            android:textColor="@color/text_recycle_smile" />
+        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:text="@string/name_voltage_ory"
+        android:textColor="@color/orange_zero_vision" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_edit_content"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="bottom"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/baseline_edit_24"
-            android:tint="#C06C04" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_switch_title"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/switch_ory_parameter"
+        android:textColor="@color/text_recycle_smile" />
 
     <TextView
         android:id="@+id/tv_switch_content"
@@ -151,7 +146,7 @@
                 style="@style/TextViewStyleContent"
                 android:layout_width="match_parent"
                 android:gravity="center"
-                android:text="@string/lr"
+                android:text="@string/tr"
                 android:layout_marginBottom="-4dp"
                 android:textColor="@color/floatingActionButton"
                 android:textSize="16sp"

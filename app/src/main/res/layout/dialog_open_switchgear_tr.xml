@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shift_schedule_dialog_sorted_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextViewStyleContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="АТ-4"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_spare"
+                style="@style/TextViewStyleContent"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_request_work_text_permission_c"
+                android:paddingHorizontal="4dp"
+                android:text="@string/spare"
+                android:textColor="@color/text_recycle"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background_item_tr_parameter_dialog"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ory_key_background"
+                    style="@style/TextViewStyleContentHomePageSection"
+                    android:text="ТДНГ"
+                    android:textSize="24sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:id="@+id/tv_type_parameter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_content_rza"
+                    style="@style/TextViewStyleContentHomePageSubsection"
+                    android:text="3*40000/242/121/10,5"
+                    android:paddingStart="16dp"
+                    android:textSize="20sp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:gravity="start"/>
+
+                    <TextView
+                        android:id="@+id/tv_text_ory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="12dp"
+                        android:paddingStart="22dp"
+                        android:paddingTop="6dp"
+                        android:layout_gravity="end"
+                        android:background="@drawable/background_item_open_switchgear_tr_parameter_right_d"
+                        style="@style/TextViewStyleContent"
+                        android:textColor="@color/text_content_rza"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingBottom="2dp"
+                        android:text="  2СШ яч. 2 ОРУ - 220\n2СШ яч. 2 ОРУ - 220"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:background="@drawable/background_dialog_content"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="4dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_edit_content"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/baseline_edit_24"
+                android:tint="@color/home_page_gradient" />
+
+            <include
+                android:layout_marginTop="-12dp"
+                android:id="@+id/content_ory_vn_parameter"
+                layout="@layout/content_layout_ory_parameter_tr_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include
+                android:layout_marginTop="16dp"
+                android:id="@+id/content_ory_sn_parameter"
+                layout="@layout/content_layout_ory_parameter_tr_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_panel_title"
+                    style="@style/TextViewStyleContentHomePageSubsection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/panel"
+                    android:textColor="#567993" />
+
+                <TextView
+                    android:id="@+id/tv_panel_content"
+                    style="@style/TextViewStyleContentHomePageSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="34, 52, 53"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/home_page_gradient"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/content_rza"
+                layout="@layout/content_layout_rza_dialog" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-24dp"
+                android:background="@drawable/background_dialog_tr_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_transcript_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    style="@style/TextViewStyleContentHomePageSubsection"
+                    android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
+                    android:textSize="20sp"
+                    android:gravity="start"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+
+                    android:background="@drawable/background_layout_line_gradient"
+                    android:layout_height="3dp"/>
+
+                <TextView
+                    android:id="@+id/tv_additionally"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:paddingBottom="24dp"
+                    style="@style/TextViewStyleContentHomePageSubsection"
+                    android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
+                    android:textSize="20sp"
+                    android:gravity="start"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

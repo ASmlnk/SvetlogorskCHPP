@@ -17,7 +17,7 @@
     <string name="name_tsn">Трансформаторы собственных нужд</string>
     <string name="shr_1">1ШР</string>
     <string name="shr_2">2ШР</string>
-    <string name="lr">ЛР (ТР)</string>
+    <string name="lr">ЛР</string>
     <string name="or">ОР</string>
     <string name="zemlia">Земляная</string>
     <string name="faznai">Фазная</string>
@@ -287,8 +287,9 @@
     <string name="ory_item">ОРУ-%s</string>
     <string name="bys_system">%sСШ</string>
     <string name="cell">яч. %s</string>
-    <string name="lr_tr">ЛР (ТР)</string>
+    <string name="tr">ТР</string>
     <string name="parameter_cell_ory">%1$sСШ яч.%2$s ОРУ-%3$s</string>
+    <string name="name_voltage_ory">ОРУ - %s кВ</string>
     <string name="edit_tr">Редактор силовых трансформаторов</string>
     <string name="vn">ВН</string>
     <string name="name_type">Тип трансформатора</string>

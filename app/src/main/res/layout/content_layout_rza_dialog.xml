@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background_rza_content_dialog"
     android:orientation="vertical"
-    android:paddingBottom="24dp">
+    android:paddingBottom="48dp">
 
     <TextView
         android:id="@+id/tv_automation_title"
