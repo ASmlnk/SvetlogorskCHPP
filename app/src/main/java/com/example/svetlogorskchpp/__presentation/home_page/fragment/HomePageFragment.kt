@@ -81,7 +81,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         }
         includeOryBinding.apply {
             tvOryTransformer.setOnClickListener {
-
+                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrListFragment)
             }
             tvOryVl220.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlFragment)

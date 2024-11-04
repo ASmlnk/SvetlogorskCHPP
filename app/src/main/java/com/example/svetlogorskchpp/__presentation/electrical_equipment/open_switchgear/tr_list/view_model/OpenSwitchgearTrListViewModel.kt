@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.view_model
+package com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.tr_list.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class OpenSwitchgearVlListViewModel @Inject constructor(
-    private val useCases: EquipmentsListUseCases<ElectricalEquipment.Vl>
-): ViewModel() {
+class OpenSwitchgearTrListViewModel @Inject constructor(
+    private val useCases: EquipmentsListUseCases<ElectricalEquipment.Tr>
+) : ViewModel() {
 
     val electricalEquipmentStateFlow = useCases.getElectricalEquipments().stateIn(
         viewModelScope,

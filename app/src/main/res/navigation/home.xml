@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearTrEditFragment"
             app:destination="@id/openSwitchgearTrEditFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_openSwitchgearTrListFragment"
+            app:destination="@id/openSwitchgearTrListFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -130,6 +133,15 @@
             android:name="id"
             app:argType="string"
             android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/openSwitchgearTrListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.tr_list.fragment.OpenSwitchgearTrListFragment"
+        tools:layout="@layout/fragment_open_switchgear_tr"
+        android:label="OpenSwitchgearTrListFragment" >
+        <action
+            android:id="@+id/action_openSwitchgearTrListFragment_to_openSwitchgearTrEditFragment"
+            app:destination="@id/openSwitchgearTrEditFragment" />
     </fragment>
 
 </navigation>

@@ -1,12 +1,14 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
+import com.example.svetlogorskchpp.databinding.ItemOpenSwitchgearTrBinding
 import com.example.svetlogorskchpp.databinding.ItemOpenSwitchgearVlBinding
 
 class ElectricalEquipmentAdapter(
@@ -15,12 +17,14 @@ class ElectricalEquipmentAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
             is ElectricalEquipment.Vl -> (holder as ElectricalEquipmentVlHolder).bind(item, onClick)
+            is ElectricalEquipment.Tr -> (holder as ElectricalEquipmentTrHolder).bind(item, onClick)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             0 -> ElectricalEquipmentVlHolder.inflateFrom(parent)
+            1 -> ElectricalEquipmentTrHolder.inflateFrom(parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -28,6 +32,7 @@ class ElectricalEquipmentAdapter(
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
             is ElectricalEquipment.Vl -> 0
+            is ElectricalEquipment.Tr -> 1
         }
     }
 }
@@ -56,6 +61,34 @@ class ElectricalEquipmentVlHolder(val binding: ItemOpenSwitchgearVlBinding) :
             val layoutInflater = LayoutInflater.from(parentContext.context)
             val binding = ItemOpenSwitchgearVlBinding.inflate(layoutInflater, parentContext, false)
             return ElectricalEquipmentVlHolder(binding)
+        }
+    }
+}
+
+class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.Tr,
+        onClick: (id: String) -> Unit,
+    ) {
+        binding.apply {
+            tvName.text = item.nameEquipment
+            tvSpare.visibility = if (item.isSpare) View.VISIBLE else View.INVISIBLE
+            tvType.text = item.type
+            tvTypeParameter.text = item.typeParameter
+            tvTextOry.text = item.parameterOry
+            linearLayout.setOnClickListener {
+                onClick(item.id)
+            }
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentTrHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemOpenSwitchgearTrBinding.inflate(layoutInflater, parentContext, false)
+            return ElectricalEquipmentTrHolder(binding)
         }
     }
 }

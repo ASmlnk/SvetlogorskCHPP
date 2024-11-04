@@ -4,7 +4,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
-import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.ElectricalEquipmentMapper
+import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.ElectricalEquipmentListMapper
 import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.open_switchgear.OpenSwitchgearTrMapper
 import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.open_switchgear.OpenSwitchgearVlMapper
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
@@ -14,6 +14,7 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUs
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearVLUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentOpenSwitchgearTrListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentOpenSwitchgearVlListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCasesImpl
@@ -60,9 +61,18 @@ class UseCaseEquipmentModule {
     @ViewModelScoped
     fun provideElectricalEquipmentVlUseCases(
         openSwitchgearVlRepository: EquipmentRepository<OpenSwitchgearVlEntity>,
-        electricalEquipmentMapper: ElectricalEquipmentMapper
+        electricalEquipmentListMapper: ElectricalEquipmentListMapper
     ): EquipmentsListUseCases<ElectricalEquipment.Vl> {
-        return EquipmentOpenSwitchgearVlListUseCasesImpl(openSwitchgearVlRepository,electricalEquipmentMapper)
+        return EquipmentOpenSwitchgearVlListUseCasesImpl(openSwitchgearVlRepository,electricalEquipmentListMapper)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideElectricalEquipmentTrUseCases(
+        openSwitchgearTrRepository: EquipmentRepository<OpenSwitchgearTrEntity>,
+        electricalEquipmentListMapper: ElectricalEquipmentListMapper
+    ): EquipmentsListUseCases<ElectricalEquipment.Tr> {
+        return EquipmentOpenSwitchgearTrListUseCasesImpl(openSwitchgearTrRepository,electricalEquipmentListMapper)
     }
 
     @Provides

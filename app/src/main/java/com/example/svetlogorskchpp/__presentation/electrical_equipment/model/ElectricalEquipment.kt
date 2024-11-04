@@ -13,4 +13,13 @@ sealed class ElectricalEquipment {
         val cell: Int,
     ): ElectricalEquipment()
 
+    data class Tr(
+        val id: String,
+        val nameEquipment: String,
+        val isSpare: Boolean,
+        val type: String,
+        val typeParameter: String,
+        val parameterOry: String,
+    ): ElectricalEquipment()
+
 }
