@@ -17,6 +17,7 @@ class ItemElectricalEquipmentCallback: DiffUtil.ItemCallback<ElectricalEquipment
     ): Boolean {
         return when {
             oldItem is ElectricalEquipment.Vl && newItem is ElectricalEquipment.Vl -> oldItem.id == newItem.id
+            oldItem is ElectricalEquipment.Tr && newItem is ElectricalEquipment.Tr -> oldItem.id == newItem.id
 
             else -> false
         }

@@ -75,6 +75,12 @@ class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
         binding.apply {
             tvName.text = item.nameEquipment
             tvSpare.visibility = if (item.isSpare) View.VISIBLE else View.INVISIBLE
+
+            if (item.isThreeWinding) {
+                tvTextOry.setBackgroundResource(R.drawable.background_item_open_switchgear_tr_parameter_right_2)
+            } else {
+                tvTextOry.setBackgroundResource(R.drawable.background_item_open_switchgear_tr_parameter_right)
+            }
             tvType.text = item.type
             tvTypeParameter.text = item.typeParameter
             tvTextOry.text = item.parameterOry

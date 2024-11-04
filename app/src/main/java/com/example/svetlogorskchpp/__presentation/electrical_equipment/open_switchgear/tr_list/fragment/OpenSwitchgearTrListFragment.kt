@@ -42,8 +42,9 @@ class OpenSwitchgearTrListFragment: BaseFragment<FragmentOpenSwitchgearTrBinding
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.electricalEquipmentStateFlow.collect {
-                    adapter.submitList(it)
+                viewModel.electricalEquipmentStateFlow.collect { listTr ->
+                    val sortedList = listTr.sortedBy { it.nameNumber }
+                    adapter.submitList(sortedList)
                 }
             }
         }

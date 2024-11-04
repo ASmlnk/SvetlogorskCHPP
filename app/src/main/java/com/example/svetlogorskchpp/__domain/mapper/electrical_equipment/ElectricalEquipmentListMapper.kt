@@ -25,8 +25,8 @@ class ElectricalEquipmentListMapper @Inject constructor() {
         val voltageVn = openSwitchgearTrEntity.voltageVn.let { Voltage.valueOf(it) }
         val voltageSn = openSwitchgearTrEntity.voltageSn.let { Voltage.valueOf(it) }
         val parameter = if (openSwitchgearTrEntity.isThreeWinding) {
-            "  ${openSwitchgearTrEntity.bysSystemVn}СШ яч.${openSwitchgearTrEntity.cellVn} ОРУ-${voltageVn.str}" + "\n" +
-                    "${openSwitchgearTrEntity.bysSystemSn}СШ яч.${openSwitchgearTrEntity.cellSn} ОРУ-${voltageSn.str}"
+            "  ${openSwitchgearTrEntity.bysSystemVn}СШ яч. ${openSwitchgearTrEntity.cellVn} ОРУ-${voltageVn.str}" + "\n" +
+                    "${openSwitchgearTrEntity.bysSystemSn}СШ яч. ${openSwitchgearTrEntity.cellSn} ОРУ-${voltageSn.str}"
         } else {
             "${openSwitchgearTrEntity.bysSystemVn}СШ яч.${openSwitchgearTrEntity.cellVn} ОРУ-${voltageVn.str}"
         }
@@ -40,6 +40,8 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 type = type,
                 typeParameter = parameterType,
                 parameterOry = parameter,
+                isThreeWinding = isThreeWinding,
+                nameNumber = toInt(name)
             )
         }
     }

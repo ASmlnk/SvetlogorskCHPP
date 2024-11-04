@@ -20,6 +20,7 @@ class HomePageViewModel @Inject constructor(
     suspend fun updateLocaleBase() {
         _uiState.update { true }
         updateLocaleBaseUseCases.updateOpenSwitchgearVl()
+        updateLocaleBaseUseCases.updateOpenSwitchgearTr()
         _uiState.update { false }
     }
 }

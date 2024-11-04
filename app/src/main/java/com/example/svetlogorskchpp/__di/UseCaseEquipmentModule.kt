@@ -79,8 +79,9 @@ class UseCaseEquipmentModule {
     @ViewModelScoped
     fun provideUpdateLocaleUseCases(
         repositoryOpenSwitchgearVlRepository: EquipmentRepository<OpenSwitchgearVlEntity>,
+        repositoryOpenSwitchgearTrRepository: EquipmentRepository<OpenSwitchgearTrEntity>,
         noteRequestWorkRepository: NoteRequestWorkRepository,
     ): UpdateLocaleBaseUseCases {
-        return UpdateLocaleBaseUseCasesImpl(repositoryOpenSwitchgearVlRepository, noteRequestWorkRepository)
+        return UpdateLocaleBaseUseCasesImpl(repositoryOpenSwitchgearVlRepository,repositoryOpenSwitchgearTrRepository, noteRequestWorkRepository)
     }
 }

@@ -20,6 +20,8 @@ sealed class ElectricalEquipment {
         val type: String,
         val typeParameter: String,
         val parameterOry: String,
+        val nameNumber: Int,
+        val isThreeWinding: Boolean
     ): ElectricalEquipment()
 
 }
