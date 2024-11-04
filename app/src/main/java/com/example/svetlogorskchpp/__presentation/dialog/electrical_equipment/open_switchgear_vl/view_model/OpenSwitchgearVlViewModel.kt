@@ -22,7 +22,6 @@ class OpenSwitchgearVlViewModel @AssistedInject constructor(
     private val _uiState = MutableStateFlow<OpSwiVlDialogUIState>(OpSwiVlDialogUIState())
     val uiState: StateFlow<OpSwiVlDialogUIState> get() = _uiState
 
-
     init {
         viewModelScope.launch {
             useCases.getItemEquipment(id).collect { openSwitchgearVl ->
@@ -51,7 +50,6 @@ class OpenSwitchgearVlViewModel @AssistedInject constructor(
             }
         }
     }
-
 
     companion object {
         fun providesFactory(

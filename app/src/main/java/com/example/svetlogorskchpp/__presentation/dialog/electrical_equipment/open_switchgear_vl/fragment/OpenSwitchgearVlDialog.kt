@@ -118,7 +118,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
         }
     }
 
-    fun setupViewKeyOry(state: OpSwiVlDialogUIState) {
+    private fun setupViewKeyOry(state: OpSwiVlDialogUIState) {
         includeOryParameterBinding.apply {
             layoutKey.isGone = state.keyShr1 == KeyOry.KEY_0 && state.keyShr2 == KeyOry.KEY_0 &&
                     state.keyLr == KeyOry.KEY_0 && state.keyOr == KeyOry.KEY_0
@@ -165,7 +165,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
         }
     }
 
-    fun keyOrySrc(key: KeyOry): Int {
+    private fun keyOrySrc(key: KeyOry): Int {
         return when (key) {
             KeyOry.KEY_0 -> 0
             KeyOry.KEY_1 -> R.drawable.background_key_1_ory

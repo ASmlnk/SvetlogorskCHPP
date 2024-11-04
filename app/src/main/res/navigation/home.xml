@@ -140,8 +140,21 @@
         tools:layout="@layout/fragment_open_switchgear_tr"
         android:label="OpenSwitchgearTrListFragment" >
         <action
-            android:id="@+id/action_openSwitchgearTrListFragment_to_openSwitchgearTrEditFragment"
-            app:destination="@id/openSwitchgearTrEditFragment" />
+            android:id="@+id/action_openSwitchgearTrListFragment_to_openSwitchgearTrDialog"
+            app:destination="@id/openSwitchgearTrDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/openSwitchgearTrDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.fragment.OpenSwitchgearTrDialog"
+        tools:layout="@layout/dialog_open_switchgear_tr"
+        android:label="OpenSwitchgearTrDialog" >
+        <action
+            android:id="@+id/action_openSwitchgearTrDialog_to_openSwitchgearTrEditFragment"
+            app:destination="@id/openSwitchgearTrEditFragment" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </dialog>
 
 </navigation>

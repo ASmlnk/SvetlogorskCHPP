@@ -84,7 +84,7 @@
             <include
                 android:id="@+id/content_ory_parameter"
                 layout="@layout/content_layout_ory_parameter_dialog"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
 

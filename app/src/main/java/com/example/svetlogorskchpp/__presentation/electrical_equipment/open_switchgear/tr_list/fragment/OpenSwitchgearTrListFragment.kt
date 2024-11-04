@@ -12,8 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter.ElectricalEquipmentAdapter
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.tr_list.view_model.OpenSwitchgearTrListViewModel
-import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.fragment.OpenSwitchgearVlListFragmentDirections
-import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.view_model.OpenSwitchgearVlListViewModel
 import com.example.svetlogorskchpp.databinding.FragmentOpenSwitchgearTrBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,8 +23,7 @@ class OpenSwitchgearTrListFragment: BaseFragment<FragmentOpenSwitchgearTrBinding
     private val viewModel: OpenSwitchgearTrListViewModel by viewModels()
 
     private val adapter = ElectricalEquipmentAdapter { id ->
-        val action = OpenSwitchgearTrListFragmentDirections.actionOpenSwitchgearTrListFragmentToOpenSwitchgearTrEditFragment(id)
-           // OpenSwitchgearVlListFragmentDirections.actionOpenSwitchgearVlFragmentToOpenSwitchgearVlDialog(id)
+        val action = OpenSwitchgearTrListFragmentDirections.actionOpenSwitchgearTrListFragmentToOpenSwitchgearTrDialog (id)
         findNavController().navigate(action)
     }
 
