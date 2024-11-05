@@ -12,7 +12,7 @@
         android:topRightRadius="20dp" />
     <gradient
         android:angle="135"
-        android:centerColor="@color/floatingActionButton"
-        android:endColor="#132939"
-        android:startColor="#132939" />
+        android:centerColor="@color/text_recycle_smile"
+        android:endColor="#1F425C"
+        android:startColor="#1F425C" />
 </shape>

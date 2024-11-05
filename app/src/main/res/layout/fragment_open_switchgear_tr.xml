@@ -35,7 +35,7 @@
         android:paddingBottom="2dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/text_recycle"
+        android:background="#1D4058"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

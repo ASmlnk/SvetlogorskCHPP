@@ -288,7 +288,8 @@
     <string name="bys_system">%sСШ</string>
     <string name="cell">яч. %s</string>
     <string name="tr">ТР</string>
-    <string name="parameter_cell_ory">%1$sСШ яч.%2$s ОРУ-%3$s</string>
+    <string name="parameter_cell_ory">%1$sСШ яч. %2$s ОРУ - %3$sкВ</string>
+    <string name="parameter_cell_vn_sn_ory">\u0020\u0020%1$sСШ яч. %2$s ОРУ - %3$sкВ\n%4$sСШ яч. %5$s ОРУ - %6$sкВ</string>
     <string name="name_voltage_ory">ОРУ - %s кВ</string>
     <string name="edit_tr">Редактор силовых трансформаторов</string>
     <string name="vn">ВН</string>

@@ -73,7 +73,7 @@
                     android:paddingStart="16dp"
                     android:textSize="20sp"
                     android:paddingEnd="8dp"
-                    android:paddingBottom="4dp"
+                    android:paddingBottom="16dp"
                     android:gravity="start"/>
 
                     <TextView
@@ -90,7 +90,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:paddingBottom="2dp"
-                        android:text="  2СШ яч. 2 ОРУ - 220\n2СШ яч. 2 ОРУ - 220"/>
+                        android:text="  2СШ яч. 2 ОРУ - 220"/>
 
             </LinearLayout>
 
