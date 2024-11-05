@@ -12,11 +12,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.view_model.OpenSwitchgearTrViewModel
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiTrDialogUIState
-import com.example.svetlogorskchpp.databinding.ContentLayoutOryParameterDialogBinding
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiVlDialogUIState
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryParameterTrDialogBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaDialogBinding
 import com.example.svetlogorskchpp.databinding.DialogOpenSwitchgearTrBinding
@@ -123,5 +124,88 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             }
         }
 
+        setupViewKeyOry(keyShr1 = state.keyShr1Vn, keyShr2 = state.keyShr2Vn, keyLr = state.keyLrVn, keyOr = state.keyOrVn, includeOryParameterVnBinding)
+        setupViewKeyOry(keyShr1 = state.keyShr1Sn, keyShr2 = state.keyShr2Sn, keyLr = state.keyLrSn, keyOr = state.keyOrSn, includeOryParameterSnBinding)
+
+        includeOryParameterVnBinding.apply {
+            tvSwitchContent.text = state.typeSwitchVn
+            tvInstrContent.text = state.typeInsTrVn
+            tvVoltage.text = resources.getString(R.string.name_voltage_ory, state.voltageVn.str)
+        }
+        includeOryParameterSnBinding.apply {
+            tvSwitchContent.text = state.typeSwitchSn
+            tvInstrContent.text = state.typeInsTrSn
+            tvVoltage.text = resources.getString(R.string.name_voltage_ory, state.voltageSn.str)
+        }
+        includeOryRzaBinding.apply {
+            tvApvContent.text =state.apv
+            tvAutomationContent.text =state.automation
+            tvEarthProtectionContent.text =state.earthProtection
+            tvPhaseProtectionContent.text =state.phaseProtection
+        }
+
+    }
+
+    private fun setupViewKeyOry(
+        keyShr1: KeyOry,
+        keyShr2: KeyOry,
+        keyLr: KeyOry,
+        keyOr: KeyOry,
+        includeBinding: ContentLayoutOryParameterTrDialogBinding,
+    ) {
+        includeBinding.apply {
+            layoutKey.isGone = keyShr1 == KeyOry.KEY_0 && keyShr2 == KeyOry.KEY_0 &&
+                    keyLr == KeyOry.KEY_0 && keyOr == KeyOry.KEY_0
+
+            if (keyShr1 == KeyOry.KEY_0) {
+                tvShr1.visibility = View.INVISIBLE
+                ivShr1.visibility = View.INVISIBLE
+            } else {
+                layoutKey.isGone = false
+                tvShr1.visibility = View.VISIBLE
+                ivShr1.visibility = View.VISIBLE
+                ivShr1.setImageResource(keyOrySrc(keyShr1))
+            }
+
+            if (keyShr2 == KeyOry.KEY_0) {
+                tvShr2.visibility = View.INVISIBLE
+                ivShr2.visibility = View.INVISIBLE
+            } else {
+                layoutKey.isGone = false
+                tvShr2.visibility = View.VISIBLE
+                ivShr2.visibility = View.VISIBLE
+                ivShr2.setImageResource(keyOrySrc(keyShr2))
+            }
+
+            if (keyLr == KeyOry.KEY_0) {
+                tvLr.visibility = View.INVISIBLE
+                ivLr.visibility = View.INVISIBLE
+            } else {
+                layoutKey.isGone = false
+                tvLr.visibility = View.VISIBLE
+                ivLr.visibility = View.VISIBLE
+                ivLr.setImageResource(keyOrySrc(keyLr))
+            }
+
+            if (keyOr == KeyOry.KEY_0) {
+                tvOr.visibility = View.INVISIBLE
+                ivOr.visibility = View.INVISIBLE
+            } else {
+                layoutKey.isGone = false
+                tvOr.visibility = View.VISIBLE
+                ivOr.visibility = View.VISIBLE
+                ivOr.setImageResource(keyOrySrc(keyOr))
+            }
+        }
+    }
+
+    private fun keyOrySrc(key: KeyOry): Int {
+        return when (key) {
+            KeyOry.KEY_0 -> 0
+            KeyOry.KEY_1 -> R.drawable.background_key_1_ory
+            KeyOry.KEY_2 -> R.drawable.background_key_2_ory
+            KeyOry.KEY_3 -> R.drawable.background_key_3_ory
+            KeyOry.KEY_4 -> R.drawable.background_key_4_ory
+        }
     }
 }

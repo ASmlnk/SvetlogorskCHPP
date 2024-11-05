@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiTrDialogUIState
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow

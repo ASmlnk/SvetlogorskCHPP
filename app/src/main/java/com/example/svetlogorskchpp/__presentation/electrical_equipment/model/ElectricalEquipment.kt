@@ -8,6 +8,7 @@ sealed class ElectricalEquipment {
         val id: String,
         val nameEquipment: String,
         val isTransit: Boolean,
+        val isVl: Boolean,
         val bysSystem: String,
         val voltage: Voltage,
         val cell: Int,

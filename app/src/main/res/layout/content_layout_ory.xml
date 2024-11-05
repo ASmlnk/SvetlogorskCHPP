@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:text="ШСВ, ОВ, ТН"
+        android:text="@string/shv_ov_tn"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_ory_other"
         app:layout_constraintEnd_toEndOf="parent"

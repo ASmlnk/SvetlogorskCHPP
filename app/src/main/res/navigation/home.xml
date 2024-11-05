@@ -110,6 +110,9 @@
         <action
             android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlDialog"
             app:destination="@id/openSwitchgearVlDialog" />
+        <argument
+            android:name="filter"
+            app:argType="com.example.svetlogorskchpp.__presentation.home_page.EquipmentFilter" />
     </fragment>
     <dialog
         android:id="@+id/openSwitchgearVlDialog"

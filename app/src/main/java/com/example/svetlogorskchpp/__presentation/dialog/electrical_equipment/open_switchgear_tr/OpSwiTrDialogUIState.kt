@@ -1,4 +1,4 @@
-package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model
+package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr
 
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage

@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__presentation.home_page.EquipmentFilter
 import com.example.svetlogorskchpp.__presentation.home_page.view_model.HomePageViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryBinding
 import com.example.svetlogorskchpp.databinding.FragmentHomePageBinding
@@ -84,7 +85,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrListFragment)
             }
             tvOryVl220.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlFragment)
+                val action = HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(EquipmentFilter.ORY_VL)
+                findNavController().navigate(action)
+            }
+            tvOryOther.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(EquipmentFilter.ORY_OTHER)
+                findNavController().navigate(action)
             }
         }
     }

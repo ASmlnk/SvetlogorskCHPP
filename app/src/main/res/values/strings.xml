@@ -304,5 +304,6 @@
     <string name="add_tg">ТГ</string>
     <string name="three_winding">Трехобмоточный</string>
     <string name="tr_name">Силовые трансформаторы ОРУ</string>
+    <string name="shv_ov_tn">ШСВ, ОВ, ТН</string>
 
 </resources>

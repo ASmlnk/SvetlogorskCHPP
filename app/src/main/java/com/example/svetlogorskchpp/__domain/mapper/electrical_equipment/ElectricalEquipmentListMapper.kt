@@ -16,7 +16,8 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 isTransit = isTransit,
                 bysSystem = bysSystem,
                 voltage = voltage.let { Voltage.valueOf(it) },
-                cell = toInt(cell)
+                cell = toInt(cell),
+                isVl = isVl
             )
         }
     }
