@@ -11,6 +11,8 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.note.NoteEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
@@ -25,8 +27,9 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
         RequestWorkTagEntity::class,
         NoteRequestWorkEntity::class,
         OpenSwitchgearVlEntity::class,
-        OpenSwitchgearTrEntity::class],
-    version = 7
+        OpenSwitchgearTrEntity::class,
+        TransformerOwnNeedsEntity::class],
+    version = 8
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -36,6 +39,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun requestWorkDao(): NoteRequestWorkDao
     abstract fun openSwitchgearVlDao(): OpenSwitchgearVlDao
     abstract fun openSwitchgearTrDao(): OpenSwitchgearTrDao
+    abstract fun transformerOwnNeedsDao(): TransformerOwnNeedsDao
 }
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -154,3 +158,31 @@ val MIGRATION_6_7 = object : Migration(6, 7) {
     }
 }
 
+val MIGRATION_7_8 = object : Migration(7, 8) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            """
+            CREATE TABLE transformer_own_needs (
+                id TEXT PRIMARY KEY NOT NULL,
+                name TEXT NOT NULL,
+                panelMcp TEXT NOT NULL,
+                type TEXT NOT NULL,
+                parameterType TEXT NOT NULL,
+                transcriptType TEXT NOT NULL,
+                additionally TEXT NOT NULL,
+                isSpare INTEGER NOT NULL,
+                powerSupplyId TEXT NOT NULL,
+                powerSupplyCell TEXT NOT NULL,
+                powerSupplyName TEXT NOT NULL,
+                voltage TEXT NOT NULL,
+                typeSwitch TEXT NOT NULL,
+                typeInsTr TEXT NOT NULL,
+                automation TEXT NOT NULL,
+                apv TEXT NOT NULL,
+                phaseProtection TEXT NOT NULL,
+                earthProtection TEXT NOT NULL
+            )
+        """.trimIndent()
+        )
+    }
+}

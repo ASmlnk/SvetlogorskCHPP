@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_tsn_10_3"
+        android:layout_marginTop="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tsn_10_3"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tsn_10_3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_tsn_10_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_tsn_10_3"
+        app:layout_constraintTop_toTopOf="@+id/iv_tsn_10_3" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_tsn_10_6"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_tsn_10_3" />
+
+    <TextView
+        android:id="@+id/tv_tsn_10_6"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tsn_10_6"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_tsn_10_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_tsn_10_6"
+        app:layout_constraintTop_toTopOf="@+id/iv_tsn_10_6" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_tsn_3_04"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_tsn_10_6"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_tsn_3_04"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tsn_3_04"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_tsn_3_04"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_tsn_3_04"
+        app:layout_constraintTop_toTopOf="@+id/iv_tsn_3_04" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_tsn_6_04"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_tsn_3_04"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_tsn_6_04"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tsn_6_04"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_tsn_6_04"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_tsn_6_04"
+        app:layout_constraintTop_toTopOf="@+id/iv_tsn_6_04" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

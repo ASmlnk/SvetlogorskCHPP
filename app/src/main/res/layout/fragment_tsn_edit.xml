@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewStyleHeading"
+            android:text="@string/tsn"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <include
+            android:id="@+id/content_name"
+            layout="@layout/content_layout_edit_ory_name" />
+
+        <EditText
+            android:id="@+id/et_switch"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/switch_ory_parameter"
+            android:inputType="textMultiLine|textVisiblePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_instrument_transformer"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp"
+            android:hint="@string/instrument_transformer"
+            android:inputType="textMultiLine|textVisiblePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/content_type_tr"
+            layout="@layout/content_layout_edit_type_tr"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_spare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ChipShiftSchedule"
+                android:layout_marginStart="16dp"
+                android:text="@string/spare"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+
+            <Spinner
+                android:id="@+id/spinner_voltage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:layout_marginStart="0dp"
+                android:background="@drawable/shift_schedule_compound_shift_inspection"
+                android:dropDownWidth="166dp"
+                android:popupBackground="@drawable/background_spinner"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/TextViewStyleContent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/color_request_work_calendar"
+            android:text="@string/power_supply"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:baselineAligned="false"
+            android:paddingVertical="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/shift_schedule_note_background"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_add_power_supply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/baseline_add_24"
+                    android:text="@string/add"
+                    android:gravity="start|center"
+                    style="@style/ButtonStyleRequestWork"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="4dp"/>
+
+            <LinearLayout
+                android:id="@+id/layout_power_supply_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_power_supply_name"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Секция 3,15кВ"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    style="@style/TextViewStyleContent"/>
+
+                <EditText
+                    android:id="@+id/et_power_supply_name_cell"
+                    style="@style/EditTestStyleElectricalEquipment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:hint="@string/cell_number"
+                    android:inputType="textMultiLine"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/content_rza"
+            layout="@layout/content_layout_edit_ory_rza"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apply"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="320dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

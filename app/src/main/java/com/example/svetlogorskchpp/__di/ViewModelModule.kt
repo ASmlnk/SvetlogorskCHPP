@@ -4,6 +4,7 @@ import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.S
 import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.ShiftScheduleCalendarInteractorImpl
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
+import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TransformerOwnNeeds
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
@@ -18,6 +19,7 @@ import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNote
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTransformerOwnNeedsUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearVLUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCasesImpl
@@ -72,6 +74,9 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideOpenSwitchgearTrUseCases(openSwitchgearTrUseCasesImpl: EquipmentsOpenSwitchgearTrUseCasesImpl): EquipmentsUseCases<OpenSwitchgearTr>
+
+    @Binds
+    abstract fun provideTransformerOwnNeedsUseCases(equipmentsOpenSwitchgearTrUseCasesImpl: EquipmentTransformerOwnNeedsUseCasesImpl): EquipmentsUseCases<TransformerOwnNeeds>
 
 
 }

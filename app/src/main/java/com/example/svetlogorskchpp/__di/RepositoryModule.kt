@@ -10,12 +10,15 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearTrEquipmentRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearVlEquipmentRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.equipment.electrical.TransformerOwnNeedsRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepositoryImpl
@@ -149,6 +152,15 @@ class RepositoryModule {
         repositoryFirebase: FirebaseRepository
     ): EquipmentRepository<OpenSwitchgearTrEntity> {
         return OpenSwitchgearTrEquipmentRepositoryImpl(openSwitchgearTrDao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransformerOwnNeedsRepository(
+        dao: TransformerOwnNeedsDao,
+        repositoryFirebase: FirebaseRepository
+    ): EquipmentRepository<TransformerOwnNeedsEntity> {
+        return TransformerOwnNeedsRepositoryImpl(dao, repositoryFirebase)
     }
 
 }

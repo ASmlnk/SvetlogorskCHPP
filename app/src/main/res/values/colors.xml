@@ -11,6 +11,7 @@
     <color name="backgroundRecycle">#FFFFFF</color>
     <color name="backgroundItem">#F3F3F3</color>
     <color name="text_recycle">#214763</color>
+    <color name="text_color_dialog_equipment">#163044</color>
     <color name="text_recycle_smile">#567993</color>
     <color name="background_calendar_month">#4D567993</color>
     <color name="background_calendar_month_prev">#00567993</color>

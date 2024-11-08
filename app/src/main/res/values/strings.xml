@@ -305,5 +305,17 @@
     <string name="three_winding">Трехобмоточный</string>
     <string name="tr_name">Силовые трансформаторы ОРУ</string>
     <string name="shv_ov_tn">ШСВ, ОВ, ТН</string>
+    <string name="tsn_10_3">10,5кВ / 3,15кВ</string>
+    <string name="tsn_10_6">10,5кВ / 6,3кВ</string>
+    <string name="tsn_3_04">3,15кВ / 0,4кВ</string>
+    <string name="tsn_6_04">6,3кВ / 0,4кВ</string>
+    <string name="tsn">Трансформатор собственых нужд</string>
+    <string name="power_supply">Источник питания</string>
+    <string name="section_3">Секция 3,15 кВ</string>
+    <string name="section_6">Секция 6,3 кВ</string>
+    <string name="section">Секция</string>
+    <string name="tsn_small">ТСН</string>
+    <string name="section_04">Секция 0,4 кВ</string>
+    <string name="add">Добавить ИП</string>
 
 </resources>

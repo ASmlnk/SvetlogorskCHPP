@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearTrListFragment"
             app:destination="@id/openSwitchgearTrListFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_transformerOwnNeedsEditFragment"
+            app:destination="@id/transformerOwnNeedsEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -159,5 +162,23 @@
             app:argType="string"
             android:defaultValue='""' />
     </dialog>
+    <fragment
+        android:id="@+id/transformerOwnNeedsEditFragment"
+        tools:layout="@layout/fragment_tsn_edit"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.tsn.edit.fragment.TransformerOwnNeedsEditFragment"
+        android:label="TransformerOwnNeedsEditFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_transformerOwnNeedsEditFragment_to_powerSupplySelectionDialog"
+            app:destination="@id/powerSupplySelectionDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/powerSupplySelectionDialog"
+        tools:layout="@layout/dialog_power_supply_selection"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.power_supply_selection.fragment.PowerSupplySelectionDialog"
+        android:label="PowerSupplySelectionDialog" />
 
 </navigation>

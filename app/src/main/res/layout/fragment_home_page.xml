@@ -125,6 +125,18 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/add_item" />
 
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/add_item_tsn"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/background_with_arc"
+                        android:src="@drawable/baseline_add_24"
+                        android:tint="@color/text_content_rza"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/add_item_tr" />
+
                     <ImageView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -269,6 +281,16 @@
                         app:layout_constraintTop_toTopOf="@+id/tv_tsn"
                         app:tint="@color/orange_zero_vision" />
 
+                    <include
+                        android:id="@+id/content_tsn"
+                        layout="@layout/content_layout_tsn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/shapeableImageViewTsn"
+                        app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewTsn" />
+
 
                     <LinearLayout
                         android:id="@+id/layout_tg"
@@ -281,7 +303,7 @@
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_tsn">
+                        app:layout_constraintTop_toBottomOf="@+id/content_tsn">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="120dp"

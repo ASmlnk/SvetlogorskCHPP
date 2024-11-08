@@ -18,6 +18,7 @@ class ElectricalEquipmentAdapter(
         when (val item = getItem(position)) {
             is ElectricalEquipment.Vl -> (holder as ElectricalEquipmentVlHolder).bind(item, onClick)
             is ElectricalEquipment.Tr -> (holder as ElectricalEquipmentTrHolder).bind(item, onClick)
+            is ElectricalEquipment.Tsn -> TODO()
         }
     }
 
@@ -33,6 +34,7 @@ class ElectricalEquipmentAdapter(
         return when (getItem(position)) {
             is ElectricalEquipment.Vl -> 0
             is ElectricalEquipment.Tr -> 1
+            is ElectricalEquipment.Tsn -> 2
         }
     }
 }

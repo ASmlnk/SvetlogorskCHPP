@@ -25,4 +25,16 @@ sealed class ElectricalEquipment {
         val isThreeWinding: Boolean
     ): ElectricalEquipment()
 
+    data class Tsn(
+        val id: String,
+        val nameEquipment: String,
+        val isSpare: Boolean,
+        val type: String,
+        val typeParameter: String,
+        val powerSupplyName: String,
+        val powerSupplyCell: String,
+        val nameNumber: Int,
+        val voltage: Voltage
+    ): ElectricalEquipment()
+
 }

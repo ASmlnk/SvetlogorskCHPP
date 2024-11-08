@@ -7,11 +7,9 @@ import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
-import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.factory.OpenSwitchgearTrEditViewModelFactory
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.factory.OpenSwitchgearTrEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwTrEditUIState
-import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.OpSwVlEditUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.ProtectionUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.SpinnerEditState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.model.SpinnerOryParameter

@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__domain.mapper.electrical_equipment
 
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import javax.inject.Inject
@@ -43,6 +44,22 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 parameterOry = parameter,
                 isThreeWinding = isThreeWinding,
                 nameNumber = toInt(name)
+            )
+        }
+    }
+
+    fun toElectricalEquipmentTsn(transformerOwnNeedsEntity: TransformerOwnNeedsEntity): ElectricalEquipment.Tsn {
+        return with(transformerOwnNeedsEntity) {
+            ElectricalEquipment.Tsn(
+                id = id,
+                nameEquipment = name,
+                isSpare = isSpare,
+                type = type,
+                typeParameter = type,
+                powerSupplyName = powerSupplyName,
+                powerSupplyCell = "яч. $powerSupplyCell",
+                nameNumber = toInt(name),
+                voltage = voltage.let { Voltage.valueOf(it) },
             )
         }
     }
