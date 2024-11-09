@@ -33,6 +33,7 @@ class MainActivityViewModel @Inject constructor(
             initNotification()
             updateOpenSwitchgearVl()
             updateOpenSwitchgearTr()
+            updateTsn()
         }
     }
 
@@ -49,6 +50,12 @@ class MainActivityViewModel @Inject constructor(
 
     private fun updateRequestWorkWorker() {
         viewModelScope.launch(Dispatchers.IO) { taskSchedulerUpdateRequestWorkBaseWorker.scheduleDailyTask12hour() }
+    }
+
+    private fun updateTsn() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateTsn()
+        }
     }
 
     private suspend fun initNotification() = withContext(Dispatchers.IO) {

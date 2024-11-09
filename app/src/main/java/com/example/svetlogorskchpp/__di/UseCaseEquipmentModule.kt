@@ -123,9 +123,10 @@ class UseCaseEquipmentModule {
     fun provideUpdateLocaleUseCases(
         repositoryOpenSwitchgearVlRepository: EquipmentRepository<OpenSwitchgearVlEntity>,
         repositoryOpenSwitchgearTrRepository: EquipmentRepository<OpenSwitchgearTrEntity>,
+        repositoryTsn: EquipmentRepository<TransformerOwnNeedsEntity>,
         noteRequestWorkRepository: NoteRequestWorkRepository,
     ): UpdateLocaleBaseUseCases {
-        return UpdateLocaleBaseUseCasesImpl(repositoryOpenSwitchgearVlRepository,repositoryOpenSwitchgearTrRepository, noteRequestWorkRepository)
+        return UpdateLocaleBaseUseCasesImpl(repositoryOpenSwitchgearVlRepository,repositoryOpenSwitchgearTrRepository, repositoryTsn, noteRequestWorkRepository)
     }
 
     @Provides
