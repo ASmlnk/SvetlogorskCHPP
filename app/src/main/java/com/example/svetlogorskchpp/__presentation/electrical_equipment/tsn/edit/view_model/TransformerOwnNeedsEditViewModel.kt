@@ -20,11 +20,12 @@ import kotlinx.coroutines.launch
 
 class TransformerOwnNeedsEditViewModel @AssistedInject constructor(
     private val useCases: EquipmentsUseCases<TransformerOwnNeeds>,
-    @Assisted private val id: String
+    @Assisted private val id: String,
 ) : ViewModel() {
 
     private val _transformerOwnNeedsUIState = MutableStateFlow(TransformerOwnNeedsUIState())
-    val transformerOwnNeedsUIState: StateFlow<TransformerOwnNeedsUIState> = _transformerOwnNeedsUIState
+    val transformerOwnNeedsUIState: StateFlow<TransformerOwnNeedsUIState> =
+        _transformerOwnNeedsUIState
 
     private val _protectionUIState = MutableStateFlow(ProtectionUIState())
     val protectionUIState: StateFlow<ProtectionUIState> = _protectionUIState
@@ -34,6 +35,43 @@ class TransformerOwnNeedsEditViewModel @AssistedInject constructor(
 
     fun saveState(state: TransformerOwnNeedsUIState) {
         _transformerOwnNeedsUIState.update { state }
+    }
+
+    init {
+        viewModelScope.launch {
+            useCases.getItemEquipment(id).collect { tsn ->
+                tsn?.let {
+                    _transformerOwnNeedsUIState.update { old ->
+                        old.copy(
+                            id = it.id,
+                            name = it.name,
+                            panelMcp = it.panelMcp,
+                            type = it.type,
+                            parameterType = it.parameterType,
+                            transcriptType = it.transcriptType,
+                            additionally = it.additionally,
+                            isSpare = it.isSpare,
+                            powerSupplyId = it.powerSupplyId,
+                            powerSupplyCell = it.powerSupplyCell,
+                            powerSupplyName = it.powerSupplyName,
+                            voltage = it.voltage,
+                            typeSwitch = it.typeSwitch,
+                            typeInsTr = it.typeInsTr,
+                            automation = it.automation,
+                            apv = it.apv,
+                        )
+                    }
+
+
+                    _protectionUIState.update { old ->
+                        old.copy(
+                            phaseProtection = it.phaseProtection,
+                            earthProtection = it.earthProtection
+                        )
+                    }
+                }
+            }
+        }
     }
 
     fun saveParameterTsn(tsn: TransformerOwnNeedsUIState) {
