@@ -85,8 +85,8 @@ class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             tvSpare.visibility = if (state.isSpare) View.VISIBLE else View.INVISIBLE
             tvPowerSupply.text = state.powerSupplyName +
                     if(state.powerSupplyCell.isNotEmpty()) " яч." +state.powerSupplyCell else ""
-            tvSwitchTitle.text = state.typeSwitch
-            tvInstrTitle.text = state.typeInsTr
+            tvSwitchContent.text = state.typeSwitch
+            tvInstrContent.text = state.typeInsTr
             tvPanelContent.text = state.panelMcp
             tvTranscriptType.text = state.transcriptType
             tvAdditionally.text = state.additionally
