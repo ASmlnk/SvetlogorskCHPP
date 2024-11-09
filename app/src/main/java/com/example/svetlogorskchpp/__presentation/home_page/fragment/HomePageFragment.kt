@@ -11,9 +11,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.home_page.EquipmentFilter
 import com.example.svetlogorskchpp.__presentation.home_page.view_model.HomePageViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryBinding
+import com.example.svetlogorskchpp.databinding.ContentLayoutTsnBinding
 import com.example.svetlogorskchpp.databinding.FragmentHomePageBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +28,9 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     private var _includeOryBinding: ContentLayoutOryBinding? = null
     private val includeOryBinding get() = _includeOryBinding!!
 
+    private var _includeTsnBinding: ContentLayoutTsnBinding? = null
+    private val includeTsnBinding get() = _includeTsnBinding!!
+
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +42,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _includeOryBinding = ContentLayoutOryBinding.bind(binding.contentOry.root)
+        _includeTsnBinding = ContentLayoutTsnBinding.bind(binding.contentTsn.root)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -94,6 +100,13 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
             tvOryOther.setOnClickListener {
                 val action = HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(EquipmentFilter.ORY_OTHER)
+                findNavController().navigate(action)
+            }
+        }
+
+        includeTsnBinding.apply {
+            tvTsn103.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(Voltage.KV10_KV3)
                 findNavController().navigate(action)
             }
         }

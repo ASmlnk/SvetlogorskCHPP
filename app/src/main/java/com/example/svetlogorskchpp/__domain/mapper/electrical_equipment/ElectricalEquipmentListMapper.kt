@@ -57,7 +57,7 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 type = type,
                 typeParameter = type,
                 powerSupplyName = powerSupplyName,
-                powerSupplyCell = "яч. $powerSupplyCell",
+                powerSupplyCell = powerSupplyCell,
                 nameNumber = toInt(name),
                 voltage = voltage.let { Voltage.valueOf(it) },
             )

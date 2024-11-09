@@ -317,5 +317,6 @@
     <string name="tsn_small">ТСН</string>
     <string name="section_04">Секция 0,4 кВ</string>
     <string name="add">Добавить ИП</string>
+    <string name="tsn_small_title">"ТСН %s"</string>
 
 </resources>

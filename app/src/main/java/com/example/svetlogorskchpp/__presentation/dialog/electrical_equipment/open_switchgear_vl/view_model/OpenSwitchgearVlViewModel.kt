@@ -19,7 +19,7 @@ class OpenSwitchgearVlViewModel @AssistedInject constructor(
     @Assisted private val id: String,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<OpSwiVlDialogUIState>(OpSwiVlDialogUIState())
+    private val _uiState = MutableStateFlow(OpSwiVlDialogUIState())
     val uiState: StateFlow<OpSwiVlDialogUIState> get() = _uiState
 
     init {

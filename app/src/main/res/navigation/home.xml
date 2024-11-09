@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_transformerOwnNeedsEditFragment"
             app:destination="@id/transformerOwnNeedsEditFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_transformerOwnNeedsListFragment"
+            app:destination="@id/transformerOwnNeedsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -107,9 +110,6 @@
         android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.vl_list.fragment.OpenSwitchgearVlListFragment"
         tools:layout="@layout/fragment_open_switchgear_vl"
         android:label="OpenSwitchgearVlFragment" >
-        <action
-            android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlEditFragment"
-            app:destination="@id/openSwitchgearVlEditFragment" />
         <action
             android:id="@+id/action_openSwitchgearVlFragment_to_openSwitchgearVlDialog"
             app:destination="@id/openSwitchgearVlDialog" />
@@ -180,5 +180,30 @@
         tools:layout="@layout/dialog_power_supply_selection"
         android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.power_supply_selection.fragment.PowerSupplySelectionDialog"
         android:label="PowerSupplySelectionDialog" />
+    <fragment
+        android:id="@+id/transformerOwnNeedsListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.tsn.list.fragment.TransformerOwnNeedsListFragment"
+        tools:layout="@layout/fragment_tsn_list"
+        android:label="TransformerOwnNeedsListFragment" >
+        <argument
+            android:name="voltage"
+            app:argType="com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage" />
+        <action
+            android:id="@+id/action_transformerOwnNeedsListFragment_to_equipmentTsnDialog"
+            app:destination="@id/equipmentTsnDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/equipmentTsnDialog"
+        tools:layout="@layout/dialog_equipment_tsn"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.fragment.EquipmentTsnDialog"
+        android:label="EquipmentTsnDialog" >
+        <action
+            android:id="@+id/action_equipmentTsnDialog_to_transformerOwnNeedsEditFragment"
+            app:destination="@id/transformerOwnNeedsEditFragment" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </dialog>
 
 </navigation>

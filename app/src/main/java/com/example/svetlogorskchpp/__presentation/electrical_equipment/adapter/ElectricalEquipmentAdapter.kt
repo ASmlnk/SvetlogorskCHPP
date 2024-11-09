@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ class ElectricalEquipmentAdapter(
         when (val item = getItem(position)) {
             is ElectricalEquipment.Vl -> (holder as ElectricalEquipmentVlHolder).bind(item, onClick)
             is ElectricalEquipment.Tr -> (holder as ElectricalEquipmentTrHolder).bind(item, onClick)
-            is ElectricalEquipment.Tsn -> TODO()
+            is ElectricalEquipment.Tsn -> (holder as ElectricalEquipmentTsnHolder).bind(item, onClick)
         }
     }
 
@@ -26,6 +27,7 @@ class ElectricalEquipmentAdapter(
         return when (viewType) {
             0 -> ElectricalEquipmentVlHolder.inflateFrom(parent)
             1 -> ElectricalEquipmentTrHolder.inflateFrom(parent)
+            2 -> ElectricalEquipmentTsnHolder.inflateFrom(parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -97,6 +99,39 @@ class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
             val layoutInflater = LayoutInflater.from(parentContext.context)
             val binding = ItemOpenSwitchgearTrBinding.inflate(layoutInflater, parentContext, false)
             return ElectricalEquipmentTrHolder(binding)
+        }
+    }
+}
+
+class ElectricalEquipmentTsnHolder(val binding: ItemOpenSwitchgearTrBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    @SuppressLint("SetTextI18n")
+    fun bind(
+        item: ElectricalEquipment.Tsn,
+        onClick: (id: String) -> Unit,
+    ) {
+        binding.apply {
+            tvName.text = item.nameEquipment
+            tvSpare.visibility = if (item.isSpare) View.VISIBLE else View.INVISIBLE
+
+            tvTextOry.setBackgroundResource(R.drawable.background_item_open_switchgear_tr_parameter_right)
+
+            tvType.text = item.type
+            tvTypeParameter.text = item.typeParameter
+            tvTextOry.text = item.powerSupplyName +
+                    if(item.powerSupplyCell.isNotEmpty()) " яч." +item.powerSupplyCell else ""
+            linearLayout.setOnClickListener {
+                onClick(item.id)
+            }
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentTsnHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemOpenSwitchgearTrBinding.inflate(layoutInflater, parentContext, false)
+            return ElectricalEquipmentTsnHolder(binding)
         }
     }
 }
