@@ -76,21 +76,50 @@
                     android:textColor="@color/text_content_rza"
                     android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/tv_power_supply"
-                    style="@style/TextViewStyleContent"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:background="@drawable/background_item_open_switchgear_tr_parameter_right_d"
-                    android:paddingStart="22dp"
-                    android:paddingTop="6dp"
-                    android:paddingEnd="12dp"
-                    android:paddingBottom="2dp"
-                    android:text="  2СШ яч. 2 ОРУ - 220"
-                    android:textColor="@color/text_content_rza"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_voltage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/TextViewStyleContentHomePageSubsection"
+                        android:text="10.5/3.15"
+                        android:textStyle="italic"
+                        android:layout_gravity="center"
+                        android:textColor="@color/ory_key_background"
+                        android:paddingStart="16dp"
+                        android:textSize="16sp"
+
+                        android:gravity="start"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_power_supply"
+                        style="@style/TextViewStyleContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/background_item_open_switchgear_tr_parameter_right_d"
+                        android:paddingStart="22dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="2dp"
+                        android:text="  2СШ яч. 2 ОРУ - 220"
+                        android:textColor="@color/text_content_rza"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 
@@ -252,6 +281,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_power_supply"
                     android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginBottom="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

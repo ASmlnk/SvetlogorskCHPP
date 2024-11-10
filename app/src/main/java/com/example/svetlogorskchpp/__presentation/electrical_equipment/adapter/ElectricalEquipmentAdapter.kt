@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
+import com.example.svetlogorskchpp.databinding.ItemEquipmentTsnBinding
 import com.example.svetlogorskchpp.databinding.ItemOpenSwitchgearTrBinding
 import com.example.svetlogorskchpp.databinding.ItemOpenSwitchgearVlBinding
 
@@ -103,7 +104,7 @@ class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
     }
 }
 
-class ElectricalEquipmentTsnHolder(val binding: ItemOpenSwitchgearTrBinding) :
+class ElectricalEquipmentTsnHolder(val binding: ItemEquipmentTsnBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SetTextI18n")
@@ -114,6 +115,7 @@ class ElectricalEquipmentTsnHolder(val binding: ItemOpenSwitchgearTrBinding) :
         binding.apply {
             tvName.text = item.nameEquipment
             tvSpare.visibility = if (item.isSpare) View.VISIBLE else View.INVISIBLE
+            tvVoltage.text = item.voltage.str
 
             tvTextOry.setBackgroundResource(R.drawable.background_item_open_switchgear_tr_parameter_right)
 
@@ -130,7 +132,7 @@ class ElectricalEquipmentTsnHolder(val binding: ItemOpenSwitchgearTrBinding) :
     companion object {
         fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentTsnHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemOpenSwitchgearTrBinding.inflate(layoutInflater, parentContext, false)
+            val binding = ItemEquipmentTsnBinding.inflate(layoutInflater, parentContext, false)
             return ElectricalEquipmentTsnHolder(binding)
         }
     }

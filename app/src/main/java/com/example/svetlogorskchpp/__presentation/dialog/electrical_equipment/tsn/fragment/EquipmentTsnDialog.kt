@@ -97,6 +97,7 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         binding.apply {
             tvName.text = state.name
             tvType.text = state.type
+            tvVoltage.text = state.voltage.str
             tvTypeParameter.text = state.parameterType
             tvSpare.visibility = if (state.isSpare) View.VISIBLE else View.INVISIBLE
             tvPowerSupply.text = state.powerSupplyName +

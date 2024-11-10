@@ -55,7 +55,7 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 nameEquipment = name,
                 isSpare = isSpare,
                 type = type,
-                typeParameter = type,
+                typeParameter = parameterType,
                 powerSupplyName = powerSupplyName,
                 powerSupplyCell = powerSupplyCell,
                 nameNumber = toInt(name),

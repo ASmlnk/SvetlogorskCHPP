@@ -33,7 +33,7 @@ class TransformerOwnNeedsEditFragment : BaseEditFragment<FragmentTsnEditBinding>
     private val args: TransformerOwnNeedsEditFragmentArgs by navArgs()
 
     private val listVoltage =
-        listOf(Voltage.KV, Voltage.KV10_KV3, Voltage.KV10_KV3, Voltage.KV6_KV04, Voltage.KV3_KV04)
+        listOf(Voltage.KV, Voltage.KV10_KV3, Voltage.KV10_KV6, Voltage.KV6_KV04, Voltage.KV3_KV04)
 
     @Inject
     lateinit var viewModelFactory: TransformerOwnNeedsEditViewModelFactory
