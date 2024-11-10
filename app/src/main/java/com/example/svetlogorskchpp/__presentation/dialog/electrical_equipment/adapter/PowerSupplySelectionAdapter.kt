@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter.ItemElectricalEquipmentCallback
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.DeepLink
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTrBinding
 
 class PowerSupplySelectionAdapter (
-    private val onClick: (id: String, name: String) -> Unit,
+    private val onClick: (id: String, name: String, dl: DeepLink) -> Unit,
 ) : ListAdapter<ElectricalEquipment, RecyclerView.ViewHolder>(ItemElectricalEquipmentCallback()) {
 
     override fun onBindViewHolder(
@@ -45,12 +46,12 @@ class TrHolder(val binding: ItemElectricalEquipmentTrBinding) :
 
         fun bind(
             item: ElectricalEquipment.Tr,
-            onClick: (id: String, name: String) -> Unit,
+            onClick: (id: String, name: String, dl: DeepLink) -> Unit,
         ) {
             binding.apply {
                 tvName.text = item.nameEquipment
                 layout.setOnClickListener{
-                    onClick(item.id, item.nameEquipment)
+                    onClick(item.id, item.nameEquipment, item.deepLink)
                 }
             }
         }

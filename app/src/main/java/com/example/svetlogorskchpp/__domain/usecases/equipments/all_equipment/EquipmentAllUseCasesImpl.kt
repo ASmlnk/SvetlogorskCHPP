@@ -8,6 +8,7 @@ import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.po
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
 import javax.inject.Inject
@@ -20,12 +21,11 @@ class EquipmentAllUseCasesImpl @Inject constructor(
         return trUseCases.getElectricalEquipments().map { it.sortedBy { it.nameNumber } }
     }
 
-    override fun getEquipmentFlow(id: String): Flow<List<ElectricalEquipment>> {
-        return trConsumerUseCases.getEquipmentPowerSupply(id).scan(mutableListOf<ElectricalEquipment>()) { acc, value ->
-            value?.let {
-                acc.add(it)
-            }
-            acc
-        }.distinctUntilChanged()
+    override fun getEquipmentFlow(id: String): Flow<List<ElectricalEquipment>> = flow {
+        val listEquipment = mutableListOf<ElectricalEquipment>()
+        trConsumerUseCases.getEquipmentPowerSupply(id).collect { item ->
+            item?.let { listEquipment.add(item) }
+            emit(listEquipment.toList())
+        }
     }
 }

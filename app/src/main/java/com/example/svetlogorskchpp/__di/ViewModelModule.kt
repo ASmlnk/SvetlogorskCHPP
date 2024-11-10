@@ -19,6 +19,8 @@ import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNote
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTransformerOwnNeedsUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearVLUseCasesImpl
@@ -77,6 +79,9 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideTransformerOwnNeedsUseCases(equipmentsOpenSwitchgearTrUseCasesImpl: EquipmentTransformerOwnNeedsUseCasesImpl): EquipmentsUseCases<TransformerOwnNeeds>
+
+    @Binds
+    abstract fun provideEquipmentAllUseCases (equipmentAllUseCasesImpl: EquipmentAllUseCasesImpl): EquipmentAllUseCases
 
 
 }

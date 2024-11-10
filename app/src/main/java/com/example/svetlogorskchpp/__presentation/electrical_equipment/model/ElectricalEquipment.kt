@@ -22,7 +22,8 @@ sealed class ElectricalEquipment {
         val typeParameter: String,
         val parameterOry: String,
         val nameNumber: Int,
-        val isThreeWinding: Boolean
+        val isThreeWinding: Boolean,
+        val deepLink: DeepLink = DeepLink.TR
     ): ElectricalEquipment()
 
     data class Tsn(
@@ -34,7 +35,8 @@ sealed class ElectricalEquipment {
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val nameNumber: Int,
-        val voltage: Voltage
+        val voltage: Voltage,
+        val deepLink: DeepLink = DeepLink.TSN
     ): ElectricalEquipment()
 
 }

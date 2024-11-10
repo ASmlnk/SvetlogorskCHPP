@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.fragment
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.model.TsnUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.view_model.EquipmentTsnViewModel
@@ -23,10 +25,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
+class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
 
 
-   val args: EquipmentTsnDialogArgs by navArgs()
+    val args: EquipmentTsnDialogArgs by navArgs()
 
     @Inject
     lateinit var viewModelFactory: EquipmentTsnViewModelFactory
@@ -35,6 +37,11 @@ class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             factoryTsn = viewModelFactory,
             id = args.id
         )
+    }
+
+    private val adapter = PowerSupplySelectionAdapter { id, name, dl ->
+        val deepLink = Uri.parse(dl.link + id)
+        findNavController().navigate(deepLink)
     }
 
     private var _includeOryRzaBinding: ContentLayoutRzaDialogBinding? = null
@@ -63,7 +70,16 @@ class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.powerSupplyState.collect {
+                    adapter.submitList(it)
+                }
+            }
+        }
+
         binding.apply {
+            rvPowerSupply.adapter = adapter
             ivEditContent.setOnClickListener {
                 val action =
                     EquipmentTsnDialogDirections.actionEquipmentTsnDialogToTransformerOwnNeedsEditFragment(
@@ -84,7 +100,7 @@ class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             tvTypeParameter.text = state.parameterType
             tvSpare.visibility = if (state.isSpare) View.VISIBLE else View.INVISIBLE
             tvPowerSupply.text = state.powerSupplyName +
-                    if(state.powerSupplyCell.isNotEmpty()) " яч." +state.powerSupplyCell else ""
+                    if (state.powerSupplyCell.isNotEmpty()) " яч." + state.powerSupplyCell else ""
             tvSwitchContent.text = state.typeSwitch
             tvInstrContent.text = state.typeInsTr
             tvPanelContent.text = state.panelMcp
@@ -94,10 +110,10 @@ class EquipmentTsnDialog: BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         }
 
         includeOryRzaBinding.apply {
-            tvApvContent.text =state.apv
-            tvAutomationContent.text =state.automation
-            tvEarthProtectionContent.text =state.earthProtection
-            tvPhaseProtectionContent.text =state.phaseProtection
+            tvApvContent.text = state.apv
+            tvAutomationContent.text = state.automation
+            tvEarthProtectionContent.text = state.earthProtection
+            tvPhaseProtectionContent.text = state.phaseProtection
         }
 
     }

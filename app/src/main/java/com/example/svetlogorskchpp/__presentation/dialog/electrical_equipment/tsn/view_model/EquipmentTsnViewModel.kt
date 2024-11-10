@@ -8,21 +8,28 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCas
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.model.TsnUIState
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EquipmentTsnViewModel @AssistedInject constructor(
     private val useCasesTsn: EquipmentsUseCases<TransformerOwnNeeds>,
-
+    private val useCasesAllEquipment: EquipmentAllUseCases,
     @Assisted val id: String,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TsnUIState())
     val uiState: StateFlow<TsnUIState> get() = _uiState
+
+    private val _powerSupplyState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
+    val powerSupplyState : StateFlow<List<ElectricalEquipment>> get() = _powerSupplyState
+
 
 
 
@@ -51,9 +58,20 @@ class EquipmentTsnViewModel @AssistedInject constructor(
                             earthProtection = tsn.earthProtection.joinToString(separator = "\n"),
                         )
                     }
+                    updatePowerSupply(tsn.powerSupplyId)
                 }
             }
         }
+    }
+
+    private fun updatePowerSupply(id: String)  {
+        viewModelScope.launch(Dispatchers.IO) {
+            val flow = useCasesAllEquipment.getEquipmentFlow(id)
+                flow.collect {
+                _powerSupplyState.value = it
+            }
+        }
+
     }
 
     companion object {

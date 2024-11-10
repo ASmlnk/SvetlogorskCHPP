@@ -22,7 +22,7 @@ class PowerSupplySelectionDialog : BaseBottomSheetDialog<DialogPowerSupplySelect
 
     private val viewModel: PowerSupplySelectionViewModel by viewModels()
 
-    private val adapter = PowerSupplySelectionAdapter { id, name ->
+    private val adapter = PowerSupplySelectionAdapter { id, name, dl ->
         val selectedId = id // Логика выбора ID
         val selectedName = name // Логика выбора имени
         val selectedData = Pair(selectedId, selectedName)

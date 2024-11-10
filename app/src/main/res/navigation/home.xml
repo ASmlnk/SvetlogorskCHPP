@@ -154,6 +154,9 @@
         android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.fragment.OpenSwitchgearTrDialog"
         tools:layout="@layout/dialog_open_switchgear_tr"
         android:label="OpenSwitchgearTrDialog" >
+        <deepLink
+            android:id="@+id/myDialogTrDeepLink"
+            app:uri = "myapp://myDialogTrDeepLink/{id}"/>
         <action
             android:id="@+id/action_openSwitchgearTrDialog_to_openSwitchgearTrEditFragment"
             app:destination="@id/openSwitchgearTrEditFragment" />
@@ -197,6 +200,9 @@
         tools:layout="@layout/dialog_equipment_tsn"
         android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.fragment.EquipmentTsnDialog"
         android:label="EquipmentTsnDialog" >
+        <deepLink
+            android:id="@+id/myDialogTsnDeepLink"
+            app:uri = "myapp://myDialogTsnDeepLink/{id}"/>
         <action
             android:id="@+id/action_equipmentTsnDialog_to_transformerOwnNeedsEditFragment"
             app:destination="@id/transformerOwnNeedsEditFragment" />
