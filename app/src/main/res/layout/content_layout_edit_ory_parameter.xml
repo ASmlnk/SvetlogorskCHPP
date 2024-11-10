@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/tire_system_number"
-            android:inputType="textMultiLine|textVisiblePassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +40,6 @@
             android:layout_marginStart="4dp"
             android:layout_weight="1"
             android:hint="@string/cell_number"
-            android:inputType="textMultiLine|textVisiblePassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/switch_ory_parameter"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/instrument_transformer"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

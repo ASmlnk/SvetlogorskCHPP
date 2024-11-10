@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/automation"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/apv"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +56,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/phase_protection"
-            android:inputType="textMultiLine|textVisiblePassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,7 +98,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/earth_protection"
-            android:inputType="textMultiLine|textVisiblePassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

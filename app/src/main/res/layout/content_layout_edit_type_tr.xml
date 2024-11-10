@@ -22,7 +22,6 @@
         android:layout_marginEnd="16dp"
         android:autofillHints="name"
         android:hint="@string/name_type_smile"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +43,6 @@
         android:layout_marginEnd="16dp"
         android:autofillHints="name"
         android:hint="@string/parameter_type_tr_smile"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,10 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-
         android:autofillHints="name"
         android:hint="@string/transcript_type"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -90,7 +86,6 @@
         android:layout_marginBottom="16dp"
         android:autofillHints="name"
         android:hint="@string/additionally"
-        android:inputType="textMultiLine|textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
