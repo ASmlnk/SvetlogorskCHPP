@@ -84,10 +84,10 @@ android:layout_marginTop="16dp"
                 android:layout_height="wrap_content"
                 style="@style/TextViewStyleContentHomePageSubsection"
                 android:text="10.5/3.15"
-                android:textColor="@color/text_recycle_smile"
+                android:textColor="@color/text_content_rza"
                 android:paddingStart="16dp"
                 android:textSize="16sp"
-                android:textStyle="italic"
+                android:fontFamily="@font/actor"
                 android:paddingEnd="8dp"
                 android:gravity="start"/>
 

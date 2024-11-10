@@ -147,12 +147,12 @@ class TransformerOwnNeedsEditFragment : BaseEditFragment<FragmentTsnEditBinding>
 
 
         binding.apply {
-            chipSpare.isChecked = uiState.isSpare
             spinnerVoltage.setSelection(listVoltage.indexOf(uiState.voltage))
             etInstrumentTransformer.setText(uiState.typeInsTr)
             etSwitch.setText(uiState.typeSwitch)
             etPowerSupplyNameCell.setText(uiState.powerSupplyCell)
             tvPowerSupplyName.text = uiState.powerSupplyName
+            chipSpare.isChecked = uiState.isSpare
         }
     }
 
