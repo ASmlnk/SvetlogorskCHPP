@@ -276,7 +276,7 @@
     <string name="rza">РЗиА</string>
     <string name="automation">Автоматика</string>
     <string name="phase_protection">Фазная защита</string>
-    <string name="earth_protection">Земляная защита</string>
+    <string name="earth_protection">Земляная защита и др.</string>
     <string name="parameters">Параметры</string>
     <string name="decryption">Расшифровка</string>
     <string name="edit_vl">Редактор ВЛ</string>
