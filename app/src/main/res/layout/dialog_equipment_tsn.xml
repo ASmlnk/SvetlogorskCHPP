@@ -241,6 +241,23 @@
                 android:background="@drawable/background_dialog_tr_content"
                 android:orientation="vertical">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_power_supply"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:spanCount="3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@drawable/background_layout_line_gradient"
+                    android:orientation="vertical" />
+
                 <TextView
                     android:id="@+id/tv_transcript_type"
                     style="@style/TextViewStyleContentHomePageSubsection"
@@ -271,23 +288,6 @@
                     android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
                     android:textColor="@color/text_color_dialog_equipment"
                     android:textSize="20sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="@drawable/background_layout_line_gradient"
-                    android:orientation="vertical" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_power_supply"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                    app:spanCount="3"/>
 
             </LinearLayout>
 

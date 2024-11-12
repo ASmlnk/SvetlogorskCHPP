@@ -173,7 +173,7 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.home_page_gradient)), // Замените на нужный вам цвет
+                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.text_content_rza)), // Замените на нужный вам цвет
                 0,
                 item.powerEl.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -188,7 +188,7 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.home_page_gradient)), // Замените на нужный вам цвет
+                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.text_content_rza)), // Замените на нужный вам цвет
                 secondValueStart,
                 secondValueStart + item.powerThermal.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -203,7 +203,7 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context, R.color.home_page_gradient)), // Замените на нужный вам цвет
+                ForegroundColorSpan(ContextCompat.getColor(itemView.context, R.color.text_content_rza)), // Замените на нужный вам цвет
                 thirdValueStart,
                 thirdValueStart + item.steamConsumption.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

@@ -17,6 +17,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogen
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearTrEquipmentRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearVlEquipmentRepositoryImpl
@@ -175,4 +176,21 @@ class RepositoryModule {
         return TurboGeneratorRepositoryImpl(dao, repositoryFirebase)
     }
 
+    @Provides
+    @Singleton
+    fun provideTransformerOwnNeedsConsumerRepository(
+        dao: TransformerOwnNeedsDao,
+        repositoryFirebase: FirebaseRepository
+    ): EquipmentConsumerRepository<TransformerOwnNeedsEntity> {
+        return TransformerOwnNeedsRepositoryImpl(dao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTurboGeneratorConsumerRepository (
+        dao: TurboGeneratorDao,
+        repositoryFirebase: FirebaseRepository
+    ): EquipmentConsumerRepository<TurboGeneratorEntity> {
+        return TurboGeneratorRepositoryImpl(dao, repositoryFirebase)
+    }
 }

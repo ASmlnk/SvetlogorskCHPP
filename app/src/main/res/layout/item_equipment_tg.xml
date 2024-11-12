@@ -64,14 +64,15 @@
         <TextView
             android:id="@+id/tv_type_parameter"
             style="@style/TextViewStyleContentHomePageSubsection"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:textColor="#489182"
+            android:layout_gravity="end"
+            android:textColor="@color/text_content_rza"
             android:paddingStart="16dp"
+            android:background="@drawable/background_item_open_switchgear_tr_parameter_right"
             android:paddingEnd="16dp"
             android:layout_marginTop="8dp"
-            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:text="3*40000/242/121/10,5"
             android:textSize="18sp" />
 

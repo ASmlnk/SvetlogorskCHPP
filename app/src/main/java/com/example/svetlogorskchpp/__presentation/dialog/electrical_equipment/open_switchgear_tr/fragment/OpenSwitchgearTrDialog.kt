@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.view_model.OpenSwitchgearTrViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
@@ -29,6 +31,11 @@ import javax.inject.Inject
 class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBinding>() {
 
     private val args: OpenSwitchgearTrDialogArgs by navArgs()
+
+    private val adapter = PowerSupplySelectionAdapter { id, name, dl ->
+        val deepLink = Uri.parse(dl.link + id)
+        findNavController().navigate(deepLink)
+    }
 
     @Inject
     lateinit var viewModelFactory: OpenSwitchgearTrViewModelFactory
@@ -72,12 +79,22 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.consumerFlow.collect { equipments ->
+                    adapter.submitList(equipments)
+                }
+            }
+        }
+
         binding.apply {
             _includeOryParameterVnBinding =
                 ContentLayoutOryParameterTrDialogBinding.bind(contentOryVnParameter.root)
             _includeOryParameterSnBinding =
                 ContentLayoutOryParameterTrDialogBinding.bind(contentOrySnParameter.root)
             _includeOryRzaBinding = ContentLayoutRzaDialogBinding.bind(contentRza.root)
+
+            rvConsumer.adapter = adapter
 
             ivEditContent.setOnClickListener {
                 val action =

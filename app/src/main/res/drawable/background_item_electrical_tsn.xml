@@ -4,7 +4,7 @@
     android:thickness="0dp">
     <stroke
         android:width="2dp"
-        android:color="#C99F6B" />
+        android:color="@color/text_recycle_smile" />
     <corners
         android:bottomLeftRadius="20dp"
         android:bottomRightRadius="20dp"
@@ -12,7 +12,7 @@
         android:topRightRadius="20dp" />
     <gradient
         android:angle="135"
-        android:centerColor="#DDC87B"
-        android:endColor="#E39B0C"
-        android:startColor="#E49E34" />
+        android:centerColor="@color/text_recycle_smile"
+        android:endColor="@color/text_color_dialog_equipment"
+        android:startColor="@color/text_recycle" />
 </shape>

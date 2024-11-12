@@ -4,6 +4,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.transfor
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import javax.inject.Inject
 class TransformerOwnNeedsRepositoryImpl @Inject constructor(
     private val dao: TransformerOwnNeedsDao,
     private val repositoryFirebase: FirebaseRepository
-) : EquipmentRepository<TransformerOwnNeedsEntity> {
+) : EquipmentRepository<TransformerOwnNeedsEntity> ,
+    EquipmentConsumerRepository<TransformerOwnNeedsEntity> {
     override suspend fun saveItemOpenEquipment(itemEntity: TransformerOwnNeedsEntity): SuccessResultFirebase {
         val dataFirebase = repositoryFirebase.getDocument<TransformerOwnNeedsEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
@@ -71,5 +73,7 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
         dao.clearTable()
     }
 
-
+    override fun getItemEntityConsumerFlow(id: String): Flow<TransformerOwnNeedsEntity?> {
+        return dao.getItemTransformerOwnNeedsConsumerFlow(id)
+    }
 }

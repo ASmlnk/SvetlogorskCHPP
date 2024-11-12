@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,6 +23,9 @@ interface TransformerOwnNeedsDao {
 
     @Query("SELECT * FROM transformer_own_needs WHERE id = :id")
     fun getItemTransformerOwnNeedsFlow(id: String): Flow<TransformerOwnNeedsEntity?>
+
+    @Query("SELECT * FROM transformer_own_needs WHERE powerSupplyId = :id")
+    fun getItemTransformerOwnNeedsConsumerFlow(id: String): Flow<TransformerOwnNeedsEntity?>
 
     @Query("DELETE FROM transformer_own_needs")
     suspend fun clearTable()

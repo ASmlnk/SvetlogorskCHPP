@@ -4,6 +4,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogen
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class TurboGeneratorRepositoryImpl @Inject constructor(
     private val dao: TurboGeneratorDao,
     private val repositoryFirebase: FirebaseRepository
-) : EquipmentRepository<TurboGeneratorEntity> {
+) : EquipmentRepository<TurboGeneratorEntity>, EquipmentConsumerRepository<TurboGeneratorEntity> {
 
     override suspend fun saveItemOpenEquipment(itemEntity: TurboGeneratorEntity): SuccessResultFirebase {
         val dataFirebase = repositoryFirebase.getDocument<TurboGeneratorEntity>(
@@ -70,5 +71,9 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
 
    suspend fun clearTable() {
         dao.clearTable()
+    }
+
+    override fun getItemEntityConsumerFlow(id: String): Flow<TurboGeneratorEntity?> {
+        return dao.getItemEntityConsumerFlow(id)
     }
 }

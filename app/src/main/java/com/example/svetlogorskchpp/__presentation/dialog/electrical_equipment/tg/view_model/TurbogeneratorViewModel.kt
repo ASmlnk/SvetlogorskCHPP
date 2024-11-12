@@ -95,7 +95,6 @@ class TurbogeneratorViewModel @AssistedInject constructor(
                 _powerSupplyState.value = it
             }
         }
-
     }
 
     companion object {

@@ -24,6 +24,9 @@ interface TurboGeneratorDao {
     @Query("SELECT * FROM turbogenerator WHERE id = :id")
      fun getItemEntityFlow(id: String): Flow<TurboGeneratorEntity?>
 
+     @Query("SELECT * FROM turbogenerator WHERE powerSupplyId = :id")
+     fun getItemEntityConsumerFlow(id: String): Flow<TurboGeneratorEntity?>
+
     @Query("DELETE FROM turbogenerator")
      suspend fun clearTable()
 }

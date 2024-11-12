@@ -4,6 +4,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.ElectricalEquipmentListMapper
@@ -16,12 +17,14 @@ import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitc
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TransformerOwnNeeds
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
 import com.example.svetlogorskchpp.__domain.usecases.NetworkAvailableUseCase
-import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentConsumerUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.ConsumerUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
-import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentConsumerTrUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentConsumerUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentPowerSupplyUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.consumer.ConsumerTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTransformerOwnNeedsUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTurboGeneratorUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
@@ -140,8 +143,8 @@ class UseCaseEquipmentModule {
     fun provideEquipmentConsumerTrUseCases(
         openSwitchgearTrRepository: EquipmentRepository<OpenSwitchgearTrEntity>,
         electricalEquipmentListMapper: ElectricalEquipmentListMapper
-    ): EquipmentConsumerUseCases<ElectricalEquipment.Tr> {
-        return EquipmentConsumerTrUseCasesImpl(openSwitchgearTrRepository,electricalEquipmentListMapper)
+    ): ConsumerUseCases<ElectricalEquipment.Tr> {
+        return ConsumerTrUseCasesImpl(openSwitchgearTrRepository,electricalEquipmentListMapper)
     }
 
     @Provides
@@ -159,9 +162,32 @@ class UseCaseEquipmentModule {
     @Provides
     @ViewModelScoped
     fun provideUpdateEquipmentAllUseCases (
-        trUseCases: EquipmentOpenSwitchgearTrListUseCasesImpl,
-        trConsumerUseCases: EquipmentConsumerTrUseCasesImpl
+         trUseCases: EquipmentOpenSwitchgearTrListUseCasesImpl,
+         tsnUseCases: EquipmentTransformerOwnNeedsListUseCasesImpl,
+         powerSupplyUseCases: EquipmentPowerSupplyUseCases,
+         consumerUseCases: EquipmentConsumerUseCases
     ) : EquipmentAllUseCases {
-        return EquipmentAllUseCasesImpl(trUseCases,trConsumerUseCases)
+        return EquipmentAllUseCasesImpl(trUseCases, tsnUseCases, powerSupplyUseCases, consumerUseCases)
     }
+
+    @Provides
+    @ViewModelScoped
+    fun provideEquipmentPowerSupplyUseCases (
+         mapper: ElectricalEquipmentListMapper,
+         repositoryTr: EquipmentRepository<OpenSwitchgearTrEntity>,
+         repositoryTsn: EquipmentRepository<TransformerOwnNeedsEntity>
+    ): EquipmentPowerSupplyUseCases {
+        return EquipmentPowerSupplyUseCases(mapper, repositoryTr, repositoryTsn)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideEuipmentConsumerUseCases (
+        mapper: ElectricalEquipmentListMapper,
+        repositoryTg: EquipmentConsumerRepository<TurboGeneratorEntity>,
+        repositoryTsn: EquipmentConsumerRepository<TransformerOwnNeedsEntity>
+    ) : EquipmentConsumerUseCases {
+        return EquipmentConsumerUseCases (mapper, repositoryTg,  repositoryTsn)
+    }
+
  }
