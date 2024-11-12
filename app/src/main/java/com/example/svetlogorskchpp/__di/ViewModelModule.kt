@@ -5,6 +5,7 @@ import com.example.svetlogorskchpp.__domain.interactor.shift_schedule.calendar.S
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearVl
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TransformerOwnNeeds
+import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
@@ -22,6 +23,7 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCas
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTransformerOwnNeedsUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTurboGeneratorUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearVLUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCasesImpl
@@ -79,6 +81,9 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideTransformerOwnNeedsUseCases(equipmentsOpenSwitchgearTrUseCasesImpl: EquipmentTransformerOwnNeedsUseCasesImpl): EquipmentsUseCases<TransformerOwnNeeds>
+
+    @Binds
+    abstract fun provideTurboGeneratorUseCases(equipmentTurboGeneratorUseCasesImpl: EquipmentTurboGeneratorUseCasesImpl): EquipmentsUseCases<TurboGenerator>
 
     @Binds
     abstract fun provideEquipmentAllUseCases (equipmentAllUseCasesImpl: EquipmentAllUseCasesImpl): EquipmentAllUseCases

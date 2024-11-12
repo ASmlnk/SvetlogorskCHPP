@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class EquipmentTsnViewModel @AssistedInject constructor(
     private val useCasesTsn: EquipmentsUseCases<TransformerOwnNeeds>,
@@ -29,8 +28,6 @@ class EquipmentTsnViewModel @AssistedInject constructor(
 
     private val _powerSupplyState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
     val powerSupplyState : StateFlow<List<ElectricalEquipment>> get() = _powerSupplyState
-
-
 
 
     init {
@@ -66,7 +63,7 @@ class EquipmentTsnViewModel @AssistedInject constructor(
 
     private fun updatePowerSupply(id: String)  {
         viewModelScope.launch(Dispatchers.IO) {
-            val flow = useCasesAllEquipment.getEquipmentFlow(id)
+            val flow = useCasesAllEquipment.getEquipmentPowerSupplyFlow(id)
                 flow.collect {
                 _powerSupplyState.value = it
             }

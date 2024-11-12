@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_content_parameter_ory"
+    android:layout_margin="8dp"
+    android:padding="4dp"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:text="@string/generator"
+        android:layout_marginStart="8dp"
+        android:textSize="24sp"
+        android:textColor="@color/text_content_rza"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/name_type_tg"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_type_tg"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="name"
+        android:hint="@string/name_type_tg" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/transcript_type"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_transcript_type"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="name"
+        android:hint="@string/transcript_type" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_volume_tg"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:autofillHints="name"
+            android:hint="@string/volume_tg" />
+
+        <EditText
+            android:id="@+id/et_volume_receiver"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints="name"
+            android:hint="@string/volume_receiver" />
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/additionally"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_additionally"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="name"
+        android:hint="@string/additionally" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/source_excitation"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_source_excitation"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="name"
+        android:hint="@string/source_excitation" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:text="@string/generator_start"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_generator_start"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="name"
+        android:hint="@string/generator_start" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:text="@string/translation_into_rv"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_translation_into_rv"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="name"
+        android:hint="@string/translation_into_rv" />
+
+    <TextView
+        style="@style/TextViewStyleContent"
+        android:layout_marginStart="16dp"
+        android:text="@string/translation_from_rv"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_translation_from_rv"
+        style="@style/EditTestStyleElectricalEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:autofillHints="name"
+        android:hint="@string/translation_from_rv" />
+
+</LinearLayout>

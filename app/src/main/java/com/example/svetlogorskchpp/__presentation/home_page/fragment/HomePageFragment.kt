@@ -68,6 +68,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_transformerOwnNeedsEditFragment)
             }
 
+            addItemTg.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorEditFragment)
+            }
+
             layoutSearchView.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
             }
@@ -76,6 +80,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
             layoutTg.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_blockGeneratorTransformer22)
+            }
+            layoutTg.setOnLongClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorListFragment)
+                return@setOnLongClickListener true
             }
             layoutZeroVision.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_zeroVisionFragment2)

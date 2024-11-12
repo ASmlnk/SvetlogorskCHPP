@@ -13,6 +13,7 @@ class EquipmentConsumerTrUseCasesImpl @Inject constructor(
     private val repository: EquipmentRepository<OpenSwitchgearTrEntity>,
     private val mapper: ElectricalEquipmentListMapper,
 ) : EquipmentConsumerUseCases<ElectricalEquipment.Tr> {
+
     override fun getEquipmentPowerSupply(idPowerSupply: String): Flow<ElectricalEquipment.Tr?> {
         return repository.getItemEquipment(idPowerSupply).map { openSwitchgearTrEntity ->
             openSwitchgearTrEntity?.let {

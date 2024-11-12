@@ -5,4 +5,5 @@ interface UpdateLocaleBaseUseCases {
     suspend fun updateRequestWork()
     suspend fun updateOpenSwitchgearTr()
     suspend fun updateTsn()
+    suspend fun updateTg()
 }

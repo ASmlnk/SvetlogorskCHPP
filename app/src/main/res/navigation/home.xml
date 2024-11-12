@@ -94,6 +94,12 @@
         <action
             android:id="@+id/action_homePageFragment_to_transformerOwnNeedsListFragment"
             app:destination="@id/transformerOwnNeedsListFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_turbogeneratorListFragment"
+            app:destination="@id/turbogeneratorListFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_turbogeneratorEditFragment"
+            app:destination="@id/turbogeneratorEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -211,5 +217,43 @@
             app:argType="string"
             android:defaultValue='""' />
     </dialog>
+    <fragment
+        android:id="@+id/turbogeneratorListFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.tg.list.fragment.TurbogeneratorListFragment"
+        tools:layout="@layout/fragment_tg_list"
+        android:label="TurbogeneratorListFragment" >
+        <action
+            android:id="@+id/action_turbogeneratorListFragment_to_turbogeneratorDialog"
+            app:destination="@id/turbogeneratorDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/turbogeneratorDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.fragment.TurbogeneratorDialog"
+        tools:layout="@layout/dialog_equipment_tg"
+        android:label="TurbogeneratorDialog" >
+        <deepLink
+            android:id="@+id/myDialogTsnDeepLink"
+            app:uri = "myapp://myDialogTgDeepLink/{id}"/>
+        <action
+            android:id="@+id/action_turbogeneratorDialog_to_turbogeneratorEditFragment"
+            app:destination="@id/turbogeneratorEditFragment" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </dialog>
+    <fragment
+        android:id="@+id/turbogeneratorEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.tg.edit.fragment.TurbogeneratorEditFragment"
+        tools:layout="@layout/fragment_tg_edit"
+        android:label="TurbogeneratorEditFragment" >
+        <action
+            android:id="@+id/action_turbogeneratorEditFragment_to_powerSupplySelectionDialog"
+            app:destination="@id/powerSupplySelectionDialog" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 
 </navigation>

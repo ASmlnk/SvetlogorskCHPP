@@ -13,6 +13,8 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.note.NoteEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
@@ -28,8 +30,9 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
         NoteRequestWorkEntity::class,
         OpenSwitchgearVlEntity::class,
         OpenSwitchgearTrEntity::class,
-        TransformerOwnNeedsEntity::class],
-    version = 8
+        TransformerOwnNeedsEntity::class,
+        TurboGeneratorEntity::class],
+    version = 9
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -40,6 +43,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun openSwitchgearVlDao(): OpenSwitchgearVlDao
     abstract fun openSwitchgearTrDao(): OpenSwitchgearTrDao
     abstract fun transformerOwnNeedsDao(): TransformerOwnNeedsDao
+    abstract fun turboGeneratorDao(): TurboGeneratorDao
 }
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -181,6 +185,45 @@ val MIGRATION_7_8 = object : Migration(7, 8) {
                 apv TEXT NOT NULL,
                 phaseProtection TEXT NOT NULL,
                 earthProtection TEXT NOT NULL
+            )
+        """.trimIndent()
+        )
+    }
+}
+
+val MIGRATION_8_9 = object : Migration(8, 9) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            """
+            CREATE TABLE turbogenerator (
+                id TEXT PRIMARY KEY NOT NULL,
+                name TEXT NOT NULL,
+                panelMcp TEXT NOT NULL,
+                typeSwitch TEXT NOT NULL,
+                typeInsTr TEXT NOT NULL,
+                typeGenerator TEXT NOT NULL,
+                transcriptTypeGenerator TEXT NOT NULL,
+                volumeTg TEXT NOT NULL,
+                volumeReceiver TEXT NOT NULL,
+                additionallyGenerator TEXT NOT NULL,
+                sourceExcitation TEXT NOT NULL,
+                generatorStarted TEXT NOT NULL,
+                translationIntoRv TEXT NOT NULL,
+                translationFromRv TEXT NOT NULL,
+                typeTurbin TEXT NOT NULL,
+                transcriptTypeTurbin TEXT NOT NULL,
+                powerEl TEXT NOT NULL,
+                powerThermal TEXT NOT NULL,
+                steamConsumption TEXT NOT NULL,
+                additionallyTurbin TEXT NOT NULL,
+                powerSupplyId TEXT NOT NULL,
+                powerSupplyCell TEXT NOT NULL,
+                powerSupplyName TEXT NOT NULL,
+                automation TEXT NOT NULL,
+                phaseProtection TEXT NOT NULL,
+                earthProtection TEXT NOT NULL,
+                additionallyRza1 TEXT NOT NULL,
+                additionallyRza2 TEXT NOT NULL
             )
         """.trimIndent()
         )

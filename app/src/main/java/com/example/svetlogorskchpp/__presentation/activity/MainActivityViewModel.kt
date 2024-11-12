@@ -34,6 +34,7 @@ class MainActivityViewModel @Inject constructor(
             updateOpenSwitchgearVl()
             updateOpenSwitchgearTr()
             updateTsn()
+            updateTg()
         }
     }
 
@@ -55,6 +56,12 @@ class MainActivityViewModel @Inject constructor(
     private fun updateTsn() {
         viewModelScope.launch(Dispatchers.IO) {
             updateLocaleBaseUseCases.updateTsn()
+        }
+    }
+
+    private fun updateTg() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateTg()
         }
     }
 

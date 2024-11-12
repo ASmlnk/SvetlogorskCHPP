@@ -318,5 +318,21 @@
     <string name="section_04">Секция 0,4 кВ</string>
     <string name="add">Добавить ИП</string>
     <string name="tsn_small_title">"ТСН %s"</string>
+    <string name="name_type_tg">Тип генератора</string>
+    <string name="parameter_type_tg">Парметры генератора</string>
+    <string name="volume_tg">Объём г-ра</string>
+    <string name="volume_receiver">Объем р-ра</string>
+    <string name="source_excitation">Источник возбуждения</string>
+    <string name="generator_start">Пуск генератора</string>
+    <string name="translation_into_rv">Перевод на РВ</string>
+    <string name="translation_from_rv">Перевод с РВ</string>
+    <string name="name_type_turbin">Тип турбины</string>
+    <string name="power_equipment">Мощность</string>
+    <string name="steam_consumption">Расход</string>
+    <string name="mvt">МВт</string>
+    <string name="gkal">ГКал</string>
+    <string name="t_ch">т/ч</string>
+    <string name="turbogenerator">Турбогенераторы</string>
+    <string name="type_parameter_tg">%1$sМВт\u0020\u0020%2$sГКал\u0020\u0020%3$sт/ч</string>
 
 </resources>

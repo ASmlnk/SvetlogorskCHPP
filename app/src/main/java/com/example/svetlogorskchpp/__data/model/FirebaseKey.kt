@@ -6,5 +6,6 @@ enum class FirebaseKey(val getString: String) {
     COLLECTION_ELECTRICAL_EQUIPMENT("Электрооборудование"),
     DOCUMENT_ORY("ОРУ"),
     DOCUMENT_TR("ОРУ Тр"),
-    DOCUMENT_TSN("ТСН")
+    DOCUMENT_TSN("ТСН"),
+    DOCUMENT_TG("ТГ"),
 }

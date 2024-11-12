@@ -39,4 +39,16 @@ sealed class ElectricalEquipment {
         val deepLink: DeepLink = DeepLink.TSN
     ): ElectricalEquipment()
 
+    data class Tg(
+        val id: String,
+        val nameEquipment: String,
+        val nameNumber: Int,
+        val typeGenerator: String,
+        val typeTurbin: String,
+        val powerEl: String,
+        val powerThermal: String,
+        val steamConsumption: String,
+        val deepLink: DeepLink = DeepLink.TG
+    ) : ElectricalEquipment()
+
 }

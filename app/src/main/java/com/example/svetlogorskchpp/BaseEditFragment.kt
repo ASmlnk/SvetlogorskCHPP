@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewbinding.ViewBinding
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.open_switchgear.adapter.ProtectionEditAdapter
 import com.example.svetlogorskchpp.databinding.ContentLayoutEditOryRzaBinding
+import com.example.svetlogorskchpp.databinding.ContentLayoutEditRzaBinding
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseEditFragment <T : ViewBinding> : BaseFragment<T>() {
@@ -54,6 +55,35 @@ abstract class BaseEditFragment <T : ViewBinding> : BaseFragment<T>() {
         addEarthProtection: (protection: String) -> Unit
 
         ) {
+        phaseProtectionAdapter = ProtectionEditAdapter {protection ->
+            onClickPhaseProtection(protection)
+        }
+        earthProtectionAdapter= ProtectionEditAdapter {protection ->
+            onClickEarthProtection(protection)
+        }
+        binding.apply {
+            rvPhaseProtection.adapter = phaseProtectionAdapter
+            ivPhaseProtection.setOnClickListener {
+                val textProtection = etPhaseProtection.text.toString()
+                if(textProtection.isNotEmpty()) addPhaseProtection(textProtection)
+                etPhaseProtection.setText("")
+            }
+            rvEarthProtection.adapter = earthProtectionAdapter
+            ivEarthProtection.setOnClickListener {
+                val textProtection = etEarthProtection.text.toString()
+                if(textProtection.isNotEmpty()) addEarthProtection(textProtection)
+                etEarthProtection.setText("")
+            }
+        }
+    }
+    protected fun setupProtectionView(
+        binding:  ContentLayoutEditRzaBinding,
+        onClickPhaseProtection: (protection: String) -> Unit,
+        onClickEarthProtection: (protection: String) -> Unit,
+        addPhaseProtection: (protection: String) -> Unit,
+        addEarthProtection: (protection: String) -> Unit
+
+    ) {
         phaseProtectionAdapter = ProtectionEditAdapter {protection ->
             onClickPhaseProtection(protection)
         }

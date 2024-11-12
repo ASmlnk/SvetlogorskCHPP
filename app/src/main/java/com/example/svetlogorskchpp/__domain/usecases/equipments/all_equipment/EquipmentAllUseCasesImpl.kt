@@ -1,16 +1,11 @@
 package com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment
 
-
-import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentConsumerUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentConsumerTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentOpenSwitchgearTrListUseCasesImpl
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.power_supply_selection.view_model.PowerSupplySelectionViewModel
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.scan
 import javax.inject.Inject
 
 class EquipmentAllUseCasesImpl @Inject constructor(
@@ -21,7 +16,7 @@ class EquipmentAllUseCasesImpl @Inject constructor(
         return trUseCases.getElectricalEquipments().map { it.sortedBy { it.nameNumber } }
     }
 
-    override fun getEquipmentFlow(id: String): Flow<List<ElectricalEquipment>> = flow {
+    override fun getEquipmentPowerSupplyFlow(id: String): Flow<List<ElectricalEquipment>> = flow {
         val listEquipment = mutableListOf<ElectricalEquipment>()
         trConsumerUseCases.getEquipmentPowerSupply(id).collect { item ->
             item?.let { listEquipment.add(item) }

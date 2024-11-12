@@ -45,7 +45,7 @@ class TransformerOwnNeedsListFragment: BaseFragment<FragmentTsnListBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.dataFlow.collect { list ->
-                    adapter.submitList(list/*.filter { it.voltage == args.voltage }*/)
+                    adapter.submitList(list)
                 }
             }
         }

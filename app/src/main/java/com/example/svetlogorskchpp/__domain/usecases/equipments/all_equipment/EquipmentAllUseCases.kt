@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface EquipmentAllUseCases {
     fun getEquipmentsFlow(): Flow<List<ElectricalEquipment>>
-    fun getEquipmentFlow(id: String): Flow<List<ElectricalEquipment>>
+    fun getEquipmentPowerSupplyFlow(id: String): Flow<List<ElectricalEquipment>>
 }

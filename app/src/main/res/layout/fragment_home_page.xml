@@ -126,6 +126,18 @@
                         app:layout_constraintEnd_toStartOf="@+id/add_item" />
 
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/add_item_tg"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/background_with_arc"
+                        android:src="@drawable/baseline_add_24"
+                        android:tint="@color/teal_700"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/add_item_tsn" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/add_item_tsn"
                         android:layout_width="32dp"
                         android:layout_height="32dp"

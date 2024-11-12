@@ -27,7 +27,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
 
-
     val args: EquipmentTsnDialogArgs by navArgs()
 
     @Inject
