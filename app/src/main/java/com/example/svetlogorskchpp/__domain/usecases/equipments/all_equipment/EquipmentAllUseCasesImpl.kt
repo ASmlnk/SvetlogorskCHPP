@@ -12,15 +12,19 @@ class EquipmentAllUseCasesImpl @Inject constructor(
     private val trUseCases: EquipmentOpenSwitchgearTrListUseCasesImpl,
     private val trConsumerUseCases: EquipmentConsumerTrUseCasesImpl
 ): EquipmentAllUseCases {
-    override fun getEquipmentsFlow(): Flow<List<ElectricalEquipment>> {
+    override fun getEquipmentsAllFlow(): Flow<List<ElectricalEquipment>> {
         return trUseCases.getElectricalEquipments().map { it.sortedBy { it.nameNumber } }
     }
 
-    override fun getEquipmentPowerSupplyFlow(id: String): Flow<List<ElectricalEquipment>> = flow {
+    override fun getEquipmentPowerSupplyFlow(idPowerSupply: String): Flow<List<ElectricalEquipment>> = flow {
         val listEquipment = mutableListOf<ElectricalEquipment>()
-        trConsumerUseCases.getEquipmentPowerSupply(id).collect { item ->
+        trConsumerUseCases.getEquipmentPowerSupply(idPowerSupply).collect { item ->
             item?.let { listEquipment.add(item) }
             emit(listEquipment.toList())
         }
+    }
+
+    override fun getEquipmentConsumersFlow(id: String): Flow<List<ElectricalEquipment>> {
+        TODO("Not yet implemented")
     }
 }
