@@ -7,19 +7,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.databinding.ItemProtectionBinding
 
 class ProtectionEditAdapter(
+    private val onClickEdit: (itemProtection: String) -> Unit,
     private val onClickDelete: (itemProtection: String) -> Unit,
 ) : ListAdapter<String, ProtectionEditAdapter.ProtectionHolder>(ItemStringCallback()) {
 
     class ProtectionHolder(val binding: ItemProtectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(item:String, onClickDelete: (itemProtection: String) -> Unit) {
-                binding.apply {
-                    tvProtection.text = item
-                    ivDelete.setOnClickListener {
-                        onClickDelete(item)
-                    }
+        fun bind(
+            item: String,
+            onClickDelete: (itemProtection: String) -> Unit,
+            onClickEdit: (itemProtection: String) -> Unit,
+        ) {
+            binding.apply {
+                tvProtection.text = item
+                tvProtection.setOnLongClickListener {
+                    onClickEdit(item)
+                    return@setOnLongClickListener true
+                }
+                ivDelete.setOnClickListener {
+                    onClickDelete(item)
                 }
             }
+        }
 
         companion object {
             fun inflateFrom(parentContext: ViewGroup): ProtectionHolder {
@@ -32,7 +41,7 @@ class ProtectionEditAdapter(
 
     override fun onBindViewHolder(holder: ProtectionHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, onClickDelete)
+        holder.bind(item, onClickDelete, onClickEdit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProtectionHolder =

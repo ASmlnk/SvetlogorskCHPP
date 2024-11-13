@@ -60,6 +60,7 @@
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">12dp</item>
+        <item name="android:textColorHighlight">@color/text_recycle_smile</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color_edit_text</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:textColor">@color/name_devices_appbar</item>

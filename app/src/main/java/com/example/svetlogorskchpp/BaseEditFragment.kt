@@ -55,12 +55,25 @@ abstract class BaseEditFragment <T : ViewBinding> : BaseFragment<T>() {
         addEarthProtection: (protection: String) -> Unit
 
         ) {
-        phaseProtectionAdapter = ProtectionEditAdapter {protection ->
-            onClickPhaseProtection(protection)
-        }
-        earthProtectionAdapter= ProtectionEditAdapter {protection ->
-            onClickEarthProtection(protection)
-        }
+        phaseProtectionAdapter = ProtectionEditAdapter(
+            onClickDelete = {protection ->
+                onClickPhaseProtection(protection)
+            },
+            onClickEdit = {protection ->
+                onClickPhaseProtection(protection)
+                binding.etPhaseProtection.setText(protection)
+            }
+        )
+        earthProtectionAdapter= ProtectionEditAdapter(
+            onClickDelete = {protection ->
+                onClickEarthProtection(protection)
+            },
+            onClickEdit = {protection ->
+                onClickEarthProtection(protection)
+                binding.etEarthProtection.setText(protection)
+            }
+        )
+
         binding.apply {
             rvPhaseProtection.adapter = phaseProtectionAdapter
             ivPhaseProtection.setOnClickListener {
@@ -84,12 +97,24 @@ abstract class BaseEditFragment <T : ViewBinding> : BaseFragment<T>() {
         addEarthProtection: (protection: String) -> Unit
 
     ) {
-        phaseProtectionAdapter = ProtectionEditAdapter {protection ->
-            onClickPhaseProtection(protection)
-        }
-        earthProtectionAdapter= ProtectionEditAdapter {protection ->
-            onClickEarthProtection(protection)
-        }
+        phaseProtectionAdapter = ProtectionEditAdapter (
+            onClickDelete = {protection ->
+                onClickPhaseProtection(protection)
+            },
+            onClickEdit = {protection ->
+                onClickPhaseProtection(protection)
+                binding.etPhaseProtection.setText(protection)
+            }
+        )
+        earthProtectionAdapter= ProtectionEditAdapter (
+            onClickDelete = {protection ->
+                onClickEarthProtection(protection)
+            },
+            onClickEdit = {protection ->
+                onClickEarthProtection(protection)
+                binding.etEarthProtection.setText(protection)
+            }
+        )
         binding.apply {
             rvPhaseProtection.adapter = phaseProtectionAdapter
             ivPhaseProtection.setOnClickListener {
