@@ -32,6 +32,6 @@ data class OpSwiTrDialogUIState(
     val keyOrSn: KeyOry = KeyOry.KEY_0,
     val automation: String = "",
     val apv: String = "",
-    val phaseProtection: String = "",
-    val earthProtection: String = "",
+    val phaseProtection: List<String> = emptyList(),
+    val earthProtection: List<String> = emptyList(),
 )

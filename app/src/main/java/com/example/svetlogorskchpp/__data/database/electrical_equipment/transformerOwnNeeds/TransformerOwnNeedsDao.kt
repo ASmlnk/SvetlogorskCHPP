@@ -25,7 +25,7 @@ interface TransformerOwnNeedsDao {
     fun getItemTransformerOwnNeedsFlow(id: String): Flow<TransformerOwnNeedsEntity?>
 
     @Query("SELECT * FROM transformer_own_needs WHERE powerSupplyId = :id")
-    fun getItemTransformerOwnNeedsConsumerFlow(id: String): Flow<TransformerOwnNeedsEntity?>
+    fun getItemTransformerOwnNeedsConsumerFlow(id: String): Flow<List<TransformerOwnNeedsEntity>>
 
     @Query("DELETE FROM transformer_own_needs")
     suspend fun clearTable()

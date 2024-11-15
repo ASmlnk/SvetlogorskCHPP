@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_rza_content_dialog"
     android:orientation="vertical"
-    android:paddingBottom="48dp">
+    android:paddingBottom="64dp">
 
     <TextView
         android:id="@+id/tv_automation_title"
@@ -52,64 +53,28 @@
         android:textColor="@color/calendar_background"
         android:textStyle="normal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/background_layout_line_gradient"
-        android:layout_height="3dp"/>
-
     <TextView
-        android:id="@+id/tv_phase_protection_title"
+        android:id="@+id/tv_protection_title"
         style="@style/TextViewStyleContentHomePageSubsection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/phase_protection"
-        android:textColor="@color/text_content_rza" />
-
-    <TextView
-        android:id="@+id/tv_phase_protection_content"
-        style="@style/TextViewStyleContentHomePageSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
-        android:textColor="@color/text_input_assembly"
-        android:textStyle="normal" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_marginTop="24dp"
-        android:background="@drawable/background_layout_line_gradient"
-        android:layout_height="3dp"/>
-
-    <TextView
-        android:id="@+id/tv_earth_protection_title"
-        style="@style/TextViewStyleContentHomePageSubsection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/earth_protection"
+        android:textSize="22sp"
+        android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/protection"
         android:textColor="@color/text_content_rza" />
 
-    <TextView
-        android:id="@+id/tv_earth_protection_content"
-        style="@style/TextViewStyleContentHomePageSection"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
-        android:textColor="@color/text_input_assembly"
-        android:textStyle="normal" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
 </LinearLayout>

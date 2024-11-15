@@ -2,28 +2,28 @@
     <!-- Верхняя обводка -->
     <item>
         <shape android:shape="rectangle">
-            <stroke android:width="3dp" android:color="@color/floatingActionButton" />
+            <stroke android:width="2dp" android:color="@color/background_calendar_month_prev" />
             <corners
                 android:topLeftRadius="20dp"
                 android:topRightRadius="20dp"
-                android:bottomLeftRadius="20dp"
-                android:bottomRightRadius="20dp" />
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
             <solid android:color="@android:color/transparent" />
         </shape>
     </item>
 
     <!-- Основной фон с градиентом -->
-    <item android:bottom="3dp">
+    <item android:top="2dp">
         <shape android:shape="rectangle">
             <corners
                 android:topLeftRadius="20dp"
                 android:topRightRadius="20dp"
-                android:bottomLeftRadius="20dp"
-                android:bottomRightRadius="20dp" />
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp" />
             <gradient
                 android:angle="90"
-                android:endColor="@color/backgroundItem"
-                android:startColor="@color/backgroundItem"
+                android:endColor="@color/background_calendar_month_prev"
+                android:startColor="@color/background_calendar_month_prev"
                 android:type="linear" />
         </shape>
     </item>

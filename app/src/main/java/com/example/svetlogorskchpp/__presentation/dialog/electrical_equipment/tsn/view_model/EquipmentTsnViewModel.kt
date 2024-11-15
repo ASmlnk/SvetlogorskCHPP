@@ -51,8 +51,8 @@ class EquipmentTsnViewModel @AssistedInject constructor(
                             typeInsTr = tsn.typeInsTr,
                             automation = tsn.automation,
                             apv = tsn.apv,
-                            phaseProtection = tsn.phaseProtection.joinToString(separator = "\n"),
-                            earthProtection = tsn.earthProtection.joinToString(separator = "\n"),
+                            phaseProtection = tsn.phaseProtection,
+                            earthProtection = tsn.earthProtection,
                         )
                     }
                     updatePowerSupply(tsn.powerSupplyId)

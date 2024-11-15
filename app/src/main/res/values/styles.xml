@@ -23,6 +23,15 @@
 
     <style name="TextViewStyleContent" parent="BaseTextViewStyle">
         <item name="android:textColor">@color/text_input_assembly</item>
+        <item name="android:hyphenationFrequency">full</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextViewStyleContentBigText" parent="BaseTextViewStyle">
+        <item name="android:textColor">@color/text_input_assembly</item>
+        <item name="android:hyphenationFrequency">full</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:fontFamily">@font/tahoma</item>
         <item name="android:textSize">20sp</item>
     </style>
 

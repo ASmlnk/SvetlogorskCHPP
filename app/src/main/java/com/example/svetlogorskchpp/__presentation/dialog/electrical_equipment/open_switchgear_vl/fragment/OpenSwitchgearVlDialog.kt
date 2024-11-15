@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearVlViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiVlDialogUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.view_model.OpenSwitchgearVlViewModel
@@ -38,6 +39,7 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
             idVl = args.id
         )
     }
+    private val adapterProtection = ProtectionDialogAdapter()
 
     private var _includeOryParameterBinding: ContentLayoutOryParameterDialogBinding? = null
     private val includeOryParameterBinding get() = _includeOryParameterBinding!!
@@ -83,9 +85,11 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
                 findNavController().navigate(action)
             }
         }
+        includeOryRzaBinding.rv.adapter = adapterProtection
     }
 
     private fun setupUI(state: OpSwiVlDialogUIState) {
+        adapterProtection.submitList(state.phaseProtection + state.earthProtection)
         binding.apply {
             tvName.text = state.name
             tvTransit.visibility = if (state.isTransit) View.VISIBLE else View.INVISIBLE
@@ -108,8 +112,8 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
         includeOryRzaBinding.apply {
             tvApvContent.text = state.apv
             tvAutomationContent.text = state.automation
-            tvPhaseProtectionContent.text = state.phaseProtection
-            tvEarthProtectionContent.text = state.earthProtection
+           // tvPhaseProtectionContent.text = state.phaseProtection
+           // tvEarthProtectionContent.text = state.earthProtection
         }
     }
 

@@ -73,7 +73,7 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
         dao.clearTable()
     }
 
-    override fun getItemEntityConsumerFlow(id: String): Flow<TransformerOwnNeedsEntity?> {
+    override fun getItemEntityConsumerFlow(id: String): Flow<List<TransformerOwnNeedsEntity>> {
         return dao.getItemTransformerOwnNeedsConsumerFlow(id)
     }
 }

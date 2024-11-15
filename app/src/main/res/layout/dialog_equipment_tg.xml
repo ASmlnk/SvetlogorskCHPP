@@ -161,12 +161,11 @@
 
             <TextView
                 android:id="@+id/tv_transcript_type_generator_content"
-                style="@style/TextViewStyleContentHomePageSubsection"
+                style="@style/TextViewStyleContentBigText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/actor"
                 android:gravity="start"
                 android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                 android:textColor="@color/text_color_dialog_equipment"
@@ -214,12 +213,11 @@
 
             <TextView
                 android:id="@+id/tv_transcript_type_turbin_content"
-                style="@style/TextViewStyleContentHomePageSubsection"
+                style="@style/TextViewStyleContentBigText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/actor"
                 android:gravity="start"
                 android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                 android:textColor="@color/text_color_dialog_equipment"
@@ -308,13 +306,12 @@
 
                 <TextView
                     android:id="@+id/tv_generator_start_content"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:paddingBottom="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                     android:textColor="@color/text_color_dialog_equipment"
@@ -335,13 +332,12 @@
 
                 <TextView
                     android:id="@+id/tv_translation_into_rv_content"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:paddingBottom="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                     android:textColor="@color/text_color_dialog_equipment"
@@ -362,13 +358,12 @@
 
                 <TextView
                     android:id="@+id/tv_translation_from_rv_content"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:paddingBottom="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                     android:textColor="@color/text_color_dialog_equipment"
@@ -385,11 +380,10 @@
 
                 <TextView
                     android:id="@+id/tv_additionally_generator"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
                     android:textColor="@color/text_color_dialog_equipment"
@@ -403,11 +397,11 @@
 
                 <TextView
                     android:id="@+id/tv_additionally_turbin"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:fontFamily="@font/actor"
+
                     android:gravity="start"
                     android:paddingBottom="24dp"
                     android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"

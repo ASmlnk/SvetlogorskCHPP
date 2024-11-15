@@ -73,7 +73,7 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
         dao.clearTable()
     }
 
-    override fun getItemEntityConsumerFlow(id: String): Flow<TurboGeneratorEntity?> {
+    override fun getItemEntityConsumerFlow(id: String): Flow<List<TurboGeneratorEntity>> {
         return dao.getItemEntityConsumerFlow(id)
     }
 }

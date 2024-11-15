@@ -16,6 +16,7 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.view_model.OpenSwitchgearTrViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
@@ -36,6 +37,7 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
         val deepLink = Uri.parse(dl.link + id)
         findNavController().navigate(deepLink)
     }
+    private val adapterProtection = ProtectionDialogAdapter()
 
     @Inject
     lateinit var viewModelFactory: OpenSwitchgearTrViewModelFactory
@@ -95,6 +97,7 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             _includeOryRzaBinding = ContentLayoutRzaDialogBinding.bind(contentRza.root)
 
             rvConsumer.adapter = adapter
+            includeOryRzaBinding.rv.adapter = adapterProtection
 
             ivEditContent.setOnClickListener {
                 val action =
@@ -141,8 +144,20 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             }
         }
 
-        setupViewKeyOry(keyShr1 = state.keyShr1Vn, keyShr2 = state.keyShr2Vn, keyLr = state.keyLrVn, keyOr = state.keyOrVn, includeOryParameterVnBinding)
-        setupViewKeyOry(keyShr1 = state.keyShr1Sn, keyShr2 = state.keyShr2Sn, keyLr = state.keyLrSn, keyOr = state.keyOrSn, includeOryParameterSnBinding)
+        setupViewKeyOry(
+            keyShr1 = state.keyShr1Vn,
+            keyShr2 = state.keyShr2Vn,
+            keyLr = state.keyLrVn,
+            keyOr = state.keyOrVn,
+            includeOryParameterVnBinding
+        )
+        setupViewKeyOry(
+            keyShr1 = state.keyShr1Sn,
+            keyShr2 = state.keyShr2Sn,
+            keyLr = state.keyLrSn,
+            keyOr = state.keyOrSn,
+            includeOryParameterSnBinding
+        )
 
         includeOryParameterVnBinding.apply {
             tvSwitchContent.text = state.typeSwitchVn
@@ -155,10 +170,15 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             tvVoltage.text = resources.getString(R.string.name_voltage_ory, state.voltageSn.str)
         }
         includeOryRzaBinding.apply {
-            tvApvContent.text =state.apv
-            tvAutomationContent.text =state.automation
-            tvEarthProtectionContent.text =state.earthProtection
-            tvPhaseProtectionContent.text =state.phaseProtection
+            tvApvContent.text = state.apv
+            tvAutomationContent.text = state.automation
+            adapterProtection.submitList(state.phaseProtection + state.earthProtection)
+            // tvEarthProtectionContent.text =state.earthProtection
+            // tvPhaseProtectionContent.text =state.phaseProtection
+            tvApvContent.isGone = state.apv.isEmpty()
+            tvApvTitle.isGone = state.apv.isEmpty()
+            tvAutomationTitle.isGone = state.automation.isEmpty()
+            tvAutomationContent.isGone = state.automation.isEmpty()
         }
 
     }

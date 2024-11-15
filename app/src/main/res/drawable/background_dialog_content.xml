@@ -1,4 +1,5 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- Верхняя обводка -->
     <item>
         <shape android:shape="rectangle">

@@ -20,20 +20,13 @@ class EquipmentConsumerUseCases @Inject constructor(
 
     fun getEquipmentConsumet (id: String): Flow<List<ElectricalEquipment>> {
         val tgFlow = repositoryTg.getItemEntityConsumerFlow(id).map { entity ->
-            entity?.let {
-                mapper.toElectricalEquipmentTg(it)
-            }
+                entity.map{ mapper.toElectricalEquipmentTg(it) }
         }
         val tsnFlow = repositoryTsn.getItemEntityConsumerFlow(id).map { entity ->
-            entity?.let {
-                mapper.toElectricalEquipmentTsn(it)
-            }
+            entity.map { mapper.toElectricalEquipmentTsn(it) }
         }
         return combine(tgFlow, tsnFlow) { tg, tsn ->
-            val list = mutableListOf<ElectricalEquipment>()
-            tg?.let { list.add(tg) }
-            tsn?.let { list.add(tsn) }
-            list
+            tg + tsn
         }
     }
 }

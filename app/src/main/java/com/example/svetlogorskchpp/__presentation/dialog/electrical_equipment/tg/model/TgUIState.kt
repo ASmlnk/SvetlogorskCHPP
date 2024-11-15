@@ -29,6 +29,6 @@ data class TgUIState (
     val automation: String = "",
     val additionallyRza1: String = "",
     val additionallyRza2: String = "",
-    val phaseProtection: String = "",
-    val earthProtection: String = "",
+    val phaseProtection: List<String> = emptyList(),
+    val earthProtection: List<String> = emptyList(),
 )

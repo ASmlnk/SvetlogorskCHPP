@@ -6,6 +6,7 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUs
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -18,6 +19,6 @@ class TransformerOwnNeedsListViewModel @Inject constructor(
         viewModelScope,
         SharingStarted.Lazily,
         emptyList()
-    )
-
+    ).map { list ->
+        list.sortedBy { it.nameNumber } }
 }

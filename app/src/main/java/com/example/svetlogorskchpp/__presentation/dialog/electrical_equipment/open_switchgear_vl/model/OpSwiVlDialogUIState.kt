@@ -18,6 +18,6 @@ data class OpSwiVlDialogUIState(
     val keyShr2: KeyOry =KeyOry.KEY_0,
     val keyLr: KeyOry=KeyOry.KEY_0,
     val keyOr: KeyOry=KeyOry.KEY_0,
-    val phaseProtection: String= "",
-    val earthProtection: String= "",
+    val phaseProtection: List<String> = emptyList(),
+    val earthProtection: List<String> = emptyList(),
 )

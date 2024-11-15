@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.model.TsnUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.view_model.EquipmentTsnViewModel
@@ -38,6 +40,7 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         )
     }
 
+    private val adapterProtection = ProtectionDialogAdapter()
     private val adapter = PowerSupplySelectionAdapter { id, name, dl ->
         val deepLink = Uri.parse(dl.link + id)
         findNavController().navigate(deepLink)
@@ -60,6 +63,7 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         _includeOryRzaBinding = ContentLayoutRzaDialogBinding.bind(binding.contentRza.root)
+        includeOryRzaBinding.rv.adapter = adapterProtection
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -93,6 +97,8 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
 
     private fun setupUI(state: TsnUIState) {
 
+        adapterProtection.submitList(state.phaseProtection + state.earthProtection)
+
         binding.apply {
             tvName.text = state.name
             tvType.text = state.type
@@ -112,8 +118,12 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         includeOryRzaBinding.apply {
             tvApvContent.text = state.apv
             tvAutomationContent.text = state.automation
-            tvEarthProtectionContent.text = state.earthProtection
-            tvPhaseProtectionContent.text = state.phaseProtection
+            //tvEarthProtectionContent.text = state.earthProtection
+            //tvPhaseProtectionContent.text = state.phaseProtection
+            tvApvContent.isGone = state.apv.isEmpty()
+            tvApvTitle.isGone = state.apv.isEmpty()
+            tvAutomationTitle.isGone = state.automation.isEmpty()
+            tvAutomationContent.isGone = state.automation.isEmpty()
         }
 
     }

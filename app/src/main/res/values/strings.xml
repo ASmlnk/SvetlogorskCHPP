@@ -334,5 +334,7 @@
     <string name="t_ch">т/ч</string>
     <string name="turbogenerator">Турбогенераторы</string>
     <string name="type_parameter_tg">%1$sМВт\u0020\u0020%2$sГКал\u0020\u0020%3$sт/ч</string>
+    <string name="protection">Защиты</string>
+    <string name="transcript_type_generator">%1$s\nГазовый объем генератора: %2$sм3\nГазовый объем ресивера: %3$sм3</string>
 
 </resources>

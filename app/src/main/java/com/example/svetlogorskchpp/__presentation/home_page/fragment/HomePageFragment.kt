@@ -79,10 +79,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_valveFragment2)
             }
             layoutTg.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_blockGeneratorTransformer22)
+                findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorListFragment)
             }
             layoutTg.setOnLongClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorListFragment)
+                findNavController().navigate(R.id.action_homePageFragment_to_blockGeneratorTransformer22)
                 return@setOnLongClickListener true
             }
             layoutZeroVision.setOnClickListener {
@@ -114,7 +114,23 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
 
         includeTsnBinding.apply {
             tvTsn103.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(Voltage.KV10_KV3)
+                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                    Voltage.KV10_KV3)
+                findNavController().navigate(action)
+            }
+            tvTsn106.setOnClickListener{
+                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                    Voltage.KV10_KV6)
+                findNavController().navigate(action)
+            }
+            tvTsn304.setOnClickListener{
+                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                    Voltage.KV3_KV04)
+                findNavController().navigate(action)
+            }
+            tvTsn604.setOnClickListener{
+                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                    Voltage.KV6_KV04)
                 findNavController().navigate(action)
             }
         }

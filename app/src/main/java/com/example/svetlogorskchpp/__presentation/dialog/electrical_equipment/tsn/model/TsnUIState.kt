@@ -19,6 +19,6 @@ data class TsnUIState(
     val typeInsTr: String = "",
     val automation: String = "",
     val apv: String = "",
-    val phaseProtection: String = "",
-    val earthProtection: String = "",
+    val phaseProtection: List<String> = emptyList(),
+    val earthProtection: List<String> = emptyList(),
     )

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.TurbogeneratorViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.model.TgUIState
@@ -43,6 +44,7 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
         )
     }
 
+    private val adapterProtection = ProtectionDialogAdapter()
     private val adapter = PowerSupplySelectionAdapter { id, name, dl ->
         val deepLink = Uri.parse(dl.link + id)
         findNavController().navigate(deepLink)
@@ -64,6 +66,7 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         _includeRzaBinding = ContentLayoutRzaEquipmentDialogBinding.bind(binding.contentRza.root)
+        includeRzaBinding.rv.adapter = adapterProtection
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -104,6 +107,8 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
 
     private fun setupUI(state: TgUIState) {
 
+        adapterProtection.submitList(state.phaseProtection + state.earthProtection)
+
         binding.apply {
             tvName.apply {
                 text = state.name
@@ -132,7 +137,7 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
             }
             tvTranscriptTypeGeneratorContent.apply {
                 isGone = state.transcriptTypeGenerator.isEmpty()
-                text = state.transcriptTypeGenerator
+                text = resources.getString(R.string.transcript_type_generator, state.transcriptTypeGenerator, state.volumeTg, state.volumeReceiver)
             }
             tvSourceExcitationContent.apply {
                 isGone = state.sourceExcitation.isEmpty()
@@ -167,13 +172,12 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
                 text = state.additionallyTurbin
             }
 
-
         }
 
         includeRzaBinding.apply {
             tvAutomationContent.text = state.automation
-            tvEarthProtectionContent.text = state.earthProtection
-            tvPhaseProtectionContent.text = state.phaseProtection
+           // tvEarthProtectionContent.text = state.earthProtection
+           // tvPhaseProtectionContent.text = state.phaseProtection
             tvAdditionally1.apply {
                 text = state.additionallyRza1
                 isGone = state.additionallyRza1.isEmpty()
@@ -184,6 +188,9 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
             }
             layoutAdditionally1.isGone = state.additionallyRza1.isEmpty()
             layoutAdditionally2.isGone = state.additionallyRza2.isEmpty()
+
+            tvAutomationTitle.isGone = state.automation.isEmpty()
+            tvAutomationContent.isGone = state.automation.isEmpty()
 
         }
     }

@@ -260,11 +260,10 @@
 
                 <TextView
                     android:id="@+id/tv_transcript_type"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
                     android:textColor="@color/text_color_dialog_equipment"
@@ -278,11 +277,10 @@
 
                 <TextView
                     android:id="@+id/tv_additionally"
-                    style="@style/TextViewStyleContentHomePageSubsection"
+                    style="@style/TextViewStyleContentBigText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:fontFamily="@font/actor"
                     android:gravity="start"
                     android:paddingBottom="24dp"
                     android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"

@@ -68,8 +68,8 @@ class OpenSwitchgearTrViewModel @AssistedInject constructor(
                             keyOrSn = openSwitchgearTr.keyOrSn,
                             automation = openSwitchgearTr.automation,
                             apv = openSwitchgearTr.apv,
-                            phaseProtection = openSwitchgearTr.phaseProtection.joinToString(separator = "\n"),
-                            earthProtection = openSwitchgearTr.earthProtection.joinToString(separator = "\n"),
+                            phaseProtection = openSwitchgearTr.phaseProtection,
+                            earthProtection = openSwitchgearTr.earthProtection,
                         )
                     }
                 }

@@ -63,8 +63,8 @@ class TurbogeneratorViewModel @AssistedInject constructor(
                             automation = tg.automation,
                             additionallyRza1 = tg.additionallyRza1,
                             additionallyRza2 = tg.additionallyRza2,
-                            phaseProtection = tg.phaseProtection.joinToString(separator = "\n"),
-                            earthProtection = tg.earthProtection.joinToString(separator = "\n"),
+                            phaseProtection = tg.phaseProtection,
+                            earthProtection = tg.earthProtection,
                         )
                     }
                     updatePowerSupply(tg.powerSupplyId)
