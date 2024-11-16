@@ -1,5 +1,7 @@
 package com.example.svetlogorskchpp.electricalAssembly
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,20 +13,27 @@ import com.example.svetlogorskchpp.model.UpdateDateFB
 import com.example.svetlogorskchpp.model.electricMotor.ElectricMotorSearch
 import com.example.svetlogorskchpp.model.firebase.FirestoreRepository
 import com.example.svetlogorskchpp.zeroVision.ZeroVisionType
+import com.google.gson.Gson
+import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import io.grpc.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 import java.util.GregorianCalendar
 import java.util.TimeZone
 import javax.inject.Inject
 
 @HiltViewModel
 class ElectricalAssemblyViewModel @Inject constructor(
+    application: Application,
     private val data: FirestoreRepository,
-): ViewModel() {
+): AndroidViewModel(application) {
 
    // private val data = FirestoreRepository.get()
     private val listAllAssembly = mutableListOf<ElectricalAssemblyFirebase>()
@@ -110,6 +119,25 @@ class ElectricalAssemblyViewModel @Inject constructor(
         if (textSearch == "") {
             _listSearchLiveData.value = emptyList()
         } else {
+            if (textSearch == "files") {
+                val list = mutableMapOf<String, String>()
+                for (electricalAssembly in listAllAssembly) {
+                    val listItem = electricalAssembly.listItemAssembly.keys.toList()
+                    for (i in listItem) {
+                        list.put(i, electricalAssembly.nameAssembly)
+                    }
+                }
+                val listR = list.toSortedMap()
+                val dd = Gson().toJson(listR)
+                val context = getApplication<Application>().applicationContext
+                val file = File(context.filesDir, "filename")
+
+                FileOutputStream(file).use { outputStream ->
+                    outputStream.write(dd.toByteArray())
+                }
+            }
+
+
             val text = textSearch.lowercase()
             val list = mutableListOf<ElectricalAssemblySearch>()
             for (electricalAssembly in listAllAssembly) {
