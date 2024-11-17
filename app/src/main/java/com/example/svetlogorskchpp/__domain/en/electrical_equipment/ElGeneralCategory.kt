@@ -7,4 +7,6 @@ enum class ElGeneralCategory {
     //ТУ
     //ЭЦ
     //ЭЦ
+    //К/А
+    //ТГ
 }
