@@ -1,8 +1,8 @@
 package com.example.svetlogorskchpp.__data.hard
 
-sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
+sealed class RequestWorkHardDataListImpl: HardDataListRepository<String> {
 
-    data object Accession: RequestWorkHardDataImpl() {
+    data object Accession: RequestWorkHardDataListImpl() {
        override fun data(): List<String> {
             return  listOf(
                 "Трансформатор Т1",
@@ -121,7 +121,7 @@ sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
         }
     }
 
-    data object Reason: RequestWorkHardDataImpl() {
+    data object Reason: RequestWorkHardDataListImpl() {
        override fun data(): List<String> {
             return listOf(
                 "Вывести в ремонт ВЛ-110",
@@ -153,4 +153,6 @@ sealed class RequestWorkHardDataImpl: HardDataRepository<String> {
             )
         }
     }
+
+
 }

@@ -100,6 +100,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_turbogeneratorEditFragment"
             app:destination="@id/turbogeneratorEditFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_infoDialog"
+            app:destination="@id/infoDialog" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -255,5 +258,14 @@
             app:argType="string"
             android:defaultValue='""' />
     </fragment>
+    <dialog
+        android:id="@+id/infoDialog"
+        tools:layout="@layout/dialog_info"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.info.fragment.InfoDialog"
+        android:label="InfoDialog" >
+        <argument
+            android:name="info"
+            app:argType="com.example.svetlogorskchpp.__domain.en.HardData" />
+    </dialog>
 
 </navigation>

@@ -19,8 +19,8 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogen
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
-import com.example.svetlogorskchpp.__data.hard.HardDataRepository
-import com.example.svetlogorskchpp.__data.hard.RequestWorkHardDataImpl
+import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
+import com.example.svetlogorskchpp.__data.hard.RequestWorkHardDataListImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,12 +73,6 @@ class LocaleModule {
     }
 
     @Provides
-    @RequestWorkReason
-    fun provideRequestWorkReasonHardData (): HardDataRepository<String> {
-        return RequestWorkHardDataImpl.Reason
-    }
-
-    @Provides
     fun provideOpenSwitchgearVlDao(dataBase: AppDataBase) : OpenSwitchgearVlDao {
         return dataBase.openSwitchgearVlDao()
     }
@@ -97,19 +91,5 @@ class LocaleModule {
     fun provideTurboGeneratorDao(dataBase: AppDataBase): TurboGeneratorDao {
         return dataBase.turboGeneratorDao()
     }
-
-    @Provides
-    @RequestWorkAccession
-    fun provideRequestWorkAccessionHardData (): HardDataRepository<String> {
-        return RequestWorkHardDataImpl.Accession
-    }
-
 }
 
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class RequestWorkReason
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class RequestWorkAccession

@@ -1,7 +1,7 @@
 package com.example.svetlogorskchpp.__di
 
 import android.content.Context
-import com.example.svetlogorskchpp.__data.hard.HardDataRepository
+import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
@@ -38,7 +38,7 @@ import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarNote
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCases
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
-import com.example.svetlogorskchpp.__domain.usecases.hardData.RequestWorkHardDataUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.RequestWorkFilterFactoryUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
@@ -162,10 +162,12 @@ class UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideRequestWorkHardData(
-        @RequestWorkReason reasonHardData: HardDataRepository<String>,
-        @RequestWorkAccession accessionHardData: HardDataRepository<String>,
+        @RequestWorkReason reasonHardData: HardDataListRepository<String>,
+        @RequestWorkAccession accessionHardData: HardDataListRepository<String>,
+        @InfoORY infoOry: HardDataListRepository<String>,
+        @InfoTSN infoTsn: HardDataListRepository<String>
     ): HardDataUseCases<String> {
-        return RequestWorkHardDataUseCasesImpl(reasonHardData, accessionHardData)
+        return HardDataUseCasesImpl(reasonHardData, accessionHardData, infoOry, infoTsn)
     }
 
     @Provides

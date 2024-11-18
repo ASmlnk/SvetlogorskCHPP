@@ -16,13 +16,9 @@ import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.TurbogeneratorViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.model.TgUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.view_model.TurbogeneratorViewModel
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.fragment.EquipmentTsnDialogDirections
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.view_model.EquipmentTsnViewModel
-import com.example.svetlogorskchpp.databinding.ContentLayoutRzaDialogBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaEquipmentDialogBinding
 import com.example.svetlogorskchpp.databinding.DialogEquipmentTgBinding
 import dagger.hilt.android.AndroidEntryPoint
