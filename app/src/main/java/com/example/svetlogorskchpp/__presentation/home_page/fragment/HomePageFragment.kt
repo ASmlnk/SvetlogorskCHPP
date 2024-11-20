@@ -62,15 +62,15 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
 
             addItemTr.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrEditFragment)
+              //  findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrEditFragment)
             }
 
             addItemTsn.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_transformerOwnNeedsEditFragment)
+              //  findNavController().navigate(R.id.action_homePageFragment_to_transformerOwnNeedsEditFragment)
             }
 
             addItemTg.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorEditFragment)
+               // findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorEditFragment)
             }
 
             layoutSearchView.setOnClickListener {
@@ -96,7 +96,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_transformerOfOwnNeeds2)
             }
             addItem.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
+               // findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
             }
             ivOryInfo.setOnClickListener {
                 val action = HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_ORY)

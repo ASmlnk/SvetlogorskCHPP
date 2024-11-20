@@ -77,29 +77,17 @@
             android:id="@+id/action_homePageFragment_to_openSwitchgear"
             app:destination="@id/openSwitchgear" />
         <action
-            android:id="@+id/action_homePageFragment_to_openSwitchgearVlEditFragment"
-            app:destination="@id/openSwitchgearVlEditFragment" />
-        <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearVlFragment"
             app:destination="@id/openSwitchgearVlFragment" />
         <action
-            android:id="@+id/action_homePageFragment_to_openSwitchgearTrEditFragment"
-            app:destination="@id/openSwitchgearTrEditFragment" />
-        <action
             android:id="@+id/action_homePageFragment_to_openSwitchgearTrListFragment"
             app:destination="@id/openSwitchgearTrListFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_transformerOwnNeedsEditFragment"
-            app:destination="@id/transformerOwnNeedsEditFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_transformerOwnNeedsListFragment"
             app:destination="@id/transformerOwnNeedsListFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_turbogeneratorListFragment"
             app:destination="@id/turbogeneratorListFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_turbogeneratorEditFragment"
-            app:destination="@id/turbogeneratorEditFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_infoDialog"
             app:destination="@id/infoDialog" />
@@ -274,6 +262,19 @@
         android:id="@+id/loaderBdDialog"
         tools:layout="@layout/dialog_loader_locale_fb"
         android:name="com.example.svetlogorskchpp.__presentation.dialog.loader.fragment.LoaderBdDialog"
-        android:label="LoaderBdDialog" />
+        android:label="LoaderBdDialog" >
+        <action
+            android:id="@+id/action_loaderBdDialog_to_openSwitchgearTrEditFragment"
+            app:destination="@id/openSwitchgearTrEditFragment" />
+        <action
+            android:id="@+id/action_loaderBdDialog_to_openSwitchgearVlEditFragment"
+            app:destination="@id/openSwitchgearVlEditFragment" />
+        <action
+            android:id="@+id/action_loaderBdDialog_to_transformerOwnNeedsEditFragment"
+            app:destination="@id/transformerOwnNeedsEditFragment" />
+        <action
+            android:id="@+id/action_loaderBdDialog_to_turbogeneratorEditFragment"
+            app:destination="@id/turbogeneratorEditFragment" />
+    </dialog>
 
 </navigation>
