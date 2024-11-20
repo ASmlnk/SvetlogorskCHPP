@@ -1,9 +1,16 @@
 package com.example.svetlogorskchpp.__domain.mapper.electrical_equipment
 
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElAssembly
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElGeneralCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import javax.inject.Inject
@@ -76,6 +83,48 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 powerEl = powerEl,
                 powerThermal = powerThermal,
                 steamConsumption = steamConsumption
+            )
+        }
+    }
+
+    fun toElectricalEquipmentElMotor(elMotor: ElMotorEntity): ElectricalEquipment.ElMotor {
+        return with(elMotor) {
+            ElectricalEquipment.ElMotor(
+                id = id,
+                name = nam,
+                category = cat.let { ElCategory.valueOf(it) },
+                generalCategory = gCat.let { ElGeneralCategory.valueOf(it) },
+                powerEl = powEl,
+                voltage = vol.let { Voltage.valueOf(it) },
+                i = i,
+                powerSupplyName = powSuNam,
+                powerSupplyCell = powSuC,
+                cell = toInt(powSuC)
+            )
+        }
+    }
+
+    fun toElectricalEquipmentSwitchgear(switchgear: SwitchgearEntity): ElectricalEquipment.Switchgear {
+        return with(switchgear) {
+            ElectricalEquipment.Switchgear(
+                id = id,
+                name = nam,
+                category = cat.let { ElAssembly.valueOf(it) },
+                nameDepartment = namDep.let { NameDepartment.valueOf(it) },
+                voltage = vol.let { Voltage.valueOf(it) }
+            )
+        }
+    }
+
+    fun toElectricalEquipmentLightOther(lihgtOther: LightingAndOtherEntity): ElectricalEquipment.LightOther {
+        return with(lihgtOther) {
+            ElectricalEquipment.LightOther(
+                id = id,
+                name = nam,
+                powerSupplyName = powSuNam,
+                powerSupplyCell = powSuC,
+                isLighting = isLi,
+                cell = toInt(powSuC),
             )
         }
     }

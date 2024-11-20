@@ -1,12 +1,12 @@
 package com.example.svetlogorskchpp.__domain.en.electrical_equipment
 
-enum class ElGeneralCategory {
-    //ХОВ
-    //КТЦ т/о
-    //КТЦ к/о
-    //ТУ
-    //ЭЦ
-    //ЭЦ
-    //К/А
-    //ТГ
+enum class ElGeneralCategory(val str: String) {
+    OTHER("Остальные"),
+    HOV("ХОВ"),
+    KTC_TO("КТЦ т/о"),
+    KTC_KO("КТЦ к/о"),
+    TY("ТУ"),
+    EC("ЭЦ"),
+    KA("К/А"),
+    RG("ТГ")
 }

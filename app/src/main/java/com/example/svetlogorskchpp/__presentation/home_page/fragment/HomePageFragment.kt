@@ -106,6 +106,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 val action = HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_TSN)
                 findNavController().navigate(action)
             }
+            download.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_loaderBdDialog)
+
+            }
 
         }
         includeOryBinding.apply {

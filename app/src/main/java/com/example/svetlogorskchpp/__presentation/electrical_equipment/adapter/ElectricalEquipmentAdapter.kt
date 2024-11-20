@@ -31,6 +31,9 @@ class ElectricalEquipmentAdapter(
             is ElectricalEquipment.Tr -> (holder as ElectricalEquipmentTrHolder).bind(item, onClick)
             is ElectricalEquipment.Tsn -> (holder as ElectricalEquipmentTsnHolder).bind(item, onClick)
             is ElectricalEquipment.Tg -> (holder as ElectricalEquipmentTgHolder).bind(item, onClick)
+            is ElectricalEquipment.ElMotor -> TODO()
+            is ElectricalEquipment.Switchgear -> TODO()
+            is ElectricalEquipment.LightOther -> TODO()
         }
     }
 
@@ -50,6 +53,9 @@ class ElectricalEquipmentAdapter(
             is ElectricalEquipment.Tr -> 1
             is ElectricalEquipment.Tsn -> 2
             is ElectricalEquipment.Tg -> 3
+            is ElectricalEquipment.ElMotor -> TODO()
+            is ElectricalEquipment.Switchgear -> TODO()
+            is ElectricalEquipment.LightOther -> TODO()
         }
     }
 }

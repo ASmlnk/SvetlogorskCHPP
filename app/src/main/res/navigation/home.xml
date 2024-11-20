@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_infoDialog"
             app:destination="@id/infoDialog" />
+        <action
+            android:id="@+id/action_homePageFragment_to_loaderBdDialog"
+            app:destination="@id/loaderBdDialog" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -267,5 +270,10 @@
             android:name="info"
             app:argType="com.example.svetlogorskchpp.__domain.en.HardData" />
     </dialog>
+    <dialog
+        android:id="@+id/loaderBdDialog"
+        tools:layout="@layout/dialog_loader_locale_fb"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.loader.fragment.LoaderBdDialog"
+        android:label="LoaderBdDialog" />
 
 </navigation>

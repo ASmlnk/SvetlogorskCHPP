@@ -7,10 +7,16 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarNoteTagDao
 import com.example.svetlogorskchpp.__data.database.calendarNoteTag.CalendarMyNoteTagEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearTr.OpenSwitchgearTrEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearDao
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
@@ -31,8 +37,11 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
         OpenSwitchgearVlEntity::class,
         OpenSwitchgearTrEntity::class,
         TransformerOwnNeedsEntity::class,
-        TurboGeneratorEntity::class],
-    version = 9
+        TurboGeneratorEntity::class,
+        ElMotorEntity::class,
+        SwitchgearEntity::class,
+        LightingAndOtherEntity::class],
+    version = 10
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -44,6 +53,9 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun openSwitchgearTrDao(): OpenSwitchgearTrDao
     abstract fun transformerOwnNeedsDao(): TransformerOwnNeedsDao
     abstract fun turboGeneratorDao(): TurboGeneratorDao
+    abstract fun elMotorDao(): ElMotorDao
+    abstract fun switchgearDao(): SwitchgearDao
+    abstract fun lightingAndOtherDao(): LightingAndOtherDao
 }
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -226,6 +238,92 @@ val MIGRATION_8_9 = object : Migration(8, 9) {
                 additionallyRza2 TEXT NOT NULL
             )
         """.trimIndent()
+        )
+    }
+}
+
+val MIGRATION_9_10 = object : Migration(9,10) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            """
+                CREATE TABLE el_motor (
+                 id TEXT PRIMARY KEY NOT NULL,
+                 nam TEXT NOT NULL,
+                 powSuId TEXT NOT NULL,
+                 powSuC TEXT NOT NULL,
+                 powSuNam TEXT NOT NULL,
+                 automation TEXT NOT NULL,
+                 phPr TEXT NOT NULL,
+                 eaPr TEXT NOT NULL,
+                 addRz TEXT NOT NULL,
+                 cat TEXT NOT NULL,
+                 gCat TEXT NOT NULL,
+                 tSw TEXT NOT NULL,
+                 tIT TEXT NOT NULL,
+                 addit TEXT NOT NULL,
+                 isRep INTEGER NOT NULL,
+                 tRep TEXT NOT NULL,
+                 conCir TEXT NOT NULL,
+                 powEl TEXT NOT NULL,
+                 vol TEXT NOT NULL,
+                 i TEXT NOT NULL,
+                 n TEXT NOT NULL,
+                 tEl TEXT NOT NULL,
+                 mecTyp TEXT NOT NULL,
+                 mecPer TEXT NOT NULL,
+                 mecPr TEXT NOT NULL,
+                 mecN TEXT NOT NULL
+                )
+            """.trimIndent()
+        )
+        db.execSQL(
+            """
+                CREATE TABLE switchgear (
+                 id TEXT PRIMARY KEY NOT NULL,
+                 nam TEXT NOT NULL,
+                 tSw TEXT NOT NULL,
+                 tIT TEXT NOT NULL,
+                 addit TEXT NOT NULL,
+                 cat TEXT NOT NULL,
+                 namDep TEXT NOT NULL,
+                 vol TEXT NOT NULL,
+                 aut TEXT NOT NULL,
+                 phPr TEXT NOT NULL,
+                 eaPr TEXT NOT NULL,
+                 addRz TEXT NOT NULL,
+                 inf TEXT NOT NULL,
+                 powSuId1 TEXT NOT NULL,
+                 powSuC1 TEXT NOT NULL,
+                 powSuNam1 TEXT NOT NULL,
+                 powSuId2 TEXT NOT NULL,
+                 powSuC2 TEXT NOT NULL,
+                 powSuNam2 TEXT NOT NULL,
+                 powSuRId1 TEXT NOT NULL,
+                 powSuRC1 TEXT NOT NULL,
+                 powSuRNam1 TEXT NOT NULL,
+                 powSuRId2 TEXT NOT NULL,
+                 powSuRC2 TEXT NOT NULL,
+                 powSuRNam2 TEXT NOT NULL,
+                 powSuRId3 TEXT NOT NULL,
+                 powSuRC3 TEXT NOT NULL,
+                 powSuRNam3 TEXT NOT NULL
+                )
+            """.trimIndent()
+        )
+        db.execSQL(
+            """
+                CREATE TABLE lighting_and_other (
+                 id TEXT PRIMARY KEY NOT NULL,
+                 nam TEXT NOT NULL,
+                 powSuId TEXT NOT NULL,
+                 powSuC TEXT NOT NULL,
+                 powSuNam TEXT NOT NULL,
+                 tSw TEXT NOT NULL,
+                 addit TEXT NOT NULL,
+                 isLi INTEGER NOT NULL,
+                 loc TEXT NOT NULL
+                )
+            """.trimIndent()
         )
     }
 }

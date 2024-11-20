@@ -13,7 +13,7 @@ class PowerSupplySelectionViewModel @Inject constructor(
     private val useCases: EquipmentAllUseCases,
 ): ViewModel() {
 
-    val equipments = useCases.getEquipmentsAllFlow().stateIn(
+    val equipments = useCases.getEquipmentsAllPowerSupplyFlow().stateIn(
         viewModelScope,
         SharingStarted.Lazily,
         emptyList()

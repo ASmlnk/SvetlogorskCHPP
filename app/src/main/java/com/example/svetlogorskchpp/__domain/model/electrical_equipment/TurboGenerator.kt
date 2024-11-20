@@ -1,6 +1,5 @@
 package com.example.svetlogorskchpp.__domain.model.electrical_equipment
 
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 
 data class TurboGenerator(
     val id: String,

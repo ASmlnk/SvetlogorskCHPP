@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
+import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.note.NoteRepository
@@ -42,6 +43,8 @@ import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCasesIm
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.RequestWorkFilterFactoryUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCasesImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -184,6 +187,16 @@ class UseCaseModule {
             sortedUseCases,
             filterUseCases
         )
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideUpdeteFirebaseUseCases (
+        @ElMotor elMotorRepository: EquipmentUpdateFirebaseRepository,
+        @Switchgear switchgearRepository: EquipmentUpdateFirebaseRepository,
+        @LightingAndOther lightingAndOtherRepository: EquipmentUpdateFirebaseRepository
+    ) : UpdateFirebaseUseCases {
+        return UpdateFirebaseUseCasesImpl(elMotorRepository,switchgearRepository,lightingAndOtherRepository)
     }
 }
 

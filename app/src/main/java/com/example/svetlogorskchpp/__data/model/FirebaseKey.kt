@@ -8,4 +8,8 @@ enum class FirebaseKey(val getString: String) {
     DOCUMENT_TR("ОРУ Тр"),
     DOCUMENT_TSN("ТСН"),
     DOCUMENT_TG("ТГ"),
+    DOCUMENT_EL_MOTOR("Электродвигатели"),
+    DOCUMENT_SWITCHGEAR("Сборки"),
+    DOCUMENT_LIGHTING_AND_OTHER("Освещение и др"),
+
 }

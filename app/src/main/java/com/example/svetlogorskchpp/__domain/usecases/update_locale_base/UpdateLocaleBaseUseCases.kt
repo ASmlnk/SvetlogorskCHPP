@@ -6,4 +6,7 @@ interface UpdateLocaleBaseUseCases {
     suspend fun updateOpenSwitchgearTr()
     suspend fun updateTsn()
     suspend fun updateTg()
+    suspend fun updateElMotor()
+    suspend fun updateSwitchgear()
+    suspend fun updateLightingAndOther()
 }

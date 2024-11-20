@@ -1,5 +1,9 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.model
 
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElAssembly
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElGeneralCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 
 sealed class ElectricalEquipment {
@@ -51,4 +55,33 @@ sealed class ElectricalEquipment {
         val deepLink: DeepLink = DeepLink.TG
     ) : ElectricalEquipment()
 
+    data class ElMotor(
+        val id: String,
+        val name: String,
+        val category: ElCategory,
+        val generalCategory: ElGeneralCategory,
+        val powerEl: String,
+        val voltage: Voltage,
+        val i: String,
+        val powerSupplyName: String,
+        val powerSupplyCell: String,
+        val cell: Int,
+    ): ElectricalEquipment()
+
+    data class Switchgear(
+        val id: String,
+        val name: String,
+        val category: ElAssembly,
+        val nameDepartment: NameDepartment,
+        val voltage: Voltage
+    ): ElectricalEquipment()
+
+    data class LightOther(
+        val id: String,
+        val name: String,
+        val powerSupplyName: String,
+        val powerSupplyCell: String,
+        val isLighting: Boolean,
+        val cell: Int
+    ): ElectricalEquipment()
 }
