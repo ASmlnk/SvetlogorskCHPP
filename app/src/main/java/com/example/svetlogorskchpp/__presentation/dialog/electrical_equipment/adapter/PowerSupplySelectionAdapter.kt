@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter.ItemElectricalEquipmentCallback
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.DeepLink
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgearBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTgBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTrBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTsnBinding
@@ -23,6 +24,7 @@ class PowerSupplySelectionAdapter (
             is ElectricalEquipment.Tr -> (holder as TrHolder).bind(item, onClick)
             is ElectricalEquipment.Tsn -> (holder as TsnHolder).bind(item, onClick)
             is ElectricalEquipment.Tg -> (holder as TgHolder).bind(item, onClick)
+            is ElectricalEquipment.Switchgear -> (holder as SwitchgearHolder).bind(item, onClick)
             else ->  throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -35,6 +37,7 @@ class PowerSupplySelectionAdapter (
             1 -> TrHolder.inflateFrom(parent)
             2 -> TgHolder.inflateFrom(parent)
             3 -> TsnHolder.inflateFrom(parent)
+            4 -> SwitchgearHolder.inflateFrom(parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -44,6 +47,7 @@ class PowerSupplySelectionAdapter (
             is ElectricalEquipment.Tr -> 1
             is ElectricalEquipment.Tg -> 2
             is ElectricalEquipment.Tsn -> 3
+            is ElectricalEquipment.Switchgear -> 4
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -120,6 +124,31 @@ class TsnHolder(val binding: ItemElectricalEquipmentTsnBinding) :
             val layoutInflater = LayoutInflater.from(parentContext.context)
             val binding = ItemElectricalEquipmentTsnBinding.inflate(layoutInflater, parentContext, false)
             return TsnHolder(binding)
+        }
+    }
+}
+
+class SwitchgearHolder(val binding: ItemElectricalEquipmentSwitchgearBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.Switchgear,
+        onClick: (id: String, name: String, dl: DeepLink) -> Unit,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            layout.setOnClickListener{
+                onClick(item.id, item.name, item.deepLink)
+            }
+        }
+    }
+
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): SwitchgearHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemElectricalEquipmentSwitchgearBinding.inflate(layoutInflater, parentContext, false)
+            return SwitchgearHolder(binding)
         }
     }
 }

@@ -9,5 +9,6 @@ enum class NameDepartment(val str: String) {
     RY("РУ"),
     HC("ХЦ"),
     SHIELD_BLOCK("Щит. блок"),
-    ORHER("Остальное")
+    OTHER("Остальное"),
+    POST_TOK("Постоянный ток")
 }

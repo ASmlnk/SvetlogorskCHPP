@@ -111,7 +111,7 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 name = nam,
                 category = cat.let { ElAssembly.valueOf(it) },
                 nameDepartment = namDep.let { NameDepartment.valueOf(it) },
-                voltage = vol.let { Voltage.valueOf(it) }
+                voltage = if (vol.isEmpty()) Voltage.KV else vol.let { Voltage.valueOf(it) }
             )
         }
     }

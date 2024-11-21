@@ -66,6 +66,7 @@ sealed class ElectricalEquipment {
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val cell: Int,
+        val deepLink: DeepLink = DeepLink.TG
     ): ElectricalEquipment()
 
     data class Switchgear(
@@ -73,7 +74,8 @@ sealed class ElectricalEquipment {
         val name: String,
         val category: ElAssembly,
         val nameDepartment: NameDepartment,
-        val voltage: Voltage
+        val voltage: Voltage,
+        val deepLink: DeepLink = DeepLink.TG
     ): ElectricalEquipment()
 
     data class LightOther(
@@ -82,6 +84,7 @@ sealed class ElectricalEquipment {
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val isLighting: Boolean,
-        val cell: Int
+        val cell: Int,
+        val deepLink: DeepLink = DeepLink.TG
     ): ElectricalEquipment()
 }

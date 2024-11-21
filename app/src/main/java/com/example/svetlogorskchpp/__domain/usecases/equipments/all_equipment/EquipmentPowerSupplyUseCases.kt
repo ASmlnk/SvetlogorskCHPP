@@ -21,24 +21,24 @@ class EquipmentPowerSupplyUseCases @Inject constructor(
     fun getEquipmentsPowerSupplyAllFlow(): Flow<List<ElectricalEquipment>> {
         val trFlow = repositoryTr.getAllItemEquipment().map { entities ->
             entities?.let {
-                entities.map { mapper.toElectricalEquipmentTr(it) }
+                entities.map { mapper.toElectricalEquipmentTr(it) }.sortedBy { it.nameNumber }
             }
         }
         val tsnFlow = repositoryTsn.getAllItemEquipment().map { entities ->
             entities?.let {
-                entities.map { mapper.toElectricalEquipmentTsn(it) }
+                entities.map { mapper.toElectricalEquipmentTsn(it) }.sortedBy { it.nameNumber }
             }
         }
         val switchgearFlow = repositorySwitchgear.getAllItemEquipment().map { entities ->
             entities?.let {
-                entities.map { mapper.toElectricalEquipmentSwitchgear(it) }
+                entities.map { mapper.toElectricalEquipmentSwitchgear(it) }.sortedBy { it.name }.sortedBy { it.nameDepartment }
             }
         }
-        return combine(trFlow, tsnFlow, /*switchgearFlow*/) { tr, tsn, /*sw*/ ->
+        return combine(trFlow, tsnFlow, switchgearFlow) { tr, tsn, sw ->
             val list = mutableListOf<ElectricalEquipment>()
             tr?.let { list.addAll(tr) }
             tsn?.let { list.addAll(tsn) }
-            /*sw?.let { list.addAll(sw) }*/
+            sw?.let { list.addAll(sw) }
             list
         }
     }

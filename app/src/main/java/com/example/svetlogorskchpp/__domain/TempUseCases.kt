@@ -193,7 +193,7 @@ class TempUseCases @Inject constructor(
             "РУ" -> NameDepartment.RY
             "ХЦ" -> NameDepartment.HC
             "Щит. блок" -> NameDepartment.SHIELD_BLOCK
-            else -> NameDepartment.ORHER
+            else -> NameDepartment.OTHER
         }
         return enumCat.name
     }

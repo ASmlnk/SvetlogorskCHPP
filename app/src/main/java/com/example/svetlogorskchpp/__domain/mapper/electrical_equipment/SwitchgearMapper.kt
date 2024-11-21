@@ -21,7 +21,7 @@ class SwitchgearMapper @Inject constructor() {
                 additionally = addit,
                 category = cat.let { ElAssembly.valueOf(it) },
                 nameDepartment = namDep.let { NameDepartment.valueOf(it) },
-                voltage = vol.let { Voltage.valueOf(it) },
+                voltage = if (vol.isEmpty()) Voltage.KV else vol.let { Voltage.valueOf(it) },
                 automation = aut,
                 phaseProtection = if (phPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(phPr),
                 earthProtection = if (eaPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(eaPr),

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearLayout"
-    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginTop="12dp"
     android:layout_marginBottom="2dp"
     android:background="@drawable/background_item_tsn"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_marginHorizontal="12dp"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="12dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -29,72 +29,73 @@
         <TextView
             android:id="@+id/tv_spare"
             style="@style/TextViewStyleContent"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:background="@drawable/background_request_work_text_permission_c"
-           android:paddingHorizontal="6dp"
+            android:paddingHorizontal="6dp"
             android:text="@string/spare"
             android:textColor="@color/text_recycle"
             android:textSize="11sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_voltage"
+            style="@style/TextViewStyleContentHomePageSubsection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/actor"
+            android:gravity="start"
+            android:text="10.5/3.15"
+            android:textColor="@color/text_content_rza"
+
+            android:textSize="16sp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-android:layout_marginTop="16dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginEnd="1dp"
-        android:background="@drawable/background_item_tr_parameter"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/background_item_tr_parameter"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_type"
+            style="@style/TextViewStyleContentHomePageSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextViewStyleContentHomePageSection"
-            android:text="ТДНГ"
-            android:textSize="24sp"
+            android:gravity="start"
             android:paddingStart="16dp"
-            android:paddingEnd="8dp"
             android:paddingTop="16dp"
-            android:gravity="start"/>
+            android:paddingEnd="8dp"
+            android:text="ТДНГ"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tv_type_parameter"
+            style="@style/TextViewStyleContentHomePageSubsection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextViewStyleContentHomePageSubsection"
-            android:text="3*40000/242/121/10,5"
-            android:paddingStart="16dp"
-            android:textSize="18sp"
             android:layout_marginBottom="8dp"
+            android:gravity="start"
+            android:paddingStart="16dp"
             android:paddingEnd="8dp"
             android:paddingBottom="4dp"
-            android:gravity="start"/>
+            android:text="3*40000/242/121/10,5"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_voltage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/TextViewStyleContentHomePageSubsection"
-                android:text="10.5/3.15"
-                android:textColor="@color/text_content_rza"
-                android:paddingStart="16dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/actor"
-                android:paddingEnd="8dp"
-                android:gravity="start"/>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_text_ory"

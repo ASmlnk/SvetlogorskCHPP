@@ -7,19 +7,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/background_layout_line_gradient"
         android:layout_height="3dp"/>
 
     <TextView
         android:id="@+id/tv_protection_content"
         style="@style/TextViewStyleContentHomePageSection"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="normal"
         android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
-        android:textColor="@color/text_input_assembly"
-        android:textStyle="normal" />
+        android:textColor="#F2D8B1" />
 
 
 

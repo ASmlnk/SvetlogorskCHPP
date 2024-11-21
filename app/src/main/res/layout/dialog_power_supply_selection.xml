@@ -99,6 +99,6 @@
         android:background="@color/background_calendar_month_prev"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:spanCount="4" />
+        app:spanCount="3" />
 
 </LinearLayout>
