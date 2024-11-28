@@ -15,7 +15,8 @@
         style="@style/TextViewStyleContent"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:textSize="24sp"
-        android:layout_margin="16dp"/>
+        android:textSize="20sp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="8dp"/>
 
 </LinearLayout>

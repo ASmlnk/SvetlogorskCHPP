@@ -50,35 +50,65 @@
                 style="@style/ChipShiftSchedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/transformator" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_tsn"
-                style="@style/ChipShiftSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tsn_small" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_section_3"
-                style="@style/ChipShiftSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/section_3" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_section_6"
-                style="@style/ChipShiftSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/section_6" />
+                android:text="@string/trtor" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_section_04"
                 style="@style/ChipShiftSchedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/section_04" />
+                android:text="С - 0,4 кВ" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_section_3"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="С - 3 и 6 кВ" />
+
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ktc_to"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="КТЦ т/о" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ktc_ko"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="КТЦ к/о" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hc"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ХЦ" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_shield_block"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shield_block" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_post_tok"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="= I" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_other"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..." />
 
         </com.google.android.material.chip.ChipGroup>
 

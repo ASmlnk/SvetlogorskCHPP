@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_kry"
+        android:layout_marginTop="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_kry"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/kry"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_kry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_kry"
+        app:layout_constraintTop_toTopOf="@+id/iv_kry" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_ry"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_kry" />
+
+    <TextView
+        android:id="@+id/tv_ry"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ry"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_ry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_ry"
+        app:layout_constraintTop_toTopOf="@+id/iv_ry" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_ktc_to"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ry"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_ktc_to"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ktc_to"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_ktc_to"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_ktc_to"
+        app:layout_constraintTop_toTopOf="@+id/iv_ktc_to" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_ktc_ko"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ktc_to" />
+
+    <TextView
+        android:id="@+id/tv_ktc_ko"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ktc_ko"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_ktc_ko"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_ktc_ko"
+        app:layout_constraintTop_toTopOf="@+id/iv_ktc_ko" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_hc"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ktc_ko" />
+
+    <TextView
+        android:id="@+id/tv_hc"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/hc"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_hc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_hc"
+        app:layout_constraintTop_toTopOf="@+id/iv_hc" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_shield_block"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_hc"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_iv_shield_block"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/shield_block"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_shield_block"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_shield_block"
+        app:layout_constraintTop_toTopOf="@+id/iv_shield_block" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_bns"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_shield_block"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_bns"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/bns"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_bns"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_bns"
+        app:layout_constraintTop_toTopOf="@+id/iv_bns" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_cooling_tower"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bns"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_cooling_tower"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/cooling_tower"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cooling_tower"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_cooling_tower"
+        app:layout_constraintTop_toTopOf="@+id/iv_cooling_tower" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_post_tok"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_cooling_tower"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_post_tok"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/post_tok"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_post_tok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_post_tok"
+        app:layout_constraintTop_toTopOf="@+id/iv_post_tok" />
+
+    <TextView
+        android:id="@+id/tv_other"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="..."
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_post_tok" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

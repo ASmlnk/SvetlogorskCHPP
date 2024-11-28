@@ -1,8 +1,7 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.text.Html
+import android.content.res.ColorStateList
 import android.text.Spannable
 import android.text.SpannableString
 import android.view.LayoutInflater
@@ -21,19 +20,55 @@ import android.text.style.StyleSpan
 import android.graphics.Typeface
 import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElAssembly
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.DeepLink
+import com.example.svetlogorskchpp.databinding.ItemElectricalAsseblyBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentElMotorBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentLightingBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentOtherBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgearBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgearLightingBinding
 
 class ElectricalEquipmentAdapter(
-    private val onClick: (id: String) -> Unit,
+    private val onClick: (deepLink: DeepLink, id: String) -> Unit,
 ) : ListAdapter<ElectricalEquipment, RecyclerView.ViewHolder>(ItemElectricalEquipmentCallback()) {
+
+
+    private var onItemClickDelete: ((item: ElectricalEquipment) -> Unit)? = null
+
+    // Метод для установки функции обратного вызова
+    fun setOnItemClickListener(listener: (item: ElectricalEquipment) -> Unit) {
+        this.onItemClickDelete = listener
+    }
+
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
             is ElectricalEquipment.Vl -> (holder as ElectricalEquipmentVlHolder).bind(item, onClick)
             is ElectricalEquipment.Tr -> (holder as ElectricalEquipmentTrHolder).bind(item, onClick)
-            is ElectricalEquipment.Tsn -> (holder as ElectricalEquipmentTsnHolder).bind(item, onClick)
+            is ElectricalEquipment.Tsn -> (holder as ElectricalEquipmentTsnHolder).bind(
+                item,
+                onClick
+            )
             is ElectricalEquipment.Tg -> (holder as ElectricalEquipmentTgHolder).bind(item, onClick)
-            is ElectricalEquipment.ElMotor -> TODO()
-            is ElectricalEquipment.Switchgear -> TODO()
-            is ElectricalEquipment.LightOther -> TODO()
+
+            is ElectricalEquipment.ElMotor -> (holder as ElMotorHolder).bind(item, onClick, onItemClickDelete)
+            is ElectricalEquipment.Switchgear -> {
+                if (item.category == ElAssembly.LIGHTING) (holder as ElectricalEquipmentSwitchgearLightingHolder).bind(
+                    item, onClick, onItemClickDelete
+                )
+                else (holder as ElectricalEquipmentSwitchgearHolder).bind(
+                    item,
+                    onClick, onItemClickDelete
+                )
+            }
+
+
+            is ElectricalEquipment.LightOther -> if (item.isLighting) {
+                (holder as LightingHolder).bind(item, onClick, onItemClickDelete)
+            } else (holder as OtherHolder).bind(item, onClick, onItemClickDelete)
         }
     }
 
@@ -43,19 +78,30 @@ class ElectricalEquipmentAdapter(
             1 -> ElectricalEquipmentTrHolder.inflateFrom(parent)
             2 -> ElectricalEquipmentTsnHolder.inflateFrom(parent)
             3 -> ElectricalEquipmentTgHolder.inflateFrom(parent)
+            4 -> ElectricalEquipmentSwitchgearHolder.inflateFrom(parent)
+            5 -> ElMotorHolder.inflateFrom(parent)
+            6 -> LightingHolder.inflateFrom(parent)
+            7 -> OtherHolder.inflateFrom(parent)
+            8 -> ElectricalEquipmentSwitchgearLightingHolder.inflateFrom(parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)) {
+        val item = getItem(position)
+        return when (item) {
             is ElectricalEquipment.Vl -> 0
             is ElectricalEquipment.Tr -> 1
             is ElectricalEquipment.Tsn -> 2
             is ElectricalEquipment.Tg -> 3
-            is ElectricalEquipment.ElMotor -> TODO()
-            is ElectricalEquipment.Switchgear -> TODO()
-            is ElectricalEquipment.LightOther -> TODO()
+            is ElectricalEquipment.ElMotor -> 5
+            is ElectricalEquipment.Switchgear -> {
+                if (item.category == ElAssembly.LIGHTING) 8 else 4
+            }
+
+            is ElectricalEquipment.LightOther -> {
+                if (item.isLighting) 6 else 7
+            }
         }
     }
 }
@@ -65,7 +111,7 @@ class ElectricalEquipmentVlHolder(val binding: ItemOpenSwitchgearVlBinding) :
 
     fun bind(
         item: ElectricalEquipment.Vl,
-        onClick: (id: String) -> Unit,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
     ) {
         binding.apply {
             tvNameEquipment.text = item.nameEquipment
@@ -74,7 +120,7 @@ class ElectricalEquipmentVlHolder(val binding: ItemOpenSwitchgearVlBinding) :
             tvOry.text = itemView.resources.getString(R.string.ory_item, item.voltage.str)
             tvBysSystem.text = itemView.resources.getString(R.string.bys_system, item.bysSystem)
             linearLayout.setOnClickListener {
-                onClick(item.id)
+                onClick(item.deepLink, item.id)
             }
         }
     }
@@ -93,7 +139,7 @@ class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
 
     fun bind(
         item: ElectricalEquipment.Tr,
-        onClick: (id: String) -> Unit,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
     ) {
         binding.apply {
             tvName.text = item.nameEquipment
@@ -108,7 +154,7 @@ class ElectricalEquipmentTrHolder(val binding: ItemOpenSwitchgearTrBinding) :
             tvTypeParameter.text = item.typeParameter
             tvTextOry.text = item.parameterOry
             linearLayout.setOnClickListener {
-                onClick(item.id)
+                onClick(item.deepLink, item.id)
             }
         }
     }
@@ -128,7 +174,7 @@ class ElectricalEquipmentTsnHolder(val binding: ItemEquipmentTsnBinding) :
     @SuppressLint("SetTextI18n")
     fun bind(
         item: ElectricalEquipment.Tsn,
-        onClick: (id: String) -> Unit,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
     ) {
         binding.apply {
             tvName.text = item.nameEquipment
@@ -140,9 +186,9 @@ class ElectricalEquipmentTsnHolder(val binding: ItemEquipmentTsnBinding) :
             tvType.text = item.type
             tvTypeParameter.text = item.typeParameter
             tvTextOry.text = item.powerSupplyName +
-                    if(item.powerSupplyCell.isNotEmpty()) " яч." +item.powerSupplyCell else ""
+                    if (item.powerSupplyCell.isNotEmpty()) " яч." + item.powerSupplyCell else ""
             linearLayout.setOnClickListener {
-                onClick(item.id)
+                onClick(item.deepLink, item.id)
             }
         }
     }
@@ -157,20 +203,27 @@ class ElectricalEquipmentTsnHolder(val binding: ItemEquipmentTsnBinding) :
 }
 
 class ElectricalEquipmentTgHolder(val binding: ItemEquipmentTgBinding) :
-RecyclerView.ViewHolder(binding.root) {
+    RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SetTextI18n")
     fun bind(
         item: ElectricalEquipment.Tg,
-        onClick: (id: String) -> Unit,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
     ) {
         binding.apply {
             tvName.text = item.nameEquipment
-           // tvTypeParameter.text = Html.fromHtml(itemView.resources.getString(R.string.type_parameter_tg, item.powerEl, item.powerThermal, item.steamConsumption), Html.FROM_HTML_MODE_LEGACY)
+            // tvTypeParameter.text = Html.fromHtml(itemView.resources.getString(R.string.type_parameter_tg, item.powerEl, item.powerThermal, item.steamConsumption), Html.FROM_HTML_MODE_LEGACY)
             tvTypeGenerator.text = item.typeGenerator
             tvTypeTurbin.text = item.typeTurbin
 
-            val spannableString = SpannableString(String.format("%sМВт  %sГКал  %sт/ч", item.powerEl, item.powerThermal, item.steamConsumption))
+            val spannableString = SpannableString(
+                String.format(
+                    "%sМВт  %sГКал  %sт/ч",
+                    item.powerEl,
+                    item.powerThermal,
+                    item.steamConsumption
+                )
+            )
             // Устанавливаем стиль для первого значения (жирный и цвет)
             spannableString.setSpan(
                 StyleSpan(Typeface.BOLD),
@@ -179,7 +232,12 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.text_content_rza)), // Замените на нужный вам цвет
+                ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.text_content_rza
+                    )
+                ), // Замените на нужный вам цвет
                 0,
                 item.powerEl.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -194,14 +252,20 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context,  R.color.text_content_rza)), // Замените на нужный вам цвет
+                ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.text_content_rza
+                    )
+                ), // Замените на нужный вам цвет
                 secondValueStart,
                 secondValueStart + item.powerThermal.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
 
 // Устанавливаем стиль для третьего значения (жирный и цвет)
-            val thirdValueStart = secondValueStart + item.powerThermal.length + 6 // 6 - длина строки " ГКал "
+            val thirdValueStart =
+                secondValueStart + item.powerThermal.length + 6 // 6 - длина строки " ГКал "
             spannableString.setSpan(
                 StyleSpan(Typeface.BOLD),
                 thirdValueStart,
@@ -209,7 +273,12 @@ RecyclerView.ViewHolder(binding.root) {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             spannableString.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(itemView.context, R.color.text_content_rza)), // Замените на нужный вам цвет
+                ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.text_content_rza
+                    )
+                ), // Замените на нужный вам цвет
                 thirdValueStart,
                 thirdValueStart + item.steamConsumption.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -217,7 +286,7 @@ RecyclerView.ViewHolder(binding.root) {
 
             tvTypeParameter.text = spannableString
             linearLayout.setOnClickListener {
-                onClick(item.id)
+                onClick(item.deepLink, item.id)
             }
         }
     }
@@ -227,6 +296,299 @@ RecyclerView.ViewHolder(binding.root) {
             val layoutInflater = LayoutInflater.from(parentContext.context)
             val binding = ItemEquipmentTgBinding.inflate(layoutInflater, parentContext, false)
             return ElectricalEquipmentTgHolder(binding)
+        }
+    }
+}
+
+class ElectricalEquipmentSwitchgearHolder(val binding: ItemElectricalEquipmentSwitchgearBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.Switchgear,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+        onItemClickDelete: ((ElectricalEquipment) -> Unit)?,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            ivDelete.isGone = !item.isDelete
+            ivDelete.setOnLongClickListener {
+                onItemClickDelete?.let { it -> it(item) }
+                return@setOnLongClickListener true
+            }
+            tvNameDepartment.text = item.nameDepartment.str
+            linearLayout.setOnClickListener {
+                onClick(item.deepLink, item.id)
+            }
+            when (item.nameDepartment) {
+                NameDepartment.BNS -> iv.setImageResource(R.drawable.icon_station)
+                NameDepartment.COOLING_TOWER -> iv.setImageResource(R.drawable.icon_nuclear_power)
+                NameDepartment.KRY -> iv.setImageResource(R.drawable.power_supply_283291)
+                NameDepartment.KTC_KO -> iv.setImageResource(R.drawable.water_boiler)
+                NameDepartment.KTC_TO -> iv.setImageResource(R.drawable.factory_1643683)
+                NameDepartment.RY -> iv.setImageResource(R.drawable.icon_electrical_panel)
+                NameDepartment.HC -> iv.setImageResource(R.drawable.chemistry_class_6837437)
+                NameDepartment.SHIELD_BLOCK -> iv.setImageResource(R.drawable.high_voltage_8107242)
+                NameDepartment.OTHER -> iv.setImageResource(R.drawable.electrical_panel_1)
+                NameDepartment.POST_TOK -> iv.setImageResource(R.drawable.icon_electric_power)
+            }
+            val tintColorRtzo =
+                ContextCompat.getColor(itemView.context, R.color.floatingActionButton)
+            val tintColor = ContextCompat.getColor(itemView.context, R.color.text_content_rza_2)
+
+            if (item.category == ElAssembly.RTZO) {
+                tvRtzo.visibility = View.VISIBLE
+                iv.imageTintList = ColorStateList.valueOf(tintColorRtzo)
+            } else {
+                iv.imageTintList = ColorStateList.valueOf(tintColor)
+                tvRtzo.visibility = View.INVISIBLE
+            }
+
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentSwitchgearHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemElectricalEquipmentSwitchgearBinding.inflate(
+                layoutInflater,
+                parentContext,
+                false
+            )
+            return ElectricalEquipmentSwitchgearHolder(binding)
+        }
+    }
+}
+
+class ElectricalEquipmentSwitchgearLightingHolder(val binding: ItemElectricalEquipmentSwitchgearLightingBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.Switchgear,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+        onItemClickDelete: ((ElectricalEquipment) -> Unit)?,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            ivDelete.isGone = !item.isDelete
+            ivDelete.setOnLongClickListener {
+                onItemClickDelete?.let { it -> it(item) }
+                return@setOnLongClickListener true
+            }
+            tvNameDepartment.text = item.nameDepartment.str
+            linearLayout.setOnClickListener {
+                onClick(item.deepLink, item.id)
+            }
+            when (item.nameDepartment) {
+                NameDepartment.BNS -> iv.setImageResource(R.drawable.icon_station)
+                NameDepartment.COOLING_TOWER -> iv.setImageResource(R.drawable.icon_nuclear_power)
+                NameDepartment.KRY -> iv.setImageResource(R.drawable.power_supply_283291)
+                NameDepartment.KTC_KO -> iv.setImageResource(R.drawable.water_boiler)
+                NameDepartment.KTC_TO -> iv.setImageResource(R.drawable.factory_1643683)
+                NameDepartment.RY -> iv.setImageResource(R.drawable.icon_electrical_panel)
+                NameDepartment.HC -> iv.setImageResource(R.drawable.chemistry_class_6837437)
+                NameDepartment.SHIELD_BLOCK -> iv.setImageResource(R.drawable.high_voltage_8107242)
+                NameDepartment.OTHER -> iv.setImageResource(R.drawable.electrical_panel_1)
+                NameDepartment.POST_TOK -> iv.setImageResource(R.drawable.icon_electric_power)
+            }
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentSwitchgearLightingHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemElectricalEquipmentSwitchgearLightingBinding.inflate(
+                layoutInflater,
+                parentContext,
+                false
+            )
+            return ElectricalEquipmentSwitchgearLightingHolder(binding)
+        }
+    }
+}
+
+
+class ElectricalEquipmentSwitchgearHolder2(val binding: ItemElectricalAsseblyBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.Switchgear,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+    ) {
+        binding.apply {
+            textNameElectricalAssembly.text = item.name
+            textInputAssembly.text = item.nameDepartment.str
+            textDepartment.isGone = true
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElectricalEquipmentSwitchgearHolder2 {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding = ItemElectricalAsseblyBinding.inflate(layoutInflater, parentContext, false)
+            return ElectricalEquipmentSwitchgearHolder2(binding)
+        }
+    }
+}
+
+class ElMotorHolder(val binding: ItemElectricalEquipmentElMotorBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.ElMotor,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+        onItemClickDelete: ((ElectricalEquipment) -> Unit)?,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            ivDelete.isGone = !item.isDelete
+            ivDelete.setOnLongClickListener {
+                onItemClickDelete?.let { it -> it(item) }
+                return@setOnLongClickListener true
+            }
+            linearLayout.setOnClickListener {
+                onClick(item.deepLink, item.id)
+            }
+            tvCategory.text = item.category.str
+            tvPowerSupply.text =
+                if (item.powerSupplyCell.isEmpty()) item.powerSupplyName else itemView.resources.getString(
+                    R.string.power_supply_item,
+                    item.powerSupplyName,
+                    item.powerSupplyCell
+                )
+            tvVoltage.text =
+                itemView.resources.getString(R.string.voltage_el_motor_item, item.voltage.str)
+            tvPower.text = itemView.resources.getString(R.string.power_el_motor_item, item.powerEl)
+            tvI.text = itemView.resources.getString(R.string.i_el_motor_item, item.i)
+            tvRep.visibility = if (item.isRep) View.VISIBLE else View.INVISIBLE
+
+            when (item.category) {
+                ElCategory.OTHER -> ivCategory.setImageResource(R.drawable.high_voltage_8107242)
+                ElCategory.TREATMENT_FACILITIES -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.DESALTING -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.BNT -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.Bagernaya -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KO -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KTC_KO -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KTC_TO -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.NDV -> ivCategory.setImageResource(R.drawable.icon_station)
+                ElCategory.PN -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.PEN -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.PRETREATMENT -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.SN -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.TY -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.CN -> ivCategory.setImageResource(R.drawable.icon_nuclear_power)
+                ElCategory.CCR -> ivCategory.setImageResource(R.drawable.flash_4049918)
+                ElCategory.AMMONIA -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.GIDROZIYNOE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.ACIDIC -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.COAGULANT -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.N_TS -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.SOVEVOE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.LIMESTONE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.PHOSPHATE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.NVK -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.ALKALINE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.TG_1 -> ivCategory.setImageResource(R.drawable.generator_1)
+                ElCategory.TG_3 -> ivCategory.setImageResource(R.drawable.generator_1)
+                ElCategory.TG_4 -> ivCategory.setImageResource(R.drawable.generator_1)
+                ElCategory.TG_5 -> ivCategory.setImageResource(R.drawable.generator_1)
+                ElCategory.TG_6 -> ivCategory.setImageResource(R.drawable.generator_1)
+                ElCategory.KA_1 -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KA_6 -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KA_7 -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KA_8 -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.KA_9 -> ivCategory.setImageResource(R.drawable.water_boiler)
+            }
+        }
+
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): ElMotorHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding =
+                ItemElectricalEquipmentElMotorBinding.inflate(layoutInflater, parentContext, false)
+            return ElMotorHolder(binding)
+        }
+    }
+}
+
+class LightingHolder(val binding: ItemElectricalEquipmentLightingBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.LightOther,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+        onItemClickDelete: ((ElectricalEquipment) -> Unit)?,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            ivDelete.isGone = !item.isDelete
+            tvPowerSupply.text = itemView.resources.getString(
+                R.string.power_supply_item,
+                item.powerSupplyName,
+                item.powerSupplyCell
+            )
+            tvPowerSupply.text =
+                if (item.powerSupplyCell.isEmpty()) item.powerSupplyName else itemView.resources.getString(
+                    R.string.power_supply_item,
+                    item.powerSupplyName,
+                    item.powerSupplyCell
+                )
+            ivDelete.setOnLongClickListener {
+                onItemClickDelete?.let { it -> it(item) }
+                return@setOnLongClickListener true
+            }
+
+        }
+
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): LightingHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding =
+                ItemElectricalEquipmentLightingBinding.inflate(layoutInflater, parentContext, false)
+            return LightingHolder(binding)
+        }
+    }
+}
+
+class OtherHolder(val binding: ItemElectricalEquipmentOtherBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(
+        item: ElectricalEquipment.LightOther,
+        onClick: (deepLink: DeepLink, id: String) -> Unit,
+        onItemClickDelete: ((item: ElectricalEquipment) -> Unit)?,
+    ) {
+        binding.apply {
+            tvName.text = item.name
+            ivDelete.isGone = !item.isDelete
+            tvPowerSupply.text = itemView.resources.getString(
+                R.string.power_supply_item,
+                item.powerSupplyName,
+                item.powerSupplyCell
+            )
+            tvPowerSupply.text =
+                if (item.powerSupplyCell.isEmpty()) item.powerSupplyName else itemView.resources.getString(
+                    R.string.power_supply_item,
+                    item.powerSupplyName,
+                    item.powerSupplyCell
+                )
+            ivDelete.setOnLongClickListener {
+                onItemClickDelete?.let { it -> it(item) }
+                return@setOnLongClickListener true
+            }
+        }
+    }
+
+    companion object {
+        fun inflateFrom(parentContext: ViewGroup): OtherHolder {
+            val layoutInflater = LayoutInflater.from(parentContext.context)
+            val binding =
+                ItemElectricalEquipmentOtherBinding.inflate(layoutInflater, parentContext, false)
+            return OtherHolder(binding)
         }
     }
 }

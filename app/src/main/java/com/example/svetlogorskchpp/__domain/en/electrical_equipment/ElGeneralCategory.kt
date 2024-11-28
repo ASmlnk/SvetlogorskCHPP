@@ -6,7 +6,7 @@ enum class ElGeneralCategory(val str: String) {
     KTC_TO("КТЦ т/о"),
     KTC_KO("КТЦ к/о"),
     TY("ТУ"),
-    EC("ЭЦ"),
+    EC("Вспом. цеха"),
     KA("К/А"),
     RG("ТГ")
 }

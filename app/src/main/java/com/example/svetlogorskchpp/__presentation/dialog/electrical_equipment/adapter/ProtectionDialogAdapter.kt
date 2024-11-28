@@ -1,8 +1,5 @@
 package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter
 
-import android.graphics.Color
-import android.graphics.Typeface
-import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -15,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.databinding.ItemProtectionDialogBinding
 import com.example.svetlogorskchpp.inspectionSchedule.ItemStringCallback
-import com.google.api.Context
 
 class ProtectionDialogAdapter: ListAdapter<String, ProtectionHolder>(ItemStringCallback()) {
     override fun onCreateViewHolder(

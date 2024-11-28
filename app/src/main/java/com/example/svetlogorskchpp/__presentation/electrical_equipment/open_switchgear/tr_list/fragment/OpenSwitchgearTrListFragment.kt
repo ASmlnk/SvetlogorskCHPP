@@ -22,7 +22,7 @@ class OpenSwitchgearTrListFragment: BaseFragment<FragmentOpenSwitchgearTrBinding
 
     private val viewModel: OpenSwitchgearTrListViewModel by viewModels()
 
-    private val adapter = ElectricalEquipmentAdapter { id ->
+    private val adapter = ElectricalEquipmentAdapter { dl,id ->
         val action = OpenSwitchgearTrListFragmentDirections.actionOpenSwitchgearTrListFragmentToOpenSwitchgearTrDialog (id)
         findNavController().navigate(action)
     }

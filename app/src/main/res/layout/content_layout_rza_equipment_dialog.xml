@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_rza"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_rza_content_dialog"
     android:orientation="vertical"
     android:paddingBottom="64dp">
@@ -13,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/automation"
         android:textColor="#A0C0A1" />
 
@@ -36,14 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="24dp"
-        android:textSize="22sp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
         android:gravity="center"
-        android:textStyle="bold"
         android:text="@string/protection"
-        android:textColor="@color/text_content_rza" />
+        android:textColor="@color/text_content_rza"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
@@ -56,42 +57,43 @@
     <LinearLayout
         android:id="@+id/layout_additionally_1"
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="3dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/background_layout_line_gradient"
-        android:layout_height="3dp"/>
+        android:orientation="vertical" />
 
-    <TextView
-        android:id="@+id/tv_additionally_1"
-        style="@style/TextViewStyleContentBigText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
-        android:textColor="@color/calendar_background"
-        android:textStyle="normal" />
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardViewDialogContentStyle"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="#4C7277">
 
-    <LinearLayout
-        android:id="@+id/layout_additionally_2"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/background_layout_line_gradient"
-        android:layout_height="3dp"/>
+        <TextView
+            android:id="@+id/tv_additionally_1"
+            style="@style/TextViewStyleContentBigText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
+            android:textColor="@color/calendar_background"
+            android:textStyle="normal" />
+    </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/tv_additionally_2"
-        style="@style/TextViewStyleContentBigText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
-        android:textColor="@color/calendar_background"
-        android:textStyle="normal" />
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardViewDialogContentStyle"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="#4C7277">
+
+        <TextView
+            android:id="@+id/tv_additionally_2"
+            style="@style/TextViewStyleContentBigText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="ДЗ - I, II, III, IV\nI - 70%\n\nМТЗ - I, II, III, IV\nI - 70%"
+            android:textColor="@color/calendar_background"
+            android:textStyle="normal" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 
 </LinearLayout>

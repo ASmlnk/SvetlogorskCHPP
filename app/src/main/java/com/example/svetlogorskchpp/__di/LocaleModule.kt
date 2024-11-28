@@ -3,6 +3,7 @@ package com.example.svetlogorskchpp.__di
 import android.content.Context
 import androidx.room.Room
 import com.example.svetlogorskchpp.__data.database.AppDataBase
+import com.example.svetlogorskchpp.__data.database.MIGRATION_10_11
 import com.example.svetlogorskchpp.__data.database.MIGRATION_1_2
 import com.example.svetlogorskchpp.__data.database.MIGRATION_2_3
 import com.example.svetlogorskchpp.__data.database.MIGRATION_3_4
@@ -51,6 +52,7 @@ class LocaleModule {
             .addMigrations(MIGRATION_7_8)
             .addMigrations(MIGRATION_8_9)
             .addMigrations(MIGRATION_9_10)
+            .addMigrations(MIGRATION_10_11)
             .build()
     }
 

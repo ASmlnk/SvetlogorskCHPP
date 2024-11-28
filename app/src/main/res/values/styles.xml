@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Widget.SvetlogorskCHPP.AppWidget.Container" parent="android:Widget">
         <item name="android:id">@android:id/background</item>
@@ -23,7 +23,7 @@
 
     <style name="TextViewStyleContent" parent="BaseTextViewStyle">
         <item name="android:textColor">@color/text_input_assembly</item>
-        <item name="android:hyphenationFrequency">full</item>
+
         <item name="android:textSize">20sp</item>
     </style>
 
@@ -125,8 +125,25 @@
         <item name="chipStrokeColor">@color/calendar_background</item>
         <item name="chipStrokeWidth">2dp</item>
         <item name="rippleColor">@color/text_recycle</item>
+    </style>
+
+    <style name="CardViewDialogContentStyle">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">12dp</item>
+        <item name="cardCornerRadius">15dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardBackgroundColor">#F6F5F5</item>
 
     </style>
+
+    <style name="CardViewDialogAdditionallyStyle" parent="CardViewDialogContentStyle">
+        <item name="cardBackgroundColor">#F1EEE3</item>
+    </style>
+
+
 
 
 </resources>

@@ -5,6 +5,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchge
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,19 +15,22 @@ import javax.inject.Inject
 
 class SwitchgearRepositoryImpl @Inject constructor(
     private val dao: SwitchgearDao,
-    private val repositoryBigJsonRepository: FirebaseBigJsonRepository
-): EquipmentRepository<SwitchgearEntity>, EquipmentConsumerRepository<SwitchgearEntity>, EquipmentUpdateFirebaseRepository {
+    private val repositoryBigJsonRepository: FirebaseBigJsonRepository,
+) : EquipmentRepository<SwitchgearEntity>, EquipmentConsumerRepository<SwitchgearEntity>,
+    EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository {
     override suspend fun saveItemOpenEquipment(itemEntity: SwitchgearEntity): SuccessResultFirebase {
         val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
-            SwitchgearEntity::class.java).toMutableList()
+            SwitchgearEntity::class.java
+        ).toMutableList()
 
         dataFirebase.add(itemEntity)
         val resultInsert = repositoryBigJsonRepository.insertDocument(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_SWITCHGEAR)
+            FirebaseKey.DOCUMENT_SWITCHGEAR
+        )
 
         return when (resultInsert) {
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
@@ -35,11 +39,12 @@ class SwitchgearRepositoryImpl @Inject constructor(
                     val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_SWITCHGEAR,
-                        SwitchgearEntity::class.java)
+                        SwitchgearEntity::class.java
+                    )
                     clearTable()
                     dao.insertAll(newDataFirebase)
                     SuccessResultFirebase.UPDATE_OK
-                }  catch (_: Exception) {
+                } catch (_: Exception) {
                     SuccessResultFirebase.UPDATE_ERROR
                 }
             }
@@ -58,7 +63,8 @@ class SwitchgearRepositoryImpl @Inject constructor(
         val listDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
-            SwitchgearEntity::class.java)
+            SwitchgearEntity::class.java
+        )
         val listDataLocale = dao.getAllItemEntity()
         if (listDataLocale == listDataFirebase) {
             return@withContext
@@ -77,35 +83,74 @@ class SwitchgearRepositoryImpl @Inject constructor(
         repositoryBigJsonRepository.insertDocument(
             listDataLocale,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_SWITCHGEAR)
+            FirebaseKey.DOCUMENT_SWITCHGEAR
+        )
     }
 
     suspend fun clearTable() {
         dao.clearTable()
     }
 
-   suspend fun saveAllEquipment(itemEntity: List <SwitchgearEntity>) {
+    suspend fun saveAllEquipment(itemEntity: List<SwitchgearEntity>) {
         val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
-            SwitchgearEntity::class.java).toMutableList()
+            SwitchgearEntity::class.java
+        ).toMutableList()
 
         dataFirebase.addAll(itemEntity)
-         repositoryBigJsonRepository.insertDocument(
+        repositoryBigJsonRepository.insertDocument(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_SWITCHGEAR)
+            FirebaseKey.DOCUMENT_SWITCHGEAR
+        )
 
-       val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
-           FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-           FirebaseKey.DOCUMENT_SWITCHGEAR,
-           SwitchgearEntity::class.java)
+        val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_SWITCHGEAR,
+            SwitchgearEntity::class.java
+        )
 
-       clearTable()
-       dao.insertAll(newDataFirebase)
+        clearTable()
+        dao.insertAll(newDataFirebase)
 
     }
+
     suspend fun getAll(): List<SwitchgearEntity> {
         return dao.getAllItemEntity()
+    }
+
+    override suspend fun deleteItem(id: String): SuccessResultFirebase {
+
+        val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_SWITCHGEAR,
+            SwitchgearEntity::class.java
+        ).toMutableList()
+        dataFirebase.removeIf { it.id == id }
+
+        val resultInsert = repositoryBigJsonRepository.insertDocument(
+            dataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_SWITCHGEAR
+        )
+
+        return when (resultInsert) {
+            SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
+            SuccessResultFirebase.UPDATE_OK -> {
+                try {
+                    val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+                        FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+                        FirebaseKey.DOCUMENT_SWITCHGEAR,
+                        SwitchgearEntity::class.java
+                    )
+                    clearTable()
+                    dao.insertAll(newDataFirebase)
+                    SuccessResultFirebase.UPDATE_OK
+                } catch (_: Exception) {
+                    SuccessResultFirebase.UPDATE_ERROR
+                }
+            }
+        }
     }
 }

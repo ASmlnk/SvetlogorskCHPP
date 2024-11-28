@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/shift_schedule_dialog_sorted_background"
     android:orientation="vertical">
 
@@ -32,14 +33,14 @@
 
             <TextView
                 android:id="@+id/tv_voltage"
+                style="@style/TextViewStyleContentHomePageSubsection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextViewStyleContentHomePageSubsection"
-                android:text="10.5/3.15"
-                android:fontFamily="@font/actor"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/actor"
+                android:text="10.5/3.15"
                 android:textColor="@color/text_content_rza"
                 android:textSize="16sp" />
 
@@ -248,14 +249,46 @@
                 android:background="@drawable/background_dialog_tr_content"
                 android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_power_supply"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="24dp"
+                <TextView
+                    style="@style/TextViewStyleContentHomePageSubsection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/power_supply"
+                    android:textColor="@color/text_content_rza" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_power_supply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="24dp"
                     android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:spanCount="2" />
+
+                <TextView
+                    style="@style/TextViewStyleContentHomePageSubsection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/consumer"
+                    android:textColor="@color/text_content_rza" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_consumer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="vertical"
+                    tools:itemCount="2"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="2" />
 
@@ -265,34 +298,39 @@
                     android:background="@drawable/background_layout_line_gradient"
                     android:orientation="vertical" />
 
-                <TextView
-                    android:id="@+id/tv_transcript_type"
-                    style="@style/TextViewStyleContentBigText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:gravity="start"
-                    android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
-                    android:textColor="@color/text_color_dialog_equipment"
-                    android:textSize="20sp" />
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/CardViewDialogAdditionallyStyle"
+                    android:layout_marginTop="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="@drawable/background_layout_line_gradient"
-                    android:orientation="vertical" />
+                    <TextView
+                        android:id="@+id/tv_transcript_type"
+                        style="@style/TextViewStyleContentBigText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:gravity="start"
+                        android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
+                        android:textColor="@color/text_color_dialog_equipment"
+                        android:textSize="20sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tv_additionally"
-                    style="@style/TextViewStyleContentBigText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:gravity="start"
-                    android:paddingBottom="24dp"
-                    android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
-                    android:textColor="@color/text_color_dialog_equipment"
-                    android:textSize="20sp" />
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/CardViewDialogAdditionallyStyle"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/tv_additionally"
+                        style="@style/TextViewStyleContentBigText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:gravity="start"
+                        android:paddingBottom="24dp"
+                        android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
+                        android:textColor="@color/text_color_dialog_equipment"
+                        android:textSize="20sp" />
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 

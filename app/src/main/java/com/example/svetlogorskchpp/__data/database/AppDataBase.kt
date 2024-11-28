@@ -41,7 +41,7 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
         ElMotorEntity::class,
         SwitchgearEntity::class,
         LightingAndOtherEntity::class],
-    version = 10
+    version = 11
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -242,7 +242,7 @@ val MIGRATION_8_9 = object : Migration(8, 9) {
     }
 }
 
-val MIGRATION_9_10 = object : Migration(9,10) {
+val MIGRATION_9_10 = object : Migration(9, 10) {
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL(
             """
@@ -325,5 +325,15 @@ val MIGRATION_9_10 = object : Migration(9,10) {
                 )
             """.trimIndent()
         )
+    }
+}
+
+val MIGRATION_10_11 = object : Migration(10, 11) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+
+        db.execSQL("ALTER TABLE el_motor ADD COLUMN mecH TEXT ")
+        db.execSQL("ALTER TABLE el_motor ADD COLUMN mecPowN TEXT ")
+        db.execSQL("ALTER TABLE el_motor ADD COLUMN mecAddit TEXT ")
+
     }
 }

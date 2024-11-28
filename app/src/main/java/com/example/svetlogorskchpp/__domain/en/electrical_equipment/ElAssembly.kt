@@ -5,5 +5,7 @@ enum class ElAssembly(val str: String) {
     ASSEMBLY("Сборка"),
     RY("РУ"),
     LIGHTING("Освещение"),
-    OTHER("Остальное")
+    OTHER("Остальное"),
+    SHPT_1("ЩПТ-1"),
+    SHPT_2("ЩПТ-2")
 }

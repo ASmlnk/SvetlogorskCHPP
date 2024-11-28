@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
@@ -43,6 +44,8 @@ import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCasesIm
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.RequestWorkFilterFactoryUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCasesImpl
 import dagger.Module
@@ -168,7 +171,7 @@ class UseCaseModule {
         @RequestWorkReason reasonHardData: HardDataListRepository<String>,
         @RequestWorkAccession accessionHardData: HardDataListRepository<String>,
         @InfoORY infoOry: HardDataListRepository<String>,
-        @InfoTSN infoTsn: HardDataListRepository<String>
+        @InfoTSN infoTsn: HardDataListRepository<String>,
     ): HardDataUseCases<String> {
         return HardDataUseCasesImpl(reasonHardData, accessionHardData, infoOry, infoTsn)
     }
@@ -191,12 +194,32 @@ class UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideUpdeteFirebaseUseCases (
+    fun provideUpdeteFirebaseUseCases(
         @ElMotor elMotorRepository: EquipmentUpdateFirebaseRepository,
         @Switchgear switchgearRepository: EquipmentUpdateFirebaseRepository,
-        @LightingAndOther lightingAndOtherRepository: EquipmentUpdateFirebaseRepository
-    ) : UpdateFirebaseUseCases {
-        return UpdateFirebaseUseCasesImpl(elMotorRepository,switchgearRepository,lightingAndOtherRepository)
+        @LightingAndOther lightingAndOtherRepository: EquipmentUpdateFirebaseRepository,
+    ): UpdateFirebaseUseCases {
+        return UpdateFirebaseUseCasesImpl(
+            elMotorRepository,
+            switchgearRepository,
+            lightingAndOtherRepository
+        )
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideItemDeleteUseCases(
+        @ElMotorDel elMotorRepository: EquipmentItemDeleteRepository,
+        @Switchgear switchgearRepository: EquipmentItemDeleteRepository,
+        @LightingAndOther lightingAndOtherRepository: EquipmentItemDeleteRepository,
+        networkUseCases: NetworkAvailableUseCase,
+    ): EquipmentsItemDeleteUseCases {
+        return EquipmentsItemDeleteUseCasesImpl(
+            elMotorRepository,
+            switchgearRepository,
+            lightingAndOtherRepository,
+            networkUseCases
+        )
     }
 }
 

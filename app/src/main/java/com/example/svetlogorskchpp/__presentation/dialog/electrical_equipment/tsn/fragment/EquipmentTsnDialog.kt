@@ -46,6 +46,11 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         findNavController().navigate(deepLink)
     }
 
+    private val adapterConsumer = PowerSupplySelectionAdapter { id, name, dl ->
+        val deepLink = Uri.parse(dl.link + id)
+        findNavController().navigate(deepLink)
+    }
+
     private var _includeOryRzaBinding: ContentLayoutRzaDialogBinding? = null
     private val includeOryRzaBinding get() = _includeOryRzaBinding!!
 
@@ -81,8 +86,17 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.consumerState.collect {
+                    adapterConsumer.submitList(it)
+                }
+            }
+        }
+
         binding.apply {
             rvPowerSupply.adapter = adapter
+            rvConsumer.adapter = adapterConsumer
             ivEditContent.setOnClickListener {
                 val action =
                     EquipmentTsnDialogDirections.actionEquipmentTsnDialogToTransformerOwnNeedsEditFragment(

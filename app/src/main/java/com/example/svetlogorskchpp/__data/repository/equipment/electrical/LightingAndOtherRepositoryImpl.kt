@@ -2,10 +2,10 @@ package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherEntity
-import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
@@ -15,32 +15,38 @@ import javax.inject.Inject
 
 class LightingAndOtherRepositoryImpl @Inject constructor(
     private val dao: LightingAndOtherDao,
-    private val firebaseBigJsonRepository: FirebaseBigJsonRepository
-): EquipmentRepository<LightingAndOtherEntity>, EquipmentConsumerRepository<LightingAndOtherEntity>, EquipmentUpdateFirebaseRepository {
+    private val firebaseBigJsonRepository: FirebaseBigJsonRepository,
+) : EquipmentRepository<LightingAndOtherEntity>,
+    EquipmentConsumerRepository<LightingAndOtherEntity>, EquipmentUpdateFirebaseRepository,
+    EquipmentItemDeleteRepository {
     override suspend fun saveItemOpenEquipment(itemEntity: LightingAndOtherEntity): SuccessResultFirebase {
         val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
-            LightingAndOtherEntity::class.java).toMutableList()
+            LightingAndOtherEntity::class.java
+        ).toMutableList()
 
         dataFirebase.add(itemEntity)
         val resultInsert = firebaseBigJsonRepository.insertDocument(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER)
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
+        )
 
         return when (resultInsert) {
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
-                        FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-                        FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
-                        LightingAndOtherEntity::class.java)
+                    val newDataFirebase =
+                        firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+                            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+                            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
+                            LightingAndOtherEntity::class.java
+                        )
                     clearTable()
                     dao.insertAll(newDataFirebase)
                     SuccessResultFirebase.UPDATE_OK
-                }  catch (_: Exception) {
+                } catch (_: Exception) {
                     SuccessResultFirebase.UPDATE_ERROR
                 }
             }
@@ -58,8 +64,9 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
         val listDataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_TG,
-            LightingAndOtherEntity::class.java)
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
+            LightingAndOtherEntity::class.java
+        )
         val listDataLocale = dao.getAllItemEntity()
         if (listDataLocale == listDataFirebase) {
             return@withContext
@@ -75,35 +82,73 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
 
     override suspend fun loadingLocaleInFirebase() {
         val listDataLocale = dao.getAllItemEntity()
-         firebaseBigJsonRepository.insertDocument(
+        firebaseBigJsonRepository.insertDocument(
             listDataLocale,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER)
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
+        )
     }
 
     suspend fun clearTable() {
         dao.clearTable()
     }
 
-    suspend fun saveAllEquipment(itemEntity: List <LightingAndOtherEntity>) {
+    suspend fun saveAllEquipment(itemEntity: List<LightingAndOtherEntity>) {
         val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
-            LightingAndOtherEntity::class.java).toMutableList()
+            LightingAndOtherEntity::class.java
+        ).toMutableList()
 
         dataFirebase.addAll(itemEntity)
         firebaseBigJsonRepository.insertDocument(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
-            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER)
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
+        )
 
         val newDataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
-            LightingAndOtherEntity::class.java)
+            LightingAndOtherEntity::class.java
+        )
 
         clearTable()
         dao.insertAll(newDataFirebase)
 
+    }
+
+    override suspend fun deleteItem(id: String): SuccessResultFirebase {
+        val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
+            LightingAndOtherEntity::class.java
+        ).toMutableList()
+
+        dataFirebase.removeIf { it.id == id }
+        val resultInsert = firebaseBigJsonRepository.insertDocument(
+            dataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
+        )
+
+        return when (resultInsert) {
+            SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
+            SuccessResultFirebase.UPDATE_OK -> {
+                try {
+                    val newDataFirebase =
+                        firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+                            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+                            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
+                            LightingAndOtherEntity::class.java
+                        )
+                    clearTable()
+                    dao.insertAll(newDataFirebase)
+                    SuccessResultFirebase.UPDATE_OK
+                } catch (_: Exception) {
+                    SuccessResultFirebase.UPDATE_ERROR
+                }
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/TextViewStyleContent"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:textColor="@color/calendar_background"
         android:text="@string/voltage_edit_ory"/>
 

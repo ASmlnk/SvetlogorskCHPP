@@ -24,6 +24,7 @@ import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.ElMotorRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
@@ -122,7 +123,11 @@ class RepositoryModule {
         calendarRequestWorkTagRepository: CalendarRequestWorkTagRepository,
         noteRequestWorkDao: NoteRequestWorkDao
     ): NoteRequestWorkRepository {
-        return NoteRequestWorkRepositoryImpl(firebase,calendarRequestWorkTagRepository, noteRequestWorkDao)
+        return NoteRequestWorkRepositoryImpl(
+            firebase,
+            calendarRequestWorkTagRepository,
+            noteRequestWorkDao
+        )
     }
 
     @Provides
@@ -149,7 +154,7 @@ class RepositoryModule {
         firebase: FirebaseFirestore,
         gson: Gson
     ): FirebaseRepository {
-        return FirebaseRepository(firebase,gson)
+        return FirebaseRepository(firebase, gson)
     }
 
     @Provides
@@ -158,7 +163,7 @@ class RepositoryModule {
         firebase: FirebaseFirestore,
         gson: Gson
     ): FirebaseBigJsonRepository {
-        return FirebaseBigJsonRepository(firebase,gson)
+        return FirebaseBigJsonRepository(firebase, gson)
     }
 
     @Provides
@@ -190,7 +195,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTurboGeneratorRepository (
+    fun provideTurboGeneratorRepository(
         dao: TurboGeneratorDao,
         repositoryFirebase: FirebaseRepository
     ): EquipmentRepository<TurboGeneratorEntity> {
@@ -208,7 +213,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTurboGeneratorConsumerRepository (
+    fun provideTurboGeneratorConsumerRepository(
         dao: TurboGeneratorDao,
         repositoryFirebase: FirebaseRepository
     ): EquipmentConsumerRepository<TurboGeneratorEntity> {
@@ -217,7 +222,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideElMotorRepository (
+    fun provideElMotorRepository(
         dao: ElMotorDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentRepository<ElMotorEntity> {
@@ -226,7 +231,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideElMotorConsumerRepository (
+    fun provideElMotorConsumerRepository(
         dao: ElMotorDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentConsumerRepository<ElMotorEntity> {
@@ -236,7 +241,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSwitchgearRepository (
+    fun provideSwitchgearRepository(
         dao: SwitchgearDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentRepository<SwitchgearEntity> {
@@ -245,7 +250,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSwitchgearConsumerRepository (
+    fun provideSwitchgearConsumerRepository(
         dao: SwitchgearDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentConsumerRepository<SwitchgearEntity> {
@@ -255,7 +260,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLightingAndOtherEntityRepository (
+    fun provideLightingAndOtherEntityRepository(
         dao: LightingAndOtherDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentRepository<LightingAndOtherEntity> {
@@ -264,7 +269,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLightingAndOtherEntityConsumerRepository (
+    fun provideLightingAndOtherEntityConsumerRepository(
         dao: LightingAndOtherDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentConsumerRepository<LightingAndOtherEntity> {
@@ -274,7 +279,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     @ElMotor
-    fun provideElMotorUpdateFirabaseRepository (
+    fun provideElMotorUpdateFirabaseRepository(
         dao: ElMotorDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentUpdateFirebaseRepository {
@@ -284,7 +289,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     @Switchgear
-    fun provideSwitchgearUpdateFirabaseRepository (
+    fun provideSwitchgearUpdateFirabaseRepository(
         dao: SwitchgearDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentUpdateFirebaseRepository {
@@ -294,19 +299,53 @@ class RepositoryModule {
     @Provides
     @Singleton
     @LightingAndOther
-    fun provideLightingAndOtherUpdateRepository (
+    fun provideLightingAndOtherUpdateRepository(
         dao: LightingAndOtherDao,
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentUpdateFirebaseRepository {
         return LightingAndOtherRepositoryImpl(dao, repositoryFirebase)
     }
-}
 
+
+    @Provides
+    @Singleton
+    @ElMotorDel
+    fun provideElMotorItemDeleteFirabaseRepository(
+        dao: ElMotorDao,
+        repositoryFirebase: FirebaseBigJsonRepository
+    ): EquipmentItemDeleteRepository {
+        return ElMotorRepositoryImpl(dao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    @Switchgear
+    fun provideSwitchgearItemDeleteFirabaseRepository(
+        dao: SwitchgearDao,
+        repositoryFirebase: FirebaseBigJsonRepository
+    ): EquipmentItemDeleteRepository {
+        return SwitchgearRepositoryImpl(dao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    @LightingAndOther
+    fun provideLightingAndOtherItemDeleteRepository(
+        dao: LightingAndOtherDao,
+        repositoryFirebase: FirebaseBigJsonRepository
+    ): EquipmentItemDeleteRepository {
+        return LightingAndOtherRepositoryImpl(dao, repositoryFirebase)
+    }
+}
 
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class ElMotor
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class ElMotorDel
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)

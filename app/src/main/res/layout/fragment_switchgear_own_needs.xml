@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_content_rza">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.95"
+        android:src="@drawable/electrical_assembly"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:background="@drawable/background_item_switchgear_name"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/tv_name_department"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextViewStyleHeading"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="top"
+            android:text="afdafafafadfajljd  alfj al jljda al jfl a jfljdlaj ja lsdjfl ajf aljlfj alj alsjdf lajlf j lajdfl ajdlj"
+            android:textColor="#2E382F"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_active_delete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/delete"
+        android:alpha="0.4"
+        app:tint="@color/text_content_rza_2"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+
+        android:id="@+id/tv_name_department"
+        android:layout_width="120dp"
+        android:layout_height="64dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingStart="8dp"
+        android:textSize="14sp"
+        style="@style/TextViewStyleContent"
+        android:text="@string/rtzo"
+        android:textStyle="bold"
+        android:gravity="end"
+        android:textColor="@color/calendar_background"
+        app:layout_constraintEnd_toEndOf="@+id/shapeableImageView12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            app:chipSpacingHorizontal="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionRequired="false"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_el_motor"
+                style="@style/ShiftScheduleChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ru_hero"
+                android:text="@string/motor"
+                android:textColor="@color/calendar_background"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
+                app:rippleColor="@color/text_recycle" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_assembly"
+                style="@style/ShiftScheduleChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ru_hero"
+                android:text="@string/assembly"
+                android:textColor="@color/calendar_background"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
+                app:rippleColor="@color/text_recycle" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_lighting"
+                style="@style/ShiftScheduleChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ru_hero"
+                android:text="@string/other"
+                android:textColor="@color/calendar_background"
+                android:textStyle="bold"
+                app:chipBackgroundColor="@color/chip_shif_schedule"
+                app:chipCornerRadius="8dp"
+                app:chipStrokeColor="@color/calendar_background"
+                app:chipStrokeWidth="2dp"
+                app:rippleColor="@color/text_recycle" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="134dp"
+        android:background="@color/text_content_rza"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/text_recycle"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_info_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/switchgear_color"
+        app:borderWidth="4dp"
+        app:elevation="4dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="32dp"
+        app:srcCompat="@drawable/icon_info"
+        app:tint="@color/text_content_rza_2" />
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/background_layout_line_gradient"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgear
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTgBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTrBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTsnBinding
+import com.example.svetlogorskchpp.databinding.ItemEquipmentSwitchgearBinding
 
 class PowerSupplySelectionAdapter (
     private val onClick: (id: String, name: String, dl: DeepLink) -> Unit,
@@ -128,7 +129,7 @@ class TsnHolder(val binding: ItemElectricalEquipmentTsnBinding) :
     }
 }
 
-class SwitchgearHolder(val binding: ItemElectricalEquipmentSwitchgearBinding) :
+class SwitchgearHolder(val binding: ItemEquipmentSwitchgearBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
@@ -147,7 +148,7 @@ class SwitchgearHolder(val binding: ItemElectricalEquipmentSwitchgearBinding) :
     companion object {
         fun inflateFrom(parentContext: ViewGroup): SwitchgearHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemElectricalEquipmentSwitchgearBinding.inflate(layoutInflater, parentContext, false)
+            val binding = ItemEquipmentSwitchgearBinding.inflate(layoutInflater, parentContext, false)
             return SwitchgearHolder(binding)
         }
     }

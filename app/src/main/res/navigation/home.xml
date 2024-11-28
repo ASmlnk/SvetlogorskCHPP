@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_loaderBdDialog"
             app:destination="@id/loaderBdDialog" />
+        <action
+            android:id="@+id/action_homePageFragment_to_switchgearOwnNeedsListFragment"
+            app:destination="@id/switchgearOwnNeedsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -182,7 +185,12 @@
         android:id="@+id/powerSupplySelectionDialog"
         tools:layout="@layout/dialog_power_supply_selection"
         android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.power_supply_selection.fragment.PowerSupplySelectionDialog"
-        android:label="PowerSupplySelectionDialog" />
+        android:label="PowerSupplySelectionDialog" >
+        <argument
+            android:name="switchgearPowerSupply"
+            app:argType="com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.model.SwitchgearPowerSupply"
+            android:defaultValue="NULL" />
+    </dialog>
     <fragment
         android:id="@+id/transformerOwnNeedsListFragment"
         android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.tsn.list.fragment.TransformerOwnNeedsListFragment"
@@ -276,5 +284,92 @@
             android:id="@+id/action_loaderBdDialog_to_turbogeneratorEditFragment"
             app:destination="@id/turbogeneratorEditFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/switchgearOwnNeedsListFragment"
+        tools:layout="@layout/fragment_switchgear_own_needs_list"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.list.fragment.SwitchgearOwnNeedsListFragment"
+        android:label="SwitchgearOwnNeedsListFragment" >
+        <argument
+            android:name="nameDepartment"
+            app:argType="com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment" />
+        <action
+            android:id="@+id/action_switchgearOwnNeedsListFragment_to_switchgearOwnNeedsFragment"
+            app:destination="@id/switchgearOwnNeedsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/switchgearOwnNeedsFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.item.fragment.SwitchgearOwnNeedsFragment"
+        tools:layout="@layout/fragment_switchgear_own_needs"
+        android:label="SwitchgearOwnNeedsFragment" >
+
+        <deepLink
+            android:id="@+id/myDialogSwitchgearDeepLink"
+            app:uri = "myapp://myDialogSwitchgearDeepLink/{id}"/>
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_switchgearOwnNeedsFragment_to_switchgearOwnNeedsDialog"
+            app:destination="@id/switchgearOwnNeedsInfoDialog" />
+    </fragment>
+    <dialog
+        tools:layout="@layout/dialog_equipment_switchgear"
+        android:id="@+id/switchgearOwnNeedsInfoDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.switchear.fragment.SwitchgearOwnNeedsInfoDialog"
+        android:label="SwitchgearOwnNeedsInfoDialog" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_switchgearOwnNeedsInfoDialog_to_switchgearOwnNeedsEditFragment"
+            app:destination="@id/switchgearOwnNeedsEditFragment" />
+    </dialog>
+    <fragment
+        tools:layout="@layout/fragment_switchgear_edit"
+        android:id="@+id/switchgearOwnNeedsEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.edit.fragment.SwitchgearOwnNeedsEditFragment"
+        android:label="SwitchgearOwnNeedsEditFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_switchgearOwnNeedsEditFragment_to_powerSupplySelectionDialog"
+            app:destination="@id/powerSupplySelectionDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/elMotorDialog"
+        tools:layout="@layout/dialog_equipment_el_motor"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.el_motor.fragment.ElMotorDialog"
+        android:label="ElMotorDialog" >
+
+        <deepLink
+            android:id="@+id/myDialogElMotorDeepLink"
+            app:uri = "myapp://myDialogElMotorDeepLink/{id}"/>
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_elMotorDialog_to_elMotorEditFragment"
+            app:destination="@id/elMotorEditFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/elMotorEditFragment"
+        tools:layout="@layout/fragment_el_motor_edit"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.el_motor.edit.fragment.ElMotorEditFragment"
+        android:label="ElMotorEditFragment" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_elMotorEditFragment_to_powerSupplySelectionDialog"
+            app:destination="@id/powerSupplySelectionDialog" />
+    </fragment>
 
 </navigation>

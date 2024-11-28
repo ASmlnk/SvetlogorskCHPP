@@ -10,6 +10,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogen
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.ElMotorRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.LightingAndOtherRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.SwitchgearRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
@@ -37,6 +38,8 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.Eq
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentConsumerUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentPowerSupplyUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentElMotorUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentLightingAndOtherUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentSwitchgearUseCasesImpl
@@ -52,6 +55,8 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentSwitchgearListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentTransformerOwnNeedsListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentTurboGeneratorListUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCasesImpl
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment

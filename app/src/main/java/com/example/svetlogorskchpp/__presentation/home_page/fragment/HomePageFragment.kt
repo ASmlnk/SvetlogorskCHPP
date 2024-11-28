@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__domain.en.HardData
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.home_page.EquipmentFilter
 import com.example.svetlogorskchpp.__presentation.home_page.view_model.HomePageViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryBinding
+import com.example.svetlogorskchpp.databinding.ContentLayoutSwitchgearBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutTsnBinding
 import com.example.svetlogorskchpp.databinding.FragmentHomePageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +34,9 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     private var _includeTsnBinding: ContentLayoutTsnBinding? = null
     private val includeTsnBinding get() = _includeTsnBinding!!
 
+    private var _includeSwitchgearBinding: ContentLayoutSwitchgearBinding? = null
+    private val includeSwitchgearBinding get() = _includeSwitchgearBinding!!
+
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +49,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         super.onViewCreated(view, savedInstanceState)
         _includeOryBinding = ContentLayoutOryBinding.bind(binding.contentOry.root)
         _includeTsnBinding = ContentLayoutTsnBinding.bind(binding.contentTsn.root)
+        _includeSwitchgearBinding = ContentLayoutSwitchgearBinding.bind(binding.contentSwitchgear.root)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -54,6 +60,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         }
 
         binding.apply {
+
+            tvSwitchgear.setOnClickListener {
+                //findNavController().navigate(R.id.action_homePageFragment_to_switchgearOwnNeedsListFragment)
+            }
 
             swipeRefreshLayout.setOnRefreshListener {
                 lifecycleScope.launch {
@@ -112,6 +122,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
 
         }
+
         includeOryBinding.apply {
             tvOryTransformer.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrListFragment)
@@ -145,6 +156,49 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             tvTsn604.setOnClickListener{
                 val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
                     Voltage.KV6_KV04)
+                findNavController().navigate(action)
+            }
+        }
+
+        includeSwitchgearBinding.apply {
+            tvKry.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KRY)
+                findNavController().navigate(action)
+            }
+            tvRy.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.RY)
+                findNavController().navigate(action)
+            }
+            tvKtcTo.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KTC_TO)
+                findNavController().navigate(action)
+            }
+            tvKtcKo.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KTC_KO)
+                findNavController().navigate(action)
+            }
+            tvHc.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.HC)
+                findNavController().navigate(action)
+            }
+            tvIvShieldBlock.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.SHIELD_BLOCK)
+                findNavController().navigate(action)
+            }
+            tvBns.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.BNS)
+                findNavController().navigate(action)
+            }
+            tvCoolingTower.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.COOLING_TOWER)
+                findNavController().navigate(action)
+            }
+            tvPostTok.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.POST_TOK)
+                findNavController().navigate(action)
+            }
+            tvOther.setOnClickListener {
+                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.OTHER)
                 findNavController().navigate(action)
             }
         }

@@ -188,9 +188,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -357,18 +355,65 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/tv_switchgear"
+                        style="@style/TextViewStyleContentHomePageSection"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Силовые сборки и распределительные уст-ва"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_switchgear_info"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_tg" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shapeableImageViewSwitchgear"
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/electrical_assembly"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_switchgear"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_switchgear"
+                        app:layout_constraintTop_toTopOf="@+id/tv_switchgear"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_switchgear_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_info_outline_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_switchgear"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_switchgear"
+                        app:tint="@color/orange_zero_vision" />
+
+                    <include
+                        android:id="@+id/content_switchgear"
+                        layout="@layout/content_layout_switchgear"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/shapeableImageViewSwitchgear"
+                        app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewSwitchgear" />
+
                     <LinearLayout
                         android:id="@+id/layout_zero_vision"
                         android:layout_width="0dp"
                         android:layout_height="68dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/background_home_page_content_zero_vision"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toStartOf="@+id/layout_valve"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layout_tg">
+                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="64dp"
@@ -398,14 +443,14 @@
                         android:layout_width="0dp"
                         android:layout_height="68dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/background_home_page_content_valve"
                         android:gravity="end"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/layout_zero_vision"
-                        app:layout_constraintTop_toBottomOf="@+id/layout_tg">
+                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear">
 
                         <TextView
                             style="@style/TextViewStyleContent"

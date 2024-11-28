@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CardViewDialogContentStyle"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp"
+    android:background="@color/name_devices_appbar"
+    app:cardCornerRadius="20dp"
+    app:strokeColor="@color/name_devices_appbar"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_item_el_motor"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextViewStyleContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+
+                android:minLines="2"
+                android:text="sadaaaaljsd sldajsdfjjasldjflajlaksjdlfjlakj"
+                android:textColor="@color/calendar_background"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/tv_category"
+                style="@style/TextViewStyleContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Сх. известкового х-во"
+                android:textColor="@color/name_devices_appbar"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_power_supply"
+                style="@style/TextViewStyleContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
+                android:text="КРУ-,315 кВ яч 34 fdsfdfsfsdfsfff"
+                android:textColor="@color/text_content_rza"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_rep"
+                    style="@style/TextViewStyleContent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/background_request_work_text_permission_c"
+                    android:paddingHorizontal="6dp"
+                    android:text="@string/rep"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:textColor="@color/text_recycle"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_category"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/chemistry_class_6837437"
+                    app:tint="@color/name_devices_appbar" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/electric_motor_2479547"
+                    app:tint="@color/name_devices_appbar" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingBottom="8dp"
+                android:paddingEnd="8dp"
+
+                android:background="@drawable/background_item_el_motor_parameter_right"
+                android:paddingTop="4dp"
+                android:layout_marginTop="2dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_voltage"
+                    android:layout_marginStart="52dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/text_recycle_smile"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tahoma"
+                    style="@style/TextViewStyleContent"
+                    android:textSize="16sp"
+                    android:text="U = 300 В"/>
+
+                <TextView
+                    android:id="@+id/tv_power"
+                    android:layout_marginStart="36dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/text_recycle_smile"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tahoma"
+                    style="@style/TextViewStyleContent"
+                    android:textSize="16sp"
+                    android:text="P = 220 кВт"/>
+
+                 <TextView
+                     android:id="@+id/tv_i"
+                     android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                     android:textSize="16sp"
+                     android:fontFamily="@font/tahoma"
+                     android:textColor="@color/text_recycle_smile"
+                    android:layout_height="wrap_content"
+                    style="@style/TextViewStyleContent"
+                    android:text="I = 220 А"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="66dp"
+            android:visibility="gone"
+            android:background="@color/delete_background"
+            android:src="@drawable/delete"
+            android:paddingHorizontal="12dp"
+            app:tint="@color/text_input_assembly"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -35,17 +35,20 @@ class MainActivityViewModel @Inject constructor(
             updateOpenSwitchgearTr()
             updateTsn()
             updateTg()
+            updateSwitchgear()
+            updateElMotor()
+            updateLightingAndOther()
         }
     }
 
-    private suspend fun getRequestWorkFirebase() {
+    private fun getRequestWorkFirebase() {
         viewModelScope.launch(Dispatchers.IO) { updateLocaleBaseUseCases.updateRequestWork() }
     }
 
-    private suspend fun updateOpenSwitchgearVl() {
+    private fun updateOpenSwitchgearVl() {
         viewModelScope.launch(Dispatchers.IO) { updateLocaleBaseUseCases.updateOpenSwitchgearVl() }
     }
-    private suspend fun updateOpenSwitchgearTr() {
+    private fun updateOpenSwitchgearTr() {
         viewModelScope.launch(Dispatchers.IO) { updateLocaleBaseUseCases.updateOpenSwitchgearTr() }
     }
 
@@ -65,6 +68,23 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
+    private fun updateElMotor() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateElMotor()
+        }
+    }
+
+    private fun updateSwitchgear() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateSwitchgear()
+        }
+    }
+
+    private fun updateLightingAndOther() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateLightingAndOther()
+        }
+    }
     private suspend fun initNotification() = withContext(Dispatchers.IO) {
         val isRequestWorkNotification =
             preferencesNotification.getPreferencesRequestWorkNotification().first()

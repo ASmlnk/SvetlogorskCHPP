@@ -20,13 +20,17 @@ class HomePageViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(false)
     val uiState: StateFlow<Boolean> = _uiState
 
-
     suspend fun updateLocaleBase() {
         _uiState.update { true }
-        updateLocaleBaseUseCases.updateOpenSwitchgearVl()
-        updateLocaleBaseUseCases.updateOpenSwitchgearTr()
-        updateLocaleBaseUseCases.updateTsn()
-        updateLocaleBaseUseCases.updateTg()
+        updateLocaleBaseUseCases.apply {
+            updateOpenSwitchgearVl()
+            updateOpenSwitchgearTr()
+            updateTsn()
+            updateTg()
+            updateSwitchgear()
+            updateElMotor()
+            updateLightingAndOther()
+        }
         _uiState.update { false }
     }
 

@@ -162,6 +162,12 @@ class OpenSwitchgearTrEditFragment : BaseEditFragment<FragmentOpenSwitchgearTrEd
         )
     }
 
+    override fun onStop() {
+        super.onStop()
+        val state = saveEditText()
+        viewModel.saveState(state)
+    }
+
     private fun saveParameterTr() {
         val textState = saveEditText()
         viewModel.saveParameterTr(textState)

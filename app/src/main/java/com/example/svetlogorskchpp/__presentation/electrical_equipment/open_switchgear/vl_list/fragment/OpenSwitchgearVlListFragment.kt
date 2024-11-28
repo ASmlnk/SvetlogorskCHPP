@@ -26,7 +26,7 @@ class OpenSwitchgearVlListFragment : BaseFragment<FragmentOpenSwitchgearVlBindin
 
     private val viewModel: OpenSwitchgearVlListViewModel by viewModels()
 
-    private val adapter = ElectricalEquipmentAdapter { id ->
+    private val adapter = ElectricalEquipmentAdapter { dl,id ->
         val action =
             OpenSwitchgearVlListFragmentDirections.actionOpenSwitchgearVlFragmentToOpenSwitchgearVlDialog(
                 id

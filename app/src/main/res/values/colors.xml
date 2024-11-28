@@ -19,6 +19,7 @@
     <color name="name_devices_appbar">#A7D0EF</color>
     <color name="red_schema">#C9322F</color>
     <color name="red_danger">#BA2F2C</color>
+    <color name="delete_background">#B44644</color>
     <color name="red_text_zero_vision">#C92F65</color>
     <color name="floatingActionButton">#265271</color>
     <color name="text_input_assembly">#EFD2A7</color>
@@ -33,5 +34,6 @@
     <color name="home_page_gradient">#107761</color>
     <color name="text_content_rza">#A0C0A1</color>
     <color name="text_content_rza_2">#B1C7B2</color>
+    <color name="switchgear_color">#50747E</color>
 
 </resources>

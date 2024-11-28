@@ -137,6 +137,10 @@ class OpenSwitchgearTrEditViewModel @AssistedInject constructor(
         _spinnerSnUIState.update { spinnerState }
     }
 
+    fun saveState(state: OpSwTrEditUIState) {
+        _opSwTrEditUIState.update { state }
+    }
+
     fun saveParameterTr(opSwTr: OpSwTrEditUIState) {
         val parameterTr = OpenSwitchgearTr(
             id = opSwTr.id,

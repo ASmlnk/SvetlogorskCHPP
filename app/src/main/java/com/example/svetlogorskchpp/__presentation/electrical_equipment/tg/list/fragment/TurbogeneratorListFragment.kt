@@ -22,7 +22,7 @@ class TurbogeneratorListFragment: BaseFragment<FragmentTgListBinding>() {
 
     private val viewModel: TurboGeneratorListViewModel by viewModels()
 
-    private val adapter = ElectricalEquipmentAdapter { id ->
+    private val adapter = ElectricalEquipmentAdapter { dl,id ->
         val action =
             TurbogeneratorListFragmentDirections.actionTurbogeneratorListFragmentToTurbogeneratorDialog(
                 id

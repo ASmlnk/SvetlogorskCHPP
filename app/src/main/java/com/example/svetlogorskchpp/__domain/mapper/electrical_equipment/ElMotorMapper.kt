@@ -8,6 +8,7 @@ import com.example.svetlogorskchpp.__domain.model.electrical_equipment.ElMotor
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
+import kotlin.String
 
 class ElMotorMapper @Inject constructor() {
 
@@ -20,8 +21,12 @@ class ElMotorMapper @Inject constructor() {
                 powerSupplyCell = powSuC,
                 powerSupplyName = powSuNam,
                 automation = automation,
-                phaseProtection = if (phPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(phPr),
-                earthProtection = if (eaPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(eaPr),
+                phaseProtection = if (phPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(
+                    phPr
+                ),
+                earthProtection = if (eaPr.isEmpty()) Json.decodeFromString("[]") else Json.decodeFromString(
+                    eaPr
+                ),
                 additionallyRza = addRz,
                 category = cat.let { ElCategory.valueOf(it) },
                 generalCategory = gCat.let { ElGeneralCategory.valueOf(it) },
@@ -39,7 +44,10 @@ class ElMotorMapper @Inject constructor() {
                 mechanismType = mecTyp,
                 mechanismPerformance = mecPer,
                 mechanismPressure = mecPr,
-                mechanismN = mecN
+                mechanismN = mecN,
+                mechanismH = mecH?:"",
+                mechanismPowerN = mecPowN?:"",
+                mechanismAdditionally = mecAddit?:"",
             )
         }
     }
@@ -72,7 +80,10 @@ class ElMotorMapper @Inject constructor() {
                 mecTyp = mechanismType,
                 mecPer = mechanismPerformance,
                 mecPr = mechanismPressure,
-                mecN = mechanismN
+                mecN = mechanismN,
+                mecH = mechanismH,
+                mecPowN = mechanismPowerN,
+                mecAddit = mechanismAdditionally,
             )
         }
     }

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_content_rza">
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:alpha="0.95"
+        android:src="@drawable/electrical_assembly"
+        app:layout_constraintBottom_toTopOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name_department"
+        style="@style/TextViewStyleContent"
+        android:layout_width="120dp"
+        android:layout_height="64dp"
+        android:gravity="end"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:textSize="14sp"
+        android:paddingEnd="8dp"
+        android:text="@string/rtzo"
+        android:textColor="@color/calendar_background"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextViewStyleHeading"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="top"
+        android:visibility="gone"
+        android:text="@string/tr_name"
+        android:textColor="@color/text_recycle_smile"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginTop="24dp" />
+
+    <HorizontalScrollView
+        android:id="@+id/layout_chip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                app:chipSpacingHorizontal="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:selectionRequired="false"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_assembly"
+                    style="@style/ShiftScheduleChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="@string/electrical_assembly"
+                    android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/chip_shif_schedule"
+                    app:chipCornerRadius="8dp"
+                    app:chipStrokeColor="@color/calendar_background"
+                    app:chipStrokeWidth="2dp"
+                    app:rippleColor="@color/text_recycle" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_lighting"
+                    style="@style/ShiftScheduleChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="@string/electrical_lighting"
+                    android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/chip_shif_schedule"
+                    app:chipCornerRadius="8dp"
+                    app:chipStrokeColor="@color/calendar_background"
+                    app:chipStrokeWidth="2dp"
+                    app:rippleColor="@color/text_recycle" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_rtzo"
+                    style="@style/ShiftScheduleChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="@string/rtzo"
+                    android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/chip_shif_schedule"
+                    app:chipCornerRadius="8dp"
+                    app:chipStrokeColor="@color/calendar_background"
+                    app:chipStrokeWidth="2dp"
+                    app:rippleColor="@color/text_recycle" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_shpt_1"
+                    style="@style/ShiftScheduleChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="@string/shpt_1"
+                    android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/chip_shif_schedule"
+                    app:chipCornerRadius="8dp"
+                    app:chipStrokeColor="@color/calendar_background"
+                    app:chipStrokeWidth="2dp"
+                    app:rippleColor="@color/text_recycle" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_shpt_2"
+                    style="@style/ShiftScheduleChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ru_hero"
+                    android:text="@string/shpt_2"
+                    android:textColor="@color/calendar_background"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/chip_shif_schedule"
+                    app:chipCornerRadius="8dp"
+                    app:chipStrokeColor="@color/calendar_background"
+                    app:chipStrokeWidth="2dp"
+                    app:rippleColor="@color/text_recycle" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/text_content_rza"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_chip" />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/text_recycle"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/background_layout_line_gradient"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

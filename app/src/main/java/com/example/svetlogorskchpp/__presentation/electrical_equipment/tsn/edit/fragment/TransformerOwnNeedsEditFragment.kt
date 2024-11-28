@@ -126,6 +126,12 @@ class TransformerOwnNeedsEditFragment : BaseEditFragment<FragmentTsnEditBinding>
         )
     }
 
+    override fun onStop() {
+        super.onStop()
+        val state = saveEditText()
+        viewModel.saveState(state)
+    }
+
     private fun setupUI(uiState: TransformerOwnNeedsUIState) {
 
         includeRzaBinding.apply {

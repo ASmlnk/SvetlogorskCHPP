@@ -34,7 +34,7 @@
     <string name="name_block">Блоки Генератор-Трансформатор</string>
     <string name="power">Установленая P = 155 МВт \nУстановленая Q = 541,5 ГКал</string>
     <string name="electric_motors">Эл.двигатели</string>
-    <string name="electric_motor">Эл.двигатель</string>
+    <string name="electric_motor">Эл. двигатель</string>
     <string name="title_electric_motor">Электродвигатели</string>
     <string name="v">U</string>
     <string name="tg">ТГ</string>
@@ -335,6 +335,56 @@
     <string name="turbogenerator">Турбогенераторы</string>
     <string name="type_parameter_tg">%1$sМВт\u0020\u0020%2$sГКал\u0020\u0020%3$sт/ч</string>
     <string name="protection">Защиты</string>
-    <string name="transcript_type_generator">%1$s\nГазовый объем генератора: %2$sм3\nГазовый объем ресивера: %3$sм3</string>
+    <string name="transcript_type_generator">%1$s\nV генератора, м3: %2$s\nV ресиверов, м3: %3$s</string>
+    <string name="electrical_lighting">Освещение</string>
+    <string name="rtzo">РТЗО</string>
+    <string name="shpt_1">ЩПТ-1</string>
+    <string name="shpt_2">ЩПТ-2</string>
+    <string name="shield_block">Щитовой блок</string>
+    <string name="post_tok">Постояный ток</string>
+    <string name="power_supply_item">%1$s № %2$s </string>
+    <string name="voltage_el_motor_item">U = %s</string>
+    <string name="power_el_motor_item">P = %s кВт</string>
+    <string name="i_el_motor_item">I = %s А</string>
+    <string name="n_el_motor_item">n = %s об/мин</string>
+    <string name="main_power_source">Основной источник питания:</string>
+    <string name="backup_power_supply">Резервный источик питания:</string>
+    <string name="switchgear_own_needs">Распределительные ус-ва</string>
+    <string name="info">Инфо</string>
+    <string name="voltage_name">Напряжение:</string>
+    <string name="type">Тип:</string>
+    <string name="place">Место:</string>
+    <string name="main_power_supply">Основной источник питания</string>
+    <string name="reserve_power_supply">Резервный источник питания</string>
+    <string name="consumer">Потребитель</string>
+    <string name="trtor">Тр-тор</string>
+    <string name="assembly">Сборки</string>
+    <string name="other">Прочее</string>
+    <string name="motor">Двигатели</string>
+    <string name="rep">REP</string>
+    <string name="control_circuits">Цепи управления:</string>
+    <string name="mechanism">Мехинизм:</string>
+    <string name="performance_mechanism">Произв-ть: Q = %s м3/ч</string>
+    <string name="pressure_mechanism">Давление: P = %s кгс/см2</string>
+    <string name="mechanism_h">Напор: H = %s м</string>
+    <string name="mechanism_n_power">Мощность: N = %s кВт</string>
+    <string name="mechanism_n">Кол-во об.: n = %s об/мин</string>
+    <string name="electric_motor_title">Эл. двигатели и механизмы</string>
+    <string name="ceh">Цех</string>
+    <string name="performance_mechanism_title">Произв-ть: Q, м3/ч</string>
+    <string name="pressure_mechanism_title">Давление: P, кгс/см2</string>
+    <string name="mechanism_h_title">Напор: H, м</string>
+    <string name="mechanism_n_power_title">Мощность: N, кВт</string>
+    <string name="mechanism_n_title">Кол-во об.: n, об/мин</string>
+    <string name="type_performance_mechanism_title">Q, м3/ч</string>
+    <string name="type_pressure_mechanism_title">P, кгс/см2</string>
+    <string name="type_mechanism_h_title">H, м</string>
+    <string name="type_mechanism_n_power_title">N, кВт</string>
+    <string name="type_mechanism_n_title">n, об/мин</string>
+    <string name="el_motor_power_title">Мощность: P, кВт</string>
+    <string name="type_el_motor_power_title">P, кВт</string>
+    <string name="i_el_motor_item_title">Ток: I, А</string>
+    <string name="type_i_el_motor_item_title">I, А</string>
+    <string name="type_rep">Тип REP</string>
 
 </resources>

@@ -183,7 +183,7 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
                 isGone = state.additionallyRza2.isEmpty()
             }
             layoutAdditionally1.isGone = state.additionallyRza1.isEmpty()
-            layoutAdditionally2.isGone = state.additionallyRza2.isEmpty()
+
 
             tvAutomationTitle.isGone = state.automation.isEmpty()
             tvAutomationContent.isGone = state.automation.isEmpty()

@@ -99,6 +99,7 @@ class ElectricalEquipmentListMapper @Inject constructor() {
                 i = i,
                 powerSupplyName = powSuNam,
                 powerSupplyCell = powSuC,
+                isRep = isRep,
                 cell = toInt(powSuC)
             )
         }

@@ -29,6 +29,9 @@ class EquipmentTsnViewModel @AssistedInject constructor(
     private val _powerSupplyState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
     val powerSupplyState : StateFlow<List<ElectricalEquipment>> get() = _powerSupplyState
 
+    private val _consumerState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
+    val consumerState: StateFlow<List<ElectricalEquipment>> get() = _consumerState
+
 
     init {
         viewModelScope.launch {
@@ -56,6 +59,7 @@ class EquipmentTsnViewModel @AssistedInject constructor(
                         )
                     }
                     updatePowerSupply(tsn.powerSupplyId)
+                    updateConsumer(tsn.id)
                 }
             }
         }
@@ -68,7 +72,15 @@ class EquipmentTsnViewModel @AssistedInject constructor(
                 _powerSupplyState.value = it
             }
         }
+    }
 
+    private fun updateConsumer(id: String)  {
+        viewModelScope.launch(Dispatchers.IO) {
+            val flow = useCasesAllEquipment.getEquipmentConsumersFlow(id)
+            flow.collect {
+                _consumerState.value = it
+            }
+        }
     }
 
     companion object {

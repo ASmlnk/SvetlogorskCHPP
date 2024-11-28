@@ -31,5 +31,8 @@ data class ElMotorEntity(
     val mecTyp: String,
     val mecPer: String,
     val mecPr: String,
-    val mecN: String
+    val mecN: String,
+    val mecH: String? ,
+    val mecPowN: String? ,
+    val mecAddit: String?
 )

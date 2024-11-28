@@ -24,7 +24,7 @@ class TransformerOwnNeedsListFragment: BaseFragment<FragmentTsnListBinding>() {
     val args: TransformerOwnNeedsListFragmentArgs by navArgs()
     private val viewModel: TransformerOwnNeedsListViewModel by viewModels()
 
-    private val adapter = ElectricalEquipmentAdapter { id ->
+    private val adapter = ElectricalEquipmentAdapter { dl,id ->
         val action =
             TransformerOwnNeedsListFragmentDirections.actionTransformerOwnNeedsListFragmentToEquipmentTsnDialog(
                 id

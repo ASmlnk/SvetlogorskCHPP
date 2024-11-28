@@ -121,6 +121,12 @@ class TurbogeneratorEditFragment : BaseEditFragment<FragmentTgEditBinding>() {
         )
     }
 
+    override fun onStop() {
+        super.onStop()
+        val state = saveEditText()
+        viewModel.saveState(state)
+    }
+
     private fun setupUI(uiState: TurbogeneratorUIState) {
 
         includeRzaBinding.apply {

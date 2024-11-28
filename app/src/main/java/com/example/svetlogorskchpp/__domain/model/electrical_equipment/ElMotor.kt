@@ -32,6 +32,9 @@ data class ElMotor(
     val mechanismType: String,
     val mechanismPerformance: String,
     val mechanismPressure: String,
-    val mechanismN: String
+    val mechanismN: String,
+    val mechanismH: String,
+    val mechanismPowerN: String,
+    val mechanismAdditionally: String,
 )
 
