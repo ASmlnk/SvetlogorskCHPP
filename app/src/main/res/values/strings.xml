@@ -386,5 +386,6 @@
     <string name="i_el_motor_item_title">Ток: I, А</string>
     <string name="type_i_el_motor_item_title">I, А</string>
     <string name="type_rep">Тип REP</string>
+    <string name="switch_automat">Выключатель \n(автомат)</string>
 
 </resources>
