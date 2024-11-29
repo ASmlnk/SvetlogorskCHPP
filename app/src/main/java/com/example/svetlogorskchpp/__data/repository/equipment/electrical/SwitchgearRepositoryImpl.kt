@@ -25,6 +25,9 @@ class SwitchgearRepositoryImpl @Inject constructor(
             SwitchgearEntity::class.java
         ).toMutableList()
 
+        val itemId = itemEntity.id
+        dataFirebase.removeIf {it.id == itemId}
+
         dataFirebase.add(itemEntity)
         val resultInsert = repositoryBigJsonRepository.insertDocument(
             dataFirebase,

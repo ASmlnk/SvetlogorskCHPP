@@ -25,6 +25,9 @@ class ElMotorRepositoryImpl @Inject constructor(
             ElMotorEntity::class.java
         ).toMutableList()
 
+        val itemId = itemEntity.id
+        dataFirebase.removeIf {it.id == itemId}
+
         dataFirebase.add(itemEntity)
         val resultInsert = firebaseBigJsonRepository.insertDocument(
             dataFirebase,

@@ -124,7 +124,6 @@
                 android:layout_gravity="end"
                 android:paddingBottom="8dp"
                 android:paddingEnd="8dp"
-
                 android:background="@drawable/background_item_el_motor_parameter_right"
                 android:paddingTop="4dp"
                 android:layout_marginTop="2dp"
@@ -143,7 +142,7 @@
 
                 <TextView
                     android:id="@+id/tv_power"
-                    android:layout_marginStart="36dp"
+                    android:layout_marginStart="34dp"
                     android:layout_width="wrap_content"
                     android:textColor="@color/text_recycle_smile"
                     android:layout_height="wrap_content"
@@ -154,7 +153,7 @@
 
                  <TextView
                      android:id="@+id/tv_i"
-                     android:layout_marginStart="20dp"
+                     android:layout_marginStart="18dp"
                     android:layout_width="wrap_content"
                      android:textSize="16sp"
                      android:fontFamily="@font/tahoma"

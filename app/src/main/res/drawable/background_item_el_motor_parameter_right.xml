@@ -8,8 +8,8 @@
             <gradient
                 android:angle="135"
                 android:centerColor="@color/backgroundRecycle"
-                android:endColor="@color/chip_appbar"
-                android:startColor="@color/chip_appbar" />
+                android:endColor="@color/backgroundRecycle"
+                android:startColor="@color/backgroundRecycle" />
             <corners
                 android:topLeftRadius="180dp"
                 android:topRightRadius="0dp"

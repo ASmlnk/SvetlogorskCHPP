@@ -23,6 +23,9 @@ class OpenSwitchgearTrEquipmentRepositoryImpl @Inject constructor(
             FirebaseKey.DOCUMENT_TR,
             OpenSwitchgearTrEntity::class.java).toMutableList()
 
+        val itemId = itemEntity.id
+        dataFirebase.removeIf {it.id == itemId}
+
         dataFirebase.add(itemEntity)
         val resultInsert = repositoryFirebase.insertDocument(
             dataFirebase,

@@ -23,6 +23,9 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
             FirebaseKey.DOCUMENT_TSN,
             TransformerOwnNeedsEntity::class.java).toMutableList()
 
+        val itemId = itemEntity.id
+        dataFirebase.removeIf {it.id == itemId}
+
         dataFirebase.add(itemEntity)
         val resultInsert = repositoryFirebase.insertDocument(
             dataFirebase,

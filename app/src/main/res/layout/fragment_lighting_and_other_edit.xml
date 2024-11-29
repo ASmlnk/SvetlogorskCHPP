@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/TextViewStyleHeading"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/electric" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/name_electrical"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/name"
+            android:imeOptions="flagNoEnterAction"
+            android:inputType="textMultiLine|text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_switch"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:hint="@string/switch_automat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/location"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_location"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints="name"
+            android:hint="@string/location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/additionally"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_additionally"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="name"
+            android:hint="@string/additionally"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_lighting"
+            style="@style/ChipShiftSchedule"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/electrical_lighting" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/power_supply"
+            android:textColor="@color/color_request_work_calendar"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/shift_schedule_note_background"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:paddingVertical="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_add_power_supply"
+                    style="@style/ButtonStyleRequestWork"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:text="@string/add"
+                    app:icon="@drawable/baseline_add_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_delete_power_supply"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="24dp"
+                    android:src="@drawable/delete" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_power_supply_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_power_supply_name"
+                    style="@style/TextViewStyleContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="3"
+                    android:text="Секция 3,15кВ"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_power_supply_cell"
+                    style="@style/EditTestStyleElectricalEquipment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:hint="@string/cell_number" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="320dp"
+            android:text="@string/apply" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
