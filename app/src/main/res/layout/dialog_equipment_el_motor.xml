@@ -206,7 +206,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/home_page_gradient" />
+                android:tint="@color/orange_zero_vision" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_power_supply"

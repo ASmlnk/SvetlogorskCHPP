@@ -29,6 +29,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="40dp"
+            android:id="@+id/iv_lighting"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="24dp"
@@ -54,7 +55,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/home_page_gradient" />
+                android:tint="@color/orange_zero_vision" />
 
             <TextView
                 android:id="@+id/tv_power_supply"
@@ -86,7 +87,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="2" />
+                app:spanCount="1" />
 
             <TextView
                 android:id="@+id/tv_switch_title"

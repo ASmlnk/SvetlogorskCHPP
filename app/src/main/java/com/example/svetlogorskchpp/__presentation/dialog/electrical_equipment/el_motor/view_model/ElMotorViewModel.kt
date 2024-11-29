@@ -80,7 +80,6 @@ class ElMotorViewModel @AssistedInject constructor(
         }
     }
 
-
     companion object {
         fun providesFactory(
             factory: ElMotorViewModelFactory,

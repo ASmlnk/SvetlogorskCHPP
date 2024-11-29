@@ -524,6 +524,9 @@ class LightingHolder(val binding: ItemElectricalEquipmentLightingBinding) :
         binding.apply {
             tvName.text = item.name
             ivDelete.isGone = !item.isDelete
+            linearLayout.setOnClickListener {
+                onClick(item.deepLink, item.id)
+            }
             tvPowerSupply.text = itemView.resources.getString(
                 R.string.power_supply_item,
                 item.powerSupplyName,
@@ -565,6 +568,9 @@ class OtherHolder(val binding: ItemElectricalEquipmentOtherBinding) :
         binding.apply {
             tvName.text = item.name
             ivDelete.isGone = !item.isDelete
+            linearLayout.setOnClickListener {
+                onClick(item.deepLink, item.id)
+            }
             tvPowerSupply.text = itemView.resources.getString(
                 R.string.power_supply_item,
                 item.powerSupplyName,

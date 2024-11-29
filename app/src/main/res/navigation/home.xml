@@ -371,5 +371,39 @@
             android:id="@+id/action_elMotorEditFragment_to_powerSupplySelectionDialog"
             app:destination="@id/powerSupplySelectionDialog" />
     </fragment>
+    <dialog
+        android:id="@+id/lightingAndOtherDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.lighting_and_other.fragment.LightingAndOtherDialog"
+        tools:layout="@layout/dialog_equipment_lighting_and_other"
+        android:label="LightingAndOtherDialog" >
+
+        <deepLink
+            android:id="@+id/myDialogLightingAndOtherDeepLink"
+            app:uri = "myapp://myDialogLightingAndOtherDeepLink/{id}"/>
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+        <action
+            android:id="@+id/action_lightingAndOtherDialog_to_lightingAndOtherEditFragment"
+            app:destination="@id/lightingAndOtherEditFragment" />
+
+    </dialog>
+    <fragment
+        android:id="@+id/lightingAndOtherEditFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.lighting_and_other.edit.fragment.LightingAndOtherEditFragment"
+        tools:layout="@layout/fragment_lighting_and_other_edit"
+        android:label="LightingAndOtherEditFragment" >
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+
+        <action
+            android:id="@+id/action_lightingAndOtherEditFragment_to_powerSupplySelectionDialog"
+            app:destination="@id/powerSupplySelectionDialog" />
+    </fragment>
 
 </navigation>
