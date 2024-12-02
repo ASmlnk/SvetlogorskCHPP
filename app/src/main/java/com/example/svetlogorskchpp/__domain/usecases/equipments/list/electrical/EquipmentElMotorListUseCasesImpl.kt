@@ -19,4 +19,14 @@ class EquipmentElMotorListUseCasesImpl @Inject constructor(
                 ?: emptyList()
         }
     }
+
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<ElectricalEquipment.ElMotor>> {
+        return repository.getSearchElectricalEquipment(searchQuery,prefixQuery).map { entities ->
+            entities.map { mapper.toElectricalEquipmentElMotor(it) }
+
+        }
+    }
 }

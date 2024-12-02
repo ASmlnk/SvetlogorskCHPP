@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.TurbogeneratorViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.model.TgUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -20,8 +22,9 @@ import kotlinx.coroutines.launch
 class TurbogeneratorViewModel @AssistedInject constructor(
     private val useCasesTg: EquipmentsUseCases<TurboGenerator>,
     private val useCasesAllEquipment: EquipmentAllUseCases,
+    private val accessUseCases: EditAccessUseCases,
     @Assisted val id: String,
-) : ViewModel() {
+) : BaseEquipmentDialogViewModel(accessUseCases) {
 
     private val _uiState = MutableStateFlow(TgUIState())
     val uiState: StateFlow<TgUIState> get() = _uiState
@@ -71,6 +74,17 @@ class TurbogeneratorViewModel @AssistedInject constructor(
                 }
             }
         }
+        viewModelScope.launch {
+            isAccess.collect {
+                _uiState.update { oldState ->
+                    oldState.copy(isAccessEdit = it)
+                }
+            }
+        }
+    }
+
+    fun isEditAccess(): Boolean {
+        return uiState.value.isAccessEdit
     }
 
     fun onClickGeneratorStarted() {

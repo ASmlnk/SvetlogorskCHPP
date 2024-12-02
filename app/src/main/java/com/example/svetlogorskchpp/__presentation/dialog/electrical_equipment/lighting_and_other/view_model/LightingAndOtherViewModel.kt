@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.LightingAndOther
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.LightingAndOtherViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.lighting_and_other.model.LightingUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -21,7 +23,8 @@ class LightingAndOtherViewModel @AssistedInject constructor(
     @Assisted private val id: String,
     private val useCases: EquipmentsUseCases<LightingAndOther>,
     private val useCasesAllEquipment: EquipmentAllUseCases,
-) : ViewModel() {
+    private val accessUseCases: EditAccessUseCases,
+) : BaseEquipmentDialogViewModel(accessUseCases) {
 
     private val _uiState = MutableStateFlow(LightingUIState())
     val uiState: StateFlow<LightingUIState> get() = _uiState
@@ -50,6 +53,17 @@ class LightingAndOtherViewModel @AssistedInject constructor(
                 }
             }
         }
+        viewModelScope.launch {
+            isAccess.collect {
+                _uiState.update { oldState ->
+                    oldState.copy(isAccessEdit = it)
+                }
+            }
+        }
+    }
+
+    fun isEditAccess(): Boolean {
+        return uiState.value.isAccessEdit
     }
 
     private fun updatePowerSupply(id: String) {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,10 +15,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.fragment.TurbogeneratorDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.model.TsnUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.view_model.EquipmentTsnViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaDialogBinding
@@ -27,7 +31,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
+class EquipmentTsnDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentTsnBinding>() {
 
     val args: EquipmentTsnDialogArgs by navArgs()
 
@@ -71,6 +75,20 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
         includeOryRzaBinding.rv.adapter = adapterProtection
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    navigateEditFragment()
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     setupUI(it)
@@ -98,16 +116,25 @@ class EquipmentTsnDialog : BaseBottomSheetDialog<DialogEquipmentTsnBinding>() {
             rvPowerSupply.adapter = adapter
             rvConsumer.adapter = adapterConsumer
             ivEditContent.setOnClickListener {
-                val action =
-                    EquipmentTsnDialogDirections.actionEquipmentTsnDialogToTransformerOwnNeedsEditFragment(
-                        args.id
-                    )
-                findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    navigateEditFragment()
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
         }
 
     }
 
+    private fun navigateEditFragment() {
+        val action =
+            EquipmentTsnDialogDirections.actionEquipmentTsnDialogToTransformerOwnNeedsEditFragment(
+                args.id
+            )
+        findNavController().navigate(action)
+    }
 
     private fun setupUI(state: TsnUIState) {
 

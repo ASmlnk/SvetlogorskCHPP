@@ -5,6 +5,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
@@ -17,9 +18,10 @@ class ElMotorRepositoryImpl @Inject constructor(
     private val dao: ElMotorDao,
     private val firebaseBigJsonRepository: FirebaseBigJsonRepository,
 ) : EquipmentRepository<ElMotorEntity>, EquipmentConsumerRepository<ElMotorEntity>,
-    EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository {
-    override suspend fun saveItemOpenEquipment(itemEntity: ElMotorEntity): SuccessResultFirebase {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+    EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository, EquipmentElMotorChapterRepository {
+
+        override suspend fun saveItemOpenEquipment(itemEntity: ElMotorEntity): SuccessResultFirebase {
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
             ElMotorEntity::class.java
@@ -29,7 +31,7 @@ class ElMotorRepositoryImpl @Inject constructor(
         dataFirebase.removeIf {it.id == itemId}
 
         dataFirebase.add(itemEntity)
-        val resultInsert = firebaseBigJsonRepository.insertDocument(
+        val resultInsert = firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR
@@ -39,7 +41,7 @@ class ElMotorRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+                    val newDataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_EL_MOTOR,
                         ElMotorEntity::class.java
@@ -63,7 +65,7 @@ class ElMotorRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-        val listDataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+        val listDataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
             ElMotorEntity::class.java
@@ -77,13 +79,20 @@ class ElMotorRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<ElMotorEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
+    }
+
     override fun getItemEntityConsumerFlow(id: String): Flow<List<ElMotorEntity>> {
         return dao.getItemEntityConsumerFlow(id)
     }
 
     override suspend fun loadingLocaleInFirebase() {
         val listDataLocale = dao.getAllItemEntity()
-        firebaseBigJsonRepository.insertDocument(
+        firebaseBigJsonRepository.insertDocuments(
             listDataLocale,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR
@@ -95,20 +104,20 @@ class ElMotorRepositoryImpl @Inject constructor(
     }
 
     suspend fun saveAllEquipment(itemEntity: List<ElMotorEntity>) {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
             ElMotorEntity::class.java
         ).toMutableList()
 
         dataFirebase.addAll(itemEntity)
-        firebaseBigJsonRepository.insertDocument(
+        firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR
         )
 
-        val newDataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+        val newDataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
             ElMotorEntity::class.java
@@ -120,14 +129,14 @@ class ElMotorRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteItem(id: String): SuccessResultFirebase {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
             ElMotorEntity::class.java
         ).toMutableList()
 
         dataFirebase.removeIf { it.id == id }
-        val resultInsert = firebaseBigJsonRepository.insertDocument(
+        val resultInsert = firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR
@@ -137,7 +146,7 @@ class ElMotorRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = firebaseBigJsonRepository.getDocument<ElMotorEntity>(
+                    val newDataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_EL_MOTOR,
                         ElMotorEntity::class.java
@@ -150,5 +159,13 @@ class ElMotorRepositoryImpl @Inject constructor(
                 }
             }
         }
+    }
+
+    override fun getIsRep(): Flow<List<ElMotorEntity>?> {
+        return dao.getIsRep()
+    }
+
+    override fun getElMotorGenCategory(generalCategory: String): Flow<List<ElMotorEntity>?> {
+        return dao.getElMotorGenCategory(generalCategory)
     }
 }

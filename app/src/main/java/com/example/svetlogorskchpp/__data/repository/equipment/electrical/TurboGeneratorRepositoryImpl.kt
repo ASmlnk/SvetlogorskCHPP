@@ -6,7 +6,7 @@ import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
-import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class TurboGeneratorRepositoryImpl @Inject constructor(
     private val dao: TurboGeneratorDao,
-    private val repositoryFirebase: FirebaseRepository
+    private val repositoryFirebase: FirebaseRepositoryImpl
 ) : EquipmentRepository<TurboGeneratorEntity>, EquipmentConsumerRepository<TurboGeneratorEntity> {
 
     override suspend fun saveItemOpenEquipment(itemEntity: TurboGeneratorEntity): SuccessResultFirebase {
-        val dataFirebase = repositoryFirebase.getDocument<TurboGeneratorEntity>(
+        val dataFirebase = repositoryFirebase.getDocuments<TurboGeneratorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_TG,
             TurboGeneratorEntity::class.java).toMutableList()
@@ -26,7 +26,7 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
         val itemId = itemEntity.id
         dataFirebase.removeIf {it.id == itemId}
         dataFirebase.add(itemEntity)
-        val resultInsert = repositoryFirebase.insertDocument(
+        val resultInsert = repositoryFirebase.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_TG)
@@ -35,7 +35,7 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = repositoryFirebase.getDocument<TurboGeneratorEntity>(
+                    val newDataFirebase = repositoryFirebase.getDocuments<TurboGeneratorEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_TG,
                         TurboGeneratorEntity::class.java)
@@ -58,7 +58,7 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
     }
 
   override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-      val listDataFirebase = repositoryFirebase.getDocument<TurboGeneratorEntity>(
+      val listDataFirebase = repositoryFirebase.getDocuments<TurboGeneratorEntity>(
           FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
           FirebaseKey.DOCUMENT_TG,
           TurboGeneratorEntity::class.java)
@@ -71,7 +71,14 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
       }
   }
 
-   suspend fun clearTable() {
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<TurboGeneratorEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
+    }
+
+    suspend fun clearTable() {
         dao.clearTable()
     }
 

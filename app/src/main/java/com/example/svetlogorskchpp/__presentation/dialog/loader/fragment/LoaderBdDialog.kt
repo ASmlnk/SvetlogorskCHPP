@@ -51,13 +51,13 @@ class LoaderBdDialog: BaseBottomSheetDialog<DialogLoaderLocaleFbBinding>() {
                 findNavController().navigate(R.id.action_loaderBdDialog_to_openSwitchgearVlEditFragment)
             }
             bAddElMotor.setOnClickListener {
-               // findNavController().navigate(R.id.action_loaderBdDialog_to_)
+                findNavController().navigate(R.id.action_loaderBdDialog_to_elMotorEditFragment)
             }
             bAddLighting.setOnClickListener {
-              //  findNavController().navigate(R.id.action_loaderBdDialog_to_)
+                findNavController().navigate(R.id.action_loaderBdDialog_to_lightingAndOtherEditFragment)
             }
             bAddSwitchgear.setOnClickListener {
-              //  findNavController().navigate(R.id.action_loaderBdDialog_to_)
+                findNavController().navigate(R.id.action_loaderBdDialog_to_switchgearOwnNeedsEditFragment)
             }
         }
     }

@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TransformerOwnNeeds
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.EquipmentTsnViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tsn.model.TsnUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -20,8 +22,9 @@ import kotlinx.coroutines.launch
 class EquipmentTsnViewModel @AssistedInject constructor(
     private val useCasesTsn: EquipmentsUseCases<TransformerOwnNeeds>,
     private val useCasesAllEquipment: EquipmentAllUseCases,
+    private val accessUseCases: EditAccessUseCases,
     @Assisted val id: String,
-) : ViewModel() {
+) : BaseEquipmentDialogViewModel(accessUseCases) {
 
     private val _uiState = MutableStateFlow(TsnUIState())
     val uiState: StateFlow<TsnUIState> get() = _uiState
@@ -63,6 +66,17 @@ class EquipmentTsnViewModel @AssistedInject constructor(
                 }
             }
         }
+        viewModelScope.launch {
+            isAccess.collect {
+                _uiState.update { oldState ->
+                    oldState.copy(isAccessEdit = it)
+                }
+            }
+        }
+    }
+
+    fun isEditAccess(): Boolean {
+        return uiState.value.isAccessEdit
     }
 
     private fun updatePowerSupply(id: String)  {

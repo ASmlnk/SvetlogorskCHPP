@@ -24,6 +24,7 @@ import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.ElMotorRepositoryImpl
@@ -35,7 +36,8 @@ import com.example.svetlogorskchpp.__data.repository.equipment.electrical.Switch
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.TransformerOwnNeedsRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.TurboGeneratorRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
-import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.preferences.EditAccessPreferencesRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
@@ -94,8 +96,8 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideFirestoreRepository(remoteDB: FirebaseFirestore): FirestoreRepository {
-        return FirestoreRepository(remoteDB)
+    fun provideEditAccessPreferencesRepository(dataStore: DataStore<Preferences>) : EditAccessPreferencesRepository {
+        return PreferencesRepositoryImpl(dataStore)
     }
 
     @Provides
@@ -153,8 +155,8 @@ class RepositoryModule {
     fun provideFirebaseRepository(
         firebase: FirebaseFirestore,
         gson: Gson
-    ): FirebaseRepository {
-        return FirebaseRepository(firebase, gson)
+    ): FirebaseRepositoryImpl {
+        return FirebaseRepositoryImpl(firebase, gson)
     }
 
     @Provides
@@ -170,7 +172,7 @@ class RepositoryModule {
     @Singleton
     fun provideOpenSwitchgearVlRepository(
         openSwitchgearVlDao: OpenSwitchgearVlDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentRepository<OpenSwitchgearVlEntity> {
         return OpenSwitchgearVlEquipmentRepositoryImpl(openSwitchgearVlDao, repositoryFirebase)
     }
@@ -179,7 +181,7 @@ class RepositoryModule {
     @Singleton
     fun provideOpenSwitchgearTrRepository(
         openSwitchgearTrDao: OpenSwitchgearTrDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentRepository<OpenSwitchgearTrEntity> {
         return OpenSwitchgearTrEquipmentRepositoryImpl(openSwitchgearTrDao, repositoryFirebase)
     }
@@ -188,7 +190,7 @@ class RepositoryModule {
     @Singleton
     fun provideTransformerOwnNeedsRepository(
         dao: TransformerOwnNeedsDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentRepository<TransformerOwnNeedsEntity> {
         return TransformerOwnNeedsRepositoryImpl(dao, repositoryFirebase)
     }
@@ -197,7 +199,7 @@ class RepositoryModule {
     @Singleton
     fun provideTurboGeneratorRepository(
         dao: TurboGeneratorDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentRepository<TurboGeneratorEntity> {
         return TurboGeneratorRepositoryImpl(dao, repositoryFirebase)
     }
@@ -206,7 +208,7 @@ class RepositoryModule {
     @Singleton
     fun provideTransformerOwnNeedsConsumerRepository(
         dao: TransformerOwnNeedsDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentConsumerRepository<TransformerOwnNeedsEntity> {
         return TransformerOwnNeedsRepositoryImpl(dao, repositoryFirebase)
     }
@@ -215,7 +217,7 @@ class RepositoryModule {
     @Singleton
     fun provideTurboGeneratorConsumerRepository(
         dao: TurboGeneratorDao,
-        repositoryFirebase: FirebaseRepository
+        repositoryFirebase: FirebaseRepositoryImpl
     ): EquipmentConsumerRepository<TurboGeneratorEntity> {
         return TurboGeneratorRepositoryImpl(dao, repositoryFirebase)
     }
@@ -335,6 +337,15 @@ class RepositoryModule {
         repositoryFirebase: FirebaseBigJsonRepository
     ): EquipmentItemDeleteRepository {
         return LightingAndOtherRepositoryImpl(dao, repositoryFirebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideElMotorChapterRepository(
+         dao: ElMotorDao,
+         firebaseBigJsonRepository: FirebaseBigJsonRepository
+    ): EquipmentElMotorChapterRepository {
+        return ElMotorRepositoryImpl(dao,firebaseBigJsonRepository)
     }
 }
 

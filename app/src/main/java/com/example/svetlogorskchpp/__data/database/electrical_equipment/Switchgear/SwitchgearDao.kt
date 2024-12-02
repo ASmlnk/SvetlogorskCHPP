@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherEntity
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -30,4 +31,10 @@ interface SwitchgearDao {
 
     @Query("DELETE FROM switchgear")
     suspend fun clearTable()
+
+    @Query("""
+        SELECT * FROM switchgear WHERE LOWER(nam) LIKE LOWER(:searchQuery)
+        ORDER BY CASE WHEN LOWER(nam) LIKE LOWER(:prefixQuery) THEN 0 ELSE 1 END, nam
+    """)
+    fun getSearchItems(searchQuery: String, prefixQuery: String): Flow<List<SwitchgearEntity>>
 }

@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__data.repository.firebase
 
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
+import com.example.svetlogorskchpp.__data.model.ResultFirebaseInfo
 import com.example.svetlogorskchpp.__data.model.ResultFirebaseJson
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,15 +12,15 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class FirebaseRepository @Inject constructor(
+class FirebaseRepositoryImpl @Inject constructor(
     private val firebase: FirebaseFirestore,
     private val gson: Gson
-) {
-    suspend fun <T> getDocument(
+): FirebaseDataRepository {
+    suspend fun <E> getDocuments(
         collectionPath: FirebaseKey,
         documentId: FirebaseKey,
-        clazz: Class<T>
-    ): List<T> = withContext(Dispatchers.IO) {
+        clazz: Class<E>
+    ): List<E> = withContext(Dispatchers.IO) {
         firebase.enableNetwork()
         try {
             val documentSnapshot = firebase.collection(collectionPath.getString)
@@ -27,22 +28,22 @@ class FirebaseRepository @Inject constructor(
 
             if (documentSnapshot.exists()) {
                 val resultFirebaseJson = documentSnapshot.toObject(ResultFirebaseJson::class.java)
-                val json = resultFirebaseJson?.json ?: return@withContext emptyList<T>()
+                val json = resultFirebaseJson?.json ?: return@withContext emptyList<E>()
                 if (json.isEmpty()) {
                     return@withContext emptyList()
                 }
                 val listType = TypeToken.getParameterized(List::class.java, clazz).type
-                return@withContext gson.fromJson(json, listType)  ?: emptyList<T>()
+                return@withContext gson.fromJson(json, listType)  ?: emptyList<E>()
             } else {
-                return@withContext emptyList<T>()
+                return@withContext emptyList<E>()
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            return@withContext emptyList<T>()
+            return@withContext emptyList<E>()
         }
     }
 
-    suspend fun <E> insertDocument (
+    suspend fun <E> insertDocuments (
         dataList: List<E>,
         collectionPath: FirebaseKey,
         documentId: FirebaseKey
@@ -58,6 +59,27 @@ class FirebaseRepository @Inject constructor(
 
         } catch (_: Exception) {
             return@withContext SuccessResultFirebase.UPDATE_ERROR
+        }
+    }
+
+    override suspend fun  getDocumentInfo(
+        collectionPath: FirebaseKey,
+        documentId: FirebaseKey
+    ): String? = withContext(Dispatchers.IO) {
+        firebase.enableNetwork()
+        try {
+            val documentSnapshot = firebase.collection(collectionPath.getString)
+                .document(documentId.getString).get().await()
+
+            if (documentSnapshot.exists()) {
+                val resultFirebase = documentSnapshot.toObject(ResultFirebaseInfo::class.java)
+                return@withContext resultFirebase?.info
+            } else {
+                return@withContext null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return@withContext null
         }
     }
 }

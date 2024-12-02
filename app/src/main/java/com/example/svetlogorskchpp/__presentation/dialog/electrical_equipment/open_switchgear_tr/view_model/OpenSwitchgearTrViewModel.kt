@@ -6,12 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitchgearTr
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
-import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.model.OpSwiTrDialogUIState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,8 +22,9 @@ import kotlinx.coroutines.launch
 class OpenSwitchgearTrViewModel @AssistedInject constructor(
     private val useCases: EquipmentsUseCases<OpenSwitchgearTr>,
     private val useCasesAllEquipment: EquipmentAllUseCases,
+    private val accessUseCases: EditAccessUseCases,
     @Assisted private val id: String,
-) : ViewModel() {
+) : BaseEquipmentDialogViewModel(accessUseCases) {
 
     private val _uiState = MutableStateFlow(OpSwiTrDialogUIState())
     val uiState: StateFlow<OpSwiTrDialogUIState> get() = _uiState
@@ -75,6 +76,17 @@ class OpenSwitchgearTrViewModel @AssistedInject constructor(
                 }
             }
         }
+        viewModelScope.launch {
+            isAccess.collect {
+                _uiState.update { oldState ->
+                    oldState.copy(isAccessEdit = it)
+                }
+            }
+        }
+    }
+
+    fun isEditAccess(): Boolean {
+        return uiState.value.isAccessEdit
     }
 
     companion object {

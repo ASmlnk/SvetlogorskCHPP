@@ -20,4 +20,5 @@ data class OpSwiVlDialogUIState(
     val keyOr: KeyOry=KeyOry.KEY_0,
     val phaseProtection: List<String> = emptyList(),
     val earthProtection: List<String> = emptyList(),
+    val isAccessEdit: Boolean = false
 )

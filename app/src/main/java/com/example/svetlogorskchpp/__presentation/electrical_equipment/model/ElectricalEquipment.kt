@@ -20,7 +20,7 @@ sealed class ElectricalEquipment {
         val voltage: Voltage,
         val cell: Int,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.TR
+        val deepLink: DeepLink = DeepLink.VL
     ): ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment

@@ -402,6 +402,55 @@
                         app:layout_constraintStart_toStartOf="@+id/shapeableImageViewSwitchgear"
                         app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewSwitchgear" />
 
+                    <TextView
+                        android:id="@+id/tv_el_motor"
+                        style="@style/TextViewStyleContentHomePageSection"
+                        android:layout_width="0dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Электрические двигатели"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_el_motor_info"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/shapeableImageViewElMotor"
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/motor_5"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_el_motor"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_el_motor"
+                        app:layout_constraintTop_toTopOf="@+id/tv_el_motor"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv_el_motor_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_info_outline_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_el_motor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_el_motor"
+                        app:tint="@color/orange_zero_vision" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_el_motor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="56dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_el_motor"
+                        app:spanCount="1" />
+
                     <LinearLayout
                         android:id="@+id/layout_zero_vision"
                         android:layout_width="0dp"
@@ -413,7 +462,7 @@
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toStartOf="@+id/layout_valve"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear">
+                        app:layout_constraintTop_toBottomOf="@+id/rv_el_motor">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="64dp"
@@ -450,7 +499,7 @@
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/layout_zero_vision"
-                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear">
+                        app:layout_constraintTop_toBottomOf="@+id/rv_el_motor">
 
                         <TextView
                             style="@style/TextViewStyleContent"

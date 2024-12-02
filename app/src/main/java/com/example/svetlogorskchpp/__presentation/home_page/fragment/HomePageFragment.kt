@@ -15,6 +15,7 @@ import com.example.svetlogorskchpp.__domain.en.HardData
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__presentation.home_page.EquipmentFilter
+import com.example.svetlogorskchpp.__presentation.home_page.adapter.ElMotorChapterAdapter
 import com.example.svetlogorskchpp.__presentation.home_page.view_model.HomePageViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutSwitchgearBinding
@@ -37,6 +38,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
     private var _includeSwitchgearBinding: ContentLayoutSwitchgearBinding? = null
     private val includeSwitchgearBinding get() = _includeSwitchgearBinding!!
 
+    private val adapterElMotor = ElMotorChapterAdapter {
+        val action = HomePageFragmentDirections.actionHomePageFragmentToElMotorChapterFragment(it)
+        findNavController().navigate(action)
+    }
+
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +55,8 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
         super.onViewCreated(view, savedInstanceState)
         _includeOryBinding = ContentLayoutOryBinding.bind(binding.contentOry.root)
         _includeTsnBinding = ContentLayoutTsnBinding.bind(binding.contentTsn.root)
-        _includeSwitchgearBinding = ContentLayoutSwitchgearBinding.bind(binding.contentSwitchgear.root)
+        _includeSwitchgearBinding =
+            ContentLayoutSwitchgearBinding.bind(binding.contentSwitchgear.root)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -72,20 +79,26 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
 
             addItemTr.setOnClickListener {
-              //  findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrEditFragment)
+                //  findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrEditFragment)
             }
 
             addItemTsn.setOnClickListener {
-              //  findNavController().navigate(R.id.action_homePageFragment_to_transformerOwnNeedsEditFragment)
+                //  findNavController().navigate(R.id.action_homePageFragment_to_transformerOwnNeedsEditFragment)
             }
 
             addItemTg.setOnClickListener {
-               // findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorEditFragment)
+                // findNavController().navigate(R.id.action_homePageFragment_to_turbogeneratorEditFragment)
             }
 
             layoutSearchView.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
             }
+
+            layoutSearchView.setOnLongClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_searchElectricalFragment)
+                return@setOnLongClickListener true
+            }
+
             layoutValve.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_valveFragment2)
             }
@@ -106,20 +119,29 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_transformerOfOwnNeeds2)
             }
             addItem.setOnClickListener {
-               // findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
+                // findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearVlEditFragment)
             }
             ivOryInfo.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_ORY)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_ORY)
                 findNavController().navigate(action)
             }
             ivTsnInfo.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_TSN)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_TSN)
+                findNavController().navigate(action)
+            }
+            ivSwitchgearInfo.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_SWITCHGEAR)
                 findNavController().navigate(action)
             }
             download.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_loaderBdDialog)
 
             }
+            rvElMotor.adapter = adapterElMotor
+            adapterElMotor.submitList(viewModel.elMotorChapter())
 
         }
 
@@ -128,77 +150,121 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 findNavController().navigate(R.id.action_homePageFragment_to_openSwitchgearTrListFragment)
             }
             tvOryVl220.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(EquipmentFilter.ORY_VL)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(
+                        EquipmentFilter.ORY_VL
+                    )
                 findNavController().navigate(action)
             }
             tvOryOther.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(EquipmentFilter.ORY_OTHER)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToOpenSwitchgearVlFragment(
+                        EquipmentFilter.ORY_OTHER
+                    )
                 findNavController().navigate(action)
             }
         }
 
         includeTsnBinding.apply {
             tvTsn103.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
-                    Voltage.KV10_KV3)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                        Voltage.KV10_KV3
+                    )
                 findNavController().navigate(action)
             }
-            tvTsn106.setOnClickListener{
-                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
-                    Voltage.KV10_KV6)
+            tvTsn106.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                        Voltage.KV10_KV6
+                    )
                 findNavController().navigate(action)
             }
-            tvTsn304.setOnClickListener{
-                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
-                    Voltage.KV3_KV04)
+            tvTsn304.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                        Voltage.KV3_KV04
+                    )
                 findNavController().navigate(action)
             }
-            tvTsn604.setOnClickListener{
-                val action = HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
-                    Voltage.KV6_KV04)
+            tvTsn604.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToTransformerOwnNeedsListFragment(
+                        Voltage.KV6_KV04
+                    )
                 findNavController().navigate(action)
             }
         }
 
         includeSwitchgearBinding.apply {
             tvKry.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KRY)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.KRY
+                    )
                 findNavController().navigate(action)
             }
             tvRy.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.RY)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.RY
+                    )
                 findNavController().navigate(action)
             }
             tvKtcTo.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KTC_TO)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.KTC_TO
+                    )
                 findNavController().navigate(action)
             }
             tvKtcKo.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.KTC_KO)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.KTC_KO
+                    )
                 findNavController().navigate(action)
             }
             tvHc.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.HC)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.HC
+                    )
                 findNavController().navigate(action)
             }
             tvIvShieldBlock.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.SHIELD_BLOCK)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.SHIELD_BLOCK
+                    )
                 findNavController().navigate(action)
             }
             tvBns.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.BNS)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.BNS
+                    )
                 findNavController().navigate(action)
             }
             tvCoolingTower.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.COOLING_TOWER)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.COOLING_TOWER
+                    )
                 findNavController().navigate(action)
             }
             tvPostTok.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.POST_TOK)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.POST_TOK
+                    )
                 findNavController().navigate(action)
             }
             tvOther.setOnClickListener {
-                val action = HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(NameDepartment.OTHER)
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.OTHER
+                    )
                 findNavController().navigate(action)
             }
         }

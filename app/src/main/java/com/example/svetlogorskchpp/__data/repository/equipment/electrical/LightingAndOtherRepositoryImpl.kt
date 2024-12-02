@@ -20,7 +20,7 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
     EquipmentConsumerRepository<LightingAndOtherEntity>, EquipmentUpdateFirebaseRepository,
     EquipmentItemDeleteRepository {
     override suspend fun saveItemOpenEquipment(itemEntity: LightingAndOtherEntity): SuccessResultFirebase {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
             LightingAndOtherEntity::class.java
@@ -30,7 +30,7 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
         dataFirebase.removeIf {it.id == itemId}
 
         dataFirebase.add(itemEntity)
-        val resultInsert = firebaseBigJsonRepository.insertDocument(
+        val resultInsert = firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
@@ -41,7 +41,7 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
                     val newDataFirebase =
-                        firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+                        firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
                             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
                             LightingAndOtherEntity::class.java
@@ -65,7 +65,7 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-        val listDataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+        val listDataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
             LightingAndOtherEntity::class.java
@@ -79,13 +79,20 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<LightingAndOtherEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
+    }
+
     override fun getItemEntityConsumerFlow(id: String): Flow<List<LightingAndOtherEntity>> {
         return dao.getItemEntityConsumerFlow(id)
     }
 
     override suspend fun loadingLocaleInFirebase() {
         val listDataLocale = dao.getAllItemEntity()
-        firebaseBigJsonRepository.insertDocument(
+        firebaseBigJsonRepository.insertDocuments(
             listDataLocale,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
@@ -97,20 +104,20 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
     }
 
     suspend fun saveAllEquipment(itemEntity: List<LightingAndOtherEntity>) {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
             LightingAndOtherEntity::class.java
         ).toMutableList()
 
         dataFirebase.addAll(itemEntity)
-        firebaseBigJsonRepository.insertDocument(
+        firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
         )
 
-        val newDataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+        val newDataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
             LightingAndOtherEntity::class.java
@@ -122,14 +129,14 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteItem(id: String): SuccessResultFirebase {
-        val dataFirebase = firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+        val dataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
             LightingAndOtherEntity::class.java
         ).toMutableList()
 
         dataFirebase.removeIf { it.id == id }
-        val resultInsert = firebaseBigJsonRepository.insertDocument(
+        val resultInsert = firebaseBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
@@ -140,7 +147,7 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
                     val newDataFirebase =
-                        firebaseBigJsonRepository.getDocument<LightingAndOtherEntity>(
+                        firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
                             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
                             LightingAndOtherEntity::class.java

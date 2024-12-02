@@ -19,7 +19,7 @@ class SwitchgearRepositoryImpl @Inject constructor(
 ) : EquipmentRepository<SwitchgearEntity>, EquipmentConsumerRepository<SwitchgearEntity>,
     EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository {
     override suspend fun saveItemOpenEquipment(itemEntity: SwitchgearEntity): SuccessResultFirebase {
-        val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+        val dataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
             SwitchgearEntity::class.java
@@ -29,7 +29,7 @@ class SwitchgearRepositoryImpl @Inject constructor(
         dataFirebase.removeIf {it.id == itemId}
 
         dataFirebase.add(itemEntity)
-        val resultInsert = repositoryBigJsonRepository.insertDocument(
+        val resultInsert = repositoryBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR
@@ -39,7 +39,7 @@ class SwitchgearRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+                    val newDataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_SWITCHGEAR,
                         SwitchgearEntity::class.java
@@ -63,7 +63,7 @@ class SwitchgearRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-        val listDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+        val listDataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
             SwitchgearEntity::class.java
@@ -77,13 +77,20 @@ class SwitchgearRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<SwitchgearEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
+    }
+
     override fun getItemEntityConsumerFlow(id: String): Flow<List<SwitchgearEntity>> {
         return dao.getItemEntityConsumerFlow(id)
     }
 
     override suspend fun loadingLocaleInFirebase() {
         val listDataLocale = dao.getAllItemEntity()
-        repositoryBigJsonRepository.insertDocument(
+        repositoryBigJsonRepository.insertDocuments(
             listDataLocale,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR
@@ -95,20 +102,20 @@ class SwitchgearRepositoryImpl @Inject constructor(
     }
 
     suspend fun saveAllEquipment(itemEntity: List<SwitchgearEntity>) {
-        val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+        val dataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
             SwitchgearEntity::class.java
         ).toMutableList()
 
         dataFirebase.addAll(itemEntity)
-        repositoryBigJsonRepository.insertDocument(
+        repositoryBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR
         )
 
-        val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+        val newDataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
             SwitchgearEntity::class.java
@@ -125,14 +132,14 @@ class SwitchgearRepositoryImpl @Inject constructor(
 
     override suspend fun deleteItem(id: String): SuccessResultFirebase {
 
-        val dataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+        val dataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR,
             SwitchgearEntity::class.java
         ).toMutableList()
         dataFirebase.removeIf { it.id == id }
 
-        val resultInsert = repositoryBigJsonRepository.insertDocument(
+        val resultInsert = repositoryBigJsonRepository.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR
@@ -142,7 +149,7 @@ class SwitchgearRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = repositoryBigJsonRepository.getDocument<SwitchgearEntity>(
+                    val newDataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_SWITCHGEAR,
                         SwitchgearEntity::class.java

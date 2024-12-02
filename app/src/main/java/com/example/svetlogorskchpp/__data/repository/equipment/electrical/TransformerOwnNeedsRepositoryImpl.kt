@@ -6,7 +6,7 @@ import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
-import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class TransformerOwnNeedsRepositoryImpl @Inject constructor(
     private val dao: TransformerOwnNeedsDao,
-    private val repositoryFirebase: FirebaseRepository
+    private val repositoryFirebase: FirebaseRepositoryImpl
 ) : EquipmentRepository<TransformerOwnNeedsEntity> ,
     EquipmentConsumerRepository<TransformerOwnNeedsEntity> {
     override suspend fun saveItemOpenEquipment(itemEntity: TransformerOwnNeedsEntity): SuccessResultFirebase {
-        val dataFirebase = repositoryFirebase.getDocument<TransformerOwnNeedsEntity>(
+        val dataFirebase = repositoryFirebase.getDocuments<TransformerOwnNeedsEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_TSN,
             TransformerOwnNeedsEntity::class.java).toMutableList()
@@ -27,7 +27,7 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
         dataFirebase.removeIf {it.id == itemId}
 
         dataFirebase.add(itemEntity)
-        val resultInsert = repositoryFirebase.insertDocument(
+        val resultInsert = repositoryFirebase.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_TSN)
@@ -36,7 +36,7 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
             SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
             SuccessResultFirebase.UPDATE_OK -> {
                 try {
-                    val newDataFirebase = repositoryFirebase.getDocument<TransformerOwnNeedsEntity>(
+                    val newDataFirebase = repositoryFirebase.getDocuments<TransformerOwnNeedsEntity>(
                         FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                         FirebaseKey.DOCUMENT_TSN,
                         TransformerOwnNeedsEntity::class.java)
@@ -59,7 +59,7 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-        val listDataFirebase = repositoryFirebase.getDocument<TransformerOwnNeedsEntity>(
+        val listDataFirebase = repositoryFirebase.getDocuments<TransformerOwnNeedsEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_TSN,
             TransformerOwnNeedsEntity::class.java)
@@ -70,6 +70,13 @@ class TransformerOwnNeedsRepositoryImpl @Inject constructor(
             clearTable()
             dao.insertAll(listDataFirebase)
         }
+    }
+
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<TransformerOwnNeedsEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
     }
 
     private suspend fun clearTable() {

@@ -3,5 +3,10 @@
     android:thickness="0dp"
     android:shape="rectangle">
 
-    <gradient android:angle="270.0" android:endColor="@color/home_page_gradient" android:startColor="@color/text_recycle" android:type="linear"/>
-    </shape>
+    <gradient
+        android:angle="270"
+        android:endColor="@color/home_page_gradient"
+        android:startColor="@color/text_recycle"
+        android:type="linear" />
+
+     </shape>

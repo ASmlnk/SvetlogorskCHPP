@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,9 +13,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.el_motor.fragment.ElMotorDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearVlViewModelFactory
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiVlDialogUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.view_model.OpenSwitchgearVlViewModel
@@ -27,7 +31,7 @@ import javax.inject.Inject
 import kotlin.getValue
 
 @AndroidEntryPoint
-class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBinding>() {
+class OpenSwitchgearVlDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchgearVlBinding>() {
 
     private val args: OpenSwitchgearVlDialogArgs by navArgs()
 
@@ -63,6 +67,24 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    val action =
+                        OpenSwitchgearVlDialogDirections.Companion.actionOpenSwitchgearVlDialogToOpenSwitchgearVlEditFragment(
+                            args.id
+                        )
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     setupUI(it)
@@ -78,11 +100,17 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
 
         includeOryParameterBinding.apply {
             ivEditContent.setOnClickListener {
-                val action =
-                    OpenSwitchgearVlDialogDirections.Companion.actionOpenSwitchgearVlDialogToOpenSwitchgearVlEditFragment(
-                        args.id
-                    )
-                findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    val action =
+                        OpenSwitchgearVlDialogDirections.Companion.actionOpenSwitchgearVlDialogToOpenSwitchgearVlEditFragment(
+                            args.id
+                        )
+                    findNavController().navigate(action)
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
         }
         includeOryRzaBinding.rv.adapter = adapterProtection
@@ -112,8 +140,8 @@ class OpenSwitchgearVlDialog : BaseBottomSheetDialog<DialogOpenSwitchgearVlBindi
         includeOryRzaBinding.apply {
             tvApvContent.text = state.apv
             tvAutomationContent.text = state.automation
-           // tvPhaseProtectionContent.text = state.phaseProtection
-           // tvEarthProtectionContent.text = state.earthProtection
+            // tvPhaseProtectionContent.text = state.phaseProtection
+            // tvEarthProtectionContent.text = state.earthProtection
         }
     }
 

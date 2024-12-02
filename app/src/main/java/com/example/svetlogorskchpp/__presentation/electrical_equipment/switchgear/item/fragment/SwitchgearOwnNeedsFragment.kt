@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.item.fragment
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -7,8 +8,13 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +24,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.BaseFragment
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter.ElectricalEquipmentAdapter
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.factory.SwitchgearOwnNeedsViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.item.view_model.SwitchgearOwnNeedsViewModel
@@ -45,9 +52,6 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
     }
 
     private val adapter = ElectricalEquipmentAdapter { dl, id ->
-      //    val action =
-      //     SwitchgearOwnNeedsFragmentDirections.actionSwitchgearOwnNeedsFragmentToSwitchgearOwnNeedsDialog(id)
-      //  findNavController().navigate(action)
         val deepLink = Uri.parse(dl.link + id)
         findNavController().navigate(deepLink)
     }
@@ -66,6 +70,20 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
             viewModel.deleteItem(it)
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultAccessFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    viewModel.activeDelete()
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
         binding.apply {
             rv.adapter = adapter
             rv.addItemDecoration(BottomSpaceItemDecorator(200))
@@ -80,8 +98,14 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
             chipAssembly.setOnClickListener { applyFilter() }
 
             ivActiveDelete.setOnLongClickListener {
-                viewModel.activeDelete()
-                return@setOnLongClickListener true
+                if (viewModel.isEditAccess()) {
+                    viewModel.activeDelete()
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
+                return@setOnLongClickListener false
             }
 
         }
@@ -112,6 +136,40 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
         if (chipAssembly.isChecked) activeFilters.add(FilterSwitchgear.SWITCHGEAR)
 
         viewModel.filterCategory(activeFilters)
+    }
+
+    fun showPasswordDialog(context: Context, onPasswordEntered: (String) -> Unit) {
+        val dialogView: View = LayoutInflater.from(context).inflate(R.layout.dialog_password, null)
+        val passwordInput: EditText = dialogView.findViewById(R.id.password_input)
+        val btnOk: Button = dialogView.findViewById(R.id.btn_ok)
+        val btnCancel: Button = dialogView.findViewById(R.id.btn_cancel)
+
+        // Создание диалогового окна
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setCancelable(false) // Установите false, если хотите запретить закрытие диалога по нажатию вне его
+            .create()
+
+        btnOk.setOnClickListener {
+            val password = passwordInput.text.toString()
+            onPasswordEntered(password)
+            dialog.dismiss()
+            hideKeyboard()
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.cancel()
+        }
+
+        dialog.show()
+    }
+
+    fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val currentFocusView = requireActivity().currentFocus
+        if (currentFocusView != null) {
+            imm.hideSoftInputFromWindow(currentFocusView.windowToken, 0)
+        }
     }
 
     fun showCustomSnackbar(view: View, text: String) {

@@ -24,4 +24,5 @@ data class SwitchgearInfoUIState(
     val powerSupplyReserveId2: String = "",
     val powerSupplyReserveId3: String = "",
     val powerSupplyReserveContent: String = "",
+    val isAccessEdit: Boolean = false
 )

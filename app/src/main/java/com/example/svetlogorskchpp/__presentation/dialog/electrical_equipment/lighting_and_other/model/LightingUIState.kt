@@ -7,5 +7,6 @@ data class LightingUIState(
     val typeSwitch: String = "",
     val additionally: String = "",
     val isLighting: Boolean = false,
-    val location: String = ""
+    val location: String = "",
+    val isAccessEdit: Boolean = false
 )

@@ -30,4 +30,5 @@ data class ElMotorDialogUIState(
     val mechanismH: String = "",
     val mechanismPowerN: String = "",
     val mechanismAdditionally: String = "",
+    val isAccessEdit: Boolean = false
 )

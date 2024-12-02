@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,8 @@ class MainActivityViewModel @Inject constructor(
     private val updateLocaleBaseUseCases: UpdateLocaleBaseUseCases,
     private val preferencesNotification: CalendarPreferencesNotificationUseCases,
     private val taskSchedulerNotificationWorker: TaskSchedulerNotificationWorker,
-    private val taskSchedulerUpdateRequestWorkBaseWorker: TaskSchedulerUpdateRequestWorkBaseWorker
+    private val taskSchedulerUpdateRequestWorkBaseWorker: TaskSchedulerUpdateRequestWorkBaseWorker,
+    private val accessUseCases: EditAccessUseCases,
 ) : ViewModel() {
 
     private val _stateFlow = MutableStateFlow(Any())
@@ -38,6 +40,7 @@ class MainActivityViewModel @Inject constructor(
             updateSwitchgear()
             updateElMotor()
             updateLightingAndOther()
+            equalsEditAccess()
         }
     }
 
@@ -85,6 +88,13 @@ class MainActivityViewModel @Inject constructor(
             updateLocaleBaseUseCases.updateLightingAndOther()
         }
     }
+
+    private fun equalsEditAccess() {
+        viewModelScope.launch{
+            accessUseCases.equalsEditAccessPrefFb()
+        }
+    }
+
     private suspend fun initNotification() = withContext(Dispatchers.IO) {
         val isRequestWorkNotification =
             preferencesNotification.getPreferencesRequestWorkNotification().first()

@@ -4,11 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.OperationResult
-import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElAssembly
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.EditAccessResult
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.Switchgear
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.factory.SwitchgearOwnNeedsViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.model.FilterSwitchgear
@@ -28,7 +29,8 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
     @Assisted private val id: String,
     private val useCasesAll: EquipmentAllUseCases,
     private val useCasesData: EquipmentsUseCases<Switchgear>,
-    private val useCasesDeleteData: EquipmentsItemDeleteUseCases
+    private val useCasesDeleteData: EquipmentsItemDeleteUseCases,
+    private val accessUseCases: EditAccessUseCases,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SwitchgearUIState())
@@ -36,6 +38,11 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
 
     private val _toastResultFlow = MutableSharedFlow<String>()
     val toastResultFlow: SharedFlow<String> = _toastResultFlow
+
+    private val isAccess = accessUseCases.getIsEditAccess()
+
+    private val _toastResultAccessFlow = MutableSharedFlow<OperationResult<EditAccessResult>>()
+    val toastResultAccessFlow: SharedFlow<OperationResult<EditAccessResult>> = _toastResultAccessFlow
 
     private val dataConsumerStateFlow = useCasesAll.getEquipmentConsumersFlow(id).stateIn(
         viewModelScope,
@@ -59,9 +66,28 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
         }
 
         viewModelScope.launch {
+            isAccess.collect {
+                _uiState.update { oldState ->
+                    oldState.copy(isAccessEdit = it)
+                }
+            }
+        }
+
+        viewModelScope.launch {
             dataConsumerStateFlow.collect { dataConsumer ->
                 _uiState.update { it.copy(listSwitchgear = dataConsumer) }
             }
+        }
+    }
+
+    fun isEditAccess(): Boolean {
+        return uiState.value.isAccessEdit
+    }
+
+    fun equalsPassword(password: String) {
+        viewModelScope.launch {
+            val result = accessUseCases.setKdEditAccess(password)
+            _toastResultAccessFlow.emit(result)
         }
     }
 

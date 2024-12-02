@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
+    android:orientation="horizontal">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_ory_vl_220"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:padding="8dp"
+        android:src="@drawable/baseline_circle_24"
+        app:tint="@color/home_page_gradient" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextViewStyleContentHomePageSubsection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center"
+        android:text="КТЦ к/о"
+        android:textColor="@color/floatingActionButton"
+        android:textSize="20sp" />
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.Electric
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -18,6 +19,16 @@ class EquipmentOpenSwitchgearTrListUseCasesImpl @Inject constructor(
         return repository.getAllItemEquipment().map { entities ->
             entities?.map { mapper.toElectricalEquipmentTr(it) }
                 ?: emptyList()
+        }
+    }
+
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<ElectricalEquipment.Tr>> {
+        return repository.getSearchElectricalEquipment(searchQuery,prefixQuery).map { entities ->
+            entities.map { mapper.toElectricalEquipmentTr(it) }
+
         }
     }
 }

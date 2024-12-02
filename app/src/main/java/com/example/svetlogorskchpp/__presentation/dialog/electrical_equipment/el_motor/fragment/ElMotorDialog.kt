@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,9 +13,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElCategory
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.el_motor.model.ElMotorDialogUIState
@@ -28,7 +30,7 @@ import javax.inject.Inject
 import kotlin.getValue
 
 @AndroidEntryPoint
-class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
+class ElMotorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentElMotorBinding>() {
 
     private val args: ElMotorDialogArgs by navArgs()
 
@@ -83,13 +85,35 @@ class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    val action =
+                        ElMotorDialogDirections.actionElMotorDialogToElMotorEditFragment(args.id)
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
         binding.apply {
             rvPowerSupply.adapter = adapterPowerSupply
 
             ivEditContent.setOnClickListener {
-                 val action =
-                     ElMotorDialogDirections.actionElMotorDialogToElMotorEditFragment(args.id)
-                 findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    val action =
+                        ElMotorDialogDirections.actionElMotorDialogToElMotorEditFragment(args.id)
+                    findNavController().navigate(action)
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
         }
     }
@@ -152,7 +176,8 @@ class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
                     isGone = !isRep
                 }
 
-                val mechanismContent = (mechanismType.isEmpty() && mechanismPerformance.isEmpty() && mechanismPressure.isEmpty() && mechanismH.isEmpty() && mechanismPowerN.isEmpty() && mechanismN.isEmpty() && mechanismAdditionally.isEmpty())
+                val mechanismContent =
+                    (mechanismType.isEmpty() && mechanismPerformance.isEmpty() && mechanismPressure.isEmpty() && mechanismH.isEmpty() && mechanismPowerN.isEmpty() && mechanismN.isEmpty() && mechanismAdditionally.isEmpty())
                 layoutMechanism.isGone = mechanismContent
 
                 tvMechanismTitle.apply {
@@ -164,23 +189,23 @@ class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
                 }
                 tvPerformanceMechanismContent.apply {
                     isGone = mechanismPerformance.isEmpty()
-                    text = resources.getString(R.string.performance_mechanism,  mechanismPerformance)
+                    text = resources.getString(R.string.performance_mechanism, mechanismPerformance)
                 }
                 tvPressureMechanismContent.apply {
                     isGone = mechanismPressure.isEmpty()
-                    text = resources.getString(R.string.pressure_mechanism,  mechanismPressure)
+                    text = resources.getString(R.string.pressure_mechanism, mechanismPressure)
                 }
                 tvHMechanismContent.apply {
                     isGone = mechanismH.isEmpty()
-                    text = resources.getString(R.string.mechanism_h,  mechanismH)
+                    text = resources.getString(R.string.mechanism_h, mechanismH)
                 }
                 tvPowerNMechanismContent.apply {
                     isGone = mechanismPowerN.isEmpty()
-                    text = resources.getString(R.string.mechanism_n_power,  mechanismPowerN)
+                    text = resources.getString(R.string.mechanism_n_power, mechanismPowerN)
                 }
                 tvNMechanismContent.apply {
                     isGone = mechanismN.isEmpty()
-                    text = resources.getString(R.string.mechanism_n,  mechanismN)
+                    text = resources.getString(R.string.mechanism_n, mechanismN)
                 }
                 tvAdditionallyMechanismContent.apply {
                     isGone = mechanismAdditionally.isEmpty()
@@ -208,9 +233,8 @@ class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
             tvAutomationContent.isGone = state.automation.isEmpty()
 
             with(state) {
-                if (automation.isEmpty() && additionallyRza.isEmpty() && phaseProtection.isEmpty() && earthProtection.isEmpty()) {
-                    layoutRza.isGone = true
-                }
+                layoutRza.isGone =
+                    automation.isEmpty() && additionallyRza.isEmpty() && phaseProtection.isEmpty() && earthProtection.isEmpty()
             }
         }
 
@@ -259,4 +283,5 @@ class ElMotorDialog : BaseBottomSheetDialog<DialogEquipmentElMotorBinding>() {
             }
         }
     }
+
 }

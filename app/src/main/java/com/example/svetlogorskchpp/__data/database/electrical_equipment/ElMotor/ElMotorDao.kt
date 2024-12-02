@@ -30,4 +30,16 @@ interface ElMotorDao {
 
     @Query("DELETE FROM el_motor")
     suspend fun clearTable()
+
+    @Query("SELECT * FROM el_motor WHERE isRep = 1")
+    fun getIsRep(): Flow<List<ElMotorEntity>?>
+
+    @Query("SELECT * FROM el_motor WHERE gCat = :generalCategory")
+    fun getElMotorGenCategory(generalCategory: String): Flow<List<ElMotorEntity>?>
+
+    @Query("""
+        SELECT * FROM el_motor WHERE LOWER(nam) LIKE LOWER(:searchQuery)
+        ORDER BY CASE WHEN LOWER(nam) LIKE LOWER(:prefixQuery) THEN 0 ELSE 1 END, nam
+    """)
+    fun getSearchItems(searchQuery: String, prefixQuery: String): Flow<List<ElMotorEntity>>
 }

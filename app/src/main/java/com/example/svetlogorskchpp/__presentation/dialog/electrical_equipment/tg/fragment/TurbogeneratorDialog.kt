@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,10 +14,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.TurbogeneratorViewModelFactory
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.switchear.fragment.SwitchgearOwnNeedsInfoDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.model.TgUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.tg.view_model.TurbogeneratorViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaEquipmentDialogBinding
@@ -27,7 +31,7 @@ import javax.inject.Inject
 import kotlin.getValue
 
 @AndroidEntryPoint
-class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
+class TurbogeneratorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentTgBinding>() {
 
     val args: TurbogeneratorDialogArgs by navArgs()
 
@@ -65,6 +69,20 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
         includeRzaBinding.rv.adapter = adapterProtection
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    navigateEditFragment()
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     setupUI(it)
@@ -83,11 +101,13 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
         binding.apply {
             rvPowerSupply.adapter = adapter
             ivEditContent.setOnClickListener {
-                val action =
-                    TurbogeneratorDialogDirections.actionTurbogeneratorDialogToTurbogeneratorEditFragment(
-                        args.id
-                    )
-                findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    navigateEditFragment()
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
             tvGeneratorStartTitle.setOnClickListener {
                 viewModel.onClickGeneratorStarted()
@@ -99,6 +119,14 @@ class TurbogeneratorDialog : BaseBottomSheetDialog<DialogEquipmentTgBinding>() {
                 viewModel.onClickTranslationIntoRv()
             }
         }
+    }
+
+    private fun navigateEditFragment() {
+        val action =
+            TurbogeneratorDialogDirections.actionTurbogeneratorDialogToTurbogeneratorEditFragment(
+                args.id
+            )
+        findNavController().navigate(action)
     }
 
     private fun setupUI(state: TgUIState) {

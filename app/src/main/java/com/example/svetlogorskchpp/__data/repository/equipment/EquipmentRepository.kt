@@ -8,4 +8,5 @@ interface EquipmentRepository <T> {
     fun getAllItemEquipment(): Flow<List<T>?>
     fun getItemEquipment(id: String): Flow<T?>
     suspend fun updateLocaleData()
+    fun getSearchElectricalEquipment(searchQuery: String, prefixQuery: String): Flow<List<T>>
 }

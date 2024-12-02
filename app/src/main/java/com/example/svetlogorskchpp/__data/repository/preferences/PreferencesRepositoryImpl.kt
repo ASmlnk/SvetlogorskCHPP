@@ -16,10 +16,11 @@ import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class PreferencesRepositoryImpl @Inject constructor(
-    private val dataStore: DataStore<Preferences>
-) : PreferencesRepository, RequestWorkPreferencesRepository, NotesNotificationPreferencesRepository  {
+    private val dataStore: DataStore<Preferences>,
+) : PreferencesRepository, RequestWorkPreferencesRepository, NotesNotificationPreferencesRepository,
+    EditAccessPreferencesRepository {
 
-   override val selectShiftSchedule: Flow<String> = dataStore.data.map {
+    override val selectShiftSchedule: Flow<String> = dataStore.data.map {
         it[SELECT_SHIFT_SCHEDULE_KEY] ?: ""
     }.distinctUntilChanged()
 
@@ -33,7 +34,7 @@ class PreferencesRepositoryImpl @Inject constructor(
         it[SELECT_SHIFT_SCHEDULE_WIDGET_KEY] ?: ""
     }.distinctUntilChanged()
 
-    override suspend fun setSelectShiftScheduleWidget (shift: String) {
+    override suspend fun setSelectShiftScheduleWidget(shift: String) {
         dataStore.edit {
             it[SELECT_SHIFT_SCHEDULE_WIDGET_KEY] = shift
         }
@@ -101,7 +102,8 @@ class PreferencesRepositoryImpl @Inject constructor(
     }
 
     override val selectFilterRequestWork: Flow<Set<RequestWorkFilter>> = dataStore.data.map {
-        val jsonString = it[FILTER_REQUEST_WORK] ?: Json.encodeToString(setOf(RequestWorkFilter.ALL.name))
+        val jsonString =
+            it[FILTER_REQUEST_WORK] ?: Json.encodeToString(setOf(RequestWorkFilter.ALL.name))
         val jsonStringList = Json.decodeFromString<List<String>>(jsonString).toSet()
         jsonStringList.mapNotNull { string ->
             try {
@@ -121,18 +123,47 @@ class PreferencesRepositoryImpl @Inject constructor(
     }
 
 
+    override val editInfoKd: Flow<String> = dataStore.data.map {
+        it[EDIT_INFO_KD] ?: ""
+    }.distinctUntilChanged()
+
+    override suspend fun setEditInfoKd(kd: String) {
+        dataStore.edit {
+            it[EDIT_INFO_KD] = kd
+        }
+    }
+
+    override val isEditInfoAccess: Flow<Boolean> = dataStore.data.map {
+        it[IS_EDIT_INFO_ACCESS] ?: false
+    }.distinctUntilChanged()
+
+    override suspend fun setIsEditInfoAccess(isAccess: Boolean) {
+        dataStore.edit {
+            it[IS_EDIT_INFO_ACCESS] = isAccess
+        }
+    }
+
+
     companion object {
         private val SELECT_SHIFT_SCHEDULE_KEY = stringPreferencesKey("select_shift_schedule")
-        private val SELECT_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_shift_schedule_widget")
+        private val SELECT_SHIFT_SCHEDULE_WIDGET_KEY =
+            stringPreferencesKey("select_shift_schedule_widget")
 
-        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY = stringPreferencesKey("select_calendar_view")
-        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY = stringPreferencesKey("select_calendar_view_widget")
+        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_KEY =
+            stringPreferencesKey("select_calendar_view")
+        private val SELECT_CALENDAR_VIEW_SHIFT_SCHEDULE_WIDGET_KEY =
+            stringPreferencesKey("select_calendar_view_widget")
 
         private val PREF_IS_NOTIFICATION_NOTE = booleanPreferencesKey("isNotification_note")
-        private val PREF_IS_NOTIFICATION_REQUEST_WORK = booleanPreferencesKey("is_notification_request_work")
-        private val PREF_IS_REQUEST_WORK_VIEW_CALENDAR = booleanPreferencesKey("is_request_work_view_calendar")
+        private val PREF_IS_NOTIFICATION_REQUEST_WORK =
+            booleanPreferencesKey("is_notification_request_work")
+        private val PREF_IS_REQUEST_WORK_VIEW_CALENDAR =
+            booleanPreferencesKey("is_request_work_view_calendar")
 
         private val SORTED_REQUEST_WORK = stringPreferencesKey("sorted_request_work")
         private val FILTER_REQUEST_WORK = stringPreferencesKey("filter_request_work")
+
+        private val EDIT_INFO_KD = stringPreferencesKey("edit_info_kd")
+        private val IS_EDIT_INFO_ACCESS = booleanPreferencesKey("is_edit_info_kd")
     }
 }

@@ -26,6 +26,12 @@ class SwitchgearOwnNeedsListViewModel @Inject constructor(
     private val _dataFlow = MutableStateFlow<List<ElectricalEquipment.Switchgear>>(emptyList())
     val dataFlow: StateFlow<List<ElectricalEquipment.Switchgear>> = _dataFlow
 
+    private val dataUseCases = useCases.getElectricalEquipments().stateIn(
+        viewModelScope,
+        SharingStarted.Lazily,
+        emptyList()
+    )
+
     init {
         viewModelScope.launch {
             dataUseCases.collect {
@@ -34,11 +40,7 @@ class SwitchgearOwnNeedsListViewModel @Inject constructor(
         }
     }
 
-    private val dataUseCases = useCases.getElectricalEquipments().stateIn(
-        viewModelScope,
-        SharingStarted.Lazily,
-        emptyList()
-    )
+
 
     fun filterCategory(activeFilters: List<ElAssembly>) {
 

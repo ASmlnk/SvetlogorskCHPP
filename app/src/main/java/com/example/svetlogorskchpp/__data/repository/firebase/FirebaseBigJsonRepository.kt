@@ -16,7 +16,7 @@ class FirebaseBigJsonRepository@Inject constructor(
     private val firebase: FirebaseFirestore,
     private val gson: Gson
 ) {
-    suspend fun <T> getDocument(
+    suspend fun <T> getDocuments(
         collectionPath: FirebaseKey,
         documentId: FirebaseKey,
         clazz: Class<T>
@@ -59,7 +59,7 @@ class FirebaseBigJsonRepository@Inject constructor(
         }
     }
 
-    suspend fun <E> insertDocument (
+    suspend fun <E> insertDocuments (
         dataList: List<E>,
         collectionPath: FirebaseKey,
         documentId: FirebaseKey

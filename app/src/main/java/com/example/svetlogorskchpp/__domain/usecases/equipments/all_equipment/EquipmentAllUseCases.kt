@@ -8,4 +8,5 @@ interface EquipmentAllUseCases {
     fun getEquipmentsAllPowerSupplyFlow(): Flow<List<ElectricalEquipment>>
     fun getEquipmentPowerSupplyFlow(idPowerSupply: String): Flow<List<ElectricalEquipment>>
     fun getEquipmentConsumersFlow(id: String): Flow<List<ElectricalEquipment>>
+    fun getSearchElectricalEquipment(searchQuery: String, prefixQuery: String): Flow<List<ElectricalEquipment>>
 }

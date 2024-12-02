@@ -2,6 +2,7 @@ package com.example.svetlogorskchpp.__domain.usecases.hardData
 
 import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
 import com.example.svetlogorskchpp.__di.InfoORY
+import com.example.svetlogorskchpp.__di.InfoSwitchgear
 import com.example.svetlogorskchpp.__di.InfoTSN
 import com.example.svetlogorskchpp.__di.RequestWorkAccession
 import com.example.svetlogorskchpp.__di.RequestWorkReason
@@ -13,6 +14,7 @@ class HardDataUseCasesImpl @Inject constructor(
     @RequestWorkAccession private val accessionHardData: HardDataListRepository<String>,
     @InfoORY private val infoORY: HardDataListRepository<String>,
     @InfoTSN private val infoTSN: HardDataListRepository<String>,
+    @InfoSwitchgear private val infoSwitchgear: HardDataListRepository<String>,
 ): HardDataUseCases<String> {
     override fun data(hardData: HardData): List<String> {
         return when(hardData) {
@@ -20,6 +22,7 @@ class HardDataUseCasesImpl @Inject constructor(
             HardData.REQUEST_WORK_REASON ->reasonHardData.data()
             HardData.INFO_ORY -> infoORY.data()
             HardData.INFO_TSN -> infoTSN.data()
+            HardData.INFO_SWITCHGEAR -> infoSwitchgear.data()
         }
     }
 }

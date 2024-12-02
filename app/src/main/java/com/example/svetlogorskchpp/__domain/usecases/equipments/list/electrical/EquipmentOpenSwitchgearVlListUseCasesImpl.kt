@@ -6,6 +6,7 @@ import com.example.svetlogorskchpp.__domain.mapper.electrical_equipment.Electric
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -19,6 +20,16 @@ class EquipmentOpenSwitchgearVlListUseCasesImpl @Inject constructor(
             entities?./*filter { it.isVl }?.*/map { mapper.toElectricalEquipmentVl(it) }
                 ?.sortedBy { it.cell }?.sortedByDescending { it.voltage.int }
                 ?: emptyList()
+        }
+    }
+
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<ElectricalEquipment.Vl>> {
+        return repository.getSearchElectricalEquipment(searchQuery,prefixQuery).map { entities ->
+            entities.map { mapper.toElectricalEquipmentVl(it) }
+
         }
     }
 }

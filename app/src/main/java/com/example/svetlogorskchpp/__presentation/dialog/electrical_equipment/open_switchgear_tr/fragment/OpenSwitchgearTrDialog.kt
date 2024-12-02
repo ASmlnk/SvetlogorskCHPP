@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,14 +14,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.KeyOry
-import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.lighting_and_other.fragment.LightingAndOtherDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.view_model.OpenSwitchgearTrViewModel
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.OpSwiTrDialogUIState
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_vl.model.OpSwiVlDialogUIState
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.model.OpSwiTrDialogUIState
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryParameterTrDialogBinding
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaDialogBinding
 import com.example.svetlogorskchpp.databinding.DialogOpenSwitchgearTrBinding
@@ -29,7 +31,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBinding>() {
+class OpenSwitchgearTrDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchgearTrBinding>() {
 
     private val args: OpenSwitchgearTrDialogArgs by navArgs()
 
@@ -74,6 +76,20 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    navigateEditFragment()
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { stateUI ->
                     setupUI(stateUI)
@@ -100,13 +116,23 @@ class OpenSwitchgearTrDialog : BaseBottomSheetDialog<DialogOpenSwitchgearTrBindi
             includeOryRzaBinding.rv.adapter = adapterProtection
 
             ivEditContent.setOnClickListener {
-                val action =
-                    OpenSwitchgearTrDialogDirections.Companion.actionOpenSwitchgearTrDialogToOpenSwitchgearTrEditFragment(
-                        args.id
-                    )
-                findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    navigateEditFragment()
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
         }
+    }
+
+    private fun navigateEditFragment() {
+        val action =
+            OpenSwitchgearTrDialogDirections.Companion.actionOpenSwitchgearTrDialogToOpenSwitchgearTrEditFragment(
+                args.id
+            )
+        findNavController().navigate(action)
     }
 
     private fun setupUI(state: OpSwiTrDialogUIState) {

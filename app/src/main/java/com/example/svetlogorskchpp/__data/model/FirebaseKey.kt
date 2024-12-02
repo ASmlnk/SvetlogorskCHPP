@@ -11,5 +11,6 @@ enum class FirebaseKey(val getString: String) {
     DOCUMENT_EL_MOTOR("Электродвигатели"),
     DOCUMENT_SWITCHGEAR("Сборки"),
     DOCUMENT_LIGHTING_AND_OTHER("Освещение и др"),
+    DOCUMENT_EDIT("Edit"),
 
 }

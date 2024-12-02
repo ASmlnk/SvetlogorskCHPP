@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,9 +15,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.svetlogorskchpp.__presentation.dialog.BaseBottomSheetDialog
 import com.example.svetlogorskchpp.R
+import com.example.svetlogorskchpp.__domain.OperationResult
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentBottomSheetDialog
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.SwitchgearOwnNeedsInfoViewModelFactory
+import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.fragment.OpenSwitchgearTrDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.switchear.model.SwitchgearInfoUIState
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.switchear.view_model.SwitchgearOwnNeedsInfoViewModel
 import com.example.svetlogorskchpp.databinding.ContentLayoutRzaEquipmentDialogBinding
@@ -27,7 +31,7 @@ import javax.inject.Inject
 import kotlin.getValue
 
 @AndroidEntryPoint
-class SwitchgearOwnNeedsInfoDialog : BaseBottomSheetDialog<DialogEquipmentSwitchgearBinding>() {
+class SwitchgearOwnNeedsInfoDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentSwitchgearBinding>() {
 
     private val args: SwitchgearOwnNeedsInfoDialogArgs by navArgs()
 
@@ -69,6 +73,19 @@ class SwitchgearOwnNeedsInfoDialog : BaseBottomSheetDialog<DialogEquipmentSwitch
         _includeRzaBinding = ContentLayoutRzaEquipmentDialogBinding.bind(binding.contentRza.root)
         includeRzaBinding.rv.adapter = adapterProtection
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.toastResultFlow.collect { toast ->
+                if (toast is OperationResult.Success) {
+                    navigateEditFragment()
+                } else {
+                    Toast.makeText(
+                        context,
+                        (toast as OperationResult.Error).massage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -99,14 +116,24 @@ class SwitchgearOwnNeedsInfoDialog : BaseBottomSheetDialog<DialogEquipmentSwitch
             rvBackupPowerSupply.adapter = adapterPowerSupplyReserved
 
             ivEditContent.setOnClickListener {
-                val action =
-                    SwitchgearOwnNeedsInfoDialogDirections.actionSwitchgearOwnNeedsInfoDialogToSwitchgearOwnNeedsEditFragment(
-                      args.id
-                 )
-                 findNavController().navigate(action)
+                if (viewModel.isEditAccess()) {
+                    navigateEditFragment()
+                } else {
+                    showPasswordDialog(requireContext()) {
+                        viewModel.equalsPassword(it)
+                    }
+                }
             }
         }
 
+    }
+
+    private fun navigateEditFragment() {
+        val action =
+            SwitchgearOwnNeedsInfoDialogDirections.actionSwitchgearOwnNeedsInfoDialogToSwitchgearOwnNeedsEditFragment(
+                args.id
+            )
+        findNavController().navigate(action)
     }
 
     private fun setupUI(state: SwitchgearInfoUIState) {
@@ -167,9 +194,7 @@ class SwitchgearOwnNeedsInfoDialog : BaseBottomSheetDialog<DialogEquipmentSwitch
             tvAutomationContent.isGone = state.automation.isEmpty()
 
             with(state) {
-                if (automation.isEmpty() && additionallyRza.isEmpty() && phaseProtection.isEmpty() && earthProtection.isEmpty()) {
-                    layoutRza.isGone = true
-                }
+                layoutRza.isGone = automation.isEmpty() && additionallyRza.isEmpty() && phaseProtection.isEmpty() && earthProtection.isEmpty()
             }
 
         }

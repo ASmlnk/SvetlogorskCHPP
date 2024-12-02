@@ -172,8 +172,9 @@ class UseCaseModule {
         @RequestWorkAccession accessionHardData: HardDataListRepository<String>,
         @InfoORY infoOry: HardDataListRepository<String>,
         @InfoTSN infoTsn: HardDataListRepository<String>,
+        @InfoSwitchgear infoSwitchgear: HardDataListRepository<String>,
     ): HardDataUseCases<String> {
-        return HardDataUseCasesImpl(reasonHardData, accessionHardData, infoOry, infoTsn)
+        return HardDataUseCasesImpl(reasonHardData, accessionHardData, infoOry, infoTsn, infoSwitchgear)
     }
 
     @Provides

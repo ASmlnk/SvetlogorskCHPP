@@ -30,4 +30,10 @@ interface LightingAndOtherDao {
 
     @Query("DELETE FROM lighting_and_other")
     suspend fun clearTable()
+
+    @Query("""
+        SELECT * FROM lighting_and_other WHERE LOWER(nam) LIKE LOWER(:searchQuery)
+        ORDER BY CASE WHEN LOWER(nam) LIKE LOWER(:prefixQuery) THEN 0 ELSE 1 END, nam
+    """)
+    fun getSearchItems(searchQuery: String, prefixQuery: String): Flow<List<LightingAndOtherEntity>>
 }

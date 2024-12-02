@@ -5,7 +5,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
-import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -13,11 +13,11 @@ import javax.inject.Inject
 
 class OpenSwitchgearVlEquipmentRepositoryImpl @Inject constructor(
     private val dao: OpenSwitchgearVlDao,
-    private val repositoryFirebase: FirebaseRepository
+    private val repositoryFirebase: FirebaseRepositoryImpl
 ) : EquipmentRepository<OpenSwitchgearVlEntity> {
 
     override suspend fun saveItemOpenEquipment(itemEntity: OpenSwitchgearVlEntity):  SuccessResultFirebase {
-        val dataFirebase = repositoryFirebase.getDocument<OpenSwitchgearVlEntity>(
+        val dataFirebase = repositoryFirebase.getDocuments<OpenSwitchgearVlEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_ORY,
             OpenSwitchgearVlEntity::class.java).toMutableList()
@@ -26,7 +26,7 @@ class OpenSwitchgearVlEquipmentRepositoryImpl @Inject constructor(
         dataFirebase.removeIf {it.id == itemId}
 
         dataFirebase.add(itemEntity)
-        val resultInsert = repositoryFirebase.insertDocument(
+        val resultInsert = repositoryFirebase.insertDocuments(
             dataFirebase,
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_ORY)
@@ -35,7 +35,7 @@ class OpenSwitchgearVlEquipmentRepositoryImpl @Inject constructor(
              SuccessResultFirebase.UPDATE_ERROR -> SuccessResultFirebase.UPDATE_ERROR
              SuccessResultFirebase.UPDATE_OK -> {
               try {
-                  val newDataFirebase = repositoryFirebase.getDocument<OpenSwitchgearVlEntity>(
+                  val newDataFirebase = repositoryFirebase.getDocuments<OpenSwitchgearVlEntity>(
                       FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
                       FirebaseKey.DOCUMENT_ORY,
                       OpenSwitchgearVlEntity::class.java)
@@ -62,7 +62,7 @@ class OpenSwitchgearVlEquipmentRepositoryImpl @Inject constructor(
     }
 
      override suspend fun updateLocaleData() = withContext(Dispatchers.IO) {
-         val openSwitchgearVlsFirebase = repositoryFirebase.getDocument<OpenSwitchgearVlEntity>(
+         val openSwitchgearVlsFirebase = repositoryFirebase.getDocuments<OpenSwitchgearVlEntity>(
              FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
              FirebaseKey.DOCUMENT_ORY,
              OpenSwitchgearVlEntity::class.java)
@@ -73,5 +73,12 @@ class OpenSwitchgearVlEquipmentRepositoryImpl @Inject constructor(
              clearTable()
              dao.insertAll(openSwitchgearVlsFirebase)
          }
+    }
+
+    override fun getSearchElectricalEquipment(
+        searchQuery: String,
+        prefixQuery: String,
+    ): Flow<List<OpenSwitchgearVlEntity>> {
+        return dao.getSearchItems(searchQuery,prefixQuery)
     }
 }
