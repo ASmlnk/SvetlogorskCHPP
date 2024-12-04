@@ -43,6 +43,12 @@ class HardDataModule {
     fun provideInfoSwitchgearNHardData (): HardDataListRepository<String> {
         return HomePageInfoHardDataImpl.Switchgear
     }
+
+    @Provides
+    @InfoElMotor
+    fun provideInfoElMotorHardData (): HardDataListRepository<String> {
+        return HomePageInfoHardDataImpl.ElMotor
+    }
 }
 
 @Qualifier
@@ -64,3 +70,7 @@ annotation class InfoTSN
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class InfoSwitchgear
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class InfoElMotor

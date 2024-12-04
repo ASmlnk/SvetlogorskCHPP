@@ -1,6 +1,8 @@
 package com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.item.fragment
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -89,13 +91,20 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
             rv.addItemDecoration(BottomSpaceItemDecorator(200))
 
             fbInfoDialog.setOnClickListener {
-                val action = SwitchgearOwnNeedsFragmentDirections.actionSwitchgearOwnNeedsFragmentToSwitchgearOwnNeedsDialog(args.id)
+                val action =
+                    SwitchgearOwnNeedsFragmentDirections.actionSwitchgearOwnNeedsFragmentToSwitchgearOwnNeedsDialog(
+                        args.id
+                    )
                 findNavController().navigate(action)
             }
 
             chipElMotor.setOnClickListener { applyFilter() }
             chipLighting.setOnClickListener { applyFilter() }
             chipAssembly.setOnClickListener { applyFilter() }
+
+            ivSorted.setOnClickListener {
+                viewModel.sorted()
+            }
 
             ivActiveDelete.setOnLongClickListener {
                 if (viewModel.isEditAccess()) {
@@ -115,7 +124,11 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
                     binding.apply {
                         tvName.text = it.name
                         tvNameDepartment.text = it.nameDepartment
-                        adapter.submitList(it.listSwitchgear.sortedBy { it.name() })
+                        adapter.submitList(
+                            if (it.isSortedCell) it.listSwitchgear.sortedBy { it.cell() }
+                            else it.listSwitchgear.sortedBy { it.name().lowercase() }
+                        )
+                        setupIvSorted(it.isSortedCell)
                     }
                 }
             }
@@ -136,6 +149,15 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
         if (chipAssembly.isChecked) activeFilters.add(FilterSwitchgear.SWITCHGEAR)
 
         viewModel.filterCategory(activeFilters)
+    }
+
+    private fun setupIvSorted(isSortedCell: Boolean) {
+        val tint = ContextCompat.getColor(
+            requireContext(),
+            if (isSortedCell) R.color.text_color_dialog_equipment
+            else R.color.calendar_background
+        )
+        binding.ivSorted.setColorFilter(tint, PorterDuff.Mode.SRC_IN)
     }
 
     fun showPasswordDialog(context: Context, onPasswordEntered: (String) -> Unit) {
@@ -165,7 +187,8 @@ class SwitchgearOwnNeedsFragment : BaseFragment<FragmentSwitchgearOwnNeedsBindin
     }
 
     fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         val currentFocusView = requireActivity().currentFocus
         if (currentFocusView != null) {
             imm.hideSoftInputFromWindow(currentFocusView.windowToken, 0)

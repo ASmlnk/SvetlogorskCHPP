@@ -152,9 +152,11 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="end"
+                android:layout_marginBottom="-8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/orange_zero_vision" />
+                android:tint="@color/text_content_rza_2" />
 
             <TextView
                 android:id="@+id/tv_switch_title"
@@ -162,7 +164,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/switch_ory_parameter"
                 android:textColor="@color/text_recycle_smile" />
@@ -174,6 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="djajjajdajaldjflaj"
                 android:textColor="@color/home_page_gradient" />
@@ -184,7 +186,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/instrument_transformer"
                 android:textColor="@color/text_recycle_smile" />
@@ -195,19 +196,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:text="djajjajdajaldjflaj"
                 android:textColor="@color/home_page_gradient" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/background_layout_line_gradient2"
-                android:orientation="vertical" />
-
-            <LinearLayout
+                android:id="@+id/layout_panel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -218,7 +214,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/panel"
                     android:textColor="#567993" />
@@ -231,7 +226,7 @@
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+
                     android:text="34, 52, 53"
                     android:textColor="@color/home_page_gradient"
                     android:textStyle="normal" />
@@ -240,6 +235,9 @@
 
             <include
                 android:id="@+id/content_rza"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
                 layout="@layout/content_layout_rza_dialog" />
 
             <LinearLayout
@@ -264,7 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="24dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
@@ -275,7 +273,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/consumer"
                     android:textColor="@color/text_content_rza" />
@@ -285,18 +282,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="24dp"
                     android:orientation="vertical"
                     tools:itemCount="2"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="2" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="@drawable/background_layout_line_gradient"
-                    android:orientation="vertical" />
 
                 <com.google.android.material.card.MaterialCardView
                     style="@style/CardViewDialogAdditionallyStyle"

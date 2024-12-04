@@ -9,6 +9,7 @@ import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 sealed class ElectricalEquipment {
 
     abstract fun name(): String
+    abstract fun cell(): Int
     abstract val isDelete: Boolean
 
     data class Vl(
@@ -24,6 +25,10 @@ sealed class ElectricalEquipment {
     ): ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment
+        }
+
+        override fun cell(): Int {
+            return cell
         }
     }
 
@@ -41,6 +46,10 @@ sealed class ElectricalEquipment {
     ): ElectricalEquipment(){
         override fun name(): String {
             return nameEquipment
+        }
+
+        override fun cell(): Int {
+            return nameNumber
         }
     }
 
@@ -60,6 +69,10 @@ sealed class ElectricalEquipment {
         override fun name(): String {
             return nameEquipment
         }
+
+        override fun cell(): Int {
+            return nameNumber
+        }
     }
 
     data class Tg(
@@ -76,6 +89,10 @@ sealed class ElectricalEquipment {
     ) : ElectricalEquipment(){
         override fun name(): String {
             return nameEquipment
+        }
+
+        override fun cell(): Int {
+            return nameNumber
         }
     }
 
@@ -97,6 +114,10 @@ sealed class ElectricalEquipment {
         override fun name(): String {
             return name
         }
+
+        override fun cell(): Int {
+            return cell
+        }
     }
 
     data class Switchgear(
@@ -110,6 +131,10 @@ sealed class ElectricalEquipment {
     ): ElectricalEquipment(){
         override fun name(): String {
             return name
+        }
+
+        override fun cell(): Int {
+            return 1000
         }
     }
 
@@ -125,6 +150,10 @@ sealed class ElectricalEquipment {
     ): ElectricalEquipment(){
         override fun name(): String {
             return name
+        }
+
+        override fun cell(): Int {
+            return cell
         }
     }
 }

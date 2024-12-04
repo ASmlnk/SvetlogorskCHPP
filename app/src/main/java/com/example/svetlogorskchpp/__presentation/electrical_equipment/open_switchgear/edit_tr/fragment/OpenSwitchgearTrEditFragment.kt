@@ -146,9 +146,6 @@ class OpenSwitchgearTrEditFragment : BaseEditFragment<FragmentOpenSwitchgearTrEd
             bSave.setOnClickListener {
                 saveParameterTr()
             }
-
-            bAddTsn
-            bAddTg
         }
 
         setupSpinner(includeOryVnParameterBinding, VoltageSide.VN)

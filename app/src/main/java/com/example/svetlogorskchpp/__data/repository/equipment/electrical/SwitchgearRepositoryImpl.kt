@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
@@ -7,6 +8,7 @@ import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class SwitchgearRepositoryImpl @Inject constructor(
     private val dao: SwitchgearDao,
     private val repositoryBigJsonRepository: FirebaseBigJsonRepository,
+    private val reservationSaveFileRepository: ReservationSaveFileRepository
 ) : EquipmentRepository<SwitchgearEntity>, EquipmentConsumerRepository<SwitchgearEntity>,
     EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository {
     override suspend fun saveItemOpenEquipment(itemEntity: SwitchgearEntity): SuccessResultFirebase {
@@ -95,6 +98,20 @@ class SwitchgearRepositoryImpl @Inject constructor(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_SWITCHGEAR
         )
+    }
+
+    override suspend fun reservationFirebase() {
+        val listDataFirebase = repositoryBigJsonRepository.getDocuments<SwitchgearEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_SWITCHGEAR,
+            SwitchgearEntity::class.java
+        )
+        repositoryBigJsonRepository.insertDocuments(
+            listDataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_SWITCHGEAR_REZ
+        )
+        reservationSaveFileRepository.saveFile(FirebaseKey.DOCUMENT_SWITCHGEAR, listDataFirebase)
     }
 
     suspend fun clearTable() {

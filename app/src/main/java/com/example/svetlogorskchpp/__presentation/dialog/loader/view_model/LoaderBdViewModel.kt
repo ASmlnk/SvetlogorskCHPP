@@ -30,4 +30,12 @@ class LoaderBdViewModel @Inject constructor(
             updateFirebaseUseCases.loaderLightingAndOtherInFb()
         }
     }
+
+    fun reservationFirebase() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateFirebaseUseCases.reservationFirebase()
+        }
+    }
+
+
 }

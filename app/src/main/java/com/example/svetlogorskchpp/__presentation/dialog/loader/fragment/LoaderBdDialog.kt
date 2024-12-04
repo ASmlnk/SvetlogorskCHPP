@@ -38,6 +38,9 @@ class LoaderBdDialog: BaseBottomSheetDialog<DialogLoaderLocaleFbBinding>() {
             bSwitchgear.setOnClickListener{
                 viewModel.loaderSwitchgearInFb()
             }
+            bReserved.setOnClickListener{
+                viewModel.reservationFirebase()
+            }
             bAddTsn.setOnClickListener {
                 findNavController().navigate(R.id.action_loaderBdDialog_to_transformerOwnNeedsEditFragment)
             }

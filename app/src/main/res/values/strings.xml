@@ -361,7 +361,7 @@
     <string name="assembly">Сборки</string>
     <string name="other">Прочее</string>
     <string name="motor">Двигатели</string>
-    <string name="rep">REP</string>
+    <string name="rep">РЭП</string>
     <string name="control_circuits">Цепи управления:</string>
     <string name="mechanism">Мехинизм:</string>
     <string name="performance_mechanism">Произв-ть: Q = %s м3/ч</string>

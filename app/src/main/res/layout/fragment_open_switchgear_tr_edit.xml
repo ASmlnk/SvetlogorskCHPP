@@ -79,90 +79,23 @@
             android:layout_marginHorizontal="16dp"
             android:textSize="24sp"
             android:gravity="center"
-            android:layout_marginBottom="-16dp"
             android:textColor="@color/color_request_work_calendar"
             android:text="@string/srn"/>
 
         <include
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
             android:id="@+id/content_ory_parameter_srn"
             layout="@layout/content_layout_edit_ory_parameter" />
 
-        <TextView
-            android:layout_width="match_parent"
-            style="@style/TextViewStyleContent"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:textSize="24sp"
-            android:gravity="center"
-            android:textColor="@color/color_request_work_calendar"
-            android:text="@string/nn"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="1"
-                android:background="@drawable/shift_schedule_note_background"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/b_add_tsn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/baseline_add_24"
-                    android:text="@string/add_tsn"
-                    android:gravity="start|center"
-                    style="@style/ButtonStyleRequestWork"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="12dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_tsn"
-                    android:layout_margin="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:background="@drawable/shift_schedule_note_background"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/b_add_tg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/baseline_add_24"
-                    android:text="@string/add_tg"
-                    android:gravity="start|center"
-                    style="@style/ButtonStyleRequestWork"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="12dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_tg"
-                    android:layout_margin="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
         <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/content_rza"
+            android:layout_marginHorizontal="12dp"
             layout="@layout/content_layout_edit_ory_rza"/>
 
         <com.google.android.material.button.MaterialButton

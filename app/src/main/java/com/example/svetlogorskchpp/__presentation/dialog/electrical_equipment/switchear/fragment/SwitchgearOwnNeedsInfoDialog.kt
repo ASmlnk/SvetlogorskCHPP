@@ -41,11 +41,6 @@ class SwitchgearOwnNeedsInfoDialog : BaseEquipmentBottomSheetDialog<DialogEquipm
         findNavController().navigate(deepLink)
     }
 
-    private val adapterPowerSupplyReserved = PowerSupplySelectionAdapter { id, name, dl ->
-        val deepLink = Uri.parse(dl.link + id)
-        findNavController().navigate(deepLink)
-    }
-
     private var _includeRzaBinding: ContentLayoutRzaEquipmentDialogBinding? = null
     private val includeRzaBinding get() = _includeRzaBinding!!
 
@@ -103,17 +98,9 @@ class SwitchgearOwnNeedsInfoDialog : BaseEquipmentBottomSheetDialog<DialogEquipm
             }
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.powerSupplyReserveState.collect {
-                    adapterPowerSupplyReserved.submitList(it)
-                }
-            }
-        }
 
         binding.apply {
             rvPowerSource.adapter = adapterPowerSupply
-            rvBackupPowerSupply.adapter = adapterPowerSupplyReserved
 
             ivEditContent.setOnClickListener {
                 if (viewModel.isEditAccess()) {

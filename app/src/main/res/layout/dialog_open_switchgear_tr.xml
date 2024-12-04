@@ -117,7 +117,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/home_page_gradient" />
+                android:tint="@color/text_content_rza_2" />
 
             <include
                 android:id="@+id/content_ory_vn_parameter"
@@ -179,18 +179,12 @@
                     android:id="@+id/rv_consumer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="24dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                     app:spanCount="3" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="@drawable/background_layout_line_gradient"
-                    android:orientation="vertical" />
 
                 <com.google.android.material.card.MaterialCardView
                     style="@style/CardViewDialogAdditionallyStyle"
@@ -202,6 +196,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
+                        android:fontFamily="@font/tahoma"
                         android:gravity="start"
                         android:text="ajsdlfjalj\nalsdjfljasldj\nalsdjfljasldj\nalsdjfljasldj"
                         android:textColor="@color/text_color_dialog_equipment"

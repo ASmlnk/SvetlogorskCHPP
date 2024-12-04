@@ -173,8 +173,16 @@ class UseCaseModule {
         @InfoORY infoOry: HardDataListRepository<String>,
         @InfoTSN infoTsn: HardDataListRepository<String>,
         @InfoSwitchgear infoSwitchgear: HardDataListRepository<String>,
+        @InfoElMotor infoElMotor: HardDataListRepository<String>
     ): HardDataUseCases<String> {
-        return HardDataUseCasesImpl(reasonHardData, accessionHardData, infoOry, infoTsn, infoSwitchgear)
+        return HardDataUseCasesImpl(
+            reasonHardData,
+            accessionHardData,
+            infoOry,
+            infoTsn,
+            infoSwitchgear,
+            infoElMotor
+        )
     }
 
     @Provides
@@ -199,11 +207,19 @@ class UseCaseModule {
         @ElMotor elMotorRepository: EquipmentUpdateFirebaseRepository,
         @Switchgear switchgearRepository: EquipmentUpdateFirebaseRepository,
         @LightingAndOther lightingAndOtherRepository: EquipmentUpdateFirebaseRepository,
+        @Vl vlRepository: EquipmentUpdateFirebaseRepository,
+        @Tr trRepository: EquipmentUpdateFirebaseRepository,
+        @Tsn tsnRepository: EquipmentUpdateFirebaseRepository,
+        @Tg tgRepository: EquipmentUpdateFirebaseRepository,
     ): UpdateFirebaseUseCases {
         return UpdateFirebaseUseCasesImpl(
             elMotorRepository,
             switchgearRepository,
-            lightingAndOtherRepository
+            lightingAndOtherRepository,
+            vlRepository,
+            trRepository,
+            tsnRepository,
+            tgRepository
         )
     }
 

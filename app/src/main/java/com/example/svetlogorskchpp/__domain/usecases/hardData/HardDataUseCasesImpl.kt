@@ -1,6 +1,7 @@
 package com.example.svetlogorskchpp.__domain.usecases.hardData
 
 import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
+import com.example.svetlogorskchpp.__di.InfoElMotor
 import com.example.svetlogorskchpp.__di.InfoORY
 import com.example.svetlogorskchpp.__di.InfoSwitchgear
 import com.example.svetlogorskchpp.__di.InfoTSN
@@ -15,6 +16,7 @@ class HardDataUseCasesImpl @Inject constructor(
     @InfoORY private val infoORY: HardDataListRepository<String>,
     @InfoTSN private val infoTSN: HardDataListRepository<String>,
     @InfoSwitchgear private val infoSwitchgear: HardDataListRepository<String>,
+    @InfoElMotor private val infoElMotor: HardDataListRepository<String>
 ): HardDataUseCases<String> {
     override fun data(hardData: HardData): List<String> {
         return when(hardData) {
@@ -23,6 +25,7 @@ class HardDataUseCasesImpl @Inject constructor(
             HardData.INFO_ORY -> infoORY.data()
             HardData.INFO_TSN -> infoTSN.data()
             HardData.INFO_SWITCHGEAR -> infoSwitchgear.data()
+            HardData.INFO_EL_MOTOR -> infoElMotor.data()
         }
     }
 }

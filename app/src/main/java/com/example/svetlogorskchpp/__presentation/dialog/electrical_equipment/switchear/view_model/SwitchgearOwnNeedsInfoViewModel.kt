@@ -14,9 +14,17 @@ import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.Ele
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -31,10 +39,10 @@ class SwitchgearOwnNeedsInfoViewModel @AssistedInject constructor(
     val uiState: StateFlow<SwitchgearInfoUIState> get() = _uiState
 
     private val _powerSupplyState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
-    val powerSupplyState: StateFlow<List<ElectricalEquipment>> get() = _powerSupplyState
+    val powerSupplyState = _powerSupplyState.asStateFlow()
 
-    private val _powerSupplyReserveState = MutableStateFlow<List<ElectricalEquipment>>(emptyList())
-    val powerSupplyReserveState: StateFlow<List<ElectricalEquipment>> get() = _powerSupplyReserveState
+    private val powerSupplyIds = mutableSetOf<String>()
+
 
     init {
         viewModelScope.launch {
@@ -77,15 +85,17 @@ class SwitchgearOwnNeedsInfoViewModel @AssistedInject constructor(
                                     powerSupplyReserveCell3
                                 )
                             },
-
-                            )
+                        )
                     }
-                    updatePowerSupply(switchgear.powerSupplyId1, switchgear.powerSupplyId2)
-                    updatePowerReserveSupply(
-                        switchgear.powerSupplyReserveId1,
-                        switchgear.powerSupplyReserveId2,
-                        switchgear.powerSupplyReserveId3
-                    )
+                    powerSupplyIds.clear()
+                    powerSupplyIds.apply {
+                        add(switchgear.powerSupplyId1)
+                        add(switchgear.powerSupplyId2)
+                        add(switchgear.powerSupplyReserveId1)
+                        add(switchgear.powerSupplyReserveId2)
+                        add(switchgear.powerSupplyReserveId3)
+                    }
+                    updatePowerSupply(powerSupplyIds)
                 }
             }
         }
@@ -102,33 +112,30 @@ class SwitchgearOwnNeedsInfoViewModel @AssistedInject constructor(
         return uiState.value.isAccessEdit
     }
 
-
-    private fun updatePowerSupply(id1: String, id2: String) {
+    private fun updatePowerSupply(ids: Set<String>) =
         viewModelScope.launch(Dispatchers.IO) {
-            val flow = combine(
-                useCasesAllEquipment.getEquipmentPowerSupplyFlow(id1),
-                useCasesAllEquipment.getEquipmentPowerSupplyFlow(id2)
-            ) { ps1, ps2 ->
-                ps1 + ps2
-            }
-            flow.collect {
-                _powerSupplyState.value = it
-            }
+        val array = Array(5) { "" }
+        for ((index, value) in ids.withIndex()) {
+            array[index] = value
         }
-    }
 
-    private fun updatePowerReserveSupply(id1: String, id2: String, id3: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val flow = combine(
-                useCasesAllEquipment.getEquipmentPowerSupplyFlow(id1),
-                useCasesAllEquipment.getEquipmentPowerSupplyFlow(id2),
-                useCasesAllEquipment.getEquipmentPowerSupplyFlow(id3)
-            ) { ps1, ps2, ps3 ->
-                ps1 + ps2 + ps3
-            }
-            flow.collect {
-                _powerSupplyReserveState.value = it
-            }
+        val powerSupplyFlow1 = useCasesAllEquipment.getEquipmentPowerSupplyFlow(array[0])
+        val powerSupplyFlow2 = useCasesAllEquipment.getEquipmentPowerSupplyFlow(array[1])
+        val powerSupplyFlow3 = useCasesAllEquipment.getEquipmentPowerSupplyFlow(array[2])
+        val powerSupplyFlow4 = useCasesAllEquipment.getEquipmentPowerSupplyFlow(array[3])
+        val powerSupplyFlow5 = useCasesAllEquipment.getEquipmentPowerSupplyFlow(array[4])
+
+       val flow =  combine(
+            powerSupplyFlow1,
+            powerSupplyFlow2,
+            powerSupplyFlow3,
+            powerSupplyFlow4,
+            powerSupplyFlow5
+        ) { ps1, ps2, ps3, ps4, ps5 ->
+            ps1 + ps2 + ps3 + ps4 + ps5
+        }
+        flow.collect {
+         _powerSupplyState.value = it.sortedBy { it.name() }
         }
     }
 

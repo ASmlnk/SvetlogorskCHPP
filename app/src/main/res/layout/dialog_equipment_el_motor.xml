@@ -202,22 +202,12 @@
                 android:id="@+id/iv_edit_content"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_marginBottom="16dp"
+android:layout_marginBottom="-4dp"
                 android:layout_gravity="end"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/orange_zero_vision" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_power_supply"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="-12dp"
-                android:layout_marginBottom="24dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="1" />
+                android:tint="@color/text_content_rza_2" />
 
             <TextView
                 android:id="@+id/tv_switch_title"
@@ -225,7 +215,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-
                 android:layout_marginEnd="8dp"
                 android:text="@string/switch_ory_parameter"
                 android:textColor="@color/text_recycle_smile" />
@@ -281,19 +270,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
                 android:gravity="start"
                 android:text="расшифровка\n\nГазовый объем генератора: 50м/"
                 android:textColor="@color/text_color_dialog_equipment"
                 android:textSize="20sp" />
-
-
-            <LinearLayout
-                android:id="@+id/layout_rep"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="@drawable/background_layout_line_gradient"
-                android:orientation="vertical" />
 
             <TextView
                 android:id="@+id/tv_type_rep"
@@ -301,7 +282,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/rep"
                 android:textColor="#567993" />
@@ -318,13 +298,20 @@
                 android:text="djajjajdajaldjflaj"
                 android:textColor="@color/home_page_gradient" />
 
+            <LinearLayout
+                android:id="@+id/layout_rep"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/background_layout_line_gradient"
+                android:orientation="vertical" />
+
             <TextView
                 android:id="@+id/tv_mechanism_title"
                 style="@style/TextViewStyleContentHomePageSubsection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/mechanism"
                 android:textColor="@color/text_recycle_smile" />
@@ -332,7 +319,7 @@
             <com.google.android.material.card.MaterialCardView
                 style="@style/CardViewDialogContentStyle"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="32dp">
+                android:layout_marginBottom="24dp">
 
                 <LinearLayout
                     android:id="@+id/layout_mechanism"
@@ -428,6 +415,16 @@
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_power_supply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="1" />
 
             <include
                 android:id="@+id/content_rza"

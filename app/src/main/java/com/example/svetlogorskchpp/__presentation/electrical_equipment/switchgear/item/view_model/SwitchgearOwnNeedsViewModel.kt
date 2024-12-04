@@ -42,7 +42,8 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
     private val isAccess = accessUseCases.getIsEditAccess()
 
     private val _toastResultAccessFlow = MutableSharedFlow<OperationResult<EditAccessResult>>()
-    val toastResultAccessFlow: SharedFlow<OperationResult<EditAccessResult>> = _toastResultAccessFlow
+    val toastResultAccessFlow: SharedFlow<OperationResult<EditAccessResult>> =
+        _toastResultAccessFlow
 
     private val dataConsumerStateFlow = useCasesAll.getEquipmentConsumersFlow(id).stateIn(
         viewModelScope,
@@ -112,10 +113,10 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
 
             activeFilters.forEach { filter ->
                 when (filter) {
-                    FilterSwitchgear.EL_MOTOR -> filterList.addAll(data.filter { it is ElectricalEquipment.ElMotor})
-                    FilterSwitchgear.SWITCHGEAR -> filterList.addAll(data.filter { it is ElectricalEquipment.Switchgear})
+                    FilterSwitchgear.EL_MOTOR -> filterList.addAll(data.filter { it is ElectricalEquipment.ElMotor })
+                    FilterSwitchgear.SWITCHGEAR -> filterList.addAll(data.filter { it is ElectricalEquipment.Switchgear })
                     FilterSwitchgear.LIGTH -> {
-                        filterList.addAll(data.filter { it is ElectricalEquipment.LightOther})
+                        filterList.addAll(data.filter { it is ElectricalEquipment.LightOther })
                         filterList.addAll(data.filter { it is ElectricalEquipment.Tsn })
                     }
                 }
@@ -127,18 +128,30 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
         }
     }
 
+    fun sorted() {
+        val isSorted = !_uiState.value.isSortedCell
+        _uiState.update { oldState ->
+            oldState.copy(isSortedCell = isSorted)
+        }
+        viewModelScope.launch {
+            _toastResultFlow.emit(
+                if (isSorted) "Сортировка по номеру ячейки!" else "Сортировка по имени"
+            )
+        }
+    }
+
     fun activeDelete() {
         _uiState.update { oldState ->
             val equipments = oldState.listSwitchgear.map { item ->
-               when (item) {
-                   is ElectricalEquipment.ElMotor -> item.copy(isDelete = !item.isDelete)
-                   is ElectricalEquipment.LightOther -> item.copy(isDelete = !item.isDelete)
-                   is ElectricalEquipment.Switchgear -> item.copy(isDelete = !item.isDelete)
-                   is ElectricalEquipment.Tg -> item.copy(isDelete = item.isDelete)
-                   is ElectricalEquipment.Tr -> item.copy(isDelete = item.isDelete)
-                   is ElectricalEquipment.Tsn -> item.copy(isDelete = item.isDelete)
-                   is ElectricalEquipment.Vl -> item.copy(isDelete = item.isDelete)
-               }
+                when (item) {
+                    is ElectricalEquipment.ElMotor -> item.copy(isDelete = !item.isDelete)
+                    is ElectricalEquipment.LightOther -> item.copy(isDelete = !item.isDelete)
+                    is ElectricalEquipment.Switchgear -> item.copy(isDelete = !item.isDelete)
+                    is ElectricalEquipment.Tg -> item.copy(isDelete = item.isDelete)
+                    is ElectricalEquipment.Tr -> item.copy(isDelete = item.isDelete)
+                    is ElectricalEquipment.Tsn -> item.copy(isDelete = item.isDelete)
+                    is ElectricalEquipment.Vl -> item.copy(isDelete = item.isDelete)
+                }
             }
             oldState.copy(listSwitchgear = equipments)
         }

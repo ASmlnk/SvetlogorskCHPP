@@ -1,5 +1,6 @@
 package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.LightingAndOther.LightingAndOtherEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
@@ -7,6 +8,7 @@ import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class LightingAndOtherRepositoryImpl @Inject constructor(
     private val dao: LightingAndOtherDao,
     private val firebaseBigJsonRepository: FirebaseBigJsonRepository,
+    private val reservationSaveFileRepository: ReservationSaveFileRepository
 ) : EquipmentRepository<LightingAndOtherEntity>,
     EquipmentConsumerRepository<LightingAndOtherEntity>, EquipmentUpdateFirebaseRepository,
     EquipmentItemDeleteRepository {
@@ -97,6 +100,20 @@ class LightingAndOtherRepositoryImpl @Inject constructor(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER
         )
+    }
+
+    override suspend fun reservationFirebase() {
+        val listDataFirebase = firebaseBigJsonRepository.getDocuments<LightingAndOtherEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER,
+            LightingAndOtherEntity::class.java
+        )
+        firebaseBigJsonRepository.insertDocuments(
+            listDataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER_REZ
+        )
+        reservationSaveFileRepository.saveFile(FirebaseKey.DOCUMENT_LIGHTING_AND_OTHER, listDataFirebase)
     }
 
     suspend fun clearTable() {

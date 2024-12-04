@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="загрузка Сборки" />
 
     <com.google.android.material.button.MaterialButton
@@ -33,9 +33,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="16dp"
+
         android:text="загрузка освещение и др" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/b_reserved"
+        style="@style/ButtonStyleRequestWorkEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:text="резервирование" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/b_add_lighting"

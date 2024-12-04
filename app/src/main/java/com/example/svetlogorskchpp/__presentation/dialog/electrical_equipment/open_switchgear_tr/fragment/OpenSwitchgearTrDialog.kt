@@ -20,7 +20,6 @@ import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.Ba
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.PowerSupplySelectionAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.adapter.ProtectionDialogAdapter
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.OpenSwitchgearTrViewModelFactory
-import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.lighting_and_other.fragment.LightingAndOtherDialogDirections
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.view_model.OpenSwitchgearTrViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.open_switchgear_tr.model.OpSwiTrDialogUIState
 import com.example.svetlogorskchpp.databinding.ContentLayoutOryParameterTrDialogBinding
@@ -100,7 +99,7 @@ class OpenSwitchgearTrDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchge
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.consumerFlow.collect { equipments ->
-                    adapter.submitList(equipments)
+                    adapter.submitList(equipments.sortedBy { it.name() })
                 }
             }
         }
@@ -145,7 +144,11 @@ class OpenSwitchgearTrDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchge
             includeOryParameterSnBinding.root.isGone = !state.isThreeWinding
             tvPanelContent.text = state.panelMcp
             tvTranscriptType.text = state.transcriptType
-            tvAdditionally.text = state.additionally
+
+            tvAdditionally.apply {
+                text = state.additionally
+                isGone = state.additionally.isEmpty()
+            }
             tvTextOry.text = if (state.isThreeWinding) {
                 with(state) {
                     resources.getString(

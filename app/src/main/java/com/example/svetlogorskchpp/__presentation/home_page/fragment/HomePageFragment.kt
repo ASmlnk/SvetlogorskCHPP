@@ -136,6 +136,11 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                     HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_SWITCHGEAR)
                 findNavController().navigate(action)
             }
+            ivElMotorInfo.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToInfoDialog(HardData.INFO_EL_MOTOR)
+                findNavController().navigate(action)
+            }
             download.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_loaderBdDialog)
 

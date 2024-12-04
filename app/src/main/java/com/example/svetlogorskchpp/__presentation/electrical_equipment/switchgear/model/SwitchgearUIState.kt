@@ -8,6 +8,7 @@ data class SwitchgearUIState(
     val listSwitchgear: List<ElectricalEquipment> = emptyList(),
     val id: String = "",
     val nameDepartment: String = "",
-    val isAccessEdit: Boolean = false
+    val isAccessEdit: Boolean = false,
+    val isSortedCell: Boolean = false
 ) {
 }

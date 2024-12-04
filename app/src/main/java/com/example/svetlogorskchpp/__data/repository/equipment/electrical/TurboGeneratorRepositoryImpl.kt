@@ -1,11 +1,13 @@
 package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
+import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -14,8 +16,10 @@ import javax.inject.Inject
 
 class TurboGeneratorRepositoryImpl @Inject constructor(
     private val dao: TurboGeneratorDao,
-    private val repositoryFirebase: FirebaseRepositoryImpl
-) : EquipmentRepository<TurboGeneratorEntity>, EquipmentConsumerRepository<TurboGeneratorEntity> {
+    private val repositoryFirebase: FirebaseRepositoryImpl,
+    private val reservationSaveFileRepository: ReservationSaveFileRepository
+) : EquipmentRepository<TurboGeneratorEntity>, EquipmentConsumerRepository<TurboGeneratorEntity>,
+    EquipmentUpdateFirebaseRepository {
 
     override suspend fun saveItemOpenEquipment(itemEntity: TurboGeneratorEntity): SuccessResultFirebase {
         val dataFirebase = repositoryFirebase.getDocuments<TurboGeneratorEntity>(
@@ -84,5 +88,28 @@ class TurboGeneratorRepositoryImpl @Inject constructor(
 
     override fun getItemEntityConsumerFlow(id: String): Flow<List<TurboGeneratorEntity>> {
         return dao.getItemEntityConsumerFlow(id)
+    }
+
+    override suspend fun loadingLocaleInFirebase() {
+        val listDataLocale = dao.getAllItemEntity()
+        repositoryFirebase.insertDocuments(
+            listDataLocale,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_TG
+        )
+    }
+
+    override suspend fun reservationFirebase() {
+        val listDataFirebase = repositoryFirebase.getDocuments<TurboGeneratorEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_TG,
+            TurboGeneratorEntity::class.java
+        )
+        repositoryFirebase.insertDocuments(
+            listDataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_TG_REZ
+        )
+        reservationSaveFileRepository.saveFile(FirebaseKey.DOCUMENT_TG, listDataFirebase)
     }
 }

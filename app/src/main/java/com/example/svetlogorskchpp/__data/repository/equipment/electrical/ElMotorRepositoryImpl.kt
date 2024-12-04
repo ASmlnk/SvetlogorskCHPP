@@ -8,6 +8,7 @@ import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumer
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class ElMotorRepositoryImpl @Inject constructor(
     private val dao: ElMotorDao,
     private val firebaseBigJsonRepository: FirebaseBigJsonRepository,
+    private val reservationSaveFileRepository: ReservationSaveFileRepository
 ) : EquipmentRepository<ElMotorEntity>, EquipmentConsumerRepository<ElMotorEntity>,
     EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository, EquipmentElMotorChapterRepository {
 
@@ -97,6 +99,21 @@ class ElMotorRepositoryImpl @Inject constructor(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR
         )
+    }
+
+    override suspend fun reservationFirebase() {
+        val listDataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_EL_MOTOR,
+            ElMotorEntity::class.java
+        )
+        firebaseBigJsonRepository.insertDocuments(
+            listDataFirebase,
+            FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
+            FirebaseKey.DOCUMENT_EL_MOTOR_REZ
+        )
+        reservationSaveFileRepository.saveFile(FirebaseKey.DOCUMENT_EL_MOTOR, listDataFirebase)
+
     }
 
     suspend fun clearTable() {

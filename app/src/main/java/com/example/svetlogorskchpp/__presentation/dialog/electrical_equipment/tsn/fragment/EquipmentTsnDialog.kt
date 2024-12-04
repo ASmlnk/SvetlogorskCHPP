@@ -107,7 +107,7 @@ class EquipmentTsnDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentTsnBind
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.consumerState.collect {
-                    adapterConsumer.submitList(it)
+                    adapterConsumer.submitList(it.sortedBy { it.name() })
                 }
             }
         }
@@ -148,9 +148,22 @@ class EquipmentTsnDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentTsnBind
             tvSpare.visibility = if (state.isSpare) View.VISIBLE else View.INVISIBLE
             tvPowerSupply.text = state.powerSupplyName +
                     if (state.powerSupplyCell.isNotEmpty()) " яч." + state.powerSupplyCell else ""
-            tvSwitchContent.text = state.typeSwitch
-            tvInstrContent.text = state.typeInsTr
+            tvSwitchContent.apply {
+                text = state.typeSwitch
+                isGone = state.typeSwitch.isEmpty()
+            }
+            tvSwitchTitle.isGone = state.typeSwitch.isEmpty()
+
+            tvInstrContent.apply {
+                text = state.typeInsTr
+                isGone = state.typeInsTr.isEmpty()
+            }
+            tvInstrTitle.isGone = state.typeInsTr.isEmpty()
+
+
             tvPanelContent.text = state.panelMcp
+            layoutPanel.isGone = state.panelMcp.isEmpty()
+
             tvTranscriptType.text = state.transcriptType
             tvAdditionally.text = state.additionally
 

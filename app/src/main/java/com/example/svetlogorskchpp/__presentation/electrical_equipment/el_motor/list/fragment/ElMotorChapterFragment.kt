@@ -55,7 +55,7 @@ class ElMotorChapterFragment : BaseFragment<FragmentElMotorListBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
-                    adapter.submitList(it.sortedBy { it.name })
+                    adapter.submitList(it.sortedBy { it.name.lowercase() })
                 }
             }
         }

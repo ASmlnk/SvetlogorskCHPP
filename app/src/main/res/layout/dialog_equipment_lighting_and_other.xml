@@ -53,9 +53,10 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="end"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/baseline_edit_24"
-                android:tint="@color/orange_zero_vision" />
+                android:tint="@color/text_content_rza_2" />
 
             <TextView
                 android:id="@+id/tv_power_supply"
@@ -74,20 +75,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="djajjajdajaldjflaj"
                 android:textColor="@color/home_page_gradient" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_power_supply"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="24dp"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="1" />
 
             <TextView
                 android:id="@+id/tv_switch_title"
@@ -147,6 +138,17 @@
                     android:textColor="@color/text_color_dialog_equipment"
                     android:textSize="20sp" />
             </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_power_supply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                 />
 
         </LinearLayout>
 

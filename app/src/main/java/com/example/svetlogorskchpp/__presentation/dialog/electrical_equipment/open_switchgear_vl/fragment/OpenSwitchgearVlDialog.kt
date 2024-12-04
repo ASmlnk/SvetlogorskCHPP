@@ -127,7 +127,13 @@ class OpenSwitchgearVlDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchge
                 state.cell,
                 state.voltage.str
             )
-            tvPanelContent.text = state.panelMcp
+
+            tvPanelTitle.isGone = state.panelMcp.isEmpty()
+            tvPanelContent.apply {
+                text = state.panelMcp
+                isGone = state.panelMcp.isEmpty()
+            }
+
         }
 
         includeOryParameterBinding.apply {
@@ -138,10 +144,18 @@ class OpenSwitchgearVlDialog : BaseEquipmentBottomSheetDialog<DialogOpenSwitchge
         setupViewKeyOry(state)
 
         includeOryRzaBinding.apply {
-            tvApvContent.text = state.apv
-            tvAutomationContent.text = state.automation
-            // tvPhaseProtectionContent.text = state.phaseProtection
-            // tvEarthProtectionContent.text = state.earthProtection
+            tvApvContent.apply {
+                text = state.apv
+                isGone = state.apv.isEmpty()
+            }
+            tvApvTitle.isGone = state.apv.isEmpty()
+
+            tvAutomationContent.apply {
+                text = state.automation
+                isGone = state.automation.isEmpty()
+            }
+            tvAutomationTitle.isGone = state.automation.isEmpty()
+            tvProtectionTitle.isGone = (state.earthProtection + state.phaseProtection).isEmpty()
         }
     }
 

@@ -51,28 +51,42 @@
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/delete"
         android:alpha="0.4"
-        app:tint="@color/text_content_rza_2"
+        android:src="@drawable/delete"
         app:layout_constraintBottom_toTopOf="@+id/rv"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/text_content_rza_2" />
 
     <TextView
 
         android:id="@+id/tv_name_department"
-        android:layout_width="120dp"
-        android:layout_height="64dp"
-        android:paddingEnd="8dp"
-        android:paddingTop="4dp"
-        android:paddingStart="8dp"
-        android:textSize="14sp"
         style="@style/TextViewStyleContent"
-        android:text="@string/rtzo"
-        android:textStyle="bold"
+        android:layout_width="120dp"
+        android:layout_height="24dp"
         android:gravity="end"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:text="@string/rtzo"
         android:textColor="@color/calendar_background"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/shapeableImageView12"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_sorted"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:alpha="0.9"
+        android:src="@drawable/baseline_sort_24"
+        app:tint="@color/calendar_background"
+        android:scaleX="-1"
+        android:scaleY="-1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_department" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -89,8 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:alpha="0.9"
             android:layout_marginBottom="4dp"
+            android:alpha="0.9"
             app:chipSpacingHorizontal="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -194,7 +208,7 @@
         android:layout_marginTop="0dp"
         android:background="@drawable/background_layout_line_gradient"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
