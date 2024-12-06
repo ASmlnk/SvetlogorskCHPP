@@ -21,8 +21,8 @@ sealed class ElectricalEquipment {
         val voltage: Voltage,
         val cell: Int,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.VL
-    ): ElectricalEquipment() {
+        val deepLink: DeepLink = DeepLink.VL,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment
         }
@@ -42,8 +42,8 @@ sealed class ElectricalEquipment {
         val nameNumber: Int,
         val isThreeWinding: Boolean,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.TR
-    ): ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.TR,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment
         }
@@ -64,14 +64,16 @@ sealed class ElectricalEquipment {
         val nameNumber: Int,
         val voltage: Voltage,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.TSN
-    ): ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.TSN,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment
         }
 
         override fun cell(): Int {
-            return nameNumber
+            val regex = "\\d+".toRegex()
+            val match = regex.find(powerSupplyCell)
+            return match?.value?.toInt() ?: 0
         }
     }
 
@@ -85,8 +87,8 @@ sealed class ElectricalEquipment {
         val powerThermal: String,
         val steamConsumption: String,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.TG
-    ) : ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.TG,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return nameEquipment
         }
@@ -109,8 +111,8 @@ sealed class ElectricalEquipment {
         val cell: Int,
         val isRep: Boolean,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.EL_MOTOR
-    ): ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.EL_MOTOR,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return name
         }
@@ -127,8 +129,8 @@ sealed class ElectricalEquipment {
         val nameDepartment: NameDepartment,
         val voltage: Voltage,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.SWITCHGEAR
-    ): ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.SWITCHGEAR,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return name
         }
@@ -146,8 +148,8 @@ sealed class ElectricalEquipment {
         val isLighting: Boolean,
         val cell: Int,
         override val isDelete: Boolean = false,
-        val deepLink: DeepLink = DeepLink.LIGHTING_AND_OTHER
-    ): ElectricalEquipment(){
+        val deepLink: DeepLink = DeepLink.LIGHTING_AND_OTHER,
+    ) : ElectricalEquipment() {
         override fun name(): String {
             return name
         }

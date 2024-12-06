@@ -18,7 +18,7 @@ enum class ElCategory(val str: String) {
     CN("ЦН"),
     CCR("ЦЦР"),
     AMMONIA("Аммиачное х-во"),
-    GIDROZIYNOE("Гидрозийное х-во"),
+    GIDROZIYNOE("Гидразийное х-во"),
     ACIDIC("Кислотное х-во"),
     COAGULANT("Коагулянтное х-во"),
     N_TS("Насосная 1 оч. т/с"),

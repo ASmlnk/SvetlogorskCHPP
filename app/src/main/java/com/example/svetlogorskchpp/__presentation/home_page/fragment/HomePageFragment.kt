@@ -91,11 +91,12 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
 
             layoutSearchView.setOnClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
+                findNavController().navigate(R.id.action_homePageFragment_to_searchElectricalFragment)
+
             }
 
             layoutSearchView.setOnLongClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_searchElectricalFragment)
+                findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
                 return@setOnLongClickListener true
             }
 

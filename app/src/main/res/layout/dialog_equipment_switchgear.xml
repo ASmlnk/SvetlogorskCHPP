@@ -177,7 +177,7 @@
                 android:textColor="@color/home_page_gradient" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_marginTop="16dp"
+
                 android:layout_marginBottom="16dp"
                 style="@style/CardViewDialogContentStyle">
 
@@ -202,8 +202,8 @@
                 android:layout_marginStart="16dp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+
                 android:layout_marginEnd="16dp"/>
 
             <include

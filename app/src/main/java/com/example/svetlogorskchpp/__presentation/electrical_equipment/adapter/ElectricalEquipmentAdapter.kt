@@ -462,32 +462,32 @@ class ElMotorHolder(val binding: ItemElectricalEquipmentElMotorBinding) :
             tvRep.visibility = if (item.isRep) View.VISIBLE else View.INVISIBLE
 
             when (item.category) {
-                ElCategory.OTHER -> ivCategory.setImageResource(R.drawable.high_voltage_8107242)
-                ElCategory.TREATMENT_FACILITIES -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.DESALTING -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.BNT -> ivCategory.setImageResource(R.drawable.factory_1643683)
-                ElCategory.Bagernaya -> ivCategory.setImageResource(R.drawable.water_boiler)
-                ElCategory.KO -> ivCategory.setImageResource(R.drawable.water_boiler)
-                ElCategory.KTC_KO -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.OTHER -> ivCategory.setImageResource(R.drawable.flash_4049918)
+                ElCategory.TREATMENT_FACILITIES -> ivCategory.setImageResource(R.drawable.free_icon_water_treatment)
+                ElCategory.DESALTING -> ivCategory.setImageResource(R.drawable.free_icon_filters)
+                ElCategory.BNT -> ivCategory.setImageResource(R.drawable.free_icon_bnt)
+                ElCategory.Bagernaya -> ivCategory.setImageResource(R.drawable.free_icon_bagern)
+                ElCategory.KO -> ivCategory.setImageResource(R.drawable.free_icon_water_ko)
+                ElCategory.KTC_KO -> ivCategory.setImageResource(R.drawable.free_icon_water_ko)
                 ElCategory.KTC_TO -> ivCategory.setImageResource(R.drawable.factory_1643683)
-                ElCategory.NDV -> ivCategory.setImageResource(R.drawable.icon_station)
-                ElCategory.PN -> ivCategory.setImageResource(R.drawable.factory_1643683)
-                ElCategory.PEN -> ivCategory.setImageResource(R.drawable.factory_1643683)
-                ElCategory.PRETREATMENT -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.NDV -> ivCategory.setImageResource(R.drawable.free_icon_tower)
+                ElCategory.PN -> ivCategory.setImageResource(R.drawable.free_icon_pn)
+                ElCategory.PEN -> ivCategory.setImageResource(R.drawable.free_icon_pump)
+                ElCategory.PRETREATMENT -> ivCategory.setImageResource(R.drawable.free_icon_water_cleaning)
                 ElCategory.SN -> ivCategory.setImageResource(R.drawable.factory_1643683)
-                ElCategory.TY -> ivCategory.setImageResource(R.drawable.factory_1643683)
+                ElCategory.TY -> ivCategory.setImageResource(R.drawable.free_icon_oil_tank)
                 ElCategory.CN -> ivCategory.setImageResource(R.drawable.icon_nuclear_power)
-                ElCategory.CCR -> ivCategory.setImageResource(R.drawable.flash_4049918)
-                ElCategory.AMMONIA -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.GIDROZIYNOE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.ACIDIC -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.CCR -> ivCategory.setImageResource(R.drawable.free_icon_ccr)
+                ElCategory.AMMONIA -> ivCategory.setImageResource(R.drawable.free_icon_ammonia)
+                ElCategory.GIDROZIYNOE -> ivCategory.setImageResource(R.drawable.icon_pngwing)
+                ElCategory.ACIDIC -> ivCategory.setImageResource(R.drawable.free_icon_acid)
                 ElCategory.COAGULANT -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
                 ElCategory.N_TS -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.SOVEVOE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.SOVEVOE -> ivCategory.setImageResource(R.drawable.free_icon_clean)
                 ElCategory.LIMESTONE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
                 ElCategory.PHOSPHATE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
                 ElCategory.NVK -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
-                ElCategory.ALKALINE -> ivCategory.setImageResource(R.drawable.chemistry_class_6837437)
+                ElCategory.ALKALINE -> ivCategory.setImageResource(R.drawable.free_icon_ph)
                 ElCategory.TG_1 -> ivCategory.setImageResource(R.drawable.generator_1)
                 ElCategory.TG_3 -> ivCategory.setImageResource(R.drawable.generator_1)
                 ElCategory.TG_4 -> ivCategory.setImageResource(R.drawable.generator_1)
@@ -500,7 +500,6 @@ class ElMotorHolder(val binding: ItemElectricalEquipmentElMotorBinding) :
                 ElCategory.KA_9 -> ivCategory.setImageResource(R.drawable.water_boiler)
             }
         }
-
     }
 
     companion object {

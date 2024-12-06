@@ -131,7 +131,8 @@ class ElMotorChapterFragment : BaseFragment<FragmentElMotorListBinding>() {
                 ElCategory.LIMESTONE,
                 ElCategory.PHOSPHATE,
                 ElCategory.NVK,
-                ElCategory.ALKALINE
+                ElCategory.ALKALINE,
+                ElCategory.OTHER
             )
         )
         if (chipHvoDesalting.isChecked) activeFilters.add(ElCategory.DESALTING)
