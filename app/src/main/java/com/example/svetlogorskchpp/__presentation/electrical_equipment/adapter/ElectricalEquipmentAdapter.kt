@@ -328,8 +328,9 @@ class ElectricalEquipmentSwitchgearHolder(val binding: ItemElectricalEquipmentSw
                 NameDepartment.RY -> iv.setImageResource(R.drawable.icon_electrical_panel)
                 NameDepartment.HC -> iv.setImageResource(R.drawable.chemistry_class_6837437)
                 NameDepartment.SHIELD_BLOCK -> iv.setImageResource(R.drawable.high_voltage_8107242)
-                NameDepartment.OTHER -> iv.setImageResource(R.drawable.electrical_panel_1)
+                NameDepartment.OTHER -> iv.setImageResource(R.drawable.flash_4049918)
                 NameDepartment.POST_TOK -> iv.setImageResource(R.drawable.icon_electric_power)
+                NameDepartment.KTC_TY -> iv.setImageResource(R.drawable.free_icon_oil_tank)
             }
             val tintColorRtzo =
                 ContextCompat.getColor(itemView.context, R.color.floatingActionButton)
@@ -387,8 +388,9 @@ class ElectricalEquipmentSwitchgearLightingHolder(val binding: ItemElectricalEqu
                 NameDepartment.RY -> iv.setImageResource(R.drawable.icon_electrical_panel)
                 NameDepartment.HC -> iv.setImageResource(R.drawable.chemistry_class_6837437)
                 NameDepartment.SHIELD_BLOCK -> iv.setImageResource(R.drawable.high_voltage_8107242)
-                NameDepartment.OTHER -> iv.setImageResource(R.drawable.electrical_panel_1)
+                NameDepartment.OTHER -> iv.setImageResource(R.drawable.flash_4049918)
                 NameDepartment.POST_TOK -> iv.setImageResource(R.drawable.icon_electric_power)
+                NameDepartment.KTC_TY -> iv.setImageResource(R.drawable.free_icon_oil_tank)
             }
         }
     }

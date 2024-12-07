@@ -128,6 +128,11 @@ class SwitchgearOwnNeedsListFragment: BaseFragment<FragmentSwitchgearOwnNeedsLis
                 chipLighting.isGone = true
                 chipRtzo.isGone = true
             }
+
+            NameDepartment.KTC_TY -> {
+                chipShpt1.isGone = true
+                chipShpt2.isGone = true
+            }
         }
     }
 }

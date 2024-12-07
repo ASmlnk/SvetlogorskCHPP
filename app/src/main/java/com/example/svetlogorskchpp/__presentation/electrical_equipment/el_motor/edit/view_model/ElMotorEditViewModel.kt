@@ -31,7 +31,7 @@ class ElMotorEditViewModel @AssistedInject constructor(
     private val _spinnerUIState = MutableStateFlow(ElMotorEditSpinnerUIState())
     val spinnerUIState: StateFlow<ElMotorEditSpinnerUIState> = _spinnerUIState
 
-    val listVoltage = listOf(Voltage.KV, Voltage.KV_220, Voltage.KV_380, Voltage.KV_3, Voltage.KV_6)
+    val listVoltage = listOf(Voltage.KV, Voltage.V_220, Voltage.KV_380, Voltage.V_660, Voltage.KV_3, Voltage.KV_6)
 
     val listCategory = listCategory()
     val listGenCategory = listGeneralCategory()

@@ -9,5 +9,6 @@ enum class PSFilter {
     HC,
     OTHER,
     SHIELD_BLOCK,
-    POST_TOK
+    POST_TOK,
+    TY
 }

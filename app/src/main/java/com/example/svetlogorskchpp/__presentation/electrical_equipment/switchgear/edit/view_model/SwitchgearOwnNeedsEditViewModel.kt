@@ -38,7 +38,7 @@ class SwitchgearOwnNeedsEditViewModel @AssistedInject constructor(
 
     val listVoltage = listOf(Voltage.KV, Voltage.KV_380, Voltage.KV_3, Voltage.KV_6)
     val listElAssemblys = listOf(ElAssembly.OTHER, ElAssembly.RY, ElAssembly.ASSEMBLY, ElAssembly.RTZO, ElAssembly.LIGHTING, ElAssembly.SHPT_1, ElAssembly.SHPT_2)
-    val listNameDepartment = listOf(NameDepartment.OTHER, NameDepartment.KRY, NameDepartment.RY, NameDepartment.SHIELD_BLOCK, NameDepartment.KTC_TO, NameDepartment.KTC_KO, NameDepartment.HC, NameDepartment.POST_TOK, NameDepartment.BNS, NameDepartment.COOLING_TOWER)
+    val listNameDepartment = listOf(NameDepartment.OTHER, NameDepartment.KRY, NameDepartment.RY, NameDepartment.SHIELD_BLOCK, NameDepartment.KTC_TO, NameDepartment.KTC_KO,NameDepartment.KTC_TY, NameDepartment.HC, NameDepartment.POST_TOK, NameDepartment.BNS, NameDepartment.COOLING_TOWER)
 
     init {
         viewModelScope.launch {

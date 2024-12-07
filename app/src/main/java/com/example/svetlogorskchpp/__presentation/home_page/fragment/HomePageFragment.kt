@@ -231,6 +231,13 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                     )
                 findNavController().navigate(action)
             }
+            tvKtcTy.setOnClickListener {
+                val action =
+                    HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(
+                        NameDepartment.KTC_TY
+                    )
+                findNavController().navigate(action)
+            }
             tvHc.setOnClickListener {
                 val action =
                     HomePageFragmentDirections.actionHomePageFragmentToSwitchgearOwnNeedsListFragment(

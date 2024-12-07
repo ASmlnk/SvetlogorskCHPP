@@ -93,6 +93,11 @@ class PowerSupplySelectionViewModel @Inject constructor(
                         filterList.addAll(data.filter { it is ElectricalEquipment.Switchgear }
                             .filter { (it as ElectricalEquipment.Switchgear).nameDepartment == NameDepartment.SHIELD_BLOCK })
                     }
+
+                    PSFilter.TY -> {
+                        filterList.addAll(data.filter { it is ElectricalEquipment.Switchgear }
+                            .filter { (it as ElectricalEquipment.Switchgear).nameDepartment == NameDepartment.KTC_TY })
+                    }
                 }
             }
             _dataState.update { filterList }

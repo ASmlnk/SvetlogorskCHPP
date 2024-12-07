@@ -6,6 +6,7 @@ enum class NameDepartment(val str: String) {
     KRY("КРУ"),
     KTC_KO("КТЦ к/о"),
     KTC_TO("КТЦ т/о"),
+    KTC_TY("КТЦ ТУ"),
     RY("РУ"),
     HC("ХЦ"),
     SHIELD_BLOCK("Щит. блок"),

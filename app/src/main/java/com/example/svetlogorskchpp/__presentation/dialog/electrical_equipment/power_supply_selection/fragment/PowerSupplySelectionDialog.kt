@@ -69,6 +69,7 @@ class PowerSupplySelectionDialog : BaseBottomSheetDialog<DialogPowerSupplySelect
             chipKtcTo.setOnClickListener {applyFilter()}
             chipKtcKo.setOnClickListener {applyFilter()}
             chipPostTok.setOnClickListener {applyFilter()}
+            chipKtcTy.setOnClickListener {applyFilter()}
         }
 
 
@@ -92,6 +93,7 @@ class PowerSupplySelectionDialog : BaseBottomSheetDialog<DialogPowerSupplySelect
         if (chipKtcTo.isChecked) activeFilters.add(PSFilter.TO)
         if (chipKtcKo.isChecked) activeFilters.add(PSFilter.KO)
         if (chipPostTok.isChecked) activeFilters.add(PSFilter.POST_TOK)
+        if (chipKtcTy.isChecked) activeFilters.add(PSFilter.TY)
 
         viewModel.filterData(activeFilters)
     }
