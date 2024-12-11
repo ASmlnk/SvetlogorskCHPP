@@ -10,14 +10,33 @@
         android:background="@drawable/app_widget_inner_view_background"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/TextViewStyleHeading"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:text="@string/electric" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/TextViewStyleHeading"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/electric" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_update"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:tint="@color/text_recycle_smile"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="2dp"
+                android:src="@drawable/baseline_wifi_protected_setup_24"/>
+
+        </LinearLayout>
+
 
         <TextView
             style="@style/TextViewStyleContent"

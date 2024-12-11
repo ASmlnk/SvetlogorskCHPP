@@ -280,6 +280,7 @@ class ElMotorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentElMotorBindi
                 ElCategory.KA_7 -> setImageResource(R.drawable.water_boiler)
                 ElCategory.KA_8 -> setImageResource(R.drawable.water_boiler)
                 ElCategory.KA_9 -> setImageResource(R.drawable.water_boiler)
+                ElCategory.EC -> setImageResource(R.drawable.flash_4049918)
             }
         }
     }

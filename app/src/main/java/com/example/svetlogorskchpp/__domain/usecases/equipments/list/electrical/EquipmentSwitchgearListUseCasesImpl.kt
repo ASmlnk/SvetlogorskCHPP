@@ -16,7 +16,7 @@ class EquipmentSwitchgearListUseCasesImpl @Inject constructor(
 ) : EquipmentsListUseCases<ElectricalEquipment.Switchgear> {
     override fun getElectricalEquipments(): Flow<List<ElectricalEquipment.Switchgear>> {
         return repository.getAllItemEquipment().map { entities ->
-            entities?.map { mapper.toElectricalEquipmentSwitchgear(it) }
+            entities?.map { mapper.toElectricalEquipmentSwitchgear(it, null) }
                 ?: emptyList()
         }
     }
@@ -26,7 +26,7 @@ class EquipmentSwitchgearListUseCasesImpl @Inject constructor(
         prefixQuery: String,
     ): Flow<List<ElectricalEquipment.Switchgear>> {
         return repository.getSearchElectricalEquipment(searchQuery,prefixQuery).map { entities ->
-            entities.map { mapper.toElectricalEquipmentSwitchgear(it) }
+            entities.map { mapper.toElectricalEquipmentSwitchgear(it, null) }
 
         }
     }

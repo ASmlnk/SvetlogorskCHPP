@@ -389,5 +389,6 @@
     <string name="switch_automat">Выключатель (автомат)</string>
     <string name="electric">Электроустановка</string>
     <string name="location">Место установки</string>
+    <string name="electric_equipment_small">ЭЦ</string>
 
 </resources>

@@ -30,7 +30,7 @@ class EquipmentConsumerUseCases @Inject constructor(
             entity.map { mapper.toElectricalEquipmentTsn(it) }
         }
         val switchgearFlow = repositorySwitchgear.getItemEntityConsumerFlow(id).map { entity ->
-            entity.map { mapper.toElectricalEquipmentSwitchgear(it) }
+            entity.map { mapper.toElectricalEquipmentSwitchgear(it, id) }
         }
         val elMotorFlow = repositoryElMotor.getItemEntityConsumerFlow(id).map { entity ->
             entity.map { mapper.toElectricalEquipmentElMotor(it) }

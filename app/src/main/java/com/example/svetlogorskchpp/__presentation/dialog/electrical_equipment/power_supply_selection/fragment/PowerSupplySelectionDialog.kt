@@ -31,7 +31,7 @@ class PowerSupplySelectionDialog : BaseBottomSheetDialog<DialogPowerSupplySelect
         val selectedId = id // Логика выбора ID
         val selectedName = name // Логика выбора имени
         val selectedData = Pair(selectedId, selectedName)
-        val data = when(args.switchgearPowerSupply) {
+        val data = when (args.switchgearPowerSupply) {
             SwitchgearPowerSupply.NULL -> "selectedData"
             SwitchgearPowerSupply.MAIN_1 -> SwitchgearPowerSupply.MAIN_1.name
             SwitchgearPowerSupply.MAIN_2 -> SwitchgearPowerSupply.MAIN_2.name
@@ -60,16 +60,16 @@ class PowerSupplySelectionDialog : BaseBottomSheetDialog<DialogPowerSupplySelect
 
         binding.apply {
             rv.adapter = adapter
-            chipHc.setOnClickListener {applyFilter()}
-            chipOther.setOnClickListener {applyFilter()}
-            chipTransformer.setOnClickListener {applyFilter()}
-            chipSection04.setOnClickListener {applyFilter()}
-            chipSection3.setOnClickListener {applyFilter()}
-            chipShieldBlock.setOnClickListener {applyFilter()}
-            chipKtcTo.setOnClickListener {applyFilter()}
-            chipKtcKo.setOnClickListener {applyFilter()}
-            chipPostTok.setOnClickListener {applyFilter()}
-            chipKtcTy.setOnClickListener {applyFilter()}
+            chipHc.setOnClickListener { applyFilter() }
+            chipOther.setOnClickListener { applyFilter() }
+            chipTransformer.setOnClickListener { applyFilter() }
+            chipSection04.setOnClickListener { applyFilter() }
+            chipSection3.setOnClickListener { applyFilter() }
+            chipShieldBlock.setOnClickListener { applyFilter() }
+            chipKtcTo.setOnClickListener { applyFilter() }
+            chipKtcKo.setOnClickListener { applyFilter() }
+            chipPostTok.setOnClickListener { applyFilter() }
+            chipKtcTy.setOnClickListener { applyFilter() }
         }
 
 

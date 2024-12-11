@@ -310,6 +310,11 @@ class ElectricalEquipmentSwitchgearHolder(val binding: ItemElectricalEquipmentSw
     ) {
         binding.apply {
             tvName.text = item.name
+            tvPowerSupply.text = if (item.powerSupplyCell.isEmpty()) item.powerSupplyName else itemView.resources.getString(
+                R.string.power_supply_item,
+                item.powerSupplyName,
+                item.powerSupplyCell
+            )
             ivDelete.isGone = !item.isDelete
             ivDelete.setOnLongClickListener {
                 onItemClickDelete?.let { it -> it(item) }
@@ -371,6 +376,11 @@ class ElectricalEquipmentSwitchgearLightingHolder(val binding: ItemElectricalEqu
         binding.apply {
             tvName.text = item.name
             ivDelete.isGone = !item.isDelete
+            tvPowerSupply.text = if (item.powerSupplyCell.isEmpty()) item.powerSupplyName else itemView.resources.getString(
+                R.string.power_supply_item,
+                item.powerSupplyName,
+                item.powerSupplyCell
+            )
             ivDelete.setOnLongClickListener {
                 onItemClickDelete?.let { it -> it(item) }
                 return@setOnLongClickListener true
@@ -500,6 +510,7 @@ class ElMotorHolder(val binding: ItemElectricalEquipmentElMotorBinding) :
                 ElCategory.KA_7 -> ivCategory.setImageResource(R.drawable.water_boiler)
                 ElCategory.KA_8 -> ivCategory.setImageResource(R.drawable.water_boiler)
                 ElCategory.KA_9 -> ivCategory.setImageResource(R.drawable.water_boiler)
+                ElCategory.EC -> ivCategory.setImageResource(R.drawable.flash_4049918)
             }
         }
     }

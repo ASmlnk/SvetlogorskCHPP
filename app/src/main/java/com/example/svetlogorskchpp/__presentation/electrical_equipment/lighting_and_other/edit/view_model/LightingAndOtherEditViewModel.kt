@@ -52,6 +52,12 @@ class LightingAndOtherEditViewModel @AssistedInject constructor(
         }
     }
 
+    fun newItem() {
+        val newLightingAndOtherEditUIState = LightingAndOtherEditUIState()
+        _etUIState.value = newLightingAndOtherEditUIState
+
+    }
+
     fun saveState(state: LightingAndOtherEditUIState) {
         _etUIState.update { state }
     }

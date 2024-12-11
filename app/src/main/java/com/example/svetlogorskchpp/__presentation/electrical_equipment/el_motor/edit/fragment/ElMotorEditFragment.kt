@@ -116,6 +116,9 @@ class ElMotorEditFragment : BaseEditFragment<FragmentElMotorEditBinding>() {
                 val selectState = saveEditText()
                 viewModel.saveParameterElMotor(selectState)
             }
+            ivUpdate.setOnClickListener {
+                viewModel.newItem()
+            }
         }
 
         listenerPowerSupply()

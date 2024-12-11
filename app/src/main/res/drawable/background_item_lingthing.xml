@@ -5,7 +5,7 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="5dp"
-                android:color="@color/ory_key_background" />
+                android:color="@color/calendar_background" />
             <corners
                 android:bottomLeftRadius="18dp"
                 android:bottomRightRadius="18dp"

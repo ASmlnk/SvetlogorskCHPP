@@ -130,13 +130,16 @@ sealed class ElectricalEquipment {
         val voltage: Voltage,
         override val isDelete: Boolean = false,
         val deepLink: DeepLink = DeepLink.SWITCHGEAR,
+        val powerSupplyName: String,
+        val powerSupplyCell: String,
+        val cell: Int,
     ) : ElectricalEquipment() {
         override fun name(): String {
             return name
         }
 
         override fun cell(): Int {
-            return 1000
+            return cell
         }
     }
 

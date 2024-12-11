@@ -105,14 +105,17 @@ class ElectricalEquipmentListMapper @Inject constructor() {
         }
     }
 
-    fun toElectricalEquipmentSwitchgear(switchgear: SwitchgearEntity): ElectricalEquipment.Switchgear {
+    fun toElectricalEquipmentSwitchgear(switchgear: SwitchgearEntity, idPowerSupply: String?): ElectricalEquipment.Switchgear {
         return with(switchgear) {
             ElectricalEquipment.Switchgear(
                 id = id,
                 name = nam,
                 category = cat.let { ElAssembly.valueOf(it) },
                 nameDepartment = namDep.let { NameDepartment.valueOf(it) },
-                voltage = if (vol.isEmpty()) Voltage.KV else vol.let { Voltage.valueOf(it) }
+                voltage = if (vol.isEmpty()) Voltage.KV else vol.let { Voltage.valueOf(it) },
+                powerSupplyName = powerSupplyNameSwitchgear(switchgear,idPowerSupply),
+                powerSupplyCell = powerSupplyCellSwitchgear(switchgear, idPowerSupply),
+                cell = toInt(powerSupplyCellSwitchgear(switchgear, idPowerSupply))
             )
         }
     }
@@ -130,6 +133,45 @@ class ElectricalEquipmentListMapper @Inject constructor() {
         }
     }
 
+    private fun powerSupplyNameSwitchgear(switchgear: SwitchgearEntity, idPowerSupply: String?): String {
+        return if (idPowerSupply == null) {
+                val powS1 = with(switchgear) { if (powSuC1.isBlank()) powSuNam1 else "$powSuNam1 № $powSuC1" }.replace("\n", "")
+                val powS2 = with(switchgear) { if (powSuC2.isBlank()) powSuNam2 else "$powSuNam2 № $powSuC2" }.replace("\n", "")
+                val powSR1 = with(switchgear) { if (powSuRC1.isBlank()) powSuRNam1 else "$powSuRNam1 № $powSuRC1" }.replace("\n", "")
+                val powSR2 = with(switchgear) { if (powSuRC2.isBlank()) powSuRNam2 else "$powSuRNam2 № $powSuRC2" }.replace("\n", "")
+                val powSR3 = with(switchgear) { if (powSuRC3.isBlank()) powSuRNam3 else "$powSuRNam3 № $powSuRC3" }.replace("\n", "")
+           var result = powS1
+            if (powS2.isNotBlank()) result += "\n" + powS2
+            if (powSR1.isNotBlank()) result += "\n" + powSR1
+            if (powSR2.isNotBlank()) result += "\n" + powSR2
+            if (powSR3.isNotBlank()) result += "\n" + powSR3
+            result
+        } else {
+            when(idPowerSupply) {
+                switchgear.powSuId1 -> switchgear.powSuNam1
+                switchgear.powSuId2 -> switchgear.powSuNam2
+                switchgear.powSuRId1 ->switchgear.powSuRNam1
+                switchgear.powSuRId2 ->switchgear.powSuRNam2
+                switchgear.powSuRId3 ->switchgear.powSuRNam3
+                else -> ""
+            }
+        }
+    }
+
+    private fun powerSupplyCellSwitchgear(switchgear: SwitchgearEntity, idPowerSupply: String?): String {
+        return if (idPowerSupply == null) {
+            ""
+        } else {
+            when(idPowerSupply) {
+                switchgear.powSuId1 -> switchgear.powSuC1
+                switchgear.powSuId2 -> switchgear.powSuC2
+                switchgear.powSuRId1 ->switchgear.powSuRC1
+                switchgear.powSuRId2 ->switchgear.powSuRC2
+                switchgear.powSuRId3 ->switchgear.powSuRC3
+                else -> ""
+            }
+        }
+    }
 
     private fun toInt(string: String): Int {
         val regex = "\\d+".toRegex()

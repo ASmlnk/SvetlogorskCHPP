@@ -177,6 +177,9 @@ class SwitchgearOwnNeedsEditFragment : BaseEditFragment<FragmentSwitchgearEditBi
                 val selectState = saveEditText()
                 viewModel.saveParameterSwitchgear (selectState)
             }
+            ivUpdate.setOnClickListener {
+                viewModel.newItem()
+            }
         }
 
         listenerPowerSupply()

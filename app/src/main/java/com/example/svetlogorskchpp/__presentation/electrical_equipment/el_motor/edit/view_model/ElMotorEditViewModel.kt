@@ -88,6 +88,13 @@ class ElMotorEditViewModel @AssistedInject constructor(
         }
     }
 
+    fun newItem() {
+        val newElMotorEditUIState = ElMotorEditUIState()
+        _etUIState.value = newElMotorEditUIState
+        val newElMotorEditSpinnerUIState = ElMotorEditSpinnerUIState()
+        _spinnerUIState.value = newElMotorEditSpinnerUIState
+    }
+
     fun saveState(state: ElMotorEditUIState) {
         _etUIState.update { state }
     }
@@ -159,6 +166,7 @@ class ElMotorEditViewModel @AssistedInject constructor(
             ElCategory.TY,
             ElCategory.CN,
             ElCategory.CCR,
+            ElCategory.EC,
             ElCategory.AMMONIA,
             ElCategory.GIDROZIYNOE,
             ElCategory.ACIDIC,

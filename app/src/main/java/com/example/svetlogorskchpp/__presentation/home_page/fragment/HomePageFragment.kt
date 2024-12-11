@@ -96,7 +96,7 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
             }
 
             layoutSearchView.setOnLongClickListener {
-                findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
+                //findNavController().navigate(R.id.action_homePageFragment_to_electricMotorSearchFragment2)
                 return@setOnLongClickListener true
             }
 

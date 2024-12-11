@@ -31,7 +31,7 @@ class EquipmentPowerSupplyUseCases @Inject constructor(
         }
         val switchgearFlow = repositorySwitchgear.getAllItemEquipment().map { entities ->
             entities?.let {
-                entities.map { mapper.toElectricalEquipmentSwitchgear(it) }.sortedBy { it.name }.sortedBy { it.nameDepartment }
+                entities.map { mapper.toElectricalEquipmentSwitchgear(it, null) }.sortedBy { it.name }.sortedBy { it.nameDepartment }
             }
         }
         return combine(trFlow, tsnFlow, switchgearFlow) { tr, tsn, sw ->
@@ -56,7 +56,7 @@ class EquipmentPowerSupplyUseCases @Inject constructor(
         }
         val switchgearFlow = repositorySwitchgear.getItemEquipment(idPowerSupply).map { entity ->
             entity?.let {
-                mapper.toElectricalEquipmentSwitchgear(it)
+                mapper.toElectricalEquipmentSwitchgear(it, idPowerSupply)
             }
         }
         return combine(trFlow, tsnFlow, switchgearFlow) { tr, tsn, sw ->

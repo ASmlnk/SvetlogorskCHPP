@@ -87,6 +87,10 @@ class LightingAndOtherEditFragment : BaseFragment<FragmentLightingAndOtherEditBi
                 val selectState = saveEditText()
                 viewModel.saveParameterElMotor(selectState)
             }
+
+            ivUpdate.setOnClickListener {
+                viewModel.newItem()
+            }
         }
 
         listenerPowerSupply()

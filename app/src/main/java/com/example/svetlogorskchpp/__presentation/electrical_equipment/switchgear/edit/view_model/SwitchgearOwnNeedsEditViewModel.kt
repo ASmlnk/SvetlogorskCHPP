@@ -11,6 +11,8 @@ import com.example.svetlogorskchpp.__domain.en.electrical_equipment.Voltage
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.Switchgear
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.el_motor.model.ElMotorEditSpinnerUIState
+import com.example.svetlogorskchpp.__presentation.electrical_equipment.el_motor.model.ElMotorEditUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.factory.SwitchgearOwnNeedsEditViewModelFactory
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.model.SwitchgearEditSpinnerUIState
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.switchgear.model.SwitchgearEditUIState
@@ -36,7 +38,7 @@ class SwitchgearOwnNeedsEditViewModel @AssistedInject constructor(
     private val _spinnerUIState = MutableStateFlow(SwitchgearEditSpinnerUIState())
     val spinnerUIState: StateFlow<SwitchgearEditSpinnerUIState> = _spinnerUIState
 
-    val listVoltage = listOf(Voltage.KV, Voltage.KV_380, Voltage.KV_3, Voltage.KV_6)
+    val listVoltage = listOf(Voltage.KV, Voltage.V_220, Voltage.KV_380, Voltage.KV_3, Voltage.KV_6)
     val listElAssemblys = listOf(ElAssembly.OTHER, ElAssembly.RY, ElAssembly.ASSEMBLY, ElAssembly.RTZO, ElAssembly.LIGHTING, ElAssembly.SHPT_1, ElAssembly.SHPT_2)
     val listNameDepartment = listOf(NameDepartment.OTHER, NameDepartment.KRY, NameDepartment.RY, NameDepartment.SHIELD_BLOCK, NameDepartment.KTC_TO, NameDepartment.KTC_KO,NameDepartment.KTC_TY, NameDepartment.HC, NameDepartment.POST_TOK, NameDepartment.BNS, NameDepartment.COOLING_TOWER)
 
@@ -88,6 +90,13 @@ class SwitchgearOwnNeedsEditViewModel @AssistedInject constructor(
                 }
             }
         }
+    }
+
+    fun newItem() {
+        val newSwitchgearEditUIState = SwitchgearEditUIState()
+        _switchgearUIState.value = newSwitchgearEditUIState
+        val newSwitchgearEditSpinnerUIState = SwitchgearEditSpinnerUIState()
+        _spinnerUIState.value = newSwitchgearEditSpinnerUIState
     }
 
     fun saveState(state: SwitchgearEditUIState) {

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:title="Home"
+        android:title="@string/electric_equipment_small"
         android:enabled="true"
         android:icon="@drawable/baseline_bolt_24"/>
 

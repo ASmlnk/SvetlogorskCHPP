@@ -10,30 +10,16 @@
     app:strokeWidth="1dp">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_item_switchgear_list"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_name"
-                style="@style/TextViewStyleContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/electrical_assembly"
-                android:textColor="@color/calendar_background"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+            android:background="@drawable/background_item_switchgear_list">
 
             <TextView
                 android:id="@+id/tv_name_department"
@@ -41,54 +27,89 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:alpha="0.5"
                 android:text="@string/electrical_assembly"
                 android:textColor="@color/text_content_rza"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_power_supply"
+                style="@style/TextViewStyleContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="КРУ-,315 кВ яч 34 fdsв\n\nвввfdfsfsdfsfff"
+                android:textColor="@color/text_content_rza_2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_department" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="4dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextViewStyleContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/electrical_assembly"
+                android:textColor="@color/calendar_background"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_rtzo"
                 style="@style/TextViewStyleContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rtzo"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="14dp"
-                android:textStyle="bold"
+                android:layout_marginBottom="2dp"
+                android:text="@string/rtzo"
                 android:textColor="@color/floatingActionButton"
-                android:textSize="14sp" />
-
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/iv"
+                app:layout_constraintEnd_toEndOf="@+id/iv"
+                app:layout_constraintStart_toStartOf="@+id/iv" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/electrical_panel_1"
+                app:layout_constraintEnd_toStartOf="@+id/iv_delete"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/text_content_rza_2" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="66dp"
+                android:layout_height="0dp"
+                android:background="@color/delete_background"
+                android:paddingHorizontal="12dp"
+                android:src="@drawable/delete"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/text_input_assembly" />
 
-        <ImageView
-            android:id="@+id/iv_delete"
-            android:layout_width="66dp"
-            android:visibility="gone"
-            android:paddingHorizontal="12dp"
-            android:background="@color/delete_background"
-            android:src="@drawable/delete"
-            app:tint="@color/text_input_assembly"
-            android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

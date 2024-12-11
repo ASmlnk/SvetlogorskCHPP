@@ -2,8 +2,10 @@ package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.a
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.svetlogorskchpp.R
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.adapter.ItemElectricalEquipmentCallback
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.DeepLink
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -13,7 +15,8 @@ import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTrBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentTsnBinding
 import com.example.svetlogorskchpp.databinding.ItemEquipmentSwitchgearBinding
 
-class PowerSupplySelectionAdapter (
+class PowerSupplySelectionAdapter(
+    private var id: String = "",
     private val onClick: (id: String, name: String, dl: DeepLink) -> Unit,
 ) : ListAdapter<ElectricalEquipment, RecyclerView.ViewHolder>(ItemElectricalEquipmentCallback()) {
 
@@ -26,7 +29,7 @@ class PowerSupplySelectionAdapter (
             is ElectricalEquipment.Tsn -> (holder as TsnHolder).bind(item, onClick)
             is ElectricalEquipment.Tg -> (holder as TgHolder).bind(item, onClick)
             is ElectricalEquipment.Switchgear -> (holder as SwitchgearHolder).bind(item, onClick)
-            else ->  throw IllegalArgumentException("Invalid view type")
+            else -> throw IllegalArgumentException("Invalid view type")
         }
     }
 
@@ -35,10 +38,10 @@ class PowerSupplySelectionAdapter (
         viewType: Int,
     ): RecyclerView.ViewHolder {
         return when (viewType) {
-            1 -> TrHolder.inflateFrom(parent)
-            2 -> TgHolder.inflateFrom(parent)
-            3 -> TsnHolder.inflateFrom(parent)
-            4 -> SwitchgearHolder.inflateFrom(parent)
+            1 -> TrHolder.inflateFrom(id,parent)
+            2 -> TgHolder.inflateFrom(id,parent)
+            3 -> TsnHolder.inflateFrom(id,parent)
+            4 -> SwitchgearHolder.inflateFrom(id,parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -54,33 +57,43 @@ class PowerSupplySelectionAdapter (
     }
 }
 
-class TrHolder(val binding: ItemElectricalEquipmentTrBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class TrHolder(
+    private val id: String,
+    val binding: ItemElectricalEquipmentTrBinding,
+) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(
-            item: ElectricalEquipment.Tr,
-            onClick: (id: String, name: String, dl: DeepLink) -> Unit,
-        ) {
-            binding.apply {
-                tvName.text = item.nameEquipment
-                layout.setOnClickListener{
-                    onClick(item.id, item.nameEquipment, item.deepLink)
-                }
+    fun bind(
+        item: ElectricalEquipment.Tr,
+        onClick: (id: String, name: String, dl: DeepLink) -> Unit,
+    ) {
+        binding.apply {
+            tvName.text = item.nameEquipment
+            val tintColorSelect =
+                ContextCompat.getColor(itemView.context, R.color.delete_background)
+            val tintColorDefault =
+                ContextCompat.getColor(itemView.context, R.color.calendar_background)
+            tvName.setTextColor( if (item.id == id) tintColorSelect else tintColorDefault )
+            layout.setOnClickListener {
+                onClick(item.id, item.nameEquipment, item.deepLink)
             }
         }
+    }
 
 
     companion object {
-        fun inflateFrom(parentContext: ViewGroup): TrHolder {
+        fun inflateFrom(id:String, parentContext: ViewGroup): TrHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemElectricalEquipmentTrBinding.inflate(layoutInflater, parentContext, false)
-            return TrHolder(binding)
+            val binding =
+                ItemElectricalEquipmentTrBinding.inflate(layoutInflater, parentContext, false)
+            return TrHolder(id,binding)
         }
     }
 }
 
-class TgHolder(val binding: ItemElectricalEquipmentTgBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class TgHolder(
+    private val id: String,
+    val binding: ItemElectricalEquipmentTgBinding,
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
         item: ElectricalEquipment.Tg,
@@ -88,7 +101,12 @@ class TgHolder(val binding: ItemElectricalEquipmentTgBinding) :
     ) {
         binding.apply {
             tvName.text = item.nameEquipment
-            layout.setOnClickListener{
+            val tintColorSelect =
+                ContextCompat.getColor(itemView.context, R.color.delete_background)
+            val tintColorDefault =
+                ContextCompat.getColor(itemView.context, R.color.calendar_background)
+            tvName.setTextColor( if (item.id == id) tintColorSelect else tintColorDefault )
+            layout.setOnClickListener {
                 onClick(item.id, item.nameEquipment, item.deepLink)
             }
         }
@@ -96,16 +114,19 @@ class TgHolder(val binding: ItemElectricalEquipmentTgBinding) :
 
 
     companion object {
-        fun inflateFrom(parentContext: ViewGroup): TgHolder {
+        fun inflateFrom(id:String, parentContext: ViewGroup): TgHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemElectricalEquipmentTgBinding.inflate(layoutInflater, parentContext, false)
-            return TgHolder(binding)
+            val binding =
+                ItemElectricalEquipmentTgBinding.inflate(layoutInflater, parentContext, false)
+            return TgHolder(id,binding)
         }
     }
 }
 
-class TsnHolder(val binding: ItemElectricalEquipmentTsnBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class TsnHolder(
+    private val id: String ,
+    val binding: ItemElectricalEquipmentTsnBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
         item: ElectricalEquipment.Tsn,
@@ -113,7 +134,12 @@ class TsnHolder(val binding: ItemElectricalEquipmentTsnBinding) :
     ) {
         binding.apply {
             tvName.text = item.nameEquipment
-            layout.setOnClickListener{
+            val tintColorSelect =
+                ContextCompat.getColor(itemView.context, R.color.delete_background)
+            val tintColorDefault =
+                ContextCompat.getColor(itemView.context, R.color.calendar_background)
+            tvName.setTextColor( if (item.id == id) tintColorSelect else tintColorDefault )
+            layout.setOnClickListener {
                 onClick(item.id, item.nameEquipment, item.deepLink)
             }
         }
@@ -121,15 +147,18 @@ class TsnHolder(val binding: ItemElectricalEquipmentTsnBinding) :
 
 
     companion object {
-        fun inflateFrom(parentContext: ViewGroup): TsnHolder {
+        fun inflateFrom(id:String, parentContext: ViewGroup): TsnHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemElectricalEquipmentTsnBinding.inflate(layoutInflater, parentContext, false)
-            return TsnHolder(binding)
+            val binding =
+                ItemElectricalEquipmentTsnBinding.inflate(layoutInflater, parentContext, false)
+            return TsnHolder(id,binding)
         }
     }
 }
 
-class SwitchgearHolder(val binding: ItemEquipmentSwitchgearBinding) :
+class SwitchgearHolder(
+    private val id: String ,
+    val binding: ItemEquipmentSwitchgearBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
@@ -138,7 +167,12 @@ class SwitchgearHolder(val binding: ItemEquipmentSwitchgearBinding) :
     ) {
         binding.apply {
             tvName.text = item.name
-            layout.setOnClickListener{
+            val tintColorSelect =
+                ContextCompat.getColor(itemView.context, R.color.delete_background)
+            val tintColorDefault =
+                ContextCompat.getColor(itemView.context, R.color.calendar_background)
+            tvName.setTextColor( if (item.id == id) tintColorSelect else tintColorDefault )
+            layout.setOnClickListener {
                 onClick(item.id, item.name, item.deepLink)
             }
         }
@@ -146,10 +180,11 @@ class SwitchgearHolder(val binding: ItemEquipmentSwitchgearBinding) :
 
 
     companion object {
-        fun inflateFrom(parentContext: ViewGroup): SwitchgearHolder {
+        fun inflateFrom(id:String, parentContext: ViewGroup): SwitchgearHolder {
             val layoutInflater = LayoutInflater.from(parentContext.context)
-            val binding = ItemEquipmentSwitchgearBinding.inflate(layoutInflater, parentContext, false)
-            return SwitchgearHolder(binding)
+            val binding =
+                ItemEquipmentSwitchgearBinding.inflate(layoutInflater, parentContext, false)
+            return SwitchgearHolder(id,binding)
         }
     }
 }

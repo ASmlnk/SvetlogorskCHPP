@@ -17,6 +17,7 @@ enum class ElCategory(val str: String) {
     TY("ТУ"),
     CN("Градирня"),
     CCR("ЦЦР"),
+    EC("ЭЦ"),
     AMMONIA("Аммиачное х-во"),
     GIDROZIYNOE("Гидразийное х-во"),
     ACIDIC("Кислотное х-во"),
