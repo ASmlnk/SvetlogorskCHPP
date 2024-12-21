@@ -2,10 +2,10 @@ package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwitchgearVl.OpenSwitchgearVlEntity
-import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import kotlinx.coroutines.Dispatchers

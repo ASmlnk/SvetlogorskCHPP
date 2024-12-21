@@ -41,6 +41,11 @@ class ElMotorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentElMotorBindi
         findNavController().navigate(deepLink)
     }
 
+    private val adapterMechanism = PowerSupplySelectionAdapter { id, name, dl ->
+        val deepLink = Uri.parse(dl.link + id)
+        findNavController().navigate(deepLink)
+    }
+
     private var _includeRzaBinding: ContentLayoutRzaEquipmentDialogBinding? = null
     private val includeRzaBinding get() = _includeRzaBinding!!
 
@@ -86,6 +91,18 @@ class ElMotorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentElMotorBindi
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.mechanismState .collect {
+                    adapterMechanism.submitList(it)
+                    binding.apply {
+                        //layoutMechanism.isGone = it.isEmpty()
+                        tvMechanismTitle.isGone = it.isEmpty()
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.toastResultFlow.collect { toast ->
                 if (toast is OperationResult.Success) {
                     val action =
@@ -103,6 +120,7 @@ class ElMotorDialog : BaseEquipmentBottomSheetDialog<DialogEquipmentElMotorBindi
 
         binding.apply {
             rvPowerSupply.adapter = adapterPowerSupply
+            rvMechanism.adapter = adapterMechanism
 
             ivEditContent.setOnClickListener {
                 if (viewModel.isEditAccess()) {

@@ -674,6 +674,66 @@
 
         </LinearLayout>
 
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/mechanism_info_title"
+            android:textColor="@color/color_request_work_calendar"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/shift_schedule_note_background"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:paddingVertical="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/b_add_mechanism_info"
+                    style="@style/ButtonStyleRequestWork"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:text="@string/add_mechanism"
+                    app:icon="@drawable/baseline_add_24" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_delete_mechanism_info"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="24dp"
+                    android:src="@drawable/delete" />
+
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_mechanism_info_name"
+                    style="@style/TextViewStyleContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Секция 3,15кВ"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+        </LinearLayout>
+
         <include
             android:id="@+id/content_rza"
             layout="@layout/content_layout_edit_rza" />

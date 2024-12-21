@@ -9,6 +9,7 @@ import com.example.svetlogorskchpp.__domain.model.electrical_equipment.OpenSwitc
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.Switchgear
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TransformerOwnNeeds
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
+import com.example.svetlogorskchpp.__domain.model.equipment.MechanismInfo
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorker
 import com.example.svetlogorskchpp.__domain.task_schedule.notification.TaskSchedulerNotificationWorkerImpl
 import com.example.svetlogorskchpp.__domain.task_schedule.update_request_work.TaskSchedulerUpdateRequestWorkBaseWorker
@@ -24,10 +25,12 @@ import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotifica
 import com.example.svetlogorskchpp.__domain.usecases.calendarPreferencesNotificationUseCases.CalendarPreferencesNotificationUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentElMotorChapterUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.mechanical.EquipmentMechanismAllUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.mechanical.EquipmentMechanismAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentElMotorUseCasesImpl
@@ -37,6 +40,7 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentTurboGeneratorUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearTrUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentsOpenSwitchgearVLUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.item.mechanical.EquipmentMechanismInfoUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentElMotorChapterUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.shift_schedule.calendarTagUseCases.CalendarTagUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.hardData.HardDataUseCases
@@ -117,5 +121,11 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun provideEditAccessUseCases(editAccessUseCases: EditAccessUseCasesImpl): EditAccessUseCases
+
+    @Binds
+    abstract fun provideMechanismInfoUseCases (mechanismInfo: EquipmentMechanismInfoUseCasesImpl): EquipmentsUseCases<MechanismInfo>
+
+    @Binds
+    abstract fun provideMechanicalAllUseCases(mechanismAllUseCases: EquipmentMechanismAllUseCasesImpl): EquipmentMechanismAllUseCases
 
 }

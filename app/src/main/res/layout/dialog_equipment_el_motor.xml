@@ -312,9 +312,21 @@ android:layout_marginBottom="-4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="24dp"
                 android:text="@string/mechanism"
                 android:textColor="@color/text_recycle_smile" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_mechanism"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="24dp"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
 
             <com.google.android.material.card.MaterialCardView
                 style="@style/CardViewDialogContentStyle"
@@ -412,6 +424,7 @@ android:layout_marginBottom="-4dp"
                         android:text="расшифровка"
                         android:textColor="@color/text_color_dialog_equipment"
                         android:textSize="20sp" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>

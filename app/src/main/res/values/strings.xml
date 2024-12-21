@@ -365,7 +365,7 @@
     <string name="control_circuits">Цепи управления:</string>
     <string name="mechanism">Мехинизм:</string>
     <string name="performance_mechanism">Произв-ть: Q = %s м3/ч</string>
-    <string name="pressure_mechanism">Давление: P = %s кгс/см2</string>
+    <string name="pressure_mechanism">Давление: P = %s МПа</string>
     <string name="mechanism_h">Напор: H = %s м</string>
     <string name="mechanism_n_power">Мощность: N = %s кВт</string>
     <string name="mechanism_n">Кол-во об.: n = %s об/мин</string>
@@ -390,5 +390,9 @@
     <string name="electric">Электроустановка</string>
     <string name="location">Место установки</string>
     <string name="electric_equipment_small">ЭЦ</string>
+    <string name="name_mechanism">Наименование механизма</string>
+    <string name="mechanism_info_title">Информация по механизмам</string>
+    <string name="add_mechanism">Добавить механизм</string>
+    <string name="title_activity_main_compose">MainActivityCompose</string>
 
 </resources>

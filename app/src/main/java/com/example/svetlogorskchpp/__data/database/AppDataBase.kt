@@ -21,12 +21,15 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.transfor
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoDao
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.note.NoteEntity
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkEntity
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagEntity
+import com.example.svetlogorskchpp.__domain.model.equipment.MechanismInfo
 
 @Database(
     entities = [
@@ -40,8 +43,9 @@ import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTag
         TurboGeneratorEntity::class,
         ElMotorEntity::class,
         SwitchgearEntity::class,
-        LightingAndOtherEntity::class],
-    version = 11
+        LightingAndOtherEntity::class,
+        MechanismInfoEntity::class],
+    version = 12
 )
 @TypeConverters(CalendarTypeConverter::class)
 abstract class AppDataBase : RoomDatabase() {
@@ -56,6 +60,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun elMotorDao(): ElMotorDao
     abstract fun switchgearDao(): SwitchgearDao
     abstract fun lightingAndOtherDao(): LightingAndOtherDao
+    abstract fun mechanismInfoDao(): MechanismInfoDao
 }
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -335,5 +340,27 @@ val MIGRATION_10_11 = object : Migration(10, 11) {
         db.execSQL("ALTER TABLE el_motor ADD COLUMN mecPowN TEXT ")
         db.execSQL("ALTER TABLE el_motor ADD COLUMN mecAddit TEXT ")
 
+    }
+}
+
+val MIGRATION_11_12 = object : Migration(11, 12) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+
+        db.execSQL("ALTER TABLE el_motor ADD COLUMN mecInfoId TEXT ")
+        db.execSQL("ALTER TABLE el_motor ADD COLUMN mecInfoName TEXT ")
+
+        db.execSQL(
+            """
+                CREATE TABLE mechanism_info (
+                 id TEXT PRIMARY KEY NOT NULL,
+                 name TEXT NOT NULL,
+                 info TEXT NOT NULL,
+                 category TEXT NOT NULL,
+                 additionally TEXT NOT NULL,
+                 genMechId TEXT NOT NULL,
+                 genMechName TEXT NOT NULL
+                )
+            """.trimIndent()
+        )
     }
 }

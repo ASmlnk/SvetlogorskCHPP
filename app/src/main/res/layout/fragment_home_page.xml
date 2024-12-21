@@ -230,11 +230,14 @@
                         android:id="@+id/tv_ory"
                         style="@style/TextViewStyleContentHomePageSection"
                         android:layout_width="0dp"
-                        android:layout_marginStart="72dp"
+                        android:layout_marginStart="68dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:text="ОРУ"
                         android:textSize="22sp"
+                        android:background="@drawable/background_item_tr_parameter"
+                        android:paddingVertical="4dp"
+                        android:paddingHorizontal="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_ory_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -242,8 +245,8 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageView10"
                         android:layout_width="44dp"
-                        android:layout_height="28dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/vl_1"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_ory"
@@ -253,8 +256,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_ory_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/baseline_info_outline_24"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_ory"
@@ -267,7 +270,7 @@
                         layout="@layout/content_layout_ory"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/shapeableImageView10"
                         app:layout_constraintTop_toBottomOf="@+id/shapeableImageView10" />
@@ -276,11 +279,14 @@
                         android:id="@+id/tv_tsn"
                         style="@style/TextViewStyleContentHomePageSection"
                         android:layout_width="0dp"
-                        android:layout_marginStart="72dp"
+                        android:layout_marginStart="68dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
                         android:text="ТСН"
                         android:textSize="22sp"
+                        android:background="@drawable/background_item_tr_parameter"
+                        android:paddingVertical="4dp"
+                        android:paddingHorizontal="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_tsn_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/content_ory" />
@@ -288,8 +294,8 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageViewTsn"
                         android:layout_width="44dp"
-                        android:layout_height="28dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/tsn"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_tsn"
@@ -299,8 +305,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_tsn_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/baseline_info_outline_24"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_tsn"
@@ -313,7 +319,7 @@
                         layout="@layout/content_layout_tsn"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/shapeableImageViewTsn"
                         app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewTsn" />
@@ -360,11 +366,14 @@
                         android:id="@+id/tv_switchgear"
                         style="@style/TextViewStyleContentHomePageSection"
                         android:layout_width="0dp"
-                        android:layout_marginStart="72dp"
+                        android:layout_marginStart="68dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="8dp"
-                        android:text="Силовые сборки и распределительные уст-ва"
+                        android:text="Силовые сборки и распред. уст-ва"
                         android:textSize="18sp"
+                        android:background="@drawable/background_item_tr_parameter"
+                        android:paddingVertical="6dp"
+                        android:paddingHorizontal="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_switchgear_info"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/layout_tg" />
@@ -372,8 +381,8 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageViewSwitchgear"
                         android:layout_width="44dp"
-                        android:layout_height="28dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/electrical_assembly"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_switchgear"
@@ -383,8 +392,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_switchgear_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/baseline_info_outline_24"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_switchgear"
@@ -398,29 +407,69 @@
                         android:layout_width="0dp"
                         android:layout_marginTop="8dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/shapeableImageViewSwitchgear"
                         app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewSwitchgear" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_mechanism_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/shift_schedule_note_time_background"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+                            app:srcCompat="@drawable/mechanism_1" />
+
+                        <TextView
+                            style="@style/TextViewStyleContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="Механизмы"
+                            android:textColor="@color/calendar_background"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_el_motor"
                         style="@style/TextViewStyleContentHomePageSection"
                         android:layout_width="0dp"
-                        android:layout_marginStart="72dp"
+                        android:layout_marginStart="68dp"
                         android:layout_marginTop="40dp"
                         android:layout_marginEnd="8dp"
                         android:text="Электрические двигатели"
                         android:textSize="18sp"
+                        android:background="@drawable/background_item_tr_parameter"
+                        android:paddingVertical="6dp"
+                        android:paddingHorizontal="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_el_motor_info"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/content_switchgear" />
+                        app:layout_constraintTop_toBottomOf="@+id/layout_mechanism_info" />
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageViewElMotor"
                         android:layout_width="44dp"
-                        android:layout_height="28dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="12dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/motor_5"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_el_motor"
@@ -430,8 +479,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/iv_el_motor_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:layout_marginEnd="16dp"
                         android:src="@drawable/baseline_info_outline_24"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_el_motor"
@@ -443,7 +492,7 @@
                         android:id="@+id/rv_el_motor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="56dp"
+                        android:layout_marginStart="48dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

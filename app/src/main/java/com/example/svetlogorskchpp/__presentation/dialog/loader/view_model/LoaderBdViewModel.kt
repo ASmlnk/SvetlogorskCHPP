@@ -31,6 +31,12 @@ class LoaderBdViewModel @Inject constructor(
         }
     }
 
+    fun loaderMechanismInfo() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateFirebaseUseCases.loaderMechanismInfoInFd()
+        }
+    }
+
     fun reservationFirebase() {
         viewModelScope.launch(Dispatchers.IO) {
             updateFirebaseUseCases.reservationFirebase()

@@ -7,11 +7,11 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoEntity
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.ElMotorRepositoryImpl
-import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.LightingAndOtherRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.SwitchgearRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseDataRepository
@@ -38,12 +38,10 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.ConsumerUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentElMotorChapterUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsListUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCasesImpl
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentConsumerUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentPowerSupplyUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentConsumerUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentPowerSupplyUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.item.electrical.EquipmentElMotorUseCasesImpl
@@ -62,8 +60,7 @@ import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentSwitchgearListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentTransformerOwnNeedsListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.equipments.list.electrical.EquipmentTurboGeneratorListUseCasesImpl
-import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb.UpdateFirebaseUseCasesImpl
+import com.example.svetlogorskchpp.__domain.usecases.equipments.list.mechanical.EquipmentMechanismInfoListUseCasesImpl
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCases
 import com.example.svetlogorskchpp.__domain.usecases.update_locale_base.UpdateLocaleBaseUseCasesImpl
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -269,6 +266,7 @@ class UseCaseEquipmentModule {
         repositorySwitchgear: EquipmentRepository<SwitchgearEntity>,
         repositoryLightingAndOther: EquipmentRepository<LightingAndOtherEntity>,
         noteRequestWorkRepository: NoteRequestWorkRepository,
+        mechanismInfoRepository: EquipmentRepository<MechanismInfoEntity>
     ): UpdateLocaleBaseUseCases {
         return UpdateLocaleBaseUseCasesImpl(
             repositoryOpenSwitchgearVlRepository,
@@ -278,7 +276,8 @@ class UseCaseEquipmentModule {
             repositoryElMotor,
             repositorySwitchgear,
             repositoryLightingAndOther,
-            noteRequestWorkRepository
+            noteRequestWorkRepository,
+            mechanismInfoRepository
         )
     }
 
@@ -294,6 +293,7 @@ class UseCaseEquipmentModule {
         tsnUseCases: EquipmentTransformerOwnNeedsListUseCasesImpl,
         powerSupplyUseCases: EquipmentPowerSupplyUseCases,
         consumerUseCases: EquipmentConsumerUseCases,
+        miUseCases: EquipmentMechanismInfoListUseCasesImpl
     ): EquipmentAllUseCases {
         return EquipmentAllUseCasesImpl(
             vlUseCases,
@@ -304,7 +304,8 @@ class UseCaseEquipmentModule {
             tgUseCases,
             tsnUseCases,
             powerSupplyUseCases,
-            consumerUseCases
+            consumerUseCases,
+            miUseCases
         )
     }
 

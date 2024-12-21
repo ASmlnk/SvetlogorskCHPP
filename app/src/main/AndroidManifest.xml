@@ -3,23 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/icon_tec_7_ov"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/icon_tec_7_ov"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.SvetlogorskCHPP"
         tools:targetApi="31">
+        <activity
+            android:name=".compose.MainActivityCompose"
+            android:exported="false"
+            android:label="@string/title_activity_main_compose"
+            android:theme="@style/Theme.SvetlogorskCHPP" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -45,26 +49,23 @@
                 android:resource="@xml/shift_schedule_widget_info" />
         </receiver>
 
-        <service android:name=".__widget.service.MyRemoteAllShiftViewService"
-            android:permission="android.permission.BIND_REMOTEVIEWS">
-        </service>
-
-        <service android:name=".__widget.service.MyRemoteOneShiftViewService"
-            android:permission="android.permission.BIND_REMOTEVIEWS">
-        </service>
+        <service
+            android:name=".__widget.service.MyRemoteAllShiftViewService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
+        <service
+            android:name=".__widget.service.MyRemoteOneShiftViewService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
 
         <activity
             android:name=".__widget.ShiftScheduleWidgetConfigureActivity"
+            android:exported="true"
             android:launchMode="singleInstance"
             android:screenOrientation="fullSensor"
-            android:exported="true"
             tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-
             </intent-filter>
         </activity>
-
         <activity
             android:name=".__presentation.activity.MainActivity"
             android:exported="true"
@@ -74,6 +75,7 @@
             android:windowSoftInputMode="stateVisible|adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -82,7 +84,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

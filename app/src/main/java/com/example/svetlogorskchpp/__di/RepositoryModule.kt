@@ -20,6 +20,8 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.transfor
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoDao
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoEntity
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
@@ -27,15 +29,17 @@ import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumer
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentSubMechanismRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.ElMotorRepositoryImpl
-import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.LightingAndOtherRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearTrEquipmentRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.OpenSwitchgearVlEquipmentRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.SwitchgearRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.TransformerOwnNeedsRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.equipment.electrical.TurboGeneratorRepositoryImpl
+import com.example.svetlogorskchpp.__data.repository.equipment.mechanical.MechanismInfoRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseRepositoryImpl
 import com.example.svetlogorskchpp.__data.repository.preferences.EditAccessPreferencesRepository
@@ -292,6 +296,26 @@ class RepositoryModule {
 
     @Provides
     @Singleton
+    fun provideMechanismInfoRepository(
+        dao: MechanismInfoDao,
+        firebaseJsonRepository: FirebaseRepositoryImpl,
+        reservationSaveFileRepository: ReservationSaveFileRepository
+    ) : EquipmentRepository<MechanismInfoEntity> {
+        return MechanismInfoRepositoryImpl (dao, firebaseJsonRepository, reservationSaveFileRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMechanismInfoSubMechanismRepository(
+        dao: MechanismInfoDao,
+        firebaseJsonRepository: FirebaseRepositoryImpl,
+        reservationSaveFileRepository: ReservationSaveFileRepository
+    ): EquipmentSubMechanismRepository<MechanismInfoEntity> {
+        return MechanismInfoRepositoryImpl (dao, firebaseJsonRepository, reservationSaveFileRepository)
+    }
+
+    @Provides
+    @Singleton
     @ElMotor
     fun provideElMotorUpdateFirabaseRepository(
         dao: ElMotorDao,
@@ -369,6 +393,17 @@ class RepositoryModule {
 
     @Provides
     @Singleton
+    @MechanInfo
+    fun provideMechanismInfoUpdateRepository(
+        dao: MechanismInfoDao,
+        firebaseJsonRepository: FirebaseRepositoryImpl,
+        reservationSaveFileRepository: ReservationSaveFileRepository
+    ) : EquipmentUpdateFirebaseRepository {
+        return MechanismInfoRepositoryImpl (dao, firebaseJsonRepository, reservationSaveFileRepository)
+    }
+
+    @Provides
+    @Singleton
     @ElMotorDel
     fun provideElMotorItemDeleteFirabaseRepository(
         dao: ElMotorDao,
@@ -402,11 +437,33 @@ class RepositoryModule {
 
     @Provides
     @Singleton
+    @MechanInfo
+    fun provideMechanismInfoDeleteRepository(
+        dao: MechanismInfoDao,
+        firebaseJsonRepository: FirebaseRepositoryImpl,
+        reservationSaveFileRepository: ReservationSaveFileRepository
+    ): EquipmentItemDeleteRepository {
+        return MechanismInfoRepositoryImpl(dao, firebaseJsonRepository, reservationSaveFileRepository)
+    }
+
+
+    @Provides
+    @Singleton
     fun provideElMotorChapterRepository(
          dao: ElMotorDao,
          firebaseBigJsonRepository: FirebaseBigJsonRepository,
          reservationSaveFileRepository: ReservationSaveFileRepository
     ): EquipmentElMotorChapterRepository {
+        return ElMotorRepositoryImpl(dao,firebaseBigJsonRepository,reservationSaveFileRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideElMotorSubMechanismRepository(
+        dao: ElMotorDao,
+        firebaseBigJsonRepository: FirebaseBigJsonRepository,
+        reservationSaveFileRepository: ReservationSaveFileRepository
+    ): EquipmentSubMechanismRepository<ElMotorEntity> {
         return ElMotorRepositoryImpl(dao,firebaseBigJsonRepository,reservationSaveFileRepository)
     }
 
@@ -451,3 +508,7 @@ annotation class Tg
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class Tsn
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MechanInfo

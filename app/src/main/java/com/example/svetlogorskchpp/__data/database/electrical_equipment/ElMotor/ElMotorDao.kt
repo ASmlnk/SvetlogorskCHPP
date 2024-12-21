@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -27,6 +26,9 @@ interface ElMotorDao {
 
     @Query("SELECT * FROM el_motor WHERE powSuId = :id")
     fun getItemEntityConsumerFlow(id: String): Flow<List<ElMotorEntity>>
+
+    @Query("SELECT * FROM el_motor WHERE mecInfoId = :id")
+    fun getItemEntityMechanismInfoFlow(id: String): Flow<List<ElMotorEntity>>
 
     @Query("DELETE FROM el_motor")
     suspend fun clearTable()

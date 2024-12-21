@@ -2,7 +2,6 @@ package com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
 
 @Entity(tableName = "el_motor")
 data class ElMotorEntity(
@@ -34,5 +33,8 @@ data class ElMotorEntity(
     val mecN: String,
     val mecH: String? ,
     val mecPowN: String? ,
-    val mecAddit: String?
+    val mecAddit: String?,
+
+    val mecInfoId: String?,
+    val mecInfoName: String?
 )

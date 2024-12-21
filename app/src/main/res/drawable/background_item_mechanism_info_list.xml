@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Верхняя обводка -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="5dp"
+                android:color="#C7E6E9" />
+            <corners
+                android:bottomLeftRadius="18dp"
+                android:bottomRightRadius="18dp"
+                android:topLeftRadius="18dp"
+                android:topRightRadius="18dp" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <item android:top="4dp">
+        <shape
+            android:shape="rectangle"
+            android:thickness="0dp">
+
+            <corners
+                android:bottomLeftRadius="18dp"
+                android:bottomRightRadius="18dp"
+                android:topLeftRadius="18dp"
+                android:topRightRadius="18dp" />
+            <gradient
+                android:angle="315"
+                android:centerColor="#7CA0AC"
+                android:endColor="#3B6075"
+                android:startColor="#436D7E" />
+        </shape>
+    </item>
+</layer-list>

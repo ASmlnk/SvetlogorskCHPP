@@ -38,6 +38,9 @@ class LoaderBdDialog: BaseBottomSheetDialog<DialogLoaderLocaleFbBinding>() {
             bSwitchgear.setOnClickListener{
                 viewModel.loaderSwitchgearInFb()
             }
+            bMechanismInfo.setOnClickListener {
+                viewModel.loaderMechanismInfo()
+            }
             bReserved.setOnClickListener{
                 viewModel.reservationFirebase()
             }
@@ -61,6 +64,9 @@ class LoaderBdDialog: BaseBottomSheetDialog<DialogLoaderLocaleFbBinding>() {
             }
             bAddSwitchgear.setOnClickListener {
                 findNavController().navigate(R.id.action_loaderBdDialog_to_switchgearOwnNeedsEditFragment)
+            }
+            bAddMechanismInfo.setOnClickListener {
+                findNavController().navigate(R.id.action_loaderBdDialog_to_mechanismInfoFragment)
             }
         }
     }

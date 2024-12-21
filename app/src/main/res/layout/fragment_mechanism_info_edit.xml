@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextViewStyleHeading"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/mechanism_info_title" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_update"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:tint="@color/text_recycle_smile"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="2dp"
+                android:src="@drawable/baseline_wifi_protected_setup_24"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/name_mechanism"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/name"
+            android:imeOptions="flagNoEnterAction"
+            android:inputType="textMultiLine|text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/info"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_info"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints="name"
+            android:hint="@string/info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextViewStyleContent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/additionally"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_additionally"
+            style="@style/EditTestStyleElectricalEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="name"
+            android:hint="@string/additionally"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_general_category"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shift_schedule_compound_shift_inspection"
+            android:dropDownWidth="166dp"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:popupBackground="@drawable/background_spinner"
+            android:spinnerMode="dropdown" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_save"
+            style="@style/ButtonStyleRequestWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="620dp"
+            android:text="@string/apply" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

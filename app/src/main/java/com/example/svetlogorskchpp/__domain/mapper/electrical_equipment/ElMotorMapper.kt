@@ -8,7 +8,6 @@ import com.example.svetlogorskchpp.__domain.model.electrical_equipment.ElMotor
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
-import kotlin.String
 
 class ElMotorMapper @Inject constructor() {
 
@@ -48,6 +47,8 @@ class ElMotorMapper @Inject constructor() {
                 mechanismH = mecH?:"",
                 mechanismPowerN = mecPowN?:"",
                 mechanismAdditionally = mecAddit?:"",
+                mechanismInfoId = mecInfoId?:"",
+                mechanismInfoName = mecInfoName?:""
             )
         }
     }
@@ -84,6 +85,8 @@ class ElMotorMapper @Inject constructor() {
                 mecH = mechanismH,
                 mecPowN = mechanismPowerN,
                 mecAddit = mechanismAdditionally,
+                mecInfoId = mechanismInfoId,
+                mecInfoName = mechanismInfoName
             )
         }
     }

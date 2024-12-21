@@ -72,6 +72,10 @@ class HomePageFragment : BaseFragment<FragmentHomePageBinding>() {
                 //findNavController().navigate(R.id.action_homePageFragment_to_switchgearOwnNeedsListFragment)
             }
 
+            layoutMechanismInfo.setOnClickListener {
+                findNavController().navigate(R.id.action_homePageFragment_to_mechanismInfoListFragment)
+            }
+
             swipeRefreshLayout.setOnRefreshListener {
                 lifecycleScope.launch {
                     viewModel.updateLocaleBase()

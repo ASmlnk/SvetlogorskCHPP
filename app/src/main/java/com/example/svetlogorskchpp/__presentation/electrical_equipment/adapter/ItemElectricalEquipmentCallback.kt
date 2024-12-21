@@ -23,6 +23,7 @@ class ItemElectricalEquipmentCallback: DiffUtil.ItemCallback<ElectricalEquipment
             oldItem is ElectricalEquipment.Switchgear && newItem is ElectricalEquipment.Switchgear -> oldItem.id == newItem.id
             oldItem is ElectricalEquipment.ElMotor && newItem is ElectricalEquipment.ElMotor -> oldItem.id == newItem.id
             oldItem is ElectricalEquipment.LightOther && newItem is ElectricalEquipment.LightOther -> oldItem.id == newItem.id
+            oldItem is ElectricalEquipment.MechanismInfo && newItem is ElectricalEquipment.MechanismInfo -> oldItem.id == newItem.id
 
             else -> false
         }

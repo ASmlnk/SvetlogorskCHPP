@@ -2,9 +2,9 @@ package com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.d
 
 import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
-import com.example.svetlogorskchpp.__di.ElMotor
 import com.example.svetlogorskchpp.__di.ElMotorDel
 import com.example.svetlogorskchpp.__di.LightingAndOther
+import com.example.svetlogorskchpp.__di.MechanInfo
 import com.example.svetlogorskchpp.__di.Switchgear
 import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.usecases.NetworkAvailableUseCase
@@ -15,6 +15,7 @@ class EquipmentsItemDeleteUseCasesImpl @Inject constructor(
     @ElMotorDel private val elMotorRepository: EquipmentItemDeleteRepository,
     @Switchgear private val switchgearRepository: EquipmentItemDeleteRepository,
     @LightingAndOther private val lightingAndOtherRepository: EquipmentItemDeleteRepository,
+    @MechanInfo private val miRepository: EquipmentItemDeleteRepository,
     private val networkUseCases: NetworkAvailableUseCase
 ): EquipmentsItemDeleteUseCases {
 
@@ -29,6 +30,7 @@ class EquipmentsItemDeleteUseCasesImpl @Inject constructor(
                 is ElectricalEquipment.Tr -> SuccessResultFirebase.UPDATE_ERROR
                 is ElectricalEquipment.Tsn -> SuccessResultFirebase.UPDATE_ERROR
                 is ElectricalEquipment.Vl -> SuccessResultFirebase.UPDATE_ERROR
+                is ElectricalEquipment.MechanismInfo -> miRepository.deleteItem(item.id)
             }
 
             when (resultRepository) {

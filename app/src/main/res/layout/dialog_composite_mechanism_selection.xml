@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shift_schedule_dialog_sorted_background"
+    android:orientation="vertical"
+    tools:context=".__presentation.shift_schedule.shift_schedule_calendar.dialog.ShiftScheduleStaffDialog">
+
+    <TextView
+        android:id="@+id/tvNameDialog"
+        style="@style/TextViewStyleContent"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/power_supply"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_filter_all"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="wrap_content"
+            android:background="#00214763"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tg"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tg" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ka"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ka" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ktc_to"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ktc_to" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ktc_ko"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ktc_ko" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hc"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hc" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ktc_ty"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ktc_ty" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_other"
+                style="@style/ChipShiftSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..." />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/text_recycle_smile"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filter_closed" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_calendar_month_prev"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="3" />
+
+</LinearLayout>

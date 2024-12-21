@@ -7,5 +7,6 @@ enum class DeepLink(val link: String) {
     TG("myapp://myDialogTgDeepLink/"),
     SWITCHGEAR("myapp://myDialogSwitchgearDeepLink/"),
     EL_MOTOR("myapp://myDialogElMotorDeepLink/"),
-    LIGHTING_AND_OTHER("myapp://myDialogLightingAndOtherDeepLink/")
+    LIGHTING_AND_OTHER("myapp://myDialogLightingAndOtherDeepLink/"),
+    MECHANISM_INFO("myapp://myDialogMechanismInfoDeepLink/")
 }

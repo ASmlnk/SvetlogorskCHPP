@@ -8,6 +8,8 @@ import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumer
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentElMotorChapterRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentSubMechanismRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers
@@ -18,11 +20,12 @@ import javax.inject.Inject
 class ElMotorRepositoryImpl @Inject constructor(
     private val dao: ElMotorDao,
     private val firebaseBigJsonRepository: FirebaseBigJsonRepository,
-    private val reservationSaveFileRepository: ReservationSaveFileRepository
+    private val reservationSaveFileRepository: ReservationSaveFileRepository,
 ) : EquipmentRepository<ElMotorEntity>, EquipmentConsumerRepository<ElMotorEntity>,
-    EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository, EquipmentElMotorChapterRepository {
+    EquipmentUpdateFirebaseRepository, EquipmentItemDeleteRepository,
+    EquipmentElMotorChapterRepository, EquipmentSubMechanismRepository<ElMotorEntity> {
 
-        override suspend fun saveItemOpenEquipment(itemEntity: ElMotorEntity): SuccessResultFirebase {
+    override suspend fun saveItemOpenEquipment(itemEntity: ElMotorEntity): SuccessResultFirebase {
         val dataFirebase = firebaseBigJsonRepository.getDocuments<ElMotorEntity>(
             FirebaseKey.COLLECTION_ELECTRICAL_EQUIPMENT,
             FirebaseKey.DOCUMENT_EL_MOTOR,
@@ -30,7 +33,7 @@ class ElMotorRepositoryImpl @Inject constructor(
         ).toMutableList()
 
         val itemId = itemEntity.id
-        dataFirebase.removeIf {it.id == itemId}
+        dataFirebase.removeIf { it.id == itemId }
 
         dataFirebase.add(itemEntity)
         val resultInsert = firebaseBigJsonRepository.insertDocuments(
@@ -85,7 +88,7 @@ class ElMotorRepositoryImpl @Inject constructor(
         searchQuery: String,
         prefixQuery: String,
     ): Flow<List<ElMotorEntity>> {
-        return dao.getSearchItems(searchQuery,prefixQuery)
+        return dao.getSearchItems(searchQuery, prefixQuery)
     }
 
     override fun getItemEntityConsumerFlow(id: String): Flow<List<ElMotorEntity>> {
@@ -184,5 +187,9 @@ class ElMotorRepositoryImpl @Inject constructor(
 
     override fun getElMotorGenCategory(generalCategory: String): Flow<List<ElMotorEntity>?> {
         return dao.getElMotorGenCategory(generalCategory)
+    }
+
+    override fun getItemsEntitySubMechanismFlow(id: String): Flow<List<ElMotorEntity>> {
+        return dao.getItemEntityMechanismInfoFlow(id)
     }
 }

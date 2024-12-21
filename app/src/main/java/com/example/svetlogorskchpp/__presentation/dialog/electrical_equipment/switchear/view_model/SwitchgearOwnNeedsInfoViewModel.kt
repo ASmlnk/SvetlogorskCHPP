@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.Switchgear
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.SwitchgearOwnNeedsInfoViewModelFactory
@@ -14,17 +14,10 @@ import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.Ele
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 

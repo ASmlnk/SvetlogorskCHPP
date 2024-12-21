@@ -41,6 +41,7 @@ class MainActivityViewModel @Inject constructor(
             updateElMotor()
             updateLightingAndOther()
             equalsEditAccess()
+            updateMechanismInfo()
         }
     }
 
@@ -92,6 +93,12 @@ class MainActivityViewModel @Inject constructor(
     private fun equalsEditAccess() {
         viewModelScope.launch{
             accessUseCases.equalsEditAccessPrefFb()
+        }
+    }
+
+    private fun updateMechanismInfo() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateLocaleBaseUseCases.updateMechanismInfo()
         }
     }
 

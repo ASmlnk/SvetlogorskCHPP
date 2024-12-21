@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_searchElectricalFragment"
             app:destination="@id/searchElectricalFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_mechanismInfoListFragment"
+            app:destination="@id/mechanismInfoListFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSwitchgearVlEditFragment"
@@ -303,6 +306,9 @@
         <action
             android:id="@+id/action_loaderBdDialog_to_switchgearOwnNeedsEditFragment"
             app:destination="@id/switchgearOwnNeedsEditFragment" />
+        <action
+            android:id="@+id/action_loaderBdDialog_to_mechanismInfoFragment"
+            app:destination="@id/mechanismInfoFragment" />
     </dialog>
     <fragment
         android:id="@+id/switchgearOwnNeedsListFragment"
@@ -394,6 +400,9 @@
         <action
             android:id="@+id/action_elMotorEditFragment_to_powerSupplySelectionDialog"
             app:destination="@id/powerSupplySelectionDialog" />
+        <action
+            android:id="@+id/action_elMotorEditFragment_to_compositeMechanismSelectionDialog"
+            app:destination="@id/compositeMechanismSelectionDialog" />
     </fragment>
     <dialog
         android:id="@+id/lightingAndOtherDialog"
@@ -443,5 +452,41 @@
         android:id="@+id/searchElectricalFragment"
         android:name="com.example.svetlogorskchpp.__presentation.electrical_equipment.search.fragment.SearchElectricalFragment"
         android:label="SearchElectricalFragment" />
+    <fragment
+        android:id="@+id/mechanismInfoFragment"
+        android:name="com.example.svetlogorskchpp.__presentation.equipment.mechanism_info.edit.fragment.MechanismInfoEditFragment"
+        tools:layout="@layout/fragment_mechanism_info_edit"
+        android:label="MechanismInfoFragment" >
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+    <dialog
+        android:id="@+id/mechanismInfoDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.mechanical_equipment.mechanism_info.fragment.MechanismInfoDialog"
+        tools:layout="@layout/dialog_equipment_mechanism_info"
+        android:label="MechanismInfoDialog" >
+        <deepLink
+            android:id="@+id/myDialogMechanismInfoDeepLink"
+            app:uri = "myapp://myDialogMechanismInfoDeepLink/{id}"/>
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mechanismInfoDialog_to_mechanismInfoFragment"
+            app:destination="@id/mechanismInfoFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/compositeMechanismSelectionDialog"
+        android:name="com.example.svetlogorskchpp.__presentation.dialog.mechanical_equipment.composit_mechanism_selection.fragment.CompositeMechanismSelectionDialog"
+        tools:layout="@layout/dialog_composite_mechanism_selection"
+        android:label="CompositeMechanismSelectionDialog" />
+    <fragment
+        android:id="@+id/mechanismInfoListFragment"
+        tools:layout="@layout/fragment_mechanism_info_list"
+        android:name="com.example.svetlogorskchpp.__presentation.equipment.mechanism_info.list.fragment.MechanismInfoListFragment"
+        android:label="MechanismInfoListFragment" />
 
 </navigation>

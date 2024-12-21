@@ -37,7 +37,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/img_20"
+
                     app:strokeColor="@color/text_recycle_smile"
                     app:strokeWidth="0dp" />
 

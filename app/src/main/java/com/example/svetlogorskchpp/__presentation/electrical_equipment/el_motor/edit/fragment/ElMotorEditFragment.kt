@@ -104,11 +104,21 @@ class ElMotorEditFragment : BaseEditFragment<FragmentElMotorEditBinding>() {
             bAddPowerSupply.setOnClickListener {
                 findNavController().navigate(R.id.action_elMotorEditFragment_to_powerSupplySelectionDialog)
             }
+            bAddMechanismInfo.setOnClickListener {
+                findNavController().navigate(R.id.action_elMotorEditFragment_to_compositeMechanismSelectionDialog)
+            }
             ivDeletePowerSupply.setOnClickListener {
                 val state = saveEditText().copy(
                     powerSupplyId = "",
                     powerSupplyName = "",
                     powerSupplyCell = ""
+                )
+                viewModel.saveState(state)
+            }
+            ivDeleteMechanismInfo.setOnClickListener {
+                val state = saveEditText().copy(
+                    mechanismInfoId = "",
+                    mechanismInfoName = "",
                 )
                 viewModel.saveState(state)
             }
@@ -122,6 +132,7 @@ class ElMotorEditFragment : BaseEditFragment<FragmentElMotorEditBinding>() {
         }
 
         listenerPowerSupply()
+        listenerMechanismInfo()
         setupSpinner()
         setupProtectionView(
             binding = includeRzaBinding,
@@ -169,6 +180,7 @@ class ElMotorEditFragment : BaseEditFragment<FragmentElMotorEditBinding>() {
                 etAdditionallyMechanism.setText(mechanismAdditionally)
 
                 tvPowerSupplyName.text = powerSupplyName
+                tvMechanismInfoName.text = mechanismInfoName
                 chipRep.isChecked = isRep
             }
         }
@@ -271,6 +283,19 @@ class ElMotorEditFragment : BaseEditFragment<FragmentElMotorEditBinding>() {
             val selectState = saveEditText().copy(
                 powerSupplyId = id,
                 powerSupplyName = name
+            )
+            viewModel.saveState(selectState)
+        }
+    }
+
+    private fun listenerMechanismInfo() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Pair<String, String>>(
+            "selectedMechanismData"
+        )?.observe(viewLifecycleOwner) { selectedData ->
+            val (id, name) = selectedData
+            val selectState = saveEditText().copy(
+                mechanismInfoId = id,
+                mechanismInfoName = name
             )
             viewModel.saveState(selectState)
         }

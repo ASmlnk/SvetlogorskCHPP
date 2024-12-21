@@ -3,7 +3,7 @@ package com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.p
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.model.PSFilter
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.hilt.android.lifecycle.HiltViewModel

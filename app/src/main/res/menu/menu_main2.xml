@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="@string/electric_equipment_small"
+        android:enabled="true"
+        android:icon="@drawable/baseline_bolt_24"/>
+
+    <item
+        android:id="@+id/electricMotorFragment"
+        android:title="@string/electric_motors"
+        android:enabled="true"
+        android:icon="@drawable/electric_motor_2479547"/>
+
+    <item
+        android:id="@+id/electricalAssemblyFragment"
+        android:title="@string/electrical_assembly"
+        android:enabled="true"
+        android:icon="@drawable/high_voltage_8107242"/>
+
+    <item
+        android:id="@+id/inspection"
+        android:title="График"
+        android:enabled="true"
+        android:icon="@drawable/free_icon_calendar1"/>
+    <item
+        android:id="@+id/shiftScheduleGraph"
+        android:title="Смена"
+        android:enabled="true"
+        android:icon="@drawable/baseline_supervisor_account_24"/>
+
+</menu>

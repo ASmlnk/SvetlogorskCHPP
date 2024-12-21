@@ -1,8 +1,9 @@
 package com.example.svetlogorskchpp.__domain.usecases.equipments.update_fb
 
-import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__di.ElMotor
 import com.example.svetlogorskchpp.__di.LightingAndOther
+import com.example.svetlogorskchpp.__di.MechanInfo
 import com.example.svetlogorskchpp.__di.Switchgear
 import com.example.svetlogorskchpp.__di.Tg
 import com.example.svetlogorskchpp.__di.Tr
@@ -18,7 +19,8 @@ class UpdateFirebaseUseCasesImpl @Inject constructor(
     @Tr private val trRepository: EquipmentUpdateFirebaseRepository,
     @Tsn private val tsnRepository: EquipmentUpdateFirebaseRepository,
     @Tg private val tgRepository: EquipmentUpdateFirebaseRepository,
-): UpdateFirebaseUseCases {
+    @MechanInfo private val miRepository: EquipmentUpdateFirebaseRepository,
+) : UpdateFirebaseUseCases {
     override suspend fun loaderElMotorInFb() {
         elMotorRepository.loadingLocaleInFirebase()
     }
@@ -29,6 +31,10 @@ class UpdateFirebaseUseCasesImpl @Inject constructor(
 
     override suspend fun loaderLightingAndOtherInFb() {
         lightingAndOtherRepository.loadingLocaleInFirebase()
+    }
+
+    override suspend fun loaderMechanismInfoInFd() {
+        miRepository.loadingLocaleInFirebase()
     }
 
     override suspend fun reservationFirebase() {

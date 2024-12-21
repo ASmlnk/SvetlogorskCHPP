@@ -104,7 +104,7 @@
                     android:layout_width="41dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/images"
+
                     app:layout_constraintBottom_toBottomOf="@+id/textTitleName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textTitleName" />

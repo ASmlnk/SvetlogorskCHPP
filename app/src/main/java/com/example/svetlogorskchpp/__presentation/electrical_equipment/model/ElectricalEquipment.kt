@@ -10,6 +10,7 @@ sealed class ElectricalEquipment {
 
     abstract fun name(): String
     abstract fun cell(): Int
+    abstract fun fplFilter(): Boolean
     abstract val isDelete: Boolean
 
     data class Vl(
@@ -29,6 +30,10 @@ sealed class ElectricalEquipment {
 
         override fun cell(): Int {
             return cell
+        }
+
+        override fun fplFilter(): Boolean {
+            return false
         }
     }
 
@@ -51,6 +56,10 @@ sealed class ElectricalEquipment {
         override fun cell(): Int {
             return nameNumber
         }
+
+        override fun fplFilter(): Boolean {
+            return false
+        }
     }
 
     data class Tsn(
@@ -59,6 +68,7 @@ sealed class ElectricalEquipment {
         val isSpare: Boolean,
         val type: String,
         val typeParameter: String,
+        val powerSupplyId: String,
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val nameNumber: Int,
@@ -74,6 +84,10 @@ sealed class ElectricalEquipment {
             val regex = "\\d+".toRegex()
             val match = regex.find(powerSupplyCell)
             return match?.value?.toInt() ?: 0
+        }
+
+        override fun fplFilter(): Boolean {
+            return powerSupplyId.isEmpty()
         }
     }
 
@@ -96,6 +110,10 @@ sealed class ElectricalEquipment {
         override fun cell(): Int {
             return nameNumber
         }
+
+        override fun fplFilter(): Boolean {
+            return false
+        }
     }
 
     data class ElMotor(
@@ -106,6 +124,7 @@ sealed class ElectricalEquipment {
         val powerEl: String,
         val voltage: Voltage,
         val i: String,
+        val powerSupplyId: String,
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val cell: Int,
@@ -120,6 +139,10 @@ sealed class ElectricalEquipment {
         override fun cell(): Int {
             return cell
         }
+
+        override fun fplFilter(): Boolean {
+            return powerSupplyId.isEmpty()
+        }
     }
 
     data class Switchgear(
@@ -130,6 +153,7 @@ sealed class ElectricalEquipment {
         val voltage: Voltage,
         override val isDelete: Boolean = false,
         val deepLink: DeepLink = DeepLink.SWITCHGEAR,
+        val isPowerSupplyId: Boolean,
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val cell: Int,
@@ -141,11 +165,16 @@ sealed class ElectricalEquipment {
         override fun cell(): Int {
             return cell
         }
+
+        override fun fplFilter(): Boolean {
+            return isPowerSupplyId
+        }
     }
 
     data class LightOther(
         val id: String,
         val name: String,
+        val powerSupplyId: String,
         val powerSupplyName: String,
         val powerSupplyCell: String,
         val isLighting: Boolean,
@@ -159,6 +188,30 @@ sealed class ElectricalEquipment {
 
         override fun cell(): Int {
             return cell
+        }
+
+        override fun fplFilter(): Boolean {
+            return powerSupplyId.isEmpty()
+        }
+    }
+
+    data class MechanismInfo(
+        val id: String,
+        val name: String,
+        val category: ElGeneralCategory,
+        override val isDelete: Boolean = false,
+        val deepLink: DeepLink = DeepLink.MECHANISM_INFO
+    ): ElectricalEquipment() {
+        override fun name(): String {
+            return name
+        }
+
+        override fun cell(): Int {
+            return 0
+        }
+
+        override fun fplFilter(): Boolean {
+            return false
         }
     }
 }

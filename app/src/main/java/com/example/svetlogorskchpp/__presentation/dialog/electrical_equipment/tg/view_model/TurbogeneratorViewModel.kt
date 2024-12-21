@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.TurboGenerator
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.BaseEquipmentDialogViewModel
 import com.example.svetlogorskchpp.__presentation.dialog.electrical_equipment.factory.TurbogeneratorViewModelFactory

@@ -27,4 +27,6 @@ data class ElMotorEditUIState(
     val mechanismH: String = "",
     val mechanismPowerN: String = "",
     val mechanismAdditionally: String = "",
+    val mechanismInfoId: String = "",
+    val mechanismInfoName: String = ""
 )

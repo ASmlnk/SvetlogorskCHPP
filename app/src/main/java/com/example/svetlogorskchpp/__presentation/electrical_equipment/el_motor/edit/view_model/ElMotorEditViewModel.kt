@@ -66,7 +66,9 @@ class ElMotorEditViewModel @AssistedInject constructor(
                                 mechanismN = mechanismN,
                                 mechanismH = mechanismH,
                                 mechanismPowerN = mechanismPowerN,
-                                mechanismAdditionally = mechanismAdditionally
+                                mechanismAdditionally = mechanismAdditionally,
+                                mechanismInfoId = mechanismInfoId,
+                                mechanismInfoName = mechanismInfoName
                             )
                         }
                         _spinnerUIState.update { oldState ->
@@ -135,6 +137,9 @@ class ElMotorEditViewModel @AssistedInject constructor(
                 mechanismH = mechanismH,
                 mechanismPowerN = mechanismPowerN,
                 mechanismAdditionally = mechanismAdditionally,
+
+                mechanismInfoId = mechanismInfoId,
+                mechanismInfoName = mechanismInfoName
             )
         }
         viewModelScope.launch {

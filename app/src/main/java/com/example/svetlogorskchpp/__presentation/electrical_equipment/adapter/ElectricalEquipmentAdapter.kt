@@ -22,11 +22,13 @@ import android.text.style.ForegroundColorSpan
 import androidx.core.content.ContextCompat
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElAssembly
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElCategory
+import com.example.svetlogorskchpp.__domain.en.electrical_equipment.ElGeneralCategory
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.NameDepartment
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.DeepLink
 import com.example.svetlogorskchpp.databinding.ItemElectricalAsseblyBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentElMotorBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentLightingBinding
+import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentMechanismInfoBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentOtherBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgearBinding
 import com.example.svetlogorskchpp.databinding.ItemElectricalEquipmentSwitchgearLightingBinding
@@ -69,6 +71,8 @@ class ElectricalEquipmentAdapter(
             is ElectricalEquipment.LightOther -> if (item.isLighting) {
                 (holder as LightingHolder).bind(item, onClick, onItemClickDelete)
             } else (holder as OtherHolder).bind(item, onClick, onItemClickDelete)
+
+            is ElectricalEquipment.MechanismInfo -> (holder as MechanismInfoHolder).bind(item, onClick, onItemClickDelete)
         }
     }
 
@@ -83,6 +87,7 @@ class ElectricalEquipmentAdapter(
             6 -> LightingHolder.inflateFrom(parent)
             7 -> OtherHolder.inflateFrom(parent)
             8 -> ElectricalEquipmentSwitchgearLightingHolder.inflateFrom(parent)
+            9 -> MechanismInfoHolder.inflateFrom(parent)
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -102,6 +107,8 @@ class ElectricalEquipmentAdapter(
             is ElectricalEquipment.LightOther -> {
                 if (item.isLighting) 6 else 7
             }
+
+            is ElectricalEquipment.MechanismInfo -> 9
         }
     }
 }
@@ -610,3 +617,42 @@ class OtherHolder(val binding: ItemElectricalEquipmentOtherBinding) :
         }
     }
 }
+
+class MechanismInfoHolder(val binding: ItemElectricalEquipmentMechanismInfoBinding)
+    : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(
+            item: ElectricalEquipment.MechanismInfo,
+            onClick: (deepLink: DeepLink, id: String) -> Unit,
+            onItemClickDelete: ((item: ElectricalEquipment) -> Unit)?,
+        ) {
+            binding.apply {
+                tvName.text = item.name
+                tvGeneralCategory.text = item.category.str
+
+                linearLayout.setOnClickListener {
+                    onClick(item.deepLink, item.id)
+                }
+
+                when(item.category) {
+                    ElGeneralCategory.OTHER -> iv.setImageResource(R.drawable.flash_4049918)
+                    ElGeneralCategory.HOV -> iv.setImageResource(R.drawable.chemistry_class_6837437)
+                    ElGeneralCategory.KTC_TO -> iv.setImageResource(R.drawable.factory_1643683)
+                    ElGeneralCategory.KTC_KO -> iv.setImageResource(R.drawable.free_icon_water_ko)
+                    ElGeneralCategory.TY -> iv.setImageResource(R.drawable.free_icon_oil_tank)
+                    ElGeneralCategory.EC -> iv.setImageResource(R.drawable.flash_4049918)
+                    ElGeneralCategory.KA -> iv.setImageResource(R.drawable.water_boiler)
+                    ElGeneralCategory.RG -> iv.setImageResource(R.drawable.generator_1)
+                }
+            }
+        }
+
+
+        companion object {
+            fun inflateFrom(parentContext: ViewGroup): MechanismInfoHolder {
+                val layoutInflater = LayoutInflater.from(parentContext.context)
+                val binding = ItemElectricalEquipmentMechanismInfoBinding.inflate(layoutInflater, parentContext, false)
+                return MechanismInfoHolder(binding)
+            }
+        }
+    }

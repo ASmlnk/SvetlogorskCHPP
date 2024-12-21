@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.svetlogorskchpp.__data.database.AppDataBase
 import com.example.svetlogorskchpp.__data.database.MIGRATION_10_11
+import com.example.svetlogorskchpp.__data.database.MIGRATION_11_12
 import com.example.svetlogorskchpp.__data.database.MIGRATION_1_2
 import com.example.svetlogorskchpp.__data.database.MIGRATION_2_3
 import com.example.svetlogorskchpp.__data.database.MIGRATION_3_4
@@ -21,6 +22,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorDao
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoDao
 import com.example.svetlogorskchpp.__data.database.note.NoteDao
 import com.example.svetlogorskchpp.__data.database.requestWork.NoteRequestWorkDao
 import com.example.svetlogorskchpp.__data.database.requestWorkTag.RequestWorkTagDao
@@ -53,6 +55,7 @@ class LocaleModule {
             .addMigrations(MIGRATION_8_9)
             .addMigrations(MIGRATION_9_10)
             .addMigrations(MIGRATION_10_11)
+            .addMigrations(MIGRATION_11_12)
             .build()
     }
 
@@ -109,6 +112,11 @@ class LocaleModule {
     @Provides
     fun provideLightingAndOtherDao(dataBase: AppDataBase): LightingAndOtherDao {
         return dataBase.lightingAndOtherDao()
+    }
+
+    @Provides
+    fun provideMechanismInfoDao (dataBase: AppDataBase): MechanismInfoDao {
+        return dataBase.mechanismInfoDao()
     }
 }
 

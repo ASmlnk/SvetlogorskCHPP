@@ -27,6 +27,7 @@ class HomePageViewModel @Inject constructor(
             updateSwitchgear()
             updateElMotor()
             updateLightingAndOther()
+            updateMechanismInfo()
         }
         _uiState.update { false }
     }

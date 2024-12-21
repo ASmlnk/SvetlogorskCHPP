@@ -7,7 +7,7 @@ import com.example.svetlogorskchpp.__domain.OperationResult
 import com.example.svetlogorskchpp.__domain.en.electrical_equipment.EditAccessResult
 import com.example.svetlogorskchpp.__domain.model.electrical_equipment.Switchgear
 import com.example.svetlogorskchpp.__domain.usecases.equipments.EquipmentsUseCases
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.delete.EquipmentsItemDeleteUseCases
 import com.example.svetlogorskchpp.__domain.usecases.equipments.edit_access.EditAccessUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
@@ -151,6 +151,7 @@ class SwitchgearOwnNeedsViewModel @AssistedInject constructor(
                     is ElectricalEquipment.Tr -> item.copy(isDelete = item.isDelete)
                     is ElectricalEquipment.Tsn -> item.copy(isDelete = item.isDelete)
                     is ElectricalEquipment.Vl -> item.copy(isDelete = item.isDelete)
+                    is ElectricalEquipment.MechanismInfo -> item.copy(isDelete = item.isDelete)
                 }
             }
             oldState.copy(listSwitchgear = equipments)

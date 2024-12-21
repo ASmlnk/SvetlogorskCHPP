@@ -1,6 +1,5 @@
 package com.example.svetlogorskchpp.__data.repository.equipment.electrical
 
-import com.example.svetlogorskchpp.__data.database.electrical_equipment.ElMotor.ElMotorEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearDao
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.model.FirebaseKey
@@ -8,6 +7,7 @@ import com.example.svetlogorskchpp.__data.model.SuccessResultFirebase
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentConsumerRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.equipment.ReservationSaveFileRepository
 import com.example.svetlogorskchpp.__data.repository.firebase.FirebaseBigJsonRepository
 import kotlinx.coroutines.Dispatchers

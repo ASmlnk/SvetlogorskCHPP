@@ -4,5 +4,6 @@ interface UpdateFirebaseUseCases {
     suspend fun loaderElMotorInFb()
     suspend fun loaderSwitchgearInFb()
     suspend fun loaderLightingAndOtherInFb()
+    suspend fun loaderMechanismInfoInFd()
     suspend fun reservationFirebase()
 }

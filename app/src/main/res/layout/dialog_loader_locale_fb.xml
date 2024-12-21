@@ -1,122 +1,533 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shift_schedule_dialog_sorted_background"
     android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_el_motor"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:text="загрузка Эл.двигатели" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_switchgear"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="загрузка Сборки" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_lighting"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-
-        android:text="загрузка освещение и др" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_reserved"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
-        android:text="резервирование" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_lighting"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="24dp"
-        android:text="добавить освещение и др" />
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_switchgear"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="добавить сборки" />
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardViewDialogContentStyle"
+            android:layout_width="0dp"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_el_motor"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="добавить эл.двигатели" />
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="6dp"
+            android:background="@color/name_devices_appbar"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/name_devices_appbar"
+            app:strokeWidth="1dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_vl"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="добавить ВЛ" />
+            <LinearLayout
+                android:id="@+id/b_el_motor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@drawable/background_item_el_motor"
+                android:orientation="horizontal"
+                android:padding="14dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_tr"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="добавить ТР" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:src="@drawable/electric_motor_2479547"
+                    app:tint="@color/text_content_rza_2" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_tsn"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="добавить ТСН" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_file_upload_24"
+                    app:tint="@color/text_input_assembly" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/b_add_tg"
-        style="@style/ButtonStyleRequestWorkEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="36dp"
-        android:text="добавить ТГ" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardViewDialogContentStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="6dp"
+            android:background="@color/text_content_rza"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/text_content_rza"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:id="@+id/b_switchgear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@drawable/background_item_switchgear_list"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:src="@drawable/high_voltage_8107242"
+                    app:tint="@color/text_content_rza_2" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_file_upload_24"
+                    app:tint="@color/text_input_assembly" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardViewDialogContentStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="6dp"
+            android:background="@color/text_content_rza"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/text_content_rza"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:id="@+id/b_lighting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@drawable/background_item_other"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:src="@drawable/el_panel"
+                    app:tint="@color/text_content_rza_2" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_file_upload_24"
+                    app:tint="@color/text_input_assembly" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardViewDialogContentStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginVertical="6dp"
+            android:background="@color/text_content_rza"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/text_content_rza"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:id="@+id/b_mechanism_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:background="@drawable/background_item_mechanism_info_list"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:src="@drawable/free_icon_pump"
+                    app:tint="@color/calendar_background" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/baseline_file_upload_24"
+                    app:tint="@color/text_input_assembly" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_dialog_info"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/b_reserved"
+            style="@style/ButtonStyleRequestWorkEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="24dp"
+            app:iconSize="16dp"
+            app:iconTint="@color/delete_background"
+            android:textColor="@color/orange_zero_vision"
+            app:icon="@drawable/free_icon_switch"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="резервирование" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/name_devices_appbar"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/name_devices_appbar"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_el_motor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_el_motor"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="24dp"
+                        android:src="@drawable/electric_motor_2479547"
+                        app:tint="@color/text_input_assembly" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_switchgear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_switchgear_list"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="24dp"
+                        android:src="@drawable/high_voltage_8107242"
+                        app:tint="@color/text_input_assembly" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_lighting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_other"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="24dp"
+                        android:src="@drawable/el_panel"
+                        app:tint="@color/text_input_assembly" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_mechanism_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_mechanism_info_list"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/calendar_background" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="24dp"
+                        android:src="@drawable/free_icon_pump"
+                        app:tint="@color/text_input_assembly" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="64dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/name_devices_appbar"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/name_devices_appbar"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_tg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_tr"
+                    android:orientation="horizontal"
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <TextView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/name_devices_appbar"
+                        style="@style/TextViewStyleContent"
+                        android:text="ТГ"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_tr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_tr"
+                    android:orientation="horizontal"
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/name_devices_appbar"
+                        style="@style/TextViewStyleContent"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:text="ТР"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_tsn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_tsn"
+                    android:orientation="horizontal"
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/text_content_rza_2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/name_devices_appbar"
+                        style="@style/TextViewStyleContent"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:text="ТСН"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardViewDialogContentStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="6dp"
+                android:background="@color/text_content_rza"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/text_content_rza"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:id="@+id/b_add_vl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/background_item_tr"
+                    android:orientation="horizontal"
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="8dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/baseline_add_24"
+                        app:tint="@color/calendar_background" />
+
+                    <TextView
+                        style="@style/TextViewStyleContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ВЛ"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:textColor="@color/name_devices_appbar" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

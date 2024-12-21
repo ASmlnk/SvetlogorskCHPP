@@ -5,7 +5,7 @@ import com.example.svetlogorskchpp.__data.hard.HardDataListRepository
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkDomainToEntityMapper
 import com.example.svetlogorskchpp.__data.mapper.NoteRequestWorkEntityToDomainMapper
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentItemDeleteRepository
-import com.example.svetlogorskchpp.__data.repository.equipment.electrical.EquipmentUpdateFirebaseRepository
+import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentUpdateFirebaseRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarNoteTag.CalendarNoteTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.calendarRequestWorkTag.CalendarRequestWorkTagRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.note.NoteRepository
@@ -211,6 +211,7 @@ class UseCaseModule {
         @Tr trRepository: EquipmentUpdateFirebaseRepository,
         @Tsn tsnRepository: EquipmentUpdateFirebaseRepository,
         @Tg tgRepository: EquipmentUpdateFirebaseRepository,
+        @MechanInfo miRepository: EquipmentUpdateFirebaseRepository
     ): UpdateFirebaseUseCases {
         return UpdateFirebaseUseCasesImpl(
             elMotorRepository,
@@ -219,7 +220,8 @@ class UseCaseModule {
             vlRepository,
             trRepository,
             tsnRepository,
-            tgRepository
+            tgRepository,
+            miRepository
         )
     }
 
@@ -229,12 +231,14 @@ class UseCaseModule {
         @ElMotorDel elMotorRepository: EquipmentItemDeleteRepository,
         @Switchgear switchgearRepository: EquipmentItemDeleteRepository,
         @LightingAndOther lightingAndOtherRepository: EquipmentItemDeleteRepository,
+        @MechanInfo miRepository: EquipmentItemDeleteRepository,
         networkUseCases: NetworkAvailableUseCase,
     ): EquipmentsItemDeleteUseCases {
         return EquipmentsItemDeleteUseCasesImpl(
             elMotorRepository,
             switchgearRepository,
             lightingAndOtherRepository,
+            miRepository,
             networkUseCases
         )
     }

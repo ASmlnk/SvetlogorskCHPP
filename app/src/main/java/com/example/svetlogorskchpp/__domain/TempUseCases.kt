@@ -139,6 +139,8 @@ class TempUseCases @Inject constructor(
                 mecH = TODO(),
                 mecPowN = TODO(),
                 mecAddit = TODO(),
+                mecInfoId = null,
+                mecInfoName = null
             )
             elMotorEntitys.add(e)
         }

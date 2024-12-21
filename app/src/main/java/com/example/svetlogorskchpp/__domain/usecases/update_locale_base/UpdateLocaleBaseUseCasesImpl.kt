@@ -7,6 +7,7 @@ import com.example.svetlogorskchpp.__data.database.electrical_equipment.OpenSwit
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.Switchgear.SwitchgearEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.transformerOwnNeeds.TransformerOwnNeedsEntity
 import com.example.svetlogorskchpp.__data.database.electrical_equipment.turbogenerator.TurboGeneratorEntity
+import com.example.svetlogorskchpp.__data.database.equipment.mechanism_info.MechanismInfoEntity
 import com.example.svetlogorskchpp.__data.repository.equipment.EquipmentRepository
 import com.example.svetlogorskchpp.__data.repository.shift_schedule.noteRequestWork.NoteRequestWorkRepository
 import javax.inject.Inject
@@ -20,6 +21,7 @@ class UpdateLocaleBaseUseCasesImpl @Inject constructor(
     private val repositorySwitchgear: EquipmentRepository<SwitchgearEntity>,
     private val repositoryLightingAndOther: EquipmentRepository<LightingAndOtherEntity>,
     private val noteRequestWorkRepository: NoteRequestWorkRepository,
+    private val mechanismInfoRepository: EquipmentRepository<MechanismInfoEntity>,
 ): UpdateLocaleBaseUseCases {
     override suspend fun updateOpenSwitchgearVl() {
         repositoryOpenSwitchgearVlRepository.updateLocaleData()
@@ -51,5 +53,9 @@ class UpdateLocaleBaseUseCasesImpl @Inject constructor(
 
     override suspend fun updateLightingAndOther() {
         repositoryLightingAndOther.updateLocaleData()
+    }
+
+    override suspend fun updateMechanismInfo() {
+        mechanismInfoRepository.updateLocaleData()
     }
 }

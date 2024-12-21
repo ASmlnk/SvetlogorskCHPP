@@ -2,7 +2,7 @@ package com.example.svetlogorskchpp.__presentation.electrical_equipment.search.v
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.EquipmentAllUseCases
+import com.example.svetlogorskchpp.__domain.usecases.equipments.all_equipment.electrical.EquipmentAllUseCases
 import com.example.svetlogorskchpp.__presentation.electrical_equipment.model.ElectricalEquipment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +28,8 @@ class SearchElectricalViewModel @Inject constructor(
             delay(300)
             if (newText.isEmpty()) _data.value = emptyList()
             else if (newText == "fpl") {
-                useCases.getEquipmentConsumersFlow("").collect {
-                    _data.value = it
+                useCases.getEquipmentConsumersFlow("").collect { list ->
+                    _data.value = list.filter { it.fplFilter() }
                 }
             } else {
                 useCases.getSearchElectricalEquipment(
