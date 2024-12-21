@@ -1,0 +1,1272 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 10,
+    "identityHash": "5be8c901447f4a9c778e0b5167a6fb3d",
+    "entities": [
+      {
+        "tableName": "calendar_note_tags",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` INTEGER NOT NULL, `month` INTEGER NOT NULL, `isTechnical` INTEGER NOT NULL, `isNotes` INTEGER NOT NULL, PRIMARY KEY(`date`))",
+        "fields": [
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTechnical",
+            "columnName": "isTechnical",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isNotes",
+            "columnName": "isNotes",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "date"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "notes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tagDate` INTEGER NOT NULL, `dateNotes` INTEGER NOT NULL, `isTimeNotes` INTEGER NOT NULL, `content` TEXT NOT NULL, `is_request_work` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagDate",
+            "columnName": "tagDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateNotes",
+            "columnName": "dateNotes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTimeNotes",
+            "columnName": "isTimeNotes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRequestsWork",
+            "columnName": "is_request_work",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "request_work_tag",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` INTEGER NOT NULL, `month` INTEGER NOT NULL, PRIMARY KEY(`date`))",
+        "fields": [
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "month",
+            "columnName": "month",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "date"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "request_work",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `tagDateOpen` INTEGER NOT NULL, `tagDateClose` INTEGER NOT NULL, `tagMonthOpen` INTEGER NOT NULL, `tagMonthClose` INTEGER NOT NULL, `numberRequestWork` TEXT NOT NULL, `dateOpen` INTEGER NOT NULL, `dateClose` INTEGER NOT NULL, `accession` TEXT NOT NULL, `reason` TEXT NOT NULL, `additionally` TEXT NOT NULL, `isExtend` INTEGER NOT NULL, `contentExtend` TEXT NOT NULL, `permission` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagDateOpen",
+            "columnName": "tagDateOpen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagDateClose",
+            "columnName": "tagDateClose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagMonthOpen",
+            "columnName": "tagMonthOpen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tagMonthClose",
+            "columnName": "tagMonthClose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberRequestWork",
+            "columnName": "numberRequestWork",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateOpen",
+            "columnName": "dateOpen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateClose",
+            "columnName": "dateClose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accession",
+            "columnName": "accession",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "reason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionally",
+            "columnName": "additionally",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isExtend",
+            "columnName": "isExtend",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contentExtend",
+            "columnName": "contentExtend",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "permission",
+            "columnName": "permission",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "open_switchgear_vl",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `panelMcp` TEXT NOT NULL, `bysSystem` TEXT NOT NULL, `cell` TEXT NOT NULL, `voltage` TEXT NOT NULL, `isTransit` INTEGER NOT NULL, `isVl` INTEGER NOT NULL, `typeSwitch` TEXT NOT NULL, `typeInsTr` TEXT NOT NULL, `automation` TEXT NOT NULL, `apv` TEXT NOT NULL, `keyShr1` TEXT NOT NULL, `keyShr2` TEXT NOT NULL, `keyLr` TEXT NOT NULL, `keyOr` TEXT NOT NULL, `phaseProtection` TEXT NOT NULL, `earthProtection` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "panelMcp",
+            "columnName": "panelMcp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bysSystem",
+            "columnName": "bysSystem",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cell",
+            "columnName": "cell",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voltage",
+            "columnName": "voltage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTransit",
+            "columnName": "isTransit",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isVl",
+            "columnName": "isVl",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeSwitch",
+            "columnName": "typeSwitch",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeInsTr",
+            "columnName": "typeInsTr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automation",
+            "columnName": "automation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apv",
+            "columnName": "apv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr1",
+            "columnName": "keyShr1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr2",
+            "columnName": "keyShr2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyLr",
+            "columnName": "keyLr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyOr",
+            "columnName": "keyOr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseProtection",
+            "columnName": "phaseProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earthProtection",
+            "columnName": "earthProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "open_switchgear_tr",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `panelMcp` TEXT NOT NULL, `type` TEXT NOT NULL, `parameterType` TEXT NOT NULL, `transcriptType` TEXT NOT NULL, `additionally` TEXT NOT NULL, `isSpare` INTEGER NOT NULL, `isThreeWinding` INTEGER NOT NULL, `bysSystemVn` TEXT NOT NULL, `cellVn` TEXT NOT NULL, `voltageVn` TEXT NOT NULL, `typeSwitchVn` TEXT NOT NULL, `typeInsTrVn` TEXT NOT NULL, `keyShr1Vn` TEXT NOT NULL, `keyShr2Vn` TEXT NOT NULL, `keyLrVn` TEXT NOT NULL, `keyOrVn` TEXT NOT NULL, `bysSystemSn` TEXT NOT NULL, `cellSn` TEXT NOT NULL, `voltageSn` TEXT NOT NULL, `typeSwitchSn` TEXT NOT NULL, `typeInsTrSn` TEXT NOT NULL, `keyShr1Sn` TEXT NOT NULL, `keyShr2Sn` TEXT NOT NULL, `keyLrSn` TEXT NOT NULL, `keyOrSn` TEXT NOT NULL, `automation` TEXT NOT NULL, `apv` TEXT NOT NULL, `phaseProtection` TEXT NOT NULL, `earthProtection` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "panelMcp",
+            "columnName": "panelMcp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parameterType",
+            "columnName": "parameterType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transcriptType",
+            "columnName": "transcriptType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionally",
+            "columnName": "additionally",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSpare",
+            "columnName": "isSpare",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isThreeWinding",
+            "columnName": "isThreeWinding",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bysSystemVn",
+            "columnName": "bysSystemVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cellVn",
+            "columnName": "cellVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voltageVn",
+            "columnName": "voltageVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeSwitchVn",
+            "columnName": "typeSwitchVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeInsTrVn",
+            "columnName": "typeInsTrVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr1Vn",
+            "columnName": "keyShr1Vn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr2Vn",
+            "columnName": "keyShr2Vn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyLrVn",
+            "columnName": "keyLrVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyOrVn",
+            "columnName": "keyOrVn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bysSystemSn",
+            "columnName": "bysSystemSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cellSn",
+            "columnName": "cellSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voltageSn",
+            "columnName": "voltageSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeSwitchSn",
+            "columnName": "typeSwitchSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeInsTrSn",
+            "columnName": "typeInsTrSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr1Sn",
+            "columnName": "keyShr1Sn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyShr2Sn",
+            "columnName": "keyShr2Sn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyLrSn",
+            "columnName": "keyLrSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyOrSn",
+            "columnName": "keyOrSn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automation",
+            "columnName": "automation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apv",
+            "columnName": "apv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseProtection",
+            "columnName": "phaseProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earthProtection",
+            "columnName": "earthProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "transformer_own_needs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `panelMcp` TEXT NOT NULL, `type` TEXT NOT NULL, `parameterType` TEXT NOT NULL, `transcriptType` TEXT NOT NULL, `additionally` TEXT NOT NULL, `isSpare` INTEGER NOT NULL, `powerSupplyId` TEXT NOT NULL, `powerSupplyCell` TEXT NOT NULL, `powerSupplyName` TEXT NOT NULL, `voltage` TEXT NOT NULL, `typeSwitch` TEXT NOT NULL, `typeInsTr` TEXT NOT NULL, `automation` TEXT NOT NULL, `apv` TEXT NOT NULL, `phaseProtection` TEXT NOT NULL, `earthProtection` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "panelMcp",
+            "columnName": "panelMcp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parameterType",
+            "columnName": "parameterType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transcriptType",
+            "columnName": "transcriptType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionally",
+            "columnName": "additionally",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSpare",
+            "columnName": "isSpare",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyId",
+            "columnName": "powerSupplyId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyCell",
+            "columnName": "powerSupplyCell",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyName",
+            "columnName": "powerSupplyName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "voltage",
+            "columnName": "voltage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeSwitch",
+            "columnName": "typeSwitch",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeInsTr",
+            "columnName": "typeInsTr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automation",
+            "columnName": "automation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apv",
+            "columnName": "apv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseProtection",
+            "columnName": "phaseProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earthProtection",
+            "columnName": "earthProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "turbogenerator",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `panelMcp` TEXT NOT NULL, `typeSwitch` TEXT NOT NULL, `typeInsTr` TEXT NOT NULL, `typeGenerator` TEXT NOT NULL, `transcriptTypeGenerator` TEXT NOT NULL, `volumeTg` TEXT NOT NULL, `volumeReceiver` TEXT NOT NULL, `additionallyGenerator` TEXT NOT NULL, `sourceExcitation` TEXT NOT NULL, `generatorStarted` TEXT NOT NULL, `translationIntoRv` TEXT NOT NULL, `translationFromRv` TEXT NOT NULL, `typeTurbin` TEXT NOT NULL, `transcriptTypeTurbin` TEXT NOT NULL, `powerEl` TEXT NOT NULL, `powerThermal` TEXT NOT NULL, `steamConsumption` TEXT NOT NULL, `additionallyTurbin` TEXT NOT NULL, `powerSupplyId` TEXT NOT NULL, `powerSupplyCell` TEXT NOT NULL, `powerSupplyName` TEXT NOT NULL, `automation` TEXT NOT NULL, `phaseProtection` TEXT NOT NULL, `earthProtection` TEXT NOT NULL, `additionallyRza1` TEXT NOT NULL, `additionallyRza2` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "panelMcp",
+            "columnName": "panelMcp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeSwitch",
+            "columnName": "typeSwitch",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeInsTr",
+            "columnName": "typeInsTr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeGenerator",
+            "columnName": "typeGenerator",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transcriptTypeGenerator",
+            "columnName": "transcriptTypeGenerator",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "volumeTg",
+            "columnName": "volumeTg",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "volumeReceiver",
+            "columnName": "volumeReceiver",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionallyGenerator",
+            "columnName": "additionallyGenerator",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceExcitation",
+            "columnName": "sourceExcitation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "generatorStarted",
+            "columnName": "generatorStarted",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "translationIntoRv",
+            "columnName": "translationIntoRv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "translationFromRv",
+            "columnName": "translationFromRv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeTurbin",
+            "columnName": "typeTurbin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transcriptTypeTurbin",
+            "columnName": "transcriptTypeTurbin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerEl",
+            "columnName": "powerEl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerThermal",
+            "columnName": "powerThermal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "steamConsumption",
+            "columnName": "steamConsumption",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionallyTurbin",
+            "columnName": "additionallyTurbin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyId",
+            "columnName": "powerSupplyId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyCell",
+            "columnName": "powerSupplyCell",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSupplyName",
+            "columnName": "powerSupplyName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automation",
+            "columnName": "automation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phaseProtection",
+            "columnName": "phaseProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earthProtection",
+            "columnName": "earthProtection",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionallyRza1",
+            "columnName": "additionallyRza1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "additionallyRza2",
+            "columnName": "additionallyRza2",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "el_motor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nam` TEXT NOT NULL, `powSuId` TEXT NOT NULL, `powSuC` TEXT NOT NULL, `powSuNam` TEXT NOT NULL, `automation` TEXT NOT NULL, `phPr` TEXT NOT NULL, `eaPr` TEXT NOT NULL, `addRz` TEXT NOT NULL, `cat` TEXT NOT NULL, `gCat` TEXT NOT NULL, `tSw` TEXT NOT NULL, `tIT` TEXT NOT NULL, `addit` TEXT NOT NULL, `isRep` INTEGER NOT NULL, `tRep` TEXT NOT NULL, `conCir` TEXT NOT NULL, `powEl` TEXT NOT NULL, `vol` TEXT NOT NULL, `i` TEXT NOT NULL, `n` TEXT NOT NULL, `tEl` TEXT NOT NULL, `mecTyp` TEXT NOT NULL, `mecPer` TEXT NOT NULL, `mecPr` TEXT NOT NULL, `mecN` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nam",
+            "columnName": "nam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuId",
+            "columnName": "powSuId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuC",
+            "columnName": "powSuC",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuNam",
+            "columnName": "powSuNam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automation",
+            "columnName": "automation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phPr",
+            "columnName": "phPr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eaPr",
+            "columnName": "eaPr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addRz",
+            "columnName": "addRz",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cat",
+            "columnName": "cat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gCat",
+            "columnName": "gCat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tSw",
+            "columnName": "tSw",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tIT",
+            "columnName": "tIT",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addit",
+            "columnName": "addit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRep",
+            "columnName": "isRep",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tRep",
+            "columnName": "tRep",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conCir",
+            "columnName": "conCir",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powEl",
+            "columnName": "powEl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vol",
+            "columnName": "vol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "i",
+            "columnName": "i",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "n",
+            "columnName": "n",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tEl",
+            "columnName": "tEl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mecTyp",
+            "columnName": "mecTyp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mecPer",
+            "columnName": "mecPer",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mecPr",
+            "columnName": "mecPr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mecN",
+            "columnName": "mecN",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "switchgear",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nam` TEXT NOT NULL, `tSw` TEXT NOT NULL, `tIT` TEXT NOT NULL, `addit` TEXT NOT NULL, `cat` TEXT NOT NULL, `namDep` TEXT NOT NULL, `vol` TEXT NOT NULL, `aut` TEXT NOT NULL, `phPr` TEXT NOT NULL, `eaPr` TEXT NOT NULL, `addRz` TEXT NOT NULL, `inf` TEXT NOT NULL, `powSuId1` TEXT NOT NULL, `powSuC1` TEXT NOT NULL, `powSuNam1` TEXT NOT NULL, `powSuId2` TEXT NOT NULL, `powSuC2` TEXT NOT NULL, `powSuNam2` TEXT NOT NULL, `powSuRId1` TEXT NOT NULL, `powSuRC1` TEXT NOT NULL, `powSuRNam1` TEXT NOT NULL, `powSuRId2` TEXT NOT NULL, `powSuRC2` TEXT NOT NULL, `powSuRNam2` TEXT NOT NULL, `powSuRId3` TEXT NOT NULL, `powSuRC3` TEXT NOT NULL, `powSuRNam3` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nam",
+            "columnName": "nam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tSw",
+            "columnName": "tSw",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tIT",
+            "columnName": "tIT",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addit",
+            "columnName": "addit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cat",
+            "columnName": "cat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "namDep",
+            "columnName": "namDep",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vol",
+            "columnName": "vol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aut",
+            "columnName": "aut",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phPr",
+            "columnName": "phPr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eaPr",
+            "columnName": "eaPr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addRz",
+            "columnName": "addRz",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inf",
+            "columnName": "inf",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuId1",
+            "columnName": "powSuId1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuC1",
+            "columnName": "powSuC1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuNam1",
+            "columnName": "powSuNam1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuId2",
+            "columnName": "powSuId2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuC2",
+            "columnName": "powSuC2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuNam2",
+            "columnName": "powSuNam2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRId1",
+            "columnName": "powSuRId1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRC1",
+            "columnName": "powSuRC1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRNam1",
+            "columnName": "powSuRNam1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRId2",
+            "columnName": "powSuRId2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRC2",
+            "columnName": "powSuRC2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRNam2",
+            "columnName": "powSuRNam2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRId3",
+            "columnName": "powSuRId3",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRC3",
+            "columnName": "powSuRC3",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuRNam3",
+            "columnName": "powSuRNam3",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "lighting_and_other",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `nam` TEXT NOT NULL, `powSuId` TEXT NOT NULL, `powSuC` TEXT NOT NULL, `powSuNam` TEXT NOT NULL, `tSw` TEXT NOT NULL, `addit` TEXT NOT NULL, `isLi` INTEGER NOT NULL, `loc` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nam",
+            "columnName": "nam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuId",
+            "columnName": "powSuId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuC",
+            "columnName": "powSuC",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powSuNam",
+            "columnName": "powSuNam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tSw",
+            "columnName": "tSw",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addit",
+            "columnName": "addit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLi",
+            "columnName": "isLi",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loc",
+            "columnName": "loc",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5be8c901447f4a9c778e0b5167a6fb3d')"
+    ]
+  }
+}
